@@ -1,13 +1,120 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
+<wxs module="tools" src="../tools.wxs"></wxs>
+<view>
+	<view class="head-container">
+		<!-- <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+    </view> -->
+		<view class="index-head shadow-model">
+			<view class="index-head-card">
+				<image class="index-head-card-img" src="../../img/index-head-bg.png" mode="aspectFit"></image>
+				<view class="index-head-card-msg box-sizing">
+					<view class="index-hcm-title">您的专属行业</view>
+					<view class="index-hcm-name">
+						<view class="inline-block index-hcm-name-msg">
+							<image class="inline-block" src="" mode="aspectFit"></image>
+							<text>房地产行业</text>
+						</view>
+						<image class="inline-block" src="../../img/index-head-kt.png" mode="aspectFit"></image>
+					</view>
+					<view class="index-hcm-intro">房地产行业的相关介绍，助力了解更多资讯，房地产相关 介绍，助力了解更多资讯</view>
+				</view>
+			</view>
+			<view class="index-head-foot box-sizing">
+				<view class="inline-block">您目前开通 <text class="green">5</text> 个行业</view>
+				<view class="inline-block change-hy">更换行业 ></view>
+			</view>
+		</view>
+		<view class="product-intro">
+			<image class="pro-intro-bg" src="../../img/index-pro-intro.png" mode="aspectFIt"></image>
+			<view class="pro-intro-list box-sizing">
+				<image wx:for="{{4}}" wx:key="*this" src="{{'../../img/index-pro-intro'+item+'.png'}}" mode="aspectFIt" class="box-siizng"></image>
+			</view>
+		</view>
+	</view>
+	<view class="list-container">
+		<view class="index-list-title">
+			<view class="inline-block">新闻中心</view>
+			<view class="inline-block index-list-title-more">全部 ></view>
+		</view>
+		<view>
+			<view class="index-list-new-group" wx:for="{{3}}" wx:key="*this">
+				<view wx:if="{{item==1}}" class="list-new list-new-img-top shadow-model box-sizing">
+					<image src="" mode="aspectFit"></image>
+					<view class="list-new-msg">关于修订城镇土地使用税和房产税申报表单的公告</view>
+					<view class="list-new-date">{{tools.dateFormat(1584939085000)}}</view>
+				</view>
+				<view wx:if="{{item==1}}" class="list-new shadow-model box-sizing">
+					<view class="list-new-msg">关于修订城镇土地使用税和房产税申报表单的公告</view>
+					<view class="list-new-date">{{tools.dateFormat(1584939085000)}}</view>
+				</view>
+				<view wx:if="{{item==1}}" class="list-new list-new-img-left shadow-model box-sizing">
+					<view class="list-new-right">
+						<view class="list-new-msg">关于修订城镇土地使用税和房产税申报表单的公告</view>
+						<view class="list-new-date">{{tools.dateFormat(1584939085000)}}</view>
+					</view>
+					<image src="" mode="aspectFit"></image>
+				</view>
+			</view>
+			<view class="sys-btn">
+				<image src="../../img/sys.png" mode="aspectFit"></image>
+			</view>
+		</view>
+		<view class="index-list-title">
+			<view class="inline-block">
+				直播答疑
+				<view class="inline-block zb-yg">
+					<image src="../../img/zb-yg.png" mode="aspectFit"></image>预告
+				</view>
+			</view>
+			<view class="inline-block index-list-title-more">全部 ></view>
+		</view>
+    <view class="zb-list-group">
+      <view class="shadow-model zb-list box-sizing inline-block" wx:for="{{3}}"  wx:key="*this">
+        <view class="zb-list-title">
+          <image src="../../img/zb-yg.png" mode="aspectFit"></image>
+          <text>直播中</text>
+        </view>
+        <view class="zb-list-msg">
+          <image class="zb-list-msg-img" src="" mode="aspectFit"></image>
+          <view class="zb-list-msg-right inline-block">
+            <view class="zb-lmr-title">2019年第一期房地产行 期房地产行业定向答...</view>
+            <view class="zb-lmr-name">讲师：直播人</view>
+            <view class="zb-lmr-date">时间：2019-02-11 10:30</view>
+            <view class="zb-lmr-class">
+              <view class="inline-block">房地产</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="index-list-title">
+			<view class="inline-block">企业微咨询</view>
+			<view class="inline-block index-list-title-more">全部 ></view>
+		</view>
+    <view class="index-wzx shadow-model">
+      <image class="index-wzx-img" src="../../img/index-wzx-bg.png" mode="aspectFit"></image>
+      <view class="index-wzx-foot">
+        <view class="inline-block">您当前还可提问 <text class="green">5</text> 个问题</view>
+        <view class="inline-block index-wzx-que">去提问</view>
+      </view>
+    </view>
+    <view class="index-list-title">
+			<view class="inline-block">精选好课</view>
+			<view class="inline-block index-list-title-more">全部 ></view>
+		</view>
+    <view class="index-class-ul">
+      <view class="index-class-li shadow-model box-sizing" wx:for="{{3}}" wx:key="*this">
+        <image class="index-class-li-img" src="" mode="aspectFit"></image>
+        <view class="index-class-msg inline-block">
+          <view class="index-class-msg-title">房地产促销中买房赠物 税务处理</view>
+          <view>王家集</view>
+        </view>
+      </view>
+    </view>
+	</view>
 </view>
