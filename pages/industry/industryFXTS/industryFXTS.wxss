@@ -1,0 +1,80 @@
+/* pages/industry/industryFXTS/industryFXTS.wxss */
+.ifx-tab-list{
+  padding:31rpx 0 0 31rpx;
+  white-space: nowrap;
+}
+.ifx-tab{
+  font-size: 26rpx;
+  height: 62rpx;
+  line-height: 62rpx;
+  padding:0 37rpx;
+  text-align: center;
+  border-radius: 31rpx;
+  background: #F2F2F2;
+  margin-right: 25rpx;
+}
+.ifx-tab-act{
+  background:rgba(242,251,250,1);
+  border:2px solid rgba(40,183,163,1);
+  color:#28B7A3;
+}
+.ifx-list{
+  padding:42rpx 38rpx;
+}
+.ifx-list-head>image{
+  width: 68rpx;
+  height: 68rpx;
+  border-radius: 50%;
+  background: #eee;
+  margin-right: 21rpx;
+  vertical-align: top;
+}
+.ifx-list-head-name{
+  font-size: 26rpx;
+  margin-bottom: 7rpx;
+}
+.ifx-list-head-date{
+  font-size: 22rpx;
+  color:#999;
+}
+.ifx-list-title{
+  font-size: 30rpx;
+  line-height: 43rpx;
+  margin:30rpx 0 23rpx 0;
+}
+.ifx-list-content{
+  font-size: 26rpx;
+  color:#999;
+  line-height: 40rpx;
+  margin-bottom: 10rpx;
+}
+.ifx-list-label>text{
+  font-size: 24rpx;
+  margin-right: 20rpx;
+}
+.ifx-foot{
+  display: flex;
+  justify-content: space-between;
+}
+.ifx-foot-list{
+  width: 55rpx;
+  height: 55rpx;
+  position: relative;
+}
+.ifx-foot-list>image{
+  width: 100%;
+  height: 100%;
+}
+.ifx-foot-list>text{
+  font-size: 18rpx;
+  color:#fff;
+  height: 28rpx;
+  line-height: 28rpx;
+  padding:0 9rpx;
+  text-align: center;
+  border-radius: 12rpx;
+  background: #28B7A3;
+  position: absolute;
+  bottom:0;
+  left:24rpx;
+}

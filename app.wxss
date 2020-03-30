@@ -6,7 +6,9 @@
   padding: 32rpx 34rpx;
   box-sizing: border-box;
 }
-
+.body{
+  background: #F6F6F6;
+}
 .inline-block {
   display: inline-block;
 }
@@ -24,4 +26,18 @@
 }
 .green{
   color:#28B7A3;
+}
+.mask{
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  position: fixed;
+  top:0;
+  left:0;
+  z-index: 999;
+}
+/* 行业单选框样式 */
+.wx-radio-input {
+  width: 34rpx!important;
+  height: 34rpx!important;
 }

@@ -1,0 +1,13 @@
+<!--pages/industry/industryZCGJ/industryDZ/industryDZ.wxml-->
+<view class="id-container">
+  <view class="idz-list" wx:for="{{2}}" wx:key="*this">
+    <image class="idz-list-img"></image>
+    <view class="idz-list-right inline-block">
+      <view class="inline-block">
+          <view class="idz-list-name">用户名</view>
+          <view class="idz-list-position">签约内容官</view>
+      </view>
+      <view class="inline-block idz-list-date">04-29  12:34</view>
+    </view>
+  </view>
+</view>

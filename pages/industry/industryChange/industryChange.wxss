@@ -1,0 +1,35 @@
+/* pages/industry/industryChange/industryChange.wxss */
+.hyradio{
+  margin-bottom: 69rpx;
+  font-size: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  color:#666;
+}
+.ich-intro{
+  font-size: 26rpx;
+  line-height: 38rpx;
+  color:#999;
+}
+.ich-title{
+  font-size: 32rpx;
+  font-weight: bold;
+  margin: 48rpx 0;
+}
+.ich-btn{
+  width: 100%;
+  position: fixed;
+  bottom:0;
+  left:0;
+  padding:47rpx 35rpx;
+  background: #fff;
+}
+.ich-btn> button{
+  width: 100%!important;
+  height: 88rpx;
+  background: #28B7A3;
+  font-size: 32rpx;
+  color:#fff;
+  margin:0;
+  font-weight: 400;
+}

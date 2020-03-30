@@ -1,0 +1,9 @@
+"pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/industry/industryChange/industryChange",//行业改变
+     "pages/industry/industryZCGJ/industryZCGJ",//行业政策归集
+     "pages/industry/industryZCGJ/policyContent/policyContent",//政策内容
+     "pages/industry/industryZCGJ/industryDZ/industryDZ",//点赞列表
+     "pages/industry/industryFXTS/industryFXTS",//风险提示
+  ],

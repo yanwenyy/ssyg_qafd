@@ -1,0 +1,40 @@
+/* pages/industry/industryZCGJ/industryDZ/industryDZ.wxss */
+.idz-list{
+  margin-bottom:25rpx;
+}
+.idz-list-img{
+  width: 100rpx;
+  height:100rpx;
+  border-radius: 50%;
+  background: #eee;
+  margin-right: 25rpx;
+}
+.idz-list-right{
+  width: 83%;
+  border-bottom: 1px solid #eee;
+  padding-bottom:29rpx;
+  vertical-align: top;
+}
+.idz-list-name{
+  font-size: 32rpx;
+  margin-bottom:6rpx;
+}
+.idz-list-position{
+  font-size: 20rpx;
+  height: 38rpx;
+  line-height: 38rpx;
+  border-radius: 19rpx;
+  border:1rpx solid #28B7A3;
+  color:#28B7A3;
+  padding:0 18rpx;
+}
+.idz-list-date{
+  font-size: 26rpx;
+  color:#999;
+  float: right;
+  margin-top:41rpx;
+  margin-right: 39rpx;
+}
+.id-container{
+  padding:30rpx 0 30rpx 30rpx;
+}

@@ -50,5 +50,20 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+
+  //更换行业
+  changeIndustry:function(){
+    wx.navigateTo({
+      url: '../industry/industryChange/industryChange',
+    })
+  },
+
+  //行业四个tab点击
+  indexTabClick:function(e){
+    var url=e.currentTarget.dataset.url;
+    wx.navigateTo({
+      url: url,
+    })
   }
 })

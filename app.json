@@ -1,7 +1,14 @@
 {
   "pages": [
+    
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/industry/industryChange/industryChange",
+    "pages/industry/industryZCGJ/industryZCGJ",
+    "pages/industry/industryZCGJ/policyContent/policyContent",
+    "pages/industry/industryZCGJ/industryDZ/industryDZ",
+    "pages/industry/industryFXTS/industryFXTS"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -10,13 +17,16 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页"
-    }, {
-      "pagePath": "pages/logs/logs",
-      "text": "日志"
-    }]
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "我的"
+      }
+    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

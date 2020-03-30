@@ -1,0 +1,41 @@
+<!--pages/industry/industryFXTS/industryFXTS.wxml-->
+<view>
+  <scroll-view class="ifx-tab-list" scroll-x="true">
+    <view class="inline-block ifx-tab ifx-tab-act">全部</view>
+    <view class="inline-block ifx-tab">政策难点易错点</view>
+    <view class="inline-block ifx-tab">政策难点易错点</view>
+    <view class="inline-block ifx-tab">政策难点易错点</view>
+  </scroll-view>
+  <view class="container">
+      <view class="ifx-list shadow-model box-sizing">
+        <view class="ifx-list-head">
+            <image src="" mode="aspectFit"></image>
+            <view class="inline-block">
+              <view class="ifx-list-head-name">王家集坐着的</view>
+              <view class="ifx-list-head-date">2019-12-05 10:00:00</view>
+            </view>
+        </view>
+        <view class="ifx-list-title">关于修订城镇土地使用税和房产税申报表单的公告城镇土地使</view>
+        <view class="ifx-list-content">这是一部分内容的预览这是一部分内容的预览这是一部分内容的预览这是一部分内容的预览这是一部分内容的预览这是一部分内容的预览...</view>
+        <view class="ifx-list-label">
+          <text class="green"># 政策难点易错点</text>
+        </view>
+        <view class="ifx-foot">
+          <view class="ifx-foot-list">
+            <image src="../../../img/pcb-pl.png" mode="aspectFit"></image>
+            <text class="inline-block">999+</text>
+          </view>
+          <view class="ifx-foot-list">
+            <image src="../../../img/pcb-dz.png" mode="aspectFit"></image>
+            <text class="inline-block">999+</text>
+          </view>
+          <view class="ifx-foot-list">
+            <image src="../../../img/pcb-sc.png" mode="aspectFit"></image>
+          </view>
+           <view class="ifx-foot-list">
+            <image src="../../../img/pcb-zf.png" mode="aspectFit"></image>
+          </view>
+        </view>
+      </view>
+  </view>
+</view>
