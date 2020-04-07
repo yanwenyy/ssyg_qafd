@@ -1,0 +1,124 @@
+/* pages/ask/askDetail/askDetail.wxss */
+.body{
+  min-height: 100vh;
+}
+.ask-detail-que{
+  background: #fff;
+  padding: 35rpx;
+}
+.ask-dq-head{
+  display: flex;
+  justify-content: space-between;
+}
+.ask-dq-head>image{
+  width: 84rpx;
+  height: 84rpx;
+  vertical-align: top;
+  margin-right: 20rpx;
+}
+.ask-dqh-right{
+  width: 85%;
+  display: flex;
+  justify-content: space-between;
+}
+.ask-dqh-name{
+  font-size: 30rpx;
+  line-height: 40rpx;
+}
+.ask-dqh-date{
+  font-size: 24rpx;
+  line-height: 38rpx;
+  color:#999;
+}
+.ask-dq-msg{
+  font-size: 30rpx;
+  line-height: 45rpx;
+  margin-top:12rpx;
+}
+.ask-dq-img{
+  margin-top:15rpx;
+}
+.ask-dq-img>image{
+  width: 140rpx;
+  height: 140rpx;
+  margin-right: 25rpx;
+}
+.ask-dq-foot{
+  font-size: 24rpx;
+  color:#999;
+  margin-top:15rpx;
+}
+.ask-dq-foot>image{
+  width: 20rpx;
+  height: 23rpx;
+  vertical-align: middle;
+  margin-top:-3rpx;
+}
+.ask-detail-ans{
+  background: #fff;
+  margin-top:18rpx;
+}
+.ask-detail-ans-title{
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-left: 35rpx;
+  border-bottom:1px solid #eee;
+}
+.ask-detail-ans-show{
+  padding:35rpx;
+}
+.ask-dqh-date>image{
+  width: 24rpx;
+  height:24rpx;
+  vertical-align: middle;
+  margin-top:-3rpx;
+}
+.ask-ans-img>image{
+  width: 131rpx;
+  height: 57rpx;
+}
+.ask-ans-cn{
+  width:103rpx;
+  height:50rpx;
+  font-size:28rpx;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  line-height:50rpx;
+  background: #28B7A3;
+  text-align: center;
+  border-radius: 4rpx;
+  margin-top:24rpx;
+}
+.ask-ans-evaluate{
+  background: #eee;
+  padding:40rpx 31rpx;
+  margin-top:30rpx;
+}
+.ask-ans-star{
+  font-size: 28rpx;
+}
+.ask-ans-star>image{
+  width: 35rpx;
+  height: 33rpx;
+  vertical-align: top;
+  margin-left: 13rpx;
+}
+.ask-ans-evaluate-msg{
+  font-size: 28rpx;
+  line-height: 39rpx;
+  color:#666;
+  margin-top:20rpx;
+}
+.ask-ans-no{
+  text-align: center;
+  font-size: 28rpx;
+  color:#999;
+  height: 900rpx;
+}
+.ask-ans-no>image{
+  width: 306rpx;
+  height: 218rpx;
+  margin-top:87rpx;
+}

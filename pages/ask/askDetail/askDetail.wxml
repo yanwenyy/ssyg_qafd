@@ -1,0 +1,77 @@
+<!--pages/ask/askDetail/askDetail.wxml-->
+<view class="body">
+	<view class="ask-detail-que box-sizing">
+		<view class="ask-dq-head">
+			<image src="" mode="aspectFit" class="head-img"></image>
+			<view class="inline-block ask-dqh-right">
+				<view class="inline-block">
+					<view class="ask-dqh-name">账号用户</view>
+					<view class="ask-dqh-date">2018-08-01 13:56:03</view>
+				</view>
+			</view>
+		</view>
+		<view class="ask-dq-msg">因机器检修暂时停产，停产期间发生的固定资产折 旧税前扣除吗？有木有专家解答一下。</view>
+		<view class="ask-dq-img">
+			<image src="" mode="aspectFit"></image>
+		</view>
+		<view class="ask-dq-foot">
+			<image src=".../../../../../img/ask-detail-label.png" mode="aspectFit"></image>
+			北京 高新技术
+		</view>
+	</view>
+	<view class="ask-detail-ans box-sizing">
+		<view class="ask-detail-ans-title">回答</view>
+		<view class="ask-detail-ans-show">
+			<view class="ask-dq-head">
+				<image src="" mode="aspectFit" class="head-img"></image>
+				<view class="inline-block ask-dqh-right">
+					<view class="inline-block">
+						<view class="ask-dqh-name">账号用户</view>
+						<view class="ask-dqh-date"> <image src="../../../img/ask-detail-position.png" mode="aspectFit"></image> 税务师、律师</view>
+					</view>
+          <view class="ask-ans-img">
+            <image src="../../../img/ask-detail-best.png" mode="aspectFit"></image>
+          </view>
+          <view wx:if="{{false}}" class="ask-ans-cn">采纳</view>
+				</view>
+			</view>
+			<view class="ask-dq-msg">我来回答因机器检修暂时停产，停产期间发生的固 税前扣除吗？我来帮你解答一下，雇主为雇员负担 个人所得税款，应属于个人工资薪金的</view>
+			<view class="ask-dq-foot">
+				2018-08-01 13:56:03
+			</view>
+      <view class="ask-ans-evaluate box-sizing">
+        <view class="ask-ans-star">
+          <text class="green">评价得分：</text>
+          <image src="../../../img/ask-detail-star.png" mode="aspectFit"></image>
+        </view>
+        <view class="ask-ans-evaluate-msg">李教授回答的特别好，我感觉我已经懂了点了想知 道更多的知识该怎们办</view>
+      </view>
+		</view>
+    <view wx:if="{{false}}" class="ask-ans-no">
+      <image src="../../../img/ask-detail-nomsg.png" mode="aspectFit"></image>
+      <view>请耐心等待</view>
+      <view>咨询师24h 内给您回复</view>
+    </view>
+	</view>
+  <view class="ask-detail-ans box-sizing">
+		<view class="ask-detail-ans-title">答案纠错</view>
+		<view class="ask-detail-ans-show">
+			<view class="ask-dq-head">
+				<image src="" mode="aspectFit" class="head-img"></image>
+				<view class="inline-block ask-dqh-right">
+					<view class="inline-block">
+						<view class="ask-dqh-name">账号用户</view>
+						<view class="ask-dqh-date"> <image src="../../../img/ask-detail-position.png" mode="aspectFit"></image> 税务师、律师</view>
+					</view>
+          <view class="ask-ans-img">
+            <image src="../../../img/ask-detail-wrong.png" mode="aspectFit"></image>
+          </view>
+				</view>
+			</view>
+			<view class="ask-dq-msg">我来回答因机器检修暂时停产，停产期间发生的固 税前扣除吗？我来帮你解答一下，雇主为雇员负担 个人所得税款，应属于个人工资薪金的</view>
+			<view class="ask-dq-foot">
+				2018-08-01 13:56:03
+			</view>
+		</view>
+	</view>
+</view>

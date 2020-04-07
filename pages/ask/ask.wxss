@@ -1,0 +1,74 @@
+/* pages/ask/ask.wxss */
+.ask-input{
+  font-size: 30rpx;
+  line-height: 45rpx;
+  height: 250rpx;
+}
+.ask-title{
+  font-size: 28rpx;
+  color:#999;
+  margin:29rpx 0;
+}
+.ask-img>image{
+  width: 164rpx;
+  height:164rpx;
+}
+.ask-img{
+  position: relative;
+  width: 164rpx;
+  height:164rpx;
+  background: #eee;
+  margin-right: 30rpx;
+}
+.ask-img>view{
+  font-size: 30rpx;
+  font-weight: bold;
+  color:#fff;
+  background: red;
+  width: 40rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
+  border-radius: 50%;
+  position: absolute;
+  top:-10rpx;
+  right:-10rpx;
+}
+.ask-industry{
+  font-size: 28rpx;
+  color:#999;
+  display: flex;
+  justify-content: space-between;
+  margin-top:57rpx;
+}
+.ask-industry-title{
+  font-size: 32rpx;
+  color:#333;
+}
+.ask-industry-sel{
+  vertical-align: middle;
+  margin-top: 5rpx;
+}
+.ask-industry-title>image{
+  width: 28rpx;
+  height: 32rpx;
+  vertical-align: middle;
+  margin-top:-5rpx
+}
+.sub{
+  width: 100%;
+  position: fixed;
+  bottom:63rpx;
+  left:0;
+}
+.sub>view{
+  font-size: 32rpx;
+  color:#fff;
+  width: 660rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #28B7A3;
+  border-radius: 12rpx;
+  margin:0 auto;
+}

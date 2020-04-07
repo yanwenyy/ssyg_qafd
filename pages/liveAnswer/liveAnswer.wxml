@@ -1,0 +1,18 @@
+<!--pages/liveAnswer/liveAnswer.wxml-->
+<view class="container">
+  <view wx:for="{{2}}" wx:key="*this" class="shadow-model live-ans-list box-sizing">
+    <view class="live-ans-list-img">
+      <image src="" mode="aspectFit"></image>
+      <view class="live-ans-status">
+        <image src="../../img/zb-ing.png" mode="aspectFit"></image>
+        直播中
+      </view>
+    </view>
+    <view class="live-ans-list-msg">2019年第一期房地产行业定向答疑2019年第一 期房地产行业定向答疑</view>
+    <view class="live-ans-list-name">讲师：直播人</view>
+    <view class="live-ans-list-name">时间：2019-02-11 10:30</view>
+    <view class="live-ans-list-hy">
+      <view class="inline-block">房地产</view>
+    </view>
+  </view>
+</view>

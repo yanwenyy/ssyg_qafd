@@ -1,0 +1,9 @@
+/* pages/industry/industryLCJM/LCJMcontent/LCJMcontent.wxss */
+@import '../../industryZCGJ/policyContent/policyContent.wxss';
+.pcb-show1{
+  padding: 45rpx 39rpx;
+  margin-bottom: 16rpx;
+}
+.pch-file{
+  font-size: 30rpx;
+}

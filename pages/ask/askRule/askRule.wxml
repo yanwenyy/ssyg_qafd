@@ -1,0 +1,27 @@
+<!--pages/ask/askRule/askRule.wxml-->
+<view class="ask-rule-body box-sizing">
+  <view class="ask-rule-title">1. 问答流程：</view>
+  <view class="ask-rule-p-list">
+    <view class="inline-block ask-rule-process">
+      <image src="../../../img/ask-rule1.png" mode="aspect"></image>
+      <view>1.提问</view>
+    </view>
+    <view class="ask-rule-process-line inline-block"></view>
+    <view class="inline-block ask-rule-process">
+      <image src="../../../img/ask-rule2.png" mode="aspect"></image>
+      <view>2.内收到答案  </view>
+    </view>
+    <view class="ask-rule-process-line inline-block"></view>
+    <view class="inline-block ask-rule-process">
+      <image src="../../../img/ask-rule3.png" mode="aspect"></image>
+      <view>3.采纳最优 </view>
+    </view>
+  </view>
+  <view class="ask-rule-title">2. 问答规则：</view>
+  <view class="ask-rule-msg">① 您的问题将被至多两位咨询师抢答。 </view>
+  <view class="ask-rule-msg">② 收到答案后需采纳一个最佳答案，否则不能继续提问哦！ </view>
+  <view class="ask-rule-title">3. 问答描述：</view>
+  <view class="ask-rule-msg">请你详细描述您的企税问题如：“您的企业状况、问题描述、问题背景等。以便咨询师可以更好的为您解答</view>
+  <view class="ask-rule-title">4. 提问范围：</view>
+  <view class="ask-rule-msg">针对企税争议、方案设计、棘手问题、创新模式等问题不适用问答模式，请您联系客服为您提供专属服务。</view>
+</view>

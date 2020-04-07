@@ -1,0 +1,54 @@
+/* pages/liveAnswer/liveAnswer.wxss */
+.live-ans-list{
+  padding:30rpx 34rpx;
+  margin-bottom: 31rpx;
+}
+.live-ans-list-img{
+  width: 100%;
+  height:363rpx;
+  position: relative;
+}
+.live-ans-list-img>image{
+  width: 100%;
+  height: 100%;
+  background: #eee;
+}
+.live-ans-status{
+  width: 124rpx;
+  height: 42rpx;
+  line-height: 42rpx;
+  font-size: 20rpx;
+  color:#fff;
+  background: rgba(0,0,0,.3);
+  text-align: center;
+  border-radius: 21rpx;
+  position: absolute;
+  top:28rpx;
+  left:19rpx;
+}
+.live-ans-status>image{
+  width: 33rpx;
+  height: 30rpx;
+  vertical-align: middle;
+}
+.live-ans-list-msg{
+  font-size: 30rpx;
+  font-weight: bold;
+  line-height: 42rpx;
+  margin-top:15rpx;
+}
+.live-ans-list-name{
+  font-size: 26rpx;
+  color:#666;
+  line-height: 46rpx;
+}
+.live-ans-list-hy>view{
+  font-size: 22rpx;
+  color:#999;
+  height: 39rpx;
+  line-height: 39rpx;
+  background: #F6F6F6;
+  padding:0 19rpx;
+  border-radius: 8rpx;
+  margin-right: 30rpx;
+}

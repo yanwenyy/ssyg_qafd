@@ -1,0 +1,131 @@
+/* pages/ask/askList/askList.wxss */
+.ask-list-head{
+  position: absolute;
+  top:0;
+  width: 100%;
+  height: 281rpx;
+}
+.ask-list-head>image{
+  width: 100%;
+  height: 100%;
+}
+.ask-list-body{
+  width: 100%;
+  position: absolute;
+  top:222rpx;
+}
+.rule-btn{
+  width: 20%;
+  height:30rpx;
+  position: absolute;
+  bottom:68rpx;
+  left:40rpx;
+}
+.ask-num{
+  width:340rpx;
+  height:92rpx;
+  line-height: 92rpx;
+  text-align: center;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 2rpx 10rpx 0rpx rgba(0, 0, 0, 0.05);
+  border-radius:45rpx;
+  margin:0 auto 21rpx auto;
+  z-index: 999;
+  font-size: 32rpx;
+}
+.ask-num>image{
+  width: 40rpx;
+  height: 34rpx;
+  margin-right: 13rpx;
+}
+.ask-show{
+  padding:31rpx;
+}
+.ask-tab{
+  font-size: 34rpx;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 39rpx;
+}
+.ask-tab>view{
+  position: relative;
+  padding-bottom: 26rpx;
+}
+.ask-tab-line{
+  width:40%;
+  height:5rpx;
+  background:rgba(40,183,163,1);
+  position: absolute;
+  bottom: 0;
+  left: 30%;
+}
+.ask-lc{
+  padding:46rpx 36rpx;
+  margin-bottom: 30rpx;
+}
+.ask-lc-left{
+  width: 60rpx;
+  height: 60rpx;
+  position: relative;
+  margin-right: 21rpx;
+  vertical-align: top;
+}
+.ask-lc-left>image{
+  width: 100%;
+  height: 100%;
+}
+.ask-lc-left>text{
+  font-size: 15rpx;
+  color:#fff;
+  width: 36rpx;
+  height: 21rpx;
+  line-height: 21rpx;
+  text-align: center;
+  background:rgba(40,183,163,1);
+  border-radius:11rpx;
+  position: absolute;
+  bottom: -8rpx;
+  left: 12rpx;
+}
+.ask-lc-right{
+  width: 87%;
+}
+.ask-lc-name{
+  font-weight: bold;
+  font-size: 30rpx;
+  margin-bottom:15rpx;
+}
+.ask-lc-msg{
+  font-size: 28rpx;
+  color:#666;
+  line-height: 44rpx;
+  margin-bottom:18rpx;
+}
+.ask-lc-date{
+  font-size: 24rpx;
+  color:#aaa;
+}
+.ask-lm{
+  padding: 49rpx;
+}
+.ask-lm-msg{
+  font-size: 30rpx;
+  line-height: 42rpx;
+  margin-bottom:53rpx;
+}
+.ask-lm-date{
+  font-size: 26rpx;
+  color:#999;
+  display: flex;
+  justify-content: space-between;
+}
+.no-msg{
+  text-align: center;
+  font-size: 28rpx;
+  color:#999;
+}
+.no-msg>image{
+  width: 380rpx;
+  height: 251rpx;
+  margin:129rpx 0 70rpx 0;
+}

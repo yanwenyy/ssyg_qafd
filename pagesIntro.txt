@@ -6,4 +6,13 @@
      "pages/industry/industryZCGJ/policyContent/policyContent",//政策内容
      "pages/industry/industryZCGJ/industryDZ/industryDZ",//点赞列表
      "pages/industry/industryFXTS/industryFXTS",//风险提示
+     "pages/industry/industrySSCH/industrySSCH",//税收筹划
+     "pages/industry/industrySSCH/SSCHcontent/SSCHcontent",//税收筹划内容
+     "pages/industry/industryLCJM/LCJMcontent/LCJMcontent",//流程解码内容
+     "pages/ask/askList/askList",//微咨询列表
+     "pages/ask/askRule/askRule",问答规则
+     "pages/ask/ask",//提问页面
+     "pages/ask/askDetail/askDetail",//提问详情
+     "pages/ask/askEvaluate/askEvaluate",//评价
+     "pages/liveAnswer/liveAnswer",//直播答疑
   ],

@@ -1,0 +1,27 @@
+/* pages/industry/industrySSCH/SSCHcontent/SSCHcontent.wxss */
+@import '../../industryZCGJ/policyContent/policyContent.wxss';
+.pcb-show1{
+  padding: 45rpx 39rpx;
+  margin-bottom: 16rpx;
+}
+.pch-file{
+  color:#28B7A3;
+}
+.ssch-head{
+  margin-top:24rpx;
+}
+.ssch-head>image{
+  width: 66rpx;
+  height:66rpx;
+  vertical-align: top;
+  margin-right: 18rpx;
+  border-radius: 50%;
+  background: #eee;
+}
+.ssch-head-name{
+  font-size: 26rpx;
+}
+.ssch-head-date{
+  font-size: 22rpx;
+  color: #aaa;
+}

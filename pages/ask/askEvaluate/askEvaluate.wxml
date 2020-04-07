@@ -1,0 +1,21 @@
+<!--pages/ask/askEvaluate/askEvaluate.wxml-->
+<view class="container">
+  <view class="ask-evaluate-head">
+    <image src="" mode="aspectFit" class="head-img"></image>
+    <view class="inline-block">
+      <view class="ask-eh-name">王专家</view>
+      <view class="ask-eh-position">
+        <image src="../../../img/ask-detail-position.png"></image>
+        税务师、律师
+      </view>
+    </view>
+  </view>
+  <view class="ask-evaluate-title">回答质量:</view>
+  <view class="ask-evaluate-star">
+    <image wx:for="{{5}}" wx:key="*this" src="../../../img/ask-detail-star.png" mode="aspectFit"></image>
+  </view>
+  <textarea class="ask-evaluate-text box-sizing" placeholder="写下您对咨询师的评价吧（30字内）" maxlength="30"></textarea>
+  <view class="sub-evaluate">
+    <view>提交</view>
+  </view>
+</view>

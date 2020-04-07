@@ -60,6 +60,7 @@
 }
 .pcb-show{
   padding:45rpx 39rpx;
+  margin-bottom: 120rpx;
 }
 .pcb-zc-head{
   width: 100%;

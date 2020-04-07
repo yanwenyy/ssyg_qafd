@@ -1,0 +1,2 @@
+/* pages/industry/industrySSCH/industrySSCH.wxss */
+@import '../industryFXTS/industryFXTS.wxss';

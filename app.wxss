@@ -6,6 +6,10 @@
   padding: 32rpx 34rpx;
   box-sizing: border-box;
 }
+.head-img{
+  border-radius: 50%;
+  background: #eee;
+}
 .body{
   background: #F6F6F6;
 }

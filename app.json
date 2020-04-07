@@ -7,8 +7,16 @@
     "pages/industry/industryZCGJ/industryZCGJ",
     "pages/industry/industryZCGJ/policyContent/policyContent",
     "pages/industry/industryZCGJ/industryDZ/industryDZ",
-    "pages/industry/industryFXTS/industryFXTS"
-    
+    "pages/industry/industryFXTS/industryFXTS",
+    "pages/industry/industrySSCH/industrySSCH",
+    "pages/industry/industrySSCH/SSCHcontent/SSCHcontent",
+    "pages/industry/industryLCJM/LCJMcontent/LCJMcontent",
+    "pages/ask/askList/askList",
+    "pages/ask/askRule/askRule",
+    "pages/ask/ask",
+    "pages/ask/askDetail/askDetail",
+    "pages/ask/askEvaluate/askEvaluate",
+    "pages/liveAnswer/liveAnswer"
   ],
   "window": {
     "backgroundTextStyle": "light",

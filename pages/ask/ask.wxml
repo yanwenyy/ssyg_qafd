@@ -1,0 +1,30 @@
+<!--pages/ask/ask.wxml-->
+<view class="container">
+	<textarea class="ask-input box-sizing" placeholder="请输入您的问题,需详细描述您的问题，如：您的 企业状况、问题描述、问题背景等. " placeholder-class="phClass"></textarea>
+	<view class="ask-title">添加图片(1/3)</view>
+	<view>
+		<view class="inline-block ask-img" wx:for="{{askImg}}" wx:key="*this">
+			<image src="" mode="aspectFit"></image>
+			<view>X</view>
+		</view>
+		<view class="inline-block ask-img">
+			<image src="../../img/ask-add-img.png" mode="aspectFit"></image>
+		</view>
+	</view>
+	<view class="ask-industry">
+		<view class="inline-block ask-industry-title">
+			<image src="../../img/ask-label.png"></image>
+			涉及行业
+		</view>
+		<view class="inline-block ask-industry-sel section">
+			<picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+				<view class="picker">
+					<text wx:if="{{index==''}}">请选择</text> <text wx:if="{{index!=''}}">{{array[index]}}</text> >
+				</view>
+			</picker>
+		</view>
+	</view>
+	<view class="sub">
+		<view>发布</view>
+	</view>
+</view>

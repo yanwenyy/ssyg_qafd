@@ -1,0 +1,37 @@
+/* pages/ask/askRule/askRule.wxss */
+.ask-rule-body{
+  padding:21rpx 69rpx;
+}
+.ask-rule-title{
+  font-size: 30rpx;
+  font-weight: bold;
+  margin:65rpx 0 34rpx 0;
+}
+.ask-rule-process{
+  text-align: center;
+  font-size: 26rpx;
+  color:#999;
+  vertical-align: top;
+  margin-top: 13rpx;
+}
+.ask-rule-process>image{
+  width: 78rpx;
+  height: 78rpx;
+}
+.ask-rule-process-line{
+  width:83rpx;
+  height:2rpx;
+  background:rgba(40,183,163,1);
+  border:2rpx solid rgba(40,183,163,1);
+  opacity:0.62;
+  margin-top:38rpx;
+}
+.ask-rule-p-list{
+  display: flex;
+  justify-content: space-between;
+}
+.ask-rule-msg{
+  font-size: 28rpx;
+  color:#666;
+  line-height: 45rpx;
+}
