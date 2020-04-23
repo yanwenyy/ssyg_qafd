@@ -1,0 +1,49 @@
+/* pages/mine/mineAttention/mineAttention.wxss */
+.ma-body{
+  padding: 0 22rpx;
+  min-height: 100vh;
+}
+.ma-list{
+  width: 100%;
+  padding:36rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+.ma-list>image{
+  width: 100rpx;
+  height: 100rpx;
+  vertical-align: top;
+  margin-right: 20rpx;
+}
+.ma-list-right{
+  width: 65%;
+}
+.ma-list-name{
+  font-size: 32rpx;
+  font-weight: 500;
+}
+.ma-list-label{
+  font-size: 20rpx;
+  color:#28B7A3;
+  border:1rpx solid #28B7A3;
+  height: 35rpx;
+  line-height: 35rpx;
+  text-align: center;
+  padding:0 20rpx;
+  border-radius: 18rpx;
+}
+.ma-list-btn{
+  float: right;
+  margin-top: 23rpx;
+  width: 119rpx;
+  height: 54rpx;
+  line-height: 54rpx;
+  text-align: center;
+  font-size: 24rpx;
+  border-radius: 27rpx;
+  background:#4EC9C1;
+  color:#fff;
+}
+.ma-yes{
+  background:#eee;
+  color:#999;
+}

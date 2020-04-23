@@ -90,9 +90,9 @@
 				<view class="inline-block pcb-foot-pl-img">
 					<image src="../../../../img/pcb-sc.png" mode="aspectFit"></image>
 				</view>
-				<view class="inline-block pcb-foot-pl-img">
+				<!-- <view class="inline-block pcb-foot-pl-img">
 					<image src="../../../../img/pcb-zf.png" mode="aspectFit"></image>
-				</view>
+				</view> -->
 			</view>
 			<view wx:if="{{false}}" class="pcb-foot-hf">
 				<input class="box-sizing inline-block" placeholder="回复 张佳绩："></input>

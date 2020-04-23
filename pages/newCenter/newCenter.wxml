@@ -1,0 +1,18 @@
+<!--pages/newCenter/newCenter.wxml-->
+<wxs module="tools" src="../tools.wxs"></wxs>
+<view>
+	<scroll-view class="ifx-tab-list" scroll-x="true">
+		<view class="inline-block ifx-tab ifx-tab-act">全部</view>
+		 <view wx:for="{{tabList}}" wx:key="index" data-id="{{item.id}}" class="inline-block ifx-tab">{{item.name}}</view>
+	</scroll-view>
+	<view class="container">
+		<view class="ifx-list shadow-model box-sizing" wx:for="{{2}}" wx:key="*this">
+			<image src="" mode="aspectFit" class="new-img"></image>
+			<view class="ifx-list-title">关于修订城镇土地使用税和房产税申报表单的公告城镇土地使</view>
+			<view class="ifx-list-label">
+				<text class="green"># 政策难点易错点</text>
+			</view>
+			<view class="new-date">{{tools.dateFormat(1584939085000)}}</view>
+		</view>
+	</view>
+</view>

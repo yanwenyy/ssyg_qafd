@@ -1,18 +1,25 @@
 // pages/industry/industryFXTS/industryFXTS.js
+var app=getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    tabList:[],//tab列表
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that=this;
+    //tab分类
+    app.ajax_nodata("/minitax/attribute/list/1",function(res){
+      that.setData({
+        tabList:res.data.data
+      })
+    })
   },
 
   /**
@@ -54,7 +61,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    console.log(333)
   },
 
   /**

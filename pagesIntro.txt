@@ -15,4 +15,24 @@
      "pages/ask/askDetail/askDetail",//提问详情
      "pages/ask/askEvaluate/askEvaluate",//评价
      "pages/liveAnswer/liveAnswer",//直播答疑
+     "pages/liveAnswer/liveAnswerContent/liveAnswerContent",//直播答疑内容
+     "pages/course/course",//精选好课
+     "pages/newCenter/newCenter",//新闻中心
+     "pages/vip/confirmOrder/confirmOrder",//确认订单
+     "pages/mine/companyMsg/companyMsg",//企业信息
+     "pages/mine/mineTeam/mineTeam",//我的团队
+     "pages/mine/mineOrder/mineOrder",//我的订单
+      "pages/mine/set/set",//设置
+      "pages/mine/mineMsg/mineMsg",//个人信息
+      "pages/scope/scope",//授权页面
+      "pages/mine/mineCollection/mineCollection",//我的收藏
+      "pages/mine/mineComment/mineComment",//我的评论
+      "pages/mine/mine",//我的页面
+      "pages/mine/minePage/minePage",//个人中心页面
+      "pages/mine/mineAttention/mineAttention",//我的关注
+      "pages/mine/mineFans/mineFans",//我的粉丝
+      "pages/vip/vip",//会员展示页
+      "pages/vip/openIndustry/openIndustry",//会员购买选择开通行业
+      "pages/vip/editMsg/editMsg",//会员购买后填写企业信息
+      "pages/vip/coupon/coupon",//优惠券页面
   ],

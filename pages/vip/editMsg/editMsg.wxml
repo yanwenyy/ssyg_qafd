@@ -1,0 +1,138 @@
+<!--pages/vip/editMsg/editMsg.wxml-->
+<view class="container">
+  <view class="editMsg-notice">为不影响您的后续使用，请您务必填写真实信息</view>
+  <view class="editMsg-body">
+    <view wx:if="{{company}}" class="coach-model box-sizing">
+      <view class="editMsg-model-title">公司信息设置</view>
+      <view class="editMsg-list">
+        <view class="editMsg-list-title">公司名称</view>
+        <view class="editMsg-list-input">
+          <input class="inline-block" placeholder='请输入' value="{{companyName||''}}" bindinput ="companyNameInput" maxlength="20"></input>
+        </view>
+      </view>
+      <view class="editMsg-list">
+        <view class="editMsg-list-title">公司性质</view>
+        <view class="editMsg-list-input">
+           <picker class="input-picker" bindchange="companyNatureChange" mode="selector" range-key="name" value="{{companyNatureIndex}}" range="{{companyNature}}">
+            <view class="picker {{companyNatureIndex=='-1'? 'placeholder-text':''}}">
+                {{companyNatureIndex=='-1'? '请选择':companyNature[companyNatureIndex].name}}
+            </view>
+          </picker>
+          <image src="../../../img/testCard-more.png" mode="scaleToFill"></image>
+        </view>
+      </view>
+      <view class="editMsg-list">
+        <view class="editMsg-list-title">行业</view>
+        <view class="editMsg-list-input">
+          <picker class="input-picker" bindchange="industryChange" mode="selector" range-key="tradeName" value="{{industryindex}}" range="{{industry}}">
+            <view class="picker {{industryindex=='-1'? 'placeholder-text':''}}">
+                {{industryindex=='-1'? '请选择':industry[industryindex].tradeName}}
+            </view>
+          </picker>
+          <image src="../../../img/testCard-more.png" mode="scaleToFill"></image>
+        </view>
+      </view>
+      <view class="editMsg-list">
+        <view class="editMsg-list-title">规模</view>
+        <view class="editMsg-list-input">
+          <picker class="input-picker" bindchange="companyScaleeChange" mode="selector" range-key="name" value="{{companyScaleeIndex}}" range="{{companyScalee}}">
+            <view class="picker {{companyScaleeIndex=='-1'? 'placeholder-text':''}}">
+                {{companyScaleeIndex=='-1'? '请选择':companyScalee[companyScaleeIndex].name}}
+            </view>
+          </picker>
+          <image src="../../../img/testCard-more.png" mode="scaleToFill"></image>
+        </view>
+      </view>
+       <view class="editMsg-list">
+        <view class="editMsg-list-title">您所在地区</view>
+        <view class="editMsg-list-input">
+          <picker class="input-picker" mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+            <view class="picker">
+              {{region[0]}} {{region[1]}} {{region[2]}}
+            </view>
+          </picker>
+          <image src="../../../img/testCard-more.png" mode="scaleToFill"></image>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{company}}" class="coach-model box-sizing">
+      <view class="editMsg-model-title">个人信息设置</view>
+      <view class="editMsg-list">
+        <view class="editMsg-list-title">真实姓名</view>
+        <view class="editMsg-list-input">
+          <input class="inline-block" placeholder='请输入' bindinput ="userNameInput"></input>
+        </view>
+      </view>
+      <view class="editMsg-list">
+        <view class="editMsg-list-title">行业</view>
+        <view class="editMsg-list-input">
+          <picker class="input-picker" bindchange="personalIndustryChange" mode="selector" range-key="tradeName" value="{{personalIndustryindex}}" range="{{industry}}">
+            <view class="picker {{personalIndustryindex=='-1'? 'placeholder-text':''}}">
+                {{personalIndustryindex=='-1'? '请选择':industry[personalIndustryindex].tradeName}}
+            </view>
+          </picker>
+          <image src="../../../img/testCard-more.png" mode="scaleToFill"></image>
+        </view>
+      </view>
+      <view class="editMsg-list">
+        <view class="editMsg-list-title">职务</view>
+        <view class="editMsg-list-input">
+          <picker class="input-picker" bindchange="postChange" mode="selector" range-key="name" value="{{postIndex}}" range="{{post}}">
+            <view class="picker {{postIndex=='-1'? 'placeholder-text':''}}">
+                {{postIndex=='-1'? '请选择':post[postIndex].name}}
+            </view>
+          </picker>
+          <image src="../../../img/testCard-more.png" mode="scaleToFill"></image>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{personal}}" class="coach-model box-sizing">
+      <view class="editMsg-list">
+        <view class="editMsg-list-title">真实姓名</view>
+        <view class="editMsg-list-input">
+          <input class="inline-block" placeholder='请输入' bindinput ="userNameInput"></input>
+        </view>
+      </view>
+      <view class="editMsg-list">
+        <view class="editMsg-list-title">您所在地区</view>
+        <view class="editMsg-list-input">
+          <picker class="input-picker" mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+            <view class="picker">
+              {{region[0]}} {{region[1]}} {{region[2]}}
+            </view>
+          </picker>
+          <image src="../../../img/testCard-more.png" mode="scaleToFill"></image>
+        </view>
+      </view>
+      <view class="editMsg-list">
+        <view class="editMsg-list-title">行业</view>
+        <view class="editMsg-list-input">
+          <picker class="input-picker" bindchange="personalIndustryChange" mode="selector" range-key="tradeName" value="{{personalIndustryindex}}" range="{{industry}}">
+            <view class="picker {{personalIndustryindex=='-1'? 'placeholder-text':''}}">
+                {{personalIndustryindex=='-1'? '请选择':industry[personalIndustryindex].tradeName}}
+            </view>
+          </picker>
+          <image src="../../../img/testCard-more.png" mode="scaleToFill"></image>
+        </view>
+      </view>
+      <view class="editMsg-list">
+        <view class="editMsg-list-title">公司名称</view>
+        <view class="editMsg-list-input">
+          <input class="inline-block" placeholder='请输入'  bindinput ="companyNameInput"></input>
+        </view>
+      </view>
+      <view class="editMsg-list">
+        <view class="editMsg-list-title">职务</view>
+        <view class="editMsg-list-input">
+          <picker class="input-picker" bindchange="postChange" mode="selector" range-key="name" value="{{postIndex}}" range="{{post}}">
+            <view class="picker {{postIndex=='-1'? 'placeholder-text':''}}">
+                {{postIndex=='-1'? '请选择':post[postIndex].name}}
+            </view>
+          </picker>
+          <image src="../../../img/testCard-more.png" mode="scaleToFill"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <button class="editMsg-btn" bindtap='subMsg'>确定</button>
+</view>

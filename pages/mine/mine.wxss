@@ -1,0 +1,166 @@
+/* pages/mine/mine.wxss */
+.mine-head{
+  display: flex;
+  justify-content: space-between;
+}
+.mine-head-left{
+  width:70%;
+  vertical-align: top;
+}
+.head-img{
+  width:100rpx;
+  height: 100rpx;
+  vertical-align: middle;
+  margin-right:18rpx;
+}
+.lookUser{
+  width:28rpx;
+  height: 28rpx;
+  vertical-align: middle;
+}
+.mine-head-name{
+  font-size: 36rpx;
+  line-height: 54rpx;
+  font-weight: bold;
+}
+.mine-head-role{
+  font-size: 26rpx;
+  line-height: 54rpx;
+  color:#666;
+}
+.mine-head-company{
+  font-size: 26rpx;
+  line-height: 54rpx;
+  color:#999;
+}
+.mine-tab{
+  margin-top: 36rpx;
+  display: flex;
+  justify-content: space-between;
+  padding:0 23rpx;
+}
+.mine-tab>view{
+  font-size: 26rpx;
+  color:#999;
+  text-align: center;
+}
+.mine-tab-num{
+  font-size: 34rpx;
+  color:#333;
+  font-weight: bold;
+  line-height: 54rpx;
+  margin-bottom: 9rpx;
+}
+.mine-vip{
+  width: 100%;
+  height:184rpx;
+  position: relative;
+  margin-top: 46rpx;
+}
+.mine-vip>image{
+  width: 100%;
+  height:100%;
+}
+.mine-vip-msg{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0;
+  left:0;
+  padding:30rpx 28rpx;
+  color:#F9ECD1;
+  font-size:25rpx;
+}
+.mine-vip-msg>image{
+  width: 29rpx;
+  height:28rpx;
+  vertical-align: middle;
+  margin-right:6rpx;
+  margin-top:-5rpx;
+}
+.mine-vip-kt{
+  width: 173rpx;
+  height: 56rpx;
+  position: absolute;
+  top:78rpx;
+  right:46rpx;
+}
+.mine-vip-kt>image{
+  width: 100%;
+  height: 100%;
+}
+.mine-vip-kt-msg{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0;
+  left:0;
+  font-size: 26rpx;
+  color:#202034;
+  font-weight: bold;
+  line-height: 56rpx;
+  text-align: center;
+}
+.mine-team{
+  padding:29rpx 36rpx;
+  margin-top: 39rpx;
+}
+.mine-team-title{
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 29rpx;
+}
+.mine-team-tab{
+  display: flex;
+  justify-content: space-between;
+}
+.mine-team-tab-list{
+  font-size: 24rpx;
+  text-align: center;
+}
+.mine-team-tab-list>image{
+  width: 54rpx;
+  height: 54rpx;
+  margin-bottom: 12rpx;
+}
+.mine-system{
+  margin-top:26rpx;
+  width: 100%;
+  height: 164rpx;
+}
+.mine-system>image{
+  width: 100%;
+  height: 100%;
+}
+.mine-list{
+  padding:46rpx 44rpx;
+  margin-top:25rpx;
+}
+.mine-list-show{
+  display: flex;
+  justify-content: space-between;
+}
+.mine-list-show:not(:last-child){
+  border-bottom: 1rpx solid #eee;
+  margin-bottom: 43rpx;
+  padding-bottom: 30rpx;
+}
+.mine-list-left{
+  font-size: 30rpx;
+}
+.mine-list-left>image{
+  width: 52rpx;
+  height:52rpx;
+  vertical-align: middle;
+  margin-right: 12rpx;
+  margin-top:-5rpx;
+}
+.mine-list-right{
+  font-size: 26rpx;
+}
+.mine-list-right>image{
+  width: 28rpx;
+  height: 28rpx;
+  vertical-align: middle;
+  margin-top:-5rpx;
+}

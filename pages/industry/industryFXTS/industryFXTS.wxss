@@ -20,6 +20,7 @@
 }
 .ifx-list{
   padding:42rpx 38rpx;
+  margin-bottom: 25rpx;
 }
 .ifx-list-head>image{
   width: 68rpx;

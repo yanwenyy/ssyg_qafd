@@ -1,0 +1,49 @@
+<!--pages/vip/vip.wxml-->
+<wxs module="tools" src="../tools.wxs"></wxs>
+<view>
+	<view class="vip-bg">
+		<image src="../../img/vip-bg.png" mode="aspectFit"></image>
+		<view class="vip-bg-msg box-sizing">
+			<view>
+				<image src="{{userInfo.headImg}}" mode="aspectFit" class="head-img"></image>
+				<view class="inline-block">
+					<view class="user-name">{{userInfo.nickname}}</view>
+					<view class="user-industry">您目前开通{{industryIndex.openNum}}个行业</view>
+				</view>
+				<view class="vip-title">省税一哥·行业税务全案辅导VIP</view>
+				<view class="vip-sel-title">请选择您要开通的行业</view>
+				<view class="vip-share">分享</view>
+			</view>
+		</view>
+	</view>
+	<swiper class="swiper" next-margin="150rpx" current="{{currentItemId}}" previous-margin="150rpx" bindchange="swiperChange">
+		<block wx:for="{{industryList}}" wx:key="index">
+			<swiper-item item-id="{{index}}" data-item-id="{{index}}" bindtap='clickChange'>
+				<view class='li'>
+					<view class='li1 {{currentItemId == index ? "selected" : ""}}'>
+						<image src="{{currentItemId == index ? '../../img/vip-list-sel.png' : '../../img/vip-list.png'}}" mode="aspectFit"></image>
+						<view class="vip-list-msg box-sizing">
+							<view  wx:if="{{item.ifVip!=0}}" class="vip-list-name">{{item.cardType==1?'A':(item.cardType==2?'B':'C')}}卡</view>
+							<view class="vip-list-industry">
+								<image src="{{'https://'+item.tradeIcon}}" mode="aspectFit"></image>
+								{{item.tradeName}}
+							</view>
+							<view class="vip-list-date">
+								<text wx:if="{{item.ifVip!=0}}">{{tools.dateFormat(item.trVipTime,'yyyy-MM-dd')}}过期</text>
+								<text data-id="{{item.tradeId}}" data-ifvip="{{item.ifVip}}" data-goodId="{{item.goodsId}}" catchtap="ktClick">{{item.ifVip==0?'立即开通':'续费'}} ></text>
+							</view>
+						</view>
+					</view>
+				</view>
+			</swiper-item>
+		</block>
+	</swiper>
+	<view class="open-vip-view">
+		<button wx:if="{{sq_btn}}" class="open-vip" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+			授权登录
+		</button>
+		<button wx:if="{{pn_btn}}" class="open-vip" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
+		<button wx:if="{{kt_btn}}" class="open-vip" bindtap="commenKt">立即开通</button>
+	</view>
+	<view class="looks-rules">查看会员规则</view>
+</view>

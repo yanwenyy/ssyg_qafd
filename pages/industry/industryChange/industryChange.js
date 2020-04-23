@@ -1,25 +1,35 @@
 // pages/industry/industryChange/industryChange.js
+const app=getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    items: [
-      { name: 'USA', value: '美国' },
-      { name: 'CHN', value: '中国', checked: 'true' },
-      { name: 'BRA', value: '巴西' },
-      { name: 'JPN', value: '日本' },
-      { name: 'ENG', value: '英国' },
-      { name: 'FRA', value: '法国' },
-    ]
+    items: [],//已开通行业
+    itemsno:[],//未开通行业
+    selectId:'',//已选择的行业
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
+    var that=this;
+    //已开通行业
+    app.ajax_nodata('/minitax/trade/open',function(res){
+      that.setData({
+        items:res.data.data
+      })
+    });
 
+    //未开通行业
+    app.ajax_nodata('/minitax/trade/no/open',function(res){
+      that.setData({
+        itemsno:res.data.data
+      })
+    })
   },
 
   /**
@@ -69,5 +79,31 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  //行业改变
+  openChange:function(e){
+    console.log(e.detail.value);
+    this.setData({
+      selectId:e.detail.value
+    })
+  },
+
+  subMsg:function(){
+    if(this.data.selectId==''){
+      wx.navigateBack();
+    }else{
+      app.ajax_nodata("/minitax/trade/custome/"+this.data.selectId,function(res){
+       if(res.data.code==10000){
+        wx.navigateBack();
+       }else{
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'none',
+          duration: 2000
+        })
+       }
+      })
+    }
   }
 })

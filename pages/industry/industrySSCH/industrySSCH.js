@@ -1,18 +1,25 @@
 // pages/industry/industrySSCH/industrySSCH.js
+var app=getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    tabList:[],//tab列表
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that=this;
+    //tab分类
+    app.ajax_nodata("/minitax/attribute/list/2",function(res){
+      that.setData({
+        tabList:res.data.data
+      })
+    })
   },
 
   /**

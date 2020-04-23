@@ -1,0 +1,18 @@
+<!--pages/scope/scope.wxml-->
+<view class="scope-body box-sizing">
+    <view class="login-img box-sizing">
+      <image src="" mode="scaleToFill"></image>
+    </view>
+    <view wx:if="{{scope}}" class="login-msg">
+        欢迎使用省税一哥，可使您有效提升对于财税新政的理解度，降低涉税职业风险，发现企业节税空间，让财税更简单！
+    </view>
+    <view wx:if="{{!scope}}" class="login-msg" style="text-align:center">
+      省税一哥为企业会员产品，请校验您的会员身份。
+    </view>
+    <button wx:if="{{scope}}" class=""  open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 
+      了解一下         
+    </button>
+    <button wx:if="{{!scope}}" class="" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+      开始校验
+    </button> 
+</view>

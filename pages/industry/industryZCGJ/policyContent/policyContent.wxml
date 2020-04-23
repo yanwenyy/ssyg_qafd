@@ -1,13 +1,14 @@
 <!--pages/industry/industryZCGJ/policyContent/policyContent.wxml-->
+<wxs module="tools" src="../../../tools.wxs"></wxs>
 <view class="body">
 	<view class="policeContent-head">
-		<view class="pch-title">关于修订城镇土地使用税和房产税申报表单的公告城镇土地使</view>
-		<view class="pch-file">[ 国家税务总局公告2019年第32号 ]</view>
-		<view class="pch-list">发文机关：国家税务总局</view>
-		<view class="pch-list">税 种：增值税</view>
-		<view class="pch-list">发布时间：2019.10.19</view>
-		<view class="pch-list">政策地区：全国</view>
-		<view class="pch-list">时效性：现行有效</view>
+		<view class="pch-title">{{policyContent.title}}</view>
+		<view class="pch-file">[ {{policyContent.fileNum}} ]</view>
+		<view class="pch-list">发文机关：{{policyContent.office}}</view>
+		<view class="pch-list">税 种：{{policyContent.taxName}}</view>
+		<view class="pch-list">发布时间：{{tools.dateFormat(policyContent.officialReleaseDate)}}</view>
+		<view class="pch-list">政策地区：{{policyContent.region}}</view>
+		<view class="pch-list">时效性：{{policyContent.timelinessid}}</view>
 	</view>
 	<view class="policeContent-body">
 		<view class="pcp-nav {{scrollTop>230?'positionTop':''}}">
@@ -33,10 +34,10 @@
 				<view class="pcb-zc-head box-sizing">
 					<view class="pcb-zc-head-title inline-block">指导专家</view>
 					<view class="pcb-zc-head-right inline-block">
-						<image src="" mode="aspectFit"></image>
+						<image src="{{policyContent.headImg}}" mode="aspectFit"></image>
 						<view class="inline-block">
-							<view class="pcb-zc-head-name">王家家老师</view>
-							<view class="pcb-zc-head-position green">签约内容官</view>
+							<view class="pcb-zc-head-name">{{policyContent.userName}}</view>
+							<view class="pcb-zc-head-position green">{{policyContent.identity==0?'普通人':(policyContent.identity==1?'专家':'讲师')}}</view>
 						</view>
 					</view>
 				</view>
@@ -45,14 +46,14 @@
 					原文
 				</view>
 				<view class="pcb-zcyw">
-					房产税是以房屋为征税对象，按房屋的计税余值或租金收入为计税依据， 产权所有人征收的一种财产税。
+					<rich-text>{{policyContent.content}}</rich-text>
 				</view>
-				<view class="pcb-zcjd">
+				<!-- <view class="pcb-zcjd">
 					<view class="psb-jd-title green">解读：</view>
 					<view>
 						房产税是以房屋为征税对象，按房屋的计税余值或租金收入为计税依据， 产权所有人征收的一种财产税。 房产税是以房屋为征税对象，按房
 					</view>
-				</view>
+				</view> -->
 				<view class="pcb-zcyw-dz">
 					<view class="pcb-zcyw-dz-btn">
 						<image src="" mode="aspectFit"></image>
@@ -62,20 +63,23 @@
 						<image bindtap="lookDZlist" wx:key="*this" src="" mode="aspectFit"></image>
 					</view>
 				</view>
-			</view>
-			<view class="v2">
-				<view class="pcb-title">相关文件</view>
-				<view class="pcb-xgwj-list shadow-model box-sizing">
-					<view class="pcb-xgwj-title">关于修订城镇土地使用税和房产税申报表单的公告城镇土地使</view>
-					<view class="pcb-xgwj-file">[ 国家税务总局公告2019年第32号 ]</view>
-					<view>发布时间：2019.10.19</view>
+				<view class="pcb-zcyw-vip">
+					<image src="../../../../img/ktvip.gif"></image>
 				</view>
 			</view>
-			<view class="v3">
+			<view class="v2" wx:if="{{releatfile!=''}}">
+				<view class="pcb-title">相关文件</view>
+				<view class="pcb-xgwj-list shadow-model box-sizing" wx:for="{{releatfile}}" wx:key="index">
+					<view class="pcb-xgwj-title">{{item.title}}</view>
+					<view class="pcb-xgwj-file">[ {{item.fileNum}} ]</view>
+					<view>发布时间：{{tools.dateFormat(item.officialReleaseDate)}}</view>
+				</view>
+			</view>
+			<view class="v3" wx:if="{{releatedetails!=''}}">
 				<view class="pcb-title">相关解读</view>
-				<view class="pcb-xgwj-list shadow-model box-sizing">
-					<view class="pcb-xgwj-title">关于修订城镇土地使用税和房产税申报表单的公告城镇土地使</view>
-					<view>发布时间：2019.10.19</view>
+				<view class="pcb-xgwj-list shadow-model box-sizing" wx:for="{{releatedetails}}" wx:key="index">
+					<view class="pcb-xgwj-title">{{item.expertTitle}}</view>
+					<view>发布时间：{{tools.dateFormat(item.createTime)}}</view>
 				</view>
 			</view>
 			<view class="v4">

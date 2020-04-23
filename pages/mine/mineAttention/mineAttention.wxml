@@ -1,0 +1,19 @@
+<!--pages/mine/mineAttention/mineAttention.wxml-->
+<view class="ma-body">
+  <view class="ma-list" wx:for="{{2}}" wx:key="index">
+    <image src="" class="head-img" mode="aspectFit"></image>
+    <view class="inline-block ma-list-right">
+      <view class="ma-list-name">王嘉佳校长</view>
+      <view class="inline-block ma-list-label">用户标签</view>
+    </view>
+    <view class="ma-list-btn">+关注</view>
+  </view>
+  <view class="ma-list">
+    <image src="" class="head-img" mode="aspectFit"></image>
+    <view class="inline-block ma-list-right">
+      <view class="ma-list-name">王嘉佳</view>
+      <view class="inline-block ma-list-label">用户标签</view>
+    </view>
+    <view class="ma-list-btn ma-yes">已关注</view>
+  </view>
+</view>

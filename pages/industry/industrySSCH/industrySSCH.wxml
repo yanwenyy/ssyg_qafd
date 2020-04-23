@@ -2,9 +2,7 @@
 <view>
   <scroll-view class="ifx-tab-list" scroll-x="true">
     <view class="inline-block ifx-tab ifx-tab-act">全部</view>
-    <view class="inline-block ifx-tab">政策难点易错点</view>
-    <view class="inline-block ifx-tab">政策难点易错点</view>
-    <view class="inline-block ifx-tab">政策难点易错点</view>
+    <view wx:for="{{tabList}}" wx:key="index" data-id="{{item.id}}" class="inline-block ifx-tab">{{item.name}}</view>
   </scroll-view>
   <view class="container">
       <view bindtap="listClick" class="ifx-list shadow-model box-sizing">

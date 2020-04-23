@@ -1,0 +1,45 @@
+<!--pages/mine/mineComment/mineComment.wxml-->
+<view>
+	<view class="ask-tab">
+		<view bindtap="tabClick" data-msg="评论我的" class="inline-block {{tabMsg=='评论我的'?'green':''}}" style="margin-right:124rpx">
+			<text>评论我的</text>
+			<text wx:if="{{tabMsg=='评论我的'}}" class="inline-block ask-tab-line"></text>
+		</view>
+		<view bindtap="tabClick" data-msg="我评论的" class="inline-block {{tabMsg=='我评论的'?'green':''}}">
+			<text>我评论的</text>
+			<text wx:if="{{tabMsg=='我评论的'}}" class="inline-block ask-tab-line"></text>
+		</view>
+	</view>
+  <view  wx:if="{{tabMsg=='评论我的'}}" class="comment-mine box-sizing">
+    <view class="comment-list">
+      <image class="head-img" src="" mode="aspectFit"></image>
+      <view class="comment-right inline-block">
+        <view class="comment-name">王家集坐着的</view>
+        <view class="comment-date">2019-12-05 10:00</view>
+        <view class="comment-title">这篇文章真好看，我要收藏</view>
+        <view class="comment-msg box-sizing">
+          <view class="comment-msg-title">关于修订城镇土地使用税和房产税申报表单的公告城镇土地使</view>
+          <view class="comment-msg-file">[ 国家税务总局公告2019年第32号 ]</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view  wx:if="{{tabMsg=='我评论的'}}" class="mine-comment box-sizing">
+     <view class="comment-list">
+      <image class="head-img" src="" mode="aspectFit"></image>
+      <view class="comment-right inline-block">
+        <view class="comment-name mine-comment-name">
+          王家集坐着的
+          <view class="inline-block reply-comment">回复</view>
+        </view>
+        <view class="comment-title">
+          这篇文章真好看可收藏// <text class="blue">@一个小可爱：</text>这 文章真好看收藏了
+        </view>
+        <view class="comment-msg box-sizing">
+          <view class="comment-msg-title">原文：关于修订城镇土地使用税房税使.......</view>
+        </view>
+        <view class="mine-comment-foot">回复了您的评论 2019-12-31 10:00:00</view>
+      </view>
+    </view>
+  </view>
+</view>

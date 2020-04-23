@@ -16,7 +16,29 @@
     "pages/ask/ask",
     "pages/ask/askDetail/askDetail",
     "pages/ask/askEvaluate/askEvaluate",
-    "pages/liveAnswer/liveAnswer"
+    "pages/liveAnswer/liveAnswer",
+    "pages/liveAnswer/liveAnswerContent/liveAnswerContent",
+    "pages/course/course",
+    "pages/course/coursContent/coursContent",
+    "pages/newCenter/newCenter",
+    "pages/mine/companyMsg/companyMsg",
+    "pages/mine/mineTeam/mineTeam",
+    "pages/mine/mineOrder/mineOrder",
+    "pages/mine/set/set",
+    "pages/mine/mineMsg/mineMsg",
+    "pages/mine/mineCollection/mineCollection",
+    "pages/mine/mineComment/mineComment",
+    "pages/mine/mine",
+    "pages/mine/minePage/minePage",
+    "pages/mine/mineAttention/mineAttention",
+    "pages/mine/mineFans/mineFans",
+    "pages/scope/scope",
+    "pages/vip/vip",
+    "pages/vip/openIndustry/openIndustry",
+    "pages/vip/confirmOrder/confirmOrder",
+    "pages/vip/editMsg/editMsg",
+    "pages/vip/coupon/coupon"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -31,7 +53,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/mine/mine",
         "text": "我的"
       }
     ]

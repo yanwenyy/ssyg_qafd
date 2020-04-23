@@ -1,0 +1,155 @@
+/* pages/vip/vip.wxss */
+.open-vip-view{
+  /* position: fixed;
+  bottom:0;
+  left: 0; */
+  margin-top:127rpx;
+  width: 100%;
+  background: #fff;
+}
+.open-vip{
+  width:660rpx!important;
+  height:88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  margin: 0 auto;
+  background: #28B7A3;
+  color:#fff;
+  border-radius: 12rpx;
+  font-size:32rpx;
+  padding: 0;
+}
+/*  */
+.swiper{
+  position: absolute;
+  top:386rpx;
+  width: 100%;
+}
+.li{
+  width: 100%;
+  height: 300rpx;
+}
+.li1{
+  width: 450rpx;
+  margin: 0 auto;
+  border-radius: 10rpx;
+  height: 300rpx;
+  transform: scale(0.9);
+  position: relative;
+}
+.li1>image{
+  width: 100%;
+  height: 100%;
+}
+.selected{
+  transform: scale(1)
+}
+.vip-list-msg{
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding:35rpx 49rpx;
+}
+.vip-list-name{
+  font-size: 30rpx;
+  color:#8F7E6D;
+}
+.vip-list-industry{
+  font-size: 38rpx;
+  font-weight: bold;
+  line-height: 51rpx;
+  color:#644535;
+  margin-top:10rpx;
+}
+.vip-list-industry>image{
+  width:40rpx;
+  height: 41rpx;
+  vertical-align: middle;
+  background: #eee;
+  margin-top:-5rpx;
+}
+.vip-list-date{
+  font-size: 24rpx;
+  color:#98897B;
+  display: flex;
+  justify-content: space-between;
+  margin-top:75rpx;
+}
+/*  */
+.vip-bg{
+  width: 100%;
+  height:586rpx;
+  position: relative;
+}
+.vip-bg>image{
+  width: 100%;
+  height: 100%;
+}
+.vip-bg-msg{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0;
+  left:0;
+  padding:34rpx 30rpx;
+}
+.head-img{
+  width: 103rpx;
+  height: 103rpx;
+  margin-right: 20rpx;
+  vertical-align: top;
+}
+.user-name{
+  font-size: 36rpx;
+  color: #fff;
+  font-weight: bold;
+  line-height: 39rpx;
+  margin-top:10rpx;
+}
+.user-industry{
+  font-size: 26rpx;
+  color: #fff;
+  line-height: 39rpx;
+  opacity:0.63;
+  margin-top:10rpx;
+}
+.vip-title{
+  font-size: 38rpx;
+  font-weight: bold;
+  width:620rpx;
+  height:89rpx;
+  line-height: 89rpx;
+  border:1rpx solid rgba(222,200,175,0.38); 
+  border-radius:30rpx;
+  text-align: center;
+  color:#F8E4CE;
+  margin:63rpx auto 26rpx auto;
+}
+.vip-sel-title{
+  font-size: 28rpx;
+  color:#F8E4CE;
+  text-align: center;
+}
+.vip-share{
+  width:134rpx;
+  height:64rpx;
+  line-height: 64rpx;
+  text-align: center;
+  background:rgba(23,23,29,0.14);
+  border-top-left-radius:32rpx;  
+  border-bottom-left-radius:32rpx;  
+  color:rgba(255,255,255,0.66);
+  position: absolute;
+  right: 0;
+  top:61rpx;
+  font-size: 30rpx;
+}
+.looks-rules{
+  font-size: 26rpx;
+  color:#999;
+  text-align: center;
+  margin-top:37rpx;
+  text-decoration: underline;
+}

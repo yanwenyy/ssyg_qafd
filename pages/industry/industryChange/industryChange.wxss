@@ -27,9 +27,16 @@
 .ich-btn> button{
   width: 100%!important;
   height: 88rpx;
+  line-height: 88rpx;
   background: #28B7A3;
   font-size: 32rpx;
   color:#fff;
   margin:0;
   font-weight: 400;
+}
+.open-no-msg{
+  text-align: center;
+  font-size: 26rpx;
+  line-height: 38rpx;
+  color: #999;
 }

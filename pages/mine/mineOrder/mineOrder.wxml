@@ -1,0 +1,30 @@
+<!--pages/mine/mineOrder/mineOrder.wxml-->
+<view class="container box-sizing">
+  <view class="order-list box-sizing" wx:for="{{2}}" wx:key="*this">
+    <view class="order-list-title">
+      <view class="inline-block">订单</view>
+      <text class="green">支付成功</text>
+      <text wx:if="{{false}}" class="red">支付失败</text>
+    </view>
+    <view class="mine-order-msg">
+      <image src="../../../img/mine-order-img.png" mode="scaleToFill"></image>
+      <view class="inline-block mine-order-msg-right">
+        <view class="mine-omr-name">365顾问宝-公司版</view>
+        <view>有效期：2019.08.15-2020.08.15</view>
+        <view>支付时间：2019.08.15 14:45  </view>
+      </view>
+    </view>
+    <view class="mine-order-money">
+      <text>应付金额</text>
+      <text>￥19 ,600.00</text>
+    </view>
+    <view class="mine-order-money">
+      <text>优惠金额</text>
+      <text>-￥600.00</text>
+    </view>
+    <view class="mine-order-foot">
+      <text>实付金额：</text>
+      <text class="mine-order-foot-money">¥189.00</text>
+    </view>
+  </view>
+</view>

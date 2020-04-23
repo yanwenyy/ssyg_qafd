@@ -58,6 +58,16 @@
   width: 145rpx;
   height: 54rpx;
 }
+.index-hcm-btn{
+  padding:0 25rpx;
+  height: 54rpx;
+  line-height: 54rpx;
+  text-align: center;
+  font-size: 26rpx;
+  background: rgba(255,255,255,0.6);
+  border-top-left-radius: 30rpx;
+  border-bottom-left-radius: 30rpx;
+}
 
 .index-hcm-name-msg {
   font-size: 42rpx;
@@ -274,6 +284,17 @@
   margin-bottom: 26rpx;
   padding:29rpx 32rpx;
 }
+.vip-course{
+  width: 98rpx;
+  height: 34rpx;
+  line-height: 34rpx;
+  color:#C58F53;
+  font-size: 20rpx;
+  border:1rpx solid #C58F53;
+  border-radius: 17rpx;
+  text-align: center;
+  margin-top: 9rpx;
+}
 .index-class-li-img{
   width: 287rpx;
   height:162rpx;
@@ -283,7 +304,7 @@
   vertical-align: top;
 }
 .index-class-msg{
-  width: 50%;
+  width: 49%;
   font-size: 26rpx;
   color:#999;
 }

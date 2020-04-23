@@ -1,0 +1,26 @@
+/* pages/mine/mineCollection/mineCollection.wxss */
+@import "../../industry/industryFXTS/industryFXTS.wxss";
+.ifx-list-head{
+  margin-bottom: 30rpx;
+}
+.ifx-list-title{
+  margin: 0 0 19rpx 0;
+}
+.mc-date{
+  font-size: 24rpx;
+  color:#999;
+}
+.ifx-list-head>image{
+  width: 34rpx;
+  height: 34rpx;
+  vertical-align: middle;
+  margin-right:9rpx;
+}
+.ifx-list-head-name{
+  font-size: 20rpx;
+  color:#999;
+}
+.ifx-list-label{
+  line-height: 41rpx;
+  margin-top:-5rpx;
+}

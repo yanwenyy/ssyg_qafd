@@ -1,0 +1,2 @@
+/* pages/mine/mineFans/mineFans.wxss */
+@import "../mineAttention/mineAttention.wxss";

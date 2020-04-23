@@ -1,7 +1,8 @@
 <!--index.wxml-->
 <wxs module="tools" src="../tools.wxs"></wxs>
 <view>
-	<industry-customized wx:if="{{false}}"></industry-customized>
+	<!-- 行业定制插件 -->
+	<industry-customized wx:if="{{ifDZ}}"></industry-customized>
 	<view class="head-container">
 		<!-- <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
@@ -17,16 +18,17 @@
 					<view class="index-hcm-title">您的专属行业</view>
 					<view class="index-hcm-name">
 						<view class="inline-block index-hcm-name-msg">
-							<image class="inline-block" src="" mode="aspectFit"></image>
-							<text>房地产行业</text>
+							<image class="inline-block" src="{{'https://'+industryIndex.tradeIcon}}" mode="aspectFit"></image>
+							<text>{{industryIndex.tradeName}}</text>
 						</view>
-						<image class="inline-block" src="../../img/index-head-kt.png" mode="aspectFit"></image>
+						<!-- <image class="inline-block" src="../../img/index-head-kt.png" mode="aspectFit"></image> -->
+						<view class="index-hcm-btn green" data-url="../vip/vip" bindtap="indexTabClick">{{industryIndex.isVip==0?'立即开通':'续费'}}</view>
 					</view>
-					<view class="index-hcm-intro">房地产行业的相关介绍，助力了解更多资讯，房地产相关 介绍，助力了解更多资讯</view>
+					<view class="index-hcm-intro">{{industryIndex.introduce||''}}</view>
 				</view>
 			</view>
 			<view class="index-head-foot box-sizing">
-				<view class="inline-block">您目前开通 <text class="green">5</text> 个行业</view>
+				<view class="inline-block">您目前开通 <text class="green">{{industryIndex.openNum}}</text> 个行业</view>
 				<view class="inline-block change-hy" bindtap="changeIndustry">更换行业 ></view>
 			</view>
 		</view>
@@ -43,7 +45,7 @@
 	<view class="list-container">
 		<view class="index-list-title">
 			<view class="inline-block">新闻中心</view>
-			<view class="inline-block index-list-title-more">全部 ></view>
+			<view class="inline-block index-list-title-more" data-url="../newCenter/newCenter" bindtap="indexTabClick" >全部 ></view>
 		</view>
 		<view>
 			<view class="index-list-new-group" wx:for="{{3}}" wx:key="*this">
@@ -109,7 +111,7 @@
 		</view>
 		<view class="index-list-title">
 			<view class="inline-block">精选好课</view>
-			<view class="inline-block index-list-title-more">全部 ></view>
+			<view class="inline-block index-list-title-more" data-url="../course/course" bindtap="indexTabClick" >全部 ></view>
 		</view>
 		<view class="index-class-ul">
 			<view class="index-class-li shadow-model box-sizing" wx:for="{{3}}" wx:key="*this">
@@ -117,6 +119,7 @@
 				<view class="index-class-msg inline-block">
 					<view class="index-class-msg-title">房地产促销中买房赠物 税务处理</view>
 					<view>王家集</view>
+					<view class="vip-course">VIP课程</view>
 				</view>
 			</view>
 		</view>

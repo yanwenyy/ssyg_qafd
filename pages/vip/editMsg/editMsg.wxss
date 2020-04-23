@@ -1,0 +1,57 @@
+/* pages/vip/editMsg/editMsg.wxss */
+.editMsg-notice{
+  font-size:28rpx;
+  color:#999;
+  margin-bottom: 45rpx;
+}
+.coach-model{
+  padding:56rpx 42rpx;
+  margin-bottom: 27rpx;
+}
+.editMsg-model-title{
+  font-size:34rpx;
+  color:#333;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 78rpx;
+  margin-top: -15rpx;
+}
+.editMsg-list:not(:last-child){
+  margin-bottom: 55rpx;
+}
+.editMsg-list-title{
+  font-size:33rpx;
+  margin-bottom: 39rpx;
+}
+.editMsg-list-input{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 28rpx;
+  border-bottom:1px solid #eee;
+}
+.editMsg-list-input>input{
+  width: 95%;
+  font-size: 26rpx;
+  vertical-align: middle;
+}
+.input-picker{
+  font-size: 26rpx;
+  min-width: 95%;
+}
+.editMsg-list-input>image{
+  width: 25rpx;
+  height:25rpx;
+  vertical-align: middle;
+  margin-top: 15rpx;
+}
+.editMsg-btn{
+  background: #28B7A3;
+  font-size:32rpx;
+  color:#fff;
+  height:88rpx;
+  line-height:88rpx;
+  margin-top: 93rpx;
+}
+.placeholder-text{
+  color:#999!important;
+}

@@ -1,0 +1,75 @@
+/* pages/mine/mineComment/mineComment.wxss */
+@import "../../ask/askList/askList.wxss";
+.ask-tab{
+  font-size: 32rpx;
+  font-weight: 400;
+  border-bottom: 1px solid #eee;
+}
+.comment-mine,.mine-comment{
+  padding:0 33rpx;
+  margin-bottom: 43rpx;
+}
+.comment-list>image{
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 18rpx;
+  vertical-align: top;
+}
+.comment-right{
+  width: 85%;
+  border-bottom: 1rpx solid #eee;
+  padding-bottom: 45rpx;
+}
+.comment-name{
+  font-size: 26rpx;
+  line-height: 38rpx;
+}
+.mine-comment-name{
+  margin-top: 14rpx;
+  margin-bottom: 21rpx;
+}
+.comment-date{
+  font-size: 22rpx;
+  color:#999;
+  line-height: 38rpx;
+}
+.comment-title{
+  font-size: 28rpx;
+  line-height: 50rpx;
+}
+.comment-msg{
+  padding:40rpx 38rpx;
+  background: #F8F8F8;
+  border-radius: 10rpx;
+  margin-top:10rpx;
+}
+.comment-msg-title{
+  font-size: 30rpx;
+  color:#666;
+  line-height: 46rpx;
+  margin-bottom: 20rpx;
+}
+.comment-msg-file{
+  font-size: 26rpx;
+  color:#999;
+  line-height: 41rpx;
+}
+.reply-comment{
+  width: 95rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  text-align: center;
+  font-size: 22rpx;
+  color:#aaa;
+  border:1rpx solid #ddd;
+  border-radius: 22rpx;
+  float: right;
+}
+.blue{
+  color: #22517F;
+}
+.mine-comment-foot{
+  font-size: 24rpx;
+  color:#aaa;
+  margin-top: 34rpx;
+}

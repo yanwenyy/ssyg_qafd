@@ -1,0 +1,14 @@
+<!--pages/vip/coupon/coupon.wxml-->
+<view class="body container">
+  <view class="coupon-list" bindtap="goConfirim">
+    <image src="{{source==''?'../../../img/coupon.png':'../../../img/coupon-nouse.png'}}" mode="aspectFit"></image>
+    <view class="coupon-list-msg">
+      <view class="coupon-money"><text>¥</text>300</view>
+      <view class="coupon-title">VIP充值专享</view>
+      <view class="coupon-name">限用：行业税务全案辅导</view>
+      <view class="coupon-date">有效期：2020-12-12 00:00前</view>
+      <view class="coupon-source">"王晓雯"分享给您的优惠</view>
+      <image wx:if="{{source==''}}" class="coupon-select" src="../../../img/coupon-select-no.png" mode="aspectFit"></image>
+    </view>
+  </view>
+</view>

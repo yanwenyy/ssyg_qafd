@@ -1,0 +1,64 @@
+/* pages/course/course.wxss */
+.course-head{
+  font-size: 28rpx;
+}
+.course-search{
+  width: 77%;
+  height: 74rpx;
+  background: #F6F6F6;
+  border-radius: 8rpx;
+  padding-left:23rpx;
+  line-height: 74rpx;
+  margin-right: 30rpx;
+  vertical-align: middle;
+}
+.course-search>image{
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 10rpx;
+  vertical-align: top;
+  margin-top: 25rpx;
+}
+.course-search>input{
+  width: 87%;
+  height: 100%;
+  font-size: 28rpx;
+}
+.course-body{
+  margin-top: 53rpx;
+}
+.course-list{
+  padding:29rpx 32rpx;
+  font-size: 26rpx;
+  color:#999;
+  margin-bottom: 31rpx;
+}
+.course-list>image{
+  width:310rpx;
+  height: 174rpx;
+  margin-right: 24rpx;
+  vertical-align: top;
+  border-radius: 12rpx;
+  background: #eee;
+}
+.course-list-right{
+  width: 45%;
+}
+.course-list-right-name{
+  font-size: 30rpx;
+  color:#333;
+  line-height: 39rpx;
+  margin-bottom: 10rpx;
+  margin-top:3rpx;
+}
+.vip-course{
+  width: 98rpx;
+  height: 34rpx;
+  line-height: 34rpx;
+  color:#C58F53;
+  font-size: 20rpx;
+  border:1rpx solid #C58F53;
+  border-radius: 17rpx;
+  text-align: center;
+  margin-top: 9rpx;
+}

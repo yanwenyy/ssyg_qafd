@@ -1,0 +1,289 @@
+/* pages/mine/mineTeam/mineTeam.wxss */
+.pay-body{
+  padding:37rpx 46rpx;
+}
+.pay-head{
+  width:100%;
+  height:320rpx;
+  border-radius: 16rpx;
+  position: relative;
+  color:rgba(254,254,255,1);
+}
+.pay-bg,.pay-msg{
+  width:100%;
+  height:100%;
+  position: absolute;
+  top:0;
+  left:0;
+}
+.pay-msg{
+  padding:56rpx 51rpx;
+}
+.pay-msg-name{
+  background:linear-gradient(270deg,rgba(225,172,140,1) 0%, rgba(252,239,212,1) 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size:43rpx;
+  font-weight: bold;
+}
+.pay-msg-time{
+  color: #FCEFD4;
+  font-size: 30rpx;
+  margin-top: 19rpx;
+}
+.pay-msg-money{
+  color:#FCEFD4;
+  font-size:26rpx;
+  margin-top:68rpx;
+  text-align: right;
+}
+.pay-msg-money>text{
+  font-size: 36rpx;
+}
+.pay-list{
+  margin-top: 58rpx;
+  color:#999;
+}
+.pay-num{
+  display: flex;
+  justify-content: space-between;
+}
+.pay-title{
+  font-size:32rpx;
+  font-weight: bold;
+  color: #333;
+  vertical-align: middle;
+}
+.pay-num-list{
+  margin-top: -15rpx;
+}
+.pay-list-date{
+  margin-top: 24rpx;
+}
+.pay-num-list>text{
+  font-size:24rpx;
+  width:68rpx;
+  height:59rpx;
+  line-height: 59rpx;
+  vertical-align: middle;
+  text-align: center;
+  border:1px solid #eee;
+  border-radius: 4rpx;
+  color: #333;
+}
+.pay-num-btn{
+  color:#DCDCDC!important;
+}
+.pay-btn-group{
+  position: absolute;
+  bottom:36rpx;
+  left:0;
+  width: 100%;
+  padding:0 36rpx;
+}
+.pay-btn-agreement{
+  font-size:26rpx;
+  color:#999;
+  margin-bottom: 47rpx;
+}
+.checkbox .wx-checkbox-input{
+  width: 30rpx;
+  height:30rpx;
+  margin-bottom: 5rpx;
+}
+.pay-btn-sub{
+  height:88rpx;
+  line-height: 88rpx;
+  background:#28B7A3;
+  border-radius:12rpx;
+  color:#fff;
+  border:none;
+  font-size:32rpx;
+}
+.pay-btn-sub>text{
+  font-size:26rpx;
+}
+.canvas-bg{
+  padding:100rpx 78rpx;
+}
+.canvas{
+  width:595rpx;
+  height:909rpx;
+  margin-bottom: 44rpx;
+}
+.save-canvas{
+  background: #F56A32;
+  color:#fff;
+  font-size:32rpx;
+}
+.share-body{
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  position: relative;
+}
+.share-img-bg{
+  width: 100%;
+  height:100%;
+  position: absolute;
+  top:0;
+  left:0;
+  background: #eee;
+}
+.shadow-body{
+  width: 594rpx;
+  height:558rpx;
+  margin: 306rpx auto; 
+  padding:48rpx 44rpx;
+}
+.shadow-title{
+  text-align: center;
+  width: 100%;
+  position: relative;
+}
+.close-shadow{
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  top:0;
+  right:0;
+}
+.shadow-msg{
+  width: 100%;
+  margin-top: 62rpx;
+  /* display: flex;
+  justify-content: space-between; */
+  text-align: center;
+}
+.shadow-msg-model{
+  width: 238rpx;
+  height:324rpx;
+  position: relative;
+  background: #eee;
+  border-radius: 16rpx;
+}
+.shadow-msg-model-img,.shadow-msg-model-btn{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0;
+  left:0;
+}
+.shadow-msg-model-btn{
+  opacity: 0;
+}
+.pay-msg-money{
+  display: flex;
+  justify-content: space-between
+}
+.teamManage-body{
+  padding:24rpx 23rpx;
+}
+.teamManage-ul-title{
+  font-size:34rpx;
+  font-weight: bold;
+  margin: 47rpx 0 43rpx 0;
+}
+.teamManage-li{
+  padding:45rpx 40rpx;
+  box-shadow:0px 0px 20rpx 0px rgba(221, 221, 221, 0.35);
+  border-radius:16rpx;
+  margin-bottom: 26rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.teamManage-li-user{
+  position: relative;
+  width: 100rpx;
+  height: 100rpx;
+  vertical-align: middle;
+}
+.teamManage-li-img{
+  width: 100%;
+  height:100%;
+  vertical-align: middle;
+  background: #eee;
+  border-radius: 50%;
+}
+.teamManage-li-user-mine{
+  width:49rpx;
+  height:28rpx;
+  background:#28B7A3;
+  border-radius:14rpx;
+  color:#fff;
+  font-size:20rpx;
+  text-align: center;
+  line-height: 28rpx;
+  position: absolute;
+  bottom:-10rpx;
+  left: 28rpx;
+}
+.teamManage-li-msg{
+  width: 70%;
+  font-size: 28rpx;
+  color:#999;
+}
+.teamManage-li-msg-name{
+  font-size: 34rpx;
+  color:#333;
+  font-weight: bold;
+  margin-bottom: 15rpx;
+}
+.teamManage-li-msg-position{
+  padding:0 21rpx;
+  height:38rpx;
+  line-height: 38rpx;
+  text-align: center;
+  color:#28B7A3;
+  font-size: 22rpx;
+  background:rgba(255,255,255,1);
+  border:1px solid #28B7A3;
+  border-radius:19rpx;
+  margin-left: 13rpx;
+}
+.teamManage-li-dot{
+  width:4%;
+  text-align: center;
+  margin-top:27rpx;
+}
+.teamManage-li-dot>view{
+  width:9rpx;
+  height:9rpx;
+  background:rgba(220,220,220,1);
+  border-radius:50%;
+  margin-bottom: 11rpx;
+}
+.teamManage-li-share{
+  width: 50%;
+  font-size:34rpx;
+  color:#999;
+  vertical-align: middle;
+  margin-top: 22rpx;
+}
+.teamManage-li-share-btn{
+  font-size: 28rpx;
+  vertical-align: middle;
+  margin-top: 26rpx;
+}
+.teamManage-li-share-go{
+  width: 24rpx;
+  height:24rpx;
+  vertical-align: middle;
+}
+.shadow-footer{
+  width:100%;
+  position: absolute;
+  bottom:0;
+}
+.shadow-footer-li{
+  width: 100%;
+  height:99rpx;
+  line-height: 99rpx;
+  text-align: center;
+  font-size: 30rpx;
+  background:#fff;
+  border-bottom: 1px solid #eee;
+}
+.close-shadow2{
+  margin-top: 7rpx;
+}

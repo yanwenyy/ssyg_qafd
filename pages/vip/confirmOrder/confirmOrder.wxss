@@ -1,0 +1,109 @@
+/* pages/vip/confirmOrder/confirmOrder.wxss */
+.order-head {
+  width: 100%;
+  height: 158rpx;
+  position: relative;
+  margin-bottom: 45rpx;
+}
+
+.order-head>image {
+  width: 100%;
+  height: 100%;
+}
+
+.order-head-msg {
+  width: 100%;
+  height: 158rpx;
+  line-height: 158rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 39rpx;
+  padding-left: 33rpx;
+}
+
+.order-head-msg>image {
+  width: 44rpx;
+  height: 51rpx;
+  margin-right: 15rpx;
+  vertical-align: top;
+  margin-top:53rpx
+}
+
+.order-head-msg>text {
+  background: linear-gradient(270deg, rgba(225, 192, 189, 1) 1.0986328125%, rgba(255, 237, 237, 1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.order-name{
+  display: flex;
+  justify-content:space-between;
+}
+.order-name-left{
+  font-size: 32rpx;
+  font-weight: bold;
+  line-height: 51rpx;
+}
+.order-name-right{
+  font-size: 30rpx;
+  line-height: 39rpx;
+}
+.order-date{
+  font-size: 24rpx;
+  color:#999;
+  margin:19rpx 0;
+}
+.order-msg{
+  font-size:28rpx;
+}
+.coupon-list{
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  height: 129rpx;
+  line-height: 129rpx;
+  border-top:3rpx dashed #eee;
+  border-bottom:3rpx dashed #eee;
+  margin:54rpx 0;
+}
+.order-msg>view{
+  display: flex;
+  justify-content: space-between;
+}
+.order-msg>view:not(:last-child){
+  margin-bottom: 30rpx;
+}
+.order-btn{
+  width: 100%;
+  position: fixed;
+  bottom: 79rpx;
+  left: 0;
+}
+.order-btn>view{
+  width:660rpx;
+  height:88rpx;
+  line-height: 88rpx;
+  background:rgba(40,183,163,1);
+  border-radius:12rpx;
+  text-align: center;
+  color:#fff;
+  font-size: 30rpx;
+  margin:0 auto;
+}
+.order-body{
+  width:100%;
+  position: relative;
+  height: 790rpx;
+}
+.order-body>image{
+  width:100%;
+  height: 100%;
+}
+.order-body-msg{
+  width:100%;
+  height:100%;
+  position: absolute;
+  top:0;
+  left:0;
+  padding:59rpx 44rpx;
+}

@@ -7,3 +7,6 @@
 .pch-file{
   font-size: 30rpx;
 }
+.pcb-foot-pl>input{
+  width: 55%;
+}

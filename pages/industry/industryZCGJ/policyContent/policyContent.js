@@ -1,4 +1,5 @@
 // pages/industry/industryZCGJ/policyContent/policyContent.js
+const app=getApp();
 Page({
 
   /**
@@ -6,14 +7,52 @@ Page({
    */
   data: {
     navText:'政策',
-    scrollTopscrollTop:0
+    scrollTopscrollTop:0,
+    policyContent:null,//政策详情
+    policyId:'',//政策id
+    releatfile:[],//相关文件
+    releatedetails:[],//相关解读
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
+    this.setData({
+      policyId:options.policyId
+    })
+    
+    //政策详情
+    app.ajax("/minitax/policy/details",{
+      "policyId": this.data.policyId,
+    },function(res){
+      that.setData({
+        policyContent:res.data.data
+      })
+    });
 
+    //相关文件
+    app.ajax("/minitax/policy/releatfile",{
+      "policyId": this.data.policyId,
+      "current": 0,
+      "pageSize": 1000,
+    },function(res){
+      that.setData({
+        releatfile:res.data.data
+      })
+    });
+
+     //相关解读
+     app.ajax("/minitax/policy/expert",{
+      "policyId": this.data.policyId,
+      "current": 0,
+      "pageSize": 1000,
+    },function(res){
+      that.setData({
+        releatedetails:res.data.data
+      })
+    })
   },
 
   /**

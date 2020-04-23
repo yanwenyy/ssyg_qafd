@@ -1,0 +1,65 @@
+/* pages/mine/mineOrder/mineOrder.wxss */
+.container{
+  background: #F4F7FD;
+}
+.order-list{
+  background: #fff;
+  padding:40rpx 38rpx;
+  margin-bottom: 29rpx;
+  border-radius: 16rpx;
+}
+.order-list-title{
+  padding-bottom: 33rpx;
+  border-bottom: 1rpx solid #eee;
+  display: flex;
+  justify-content: space-between;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom:37rpx;
+}
+.order-list-title>text{
+  font-size: 28rpx;
+}
+.mine-order-msg{
+  margin-bottom: 46rpx;
+}
+.mine-order-msg::after{
+  display: table;
+  content: '';
+}
+.mine-order-msg>image{
+  width: 206rpx;
+  height:127rpx;
+  margin-right: 34rpx;
+  vertical-align: top;
+}
+.mine-order-msg-right{
+  width: 60%;
+  font-size:24rpx;
+  color:#666;
+}
+.mine-omr-name{
+  font-size: 31rpx;
+  color:#333;
+  font-weight: bold;
+  line-height: 39rpx;
+  margin-bottom: 6rpx;
+}
+.mine-order-money{
+  margin-bottom:20rpx;
+  font-size: 24rpx;
+  color:#999;
+  display: flex;
+  justify-content: space-between;
+}
+.mine-order-foot{
+  padding-top:44rpx;
+  border-top:1rpx dotted #eee;
+  font-size: 24rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.mine-order-foot-money{
+  font-size: 34rpx;
+  font-weight: bold;
+}

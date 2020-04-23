@@ -1,0 +1,51 @@
+<!--pages/mine/set/set.wxml-->
+<view class="set-body box-sizing">
+  <view class="set-list" bindtap="openShadow">
+    <view class="inline-block set-list-name">
+      <image class="set-list-name-img" src="../../../img/set-ggsjh.png" mode="scaleToFill"></image>
+      <text>更改手机号</text>
+    </view>
+    <view class="inline-block set-list-right">
+      <text>{{userInfo.phone}}</text>
+      <image class="set-go" src="../../../img/set-go.png" mode="scaleToFill"></image>
+    </view>
+  </view>
+  <view class="set-list" bindtap="delCompany" wx:if="{{userInfo.category==1}}">
+    <view class="inline-block set-list-name">
+      <image class="set-list-name-img" src="../../../img/set-jcbd.png" mode="scaleToFill"></image>
+      <text>解除公司绑定</text>
+    </view>
+    <view class="inline-block set-list-right">
+      <image class="set-go" src="../../../img/set-go.png" mode="scaleToFill"></image>
+    </view>
+  </view>
+  <view class="set-btn box-sizing">
+    <button bindtap="toLogin">退出登录</button>
+  </view>
+  <view wx:if="{{shadow}}" class="shadow">
+    <view class="set-shadow-body box-sizing coach-model">
+      <view class="set-shadow-title">
+        更改手机号码
+        <image class="set-shadow-close" src="../../../img/shadow-close.png" mode="scaleToFill" bindtap="closeShadow"></image>
+      </view>
+      <view class="set-shadow-model">
+        <view class="set-shadow-input-group">
+          <input placeholder="请输入手机号" bindinput="phoneInput"></input>
+        </view>
+        <view class="set-shadow-input-group">
+          <input placeholder="请输入图形验证码" bindinput="imgCodeInput"></input>
+          <view class="inline-block set-shadow-input-btn">
+            <image src="{{imgcodeSrc}}" mode="scaleToFill" class="set-shadow-input-img" bindtap="getImgCode"></image>
+          </view>
+        </view>
+        <view class="set-shadow-input-group">
+          <input placeholder="请输入验证码" bindinput="codeInput"></input>
+          <view class="inline-block set-shadow-input-btn orange" bindtap="sedCode" data-msg="{{codeMsg}}">{{codeMsg}}</view>
+        </view>
+      </view>
+      <view class="set-shadow-btn">
+        <button bindtap="subPhone">确定</button>
+      </view>
+    </view>
+  </view>
+</view>

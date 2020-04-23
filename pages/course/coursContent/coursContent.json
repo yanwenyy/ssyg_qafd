@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "ccvod": "../../../components/ccvod/ccvod"
+  }
+}

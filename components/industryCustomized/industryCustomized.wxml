@@ -1,0 +1,19 @@
+<!--定制行业组件pages/industry/industryCustomized/industryCustomized.wxml-->
+<view class="mask" wx:if="{{mask}}">
+  <view class="ic-body">
+    <image bindtap="closeMask" class="close-mask" src="../../img/close-mask.png" mode="aspectFit"></image>
+    <view class="ic-model box-sizing">
+      <view class="ic-model-title">专属辅导行业定制</view>
+      <view class="ic-model-intro">请选择您的定制行业，省税一哥将为您提供精准的行业内容服务。</view>
+      <scroll-view class="ic-model-list" scroll-y="true">
+            <radio-group class="radio-group" bindchange="radioChange">
+                <view class="hyradio" wx:for-items="{{items}}"  wx:key="name">
+                  <text>{{item.tradeName}}</text>
+                  <radio class="radio "  value="{{item.tradeId}}" checked="{{selectId==item.tradeId}}"></radio>
+                </view>
+            </radio-group>
+      </scroll-view>
+      <view class="ic-model-btn" bindtap="subMsg">确定</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,51 @@
+<!--pages/vip/openIndustry/openIndustry.wxml-->
+<wxs module="tools" src="../../tools.wxs"></wxs>
+<view class="container">
+	<view class="oi-head">
+		<image src="../../../img/oi-head.png" mode="aspectFit"></image>
+		<view class="oi-head-msg box-sizing">
+			<view class="oi-head-msg-title">省税一哥·行业税务全案辅导VIP</view>
+			<view class="oi-head-msg-type">企业贴身财务顾问</view>
+		</view>
+	</view>
+	<view class="oi-notice">注意：行业开通后不可修改，请谨慎选择</view>
+	<view wx:for="{{industryList}}" wx:key="index" class="oi-list" data-status="{{item.ifVip}}" data-id="{{item.tradeId}}" data-goodsId="{{item.goodsId}}" bindtap="hyClick">
+		<image src="../../../img/oi-list.png" mode="aspectFit"></image>
+		<view class="oi-list-msg box-sizing">
+			<view class="oi-list-title">
+				<image src="{{'https://'+item.tradeIcon}}" mode="aspectFit"></image>
+				<view class="inline-block">{{item.tradeName}}</view>
+			</view>
+			<view class="oi-list-date"  wx:if="{{item.ifVip!=0}}">
+				{{item.cardType==1?'A':(item.cardType==2?'B':'C')}}卡
+				<text>{{tools.dateFormat(item.trVipTime,'yyyy-MM-dd')}}过期</text>
+			</view>
+			<view class="oi-list-btn">
+				{{item.ifVip==0?'开通':'续费'}} >
+			</view>
+		</view>
+	</view>
+	<view class="mask" wx:if="{{product}}">
+		<view class="od-shadow box-sizing">
+			<view class="od-shadow-title">
+				请选择商品
+				<image bindtap="closeShadow" src="../../../img/shadow-close.png" mode="aspectFit">X</image>
+			</view>
+			<view class="od-shadow-notice">房地产行业</view>
+			<view class="od-shadow-body">
+				<view wx:for="{{productList}}" wx:key="*this" data-id="{{item.goodsId}}" bindtap="productClick" class="od-shadow-list {{item.goodsId==productId?'od-shadow-list-act':''}} box-sizing">
+					<view class="od-product-name">{{item.cardtype==1?'A':(item.cardtype==2?'B':'C')}}卡</view>
+					<view>
+						<text class="inline-block od-product-money">¥{{item.price}}元</text>
+						<text class="inline-block od-product-line"></text>
+						<text class="inline-block od-product-type">{{item.goodsName}}</text>
+					</view>
+					<view class="od-product-foot {{item.goodsId==productId?'od-product-foot-act':''}}">{{item.explain}}</view>
+					<image wx:if="{{item.ifBuy==1}}" class="od-product-buy" src="../../../img/od-product-buy.png" mode="aspectFit"></image>
+					<image class="od-product-sel" src="{{item.goodsId==productId?'../../../img/od-product-sel.png':'../../../img/od-product-sel-no.png'}}"></image>
+				</view>
+			</view>
+			<view class="od-shadow-btn" bindtap="subMsg">确定</view>
+		</view>
+	</view>
+</view>

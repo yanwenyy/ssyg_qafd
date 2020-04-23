@@ -1,25 +1,22 @@
 <!--pages/industry/industryChange/industryChange.wxml-->
 <view class="container">
 	<view class="ich-intro">请选择您的定制行业，省税一哥将为您提供精准的行业内容服务。</view>
-	<view class="ich-title">已开通行业</view>
 	<view>
-		<radio-group class="radio-group" bindchange="radioChange">
-			<view class="hyradio" wx:for-items="{{items}}" wx:key="name">
-				<text>{{item.value}}</text>
-				<radio class="radio " value="{{item.name}}" checked="{{item.checked}}"></radio>
+		<view class="ich-title">已开通行业</view>
+		<radio-group class="radio-group" bindchange="openChange">
+			<view class="hyradio" wx:for-items="{{items}}" wx:key="*this">
+				<text>{{item.tradeName}}</text>
+				<radio class="radio " value="{{item.tradeId}}" checked="{{item.if_customize==1}}"></radio>
+			</view>
+			<view wx:if="{{items==''}}" class="open-no-msg">您当前暂未开通付费行业</view>
+			<view class="ich-title">未开通行业</view>
+			<view class="hyradio" wx:for-items="{{itemsno}}" wx:key="*this">
+				<text>{{item.tradeName}}</text>
+				<radio class="radio " value="{{item.tradeId}}" checked="{{item.if_customize==1}}"></radio>
 			</view>
 		</radio-group>
 	</view>
-  <view class="ich-title">未开通行业</view>
-	<view>
-		<radio-group class="radio-group" bindchange="radioChange">
-			<view class="hyradio" wx:for-items="{{items}}" wx:key="name">
-				<text>{{item.value}}</text>
-				<radio class="radio " value="{{item.name}}" checked="{{item.checked}}"></radio>
-			</view>
-		</radio-group>
+	<view class="ich-btn box-sizing">
+		<button bindtap="subMsg">确定更换</button>
 	</view>
-  <view class="ich-btn box-sizing">
-    <button>确定更换</button>
-  </view>
 </view>

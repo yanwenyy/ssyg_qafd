@@ -1,0 +1,81 @@
+/* pages/course/coursContent/coursContent.wxss */
+@import '../../industry/industryZCGJ/policyContent/policyContent.wxss';
+.ccH5PlayerBox {
+  height: 384rpx!important;
+}
+.pcp-nav-list{
+  width: 50%;
+}
+.pcp-nav-line{
+  width: 16%;
+  left: 42%;
+}
+.cc-model{
+  margin-top:16rpx;
+  background: #fff;
+  padding: 32rpx 28rpx;
+}
+.v2{
+  margin-bottom:130rpx ;
+}
+.pcb-title{
+  margin:0 0 39rpx 0;
+}
+.cc-head{
+  padding:35rpx 32rpx;
+  background: #fff;
+}
+.cc-head-msg{
+  font-size: 36rpx;
+  font-weight: bold;
+  line-height: 52rpx;
+  margin-bottom: 20rpx;
+}
+.cc-head-img{
+  font-size: 30rpx;
+  color:#666;
+  vertical-align: middle;
+ 
+}
+.cc-head-img>image{
+  width: 52rpx;
+  height: 52rpx;
+  vertical-align: middle;
+  margin-right: 14rpx;
+}
+.cc-head-btn{
+  width: 135rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color:#fff;
+  border-radius: 28rpx;
+  background: #28B7A3;
+  float: right;
+  vertical-align: middle;
+}
+.cc-head-vip{
+  float: right;
+}
+.cc-head-vip>image{
+  width: 148rpx;
+  height: 29rpx;
+  vertical-align: middle;
+  margin-top: -10rpx;
+}
+.cc-video-shadow{
+  width: 100%;
+  height: 464rpx;
+  background: rgba(0,0,0,0.3);
+  position: absolute;
+  top:0;
+  left: 0;
+  z-index: 999999;
+  text-align: center;
+}
+.cc-video-shadow>image{
+  width: 412rpx;
+  height: 78rpx;
+  margin:160rpx auto;
+}

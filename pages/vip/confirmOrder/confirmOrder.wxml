@@ -1,0 +1,44 @@
+<!--pages/vip/confirmOrder/confirmOrder.wxml-->
+<wxs module="tools" src="../../tools.wxs"></wxs>
+<view class="container body">
+	<view class="order-head">
+		<image src="../../../img/order-head.png" mode="aspectFit"></image>
+		<view class="order-head-msg box-sizing">
+			<image src="../../../img/conform-order-icon.png" mode="aspectFit"></image>
+			<text>{{userInfo.companyName}}</text>
+		</view>
+	</view>
+	<view class="order-body">
+		<image src="../../../img/order-bg.png" mode="aspectFit"></image>
+		<view class="order-body-msg box-sizing">
+			<view class="order-name">
+				<text class="inline-block order-name-left">{{goodsInfo.tradeName}}{{goodsInfo.cardType==1?'A':(goodsInfo.cardType==1?'B':'C')}}卡 {{goodsInfo.goodsName}}</text>
+			</view>
+			<view class="order-date">有效期至:{{tools.dateFormat(goodsInfo.endDate,'yyyy-MM-dd')}}</view>
+			<view class="inline-block order-name-right">¥{{goodsInfo.price}}</view>
+			<view class="coupon-list">
+				<view class="inline-blcok">优惠券</view>
+				<view data-id="{{goodsInfo.discount_id}}" bindtap="goCoupon" wx:if="{{true}}" class="inline-blcok green">- ¥300.00 > </view>
+				<view data-id="{{goodsInfo.discount_id}}" bindtap="goCoupon" wx:if="{{false}}" class="inline-blcok green">1张可用 > </view>
+				<view data-id="{{goodsInfo.discount_id}}" bindtap="goCoupon" wx:if="{{false}}" class="inline-blcok gray">暂无抵用券可用 > </view>
+			</view>
+			<view class="order-msg box-sizing">
+				<view>
+					<view class="inline-blcok">应付金额</view>
+					<view class="inline-blcok">¥ {{goodsInfo.price}}</view>
+				</view>
+				<view>
+					<view class="inline-blcok">优惠金额</view>
+					<view class="inline-blcok">- {{goodsInfo.price-goodsInfo.realPrice}}</view>
+				</view>
+				<view>
+					<view class="inline-blcok">实付金额</view>
+					<view class="inline-blcok red">¥{{goodsInfo.realPrice}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="order-btn" bindtap="goPay">
+		<view>去支付¥{{goodsInfo.realPrice}}</view>
+	</view>
+</view>
