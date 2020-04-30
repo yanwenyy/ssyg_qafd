@@ -7,18 +7,31 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    ifDZ:false,//是否需要定制行业
-    industryIndex:null,//用户开通行业信息
+    ifDZ: false, //是否需要定制行业
+    industryIndex: null, //用户开通行业信息
+    tradeId: '', //行业id
+    imgList: [], //轮播图
+    indicatorDots: false,
+    vertical: false,
+    autoplay: false,
+    interval: 2000,
+    duration: 500,
+    liveList:[],//直播答疑列表
+    courseList: [], //精选好课列表
+    newList:[],//新闻中心列表
+    newStart: 1, //起始页
+    newNum: 3, //每页显示条数
+    askMsg:null,//咨询信息
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
   },
   onShow: function () {
-    
-    var that=this;
+
+    var that = this;
     if (app.globalData.userInfo) {
       console.log(1);
       this.getMsg();
@@ -26,7 +39,7 @@ Page({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse){
+    } else if (this.data.canIUse) {
       console.log(2);
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
@@ -49,7 +62,7 @@ Page({
       }
     }
   },
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
@@ -59,30 +72,133 @@ Page({
   },
 
   //页面初始化数据
-  getMsg:function(){
+  getMsg: function () {
     console.log("我是数据啦");
-    var that=this;
+    app.getToken();
+    var that = this;
     //是否需要定制行业
-    app.ajax_nodata("/minitax/trade/user",function(res){
+    app.ajax_nodata("/minitax/trade/user", function (res) {
       that.setData({
-        ifDZ:res.data.data.ifCustomize=='1'? false:true,
-        industryIndex:res.data.data
+        ifDZ: res.data.data.ifCustomize == '1' ? false : true,
+        industryIndex: res.data.data
+      })
+    });
+
+    //用户当前定制的行业
+    app.ajax_nodata("/minitax/select/trade", function (res) {
+      that.setData({
+        tradeId: res.data.data.tradeId
+      })
+    });
+
+    //轮播图
+    app.ajax("/applet/quan/list", {
+      "type": "1"
+    }, function (res) {
+      that.setData({
+        imgList: res.data.data
+      })
+    });
+
+    //用户当前定制的行业
+    app.ajax_nodata("/minitax/select/trade", function (res) {
+      that.setData({
+        tradeId: res.data.data.tradeId
+      });
+
+      //直播答疑
+       app.ajax("/minitax/broadacast/list", {
+        "current": 1,
+        "pageSize": 10,
+        "tradeId": that.data.tradeId,
+      }, function (res) {
+        that.setData({
+          liveList: res.data.data
+        })
+      })
+
+      //精选好课
+      app.ajax("/minitax/goodclass/list", {
+        "current": 1,
+        "pageSize": 10,
+        "tradeId": that.data.tradeId,
+      }, function (res) {
+        that.setData({
+          courseList: res.data.data
+        })
+      });
+
+      //新闻中心
+      that.getNew(that.data.newStart,that.data.newNum,that.data.tradeId);
+      
+    });
+
+    //咨询信息
+    app.ajax_nodata("/minitax/advisory/information",function(res){
+      that.setData({
+        askMsg:res.data.data
       })
     })
   },
 
   //更换行业
-  changeIndustry:function(){
+  changeIndustry: function () {
     wx.navigateTo({
       url: '../industry/industryChange/industryChange',
     })
   },
 
   //行业四个tab点击
-  indexTabClick:function(e){
-    var url=e.currentTarget.dataset.url;
+  indexTabClick: function (e) {
+    var url = e.currentTarget.dataset.url;
     wx.navigateTo({
       url: url,
     })
+  },
+
+  //精选好课点击
+  courseClick:function(e){
+    wx.navigateTo({
+      url: '../course/coursContent/coursContent?id='+e.currentTarget.dataset.id
+    })
+  },
+
+  //直播答疑点击
+  liveClick:function(e){
+    wx.navigateTo({
+      url: '../liveAnswer/liveAnswerContent/liveAnswerContent?id='+e.currentTarget.dataset.id
+    })
+  },
+
+  //新闻中心列表
+  getNew:function(current, pageSize, tradeId){
+    var that=this;
+    app.ajax("/minitax/newcenter/list", {
+      "current": current,
+      "pageSize": pageSize,
+      "tradeId": tradeId
+    }, function (res) {
+      that.setData({
+        newList: res.data.data
+      })
+    })
+  },
+
+  //新闻中心列表点击
+  newClick:function(e){
+    wx.navigateTo({
+      url: '../newCenter/newContent/newContent?id='+e.currentTarget.dataset.id
+    })
+  },
+
+  //新闻中心刷一刷点击
+  sysClick:function(){
+    var that=this;
+    this.setData({
+      newStart: that.data.newStart + 1,
+    });
+    //列表数据
+    var data=that.data;
+    that.getNew(data.newStart,data.newNum,data.tradeId)
   }
 })

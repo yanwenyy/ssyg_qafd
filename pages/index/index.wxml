@@ -33,11 +33,20 @@
 			</view>
 		</view>
 		<view class="product-intro">
-			<image class="pro-intro-bg" src="../../img/index-pro-intro.png" mode="aspectFIt"></image>
+			<swiper class="index-swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+				<block wx:for="{{imgList}}" wx:key="index">
+					<swiper-item>
+						<view class="swiper-item">
+							<image class="pro-intro-bg" src="{{item.imgUrl}}" mode="aspectFIt"></image>
+						</view>
+					</swiper-item>
+				</block>
+			</swiper>
+			<!-- <image class="pro-intro-bg" src="../../img/index-pro-intro.png" mode="aspectFIt"></image> -->
 			<view class="pro-intro-list box-sizing">
 				<image data-url="../industry/industryZCGJ/industryZCGJ" bindtap="indexTabClick" src="../../img/index-pro-intro0.png" mode="aspectFIt" class="box-siizng"></image>
 				<image data-url="../industry/industryFXTS/industryFXTS" bindtap="indexTabClick" src="../../img/index-pro-intro1.png" mode="aspectFIt" class="box-siizng"></image>
-				<image data-url="" bindtap="indexTabClick" src="../../img/index-pro-intro2.png" mode="aspectFIt" class="box-siizng"></image>
+				<image data-url="../industry/industryLCJM/industryLCJM" bindtap="indexTabClick" src="../../img/index-pro-intro2.png" mode="aspectFIt" class="box-siizng"></image>
 				<image data-url="../industry/industrySSCH/industrySSCH" bindtap="indexTabClick" src="../../img/index-pro-intro3.png" mode="aspectFIt" class="box-siizng"></image>
 			</view>
 		</view>
@@ -45,28 +54,28 @@
 	<view class="list-container">
 		<view class="index-list-title">
 			<view class="inline-block">新闻中心</view>
-			<view class="inline-block index-list-title-more" data-url="../newCenter/newCenter" bindtap="indexTabClick" >全部 ></view>
+			<view class="inline-block index-list-title-more" data-url="../newCenter/newCenter" bindtap="indexTabClick">全部 ></view>
 		</view>
 		<view>
-			<view class="index-list-new-group" wx:for="{{3}}" wx:key="*this">
-				<view wx:if="{{item==1}}" class="list-new list-new-img-top shadow-model box-sizing">
-					<image src="" mode="aspectFit"></image>
-					<view class="list-new-msg">关于修订城镇土地使用税和房产税申报表单的公告</view>
-					<view class="list-new-date">{{tools.dateFormat(1584939085000)}}</view>
+			<view class="index-list-new-group" wx:for="{{newList}}" wx:key="index" data-id="{{item.id}}" bindtap="newClick">
+				<view wx:if="{{item.coverType==1}}" class="list-new list-new-img-top shadow-model box-sizing">
+					<image src="{{item.coverUrl}}" mode="aspectFit"></image>
+					<view class="list-new-msg">{{item.title}}</view>
+					<view class="list-new-date">{{tools.dateFormat(item.creatTime)}}</view>
 				</view>
-				<view wx:if="{{item==1}}" class="list-new shadow-model box-sizing">
-					<view class="list-new-msg">关于修订城镇土地使用税和房产税申报表单的公告</view>
-					<view class="list-new-date">{{tools.dateFormat(1584939085000)}}</view>
+				<view wx:if="{{item.coverType==2}}" class="list-new shadow-model box-sizing">
+					<view class="list-new-msg">{{item.title}}</view>
+					<view class="list-new-date">{{tools.dateFormat(item.creatTime)}}</view>
 				</view>
-				<view wx:if="{{item==1}}" class="list-new list-new-img-left shadow-model box-sizing">
+				<view wx:if="{{item.coverType==3}}" class="list-new list-new-img-left shadow-model box-sizing">
 					<view class="list-new-right">
-						<view class="list-new-msg">关于修订城镇土地使用税和房产税申报表单的公告</view>
-						<view class="list-new-date">{{tools.dateFormat(1584939085000)}}</view>
+						<view class="list-new-msg">{{item.title}}</view>
+						<view class="list-new-date">{{tools.dateFormat(item.creatTime)}}</view>
 					</view>
-					<image src="" mode="aspectFit"></image>
+					<image src="{{item.coverUrl}}" mode="aspectFit"></image>
 				</view>
 			</view>
-			<view class="sys-btn">
+			<view class="sys-btn" bindtap="sysClick">
 				<image src="../../img/sys.png" mode="aspectFit"></image>
 			</view>
 		</view>
@@ -77,22 +86,24 @@
 					<image src="../../img/zb-yg.png" mode="aspectFit"></image>预告
 				</view>
 			</view>
-			<view class="inline-block index-list-title-more"  data-url="../liveAnswer/liveAnswer" bindtap="indexTabClick">全部 ></view>
+			<view class="inline-block index-list-title-more" data-url="../liveAnswer/liveAnswer" bindtap="indexTabClick">全部 ></view>
 		</view>
 		<view class="zb-list-group">
-			<view class="shadow-model zb-list box-sizing inline-block" wx:for="{{3}}" wx:key="*this">
+			<view class="shadow-model zb-list box-sizing inline-block" wx:for="{{liveList}}" wx:key="index" data-id="{{item.id}}" bindtap="liveClick">
 				<view class="zb-list-title">
-					<image src="../../img/zb-ing.png" mode="aspectFit"></image>
-					<text>直播中</text>
+					<image wx:if="{{item.status==2}}" src="../../img/zb-ing.png" mode="aspectFit"></image>
+					<image wx:if="{{item.status==4}}" src="../../img/zb-hf.png" mode="aspectFit"></image>
+					<image wx:if="{{item.status==1}}" src="../../img/zb-yg.png" mode="aspectFit"></image>
+					<text>{{item.status==1?'预告':(item.status==2?'直播中':(item.status==3?'直播结束':'回访'))}}</text>
 				</view>
 				<view class="zb-list-msg">
 					<image class="zb-list-msg-img" src="" mode="aspectFit"></image>
 					<view class="zb-list-msg-right inline-block">
-						<view class="zb-lmr-title">2019年第一期房地产行 期房地产行业定向答...</view>
-						<view class="zb-lmr-name">讲师：直播人</view>
-						<view class="zb-lmr-date">时间：2019-02-11 10:30</view>
+						<view class="zb-lmr-title">{{item.title}}</view>
+						<view class="zb-lmr-name">讲师：{{item.userName}}</view>
+						<view class="zb-lmr-date">时间：{{tools.dateFormat(item.startTime)}}</view>
 						<view class="zb-lmr-class">
-							<view class="inline-block">房地产</view>
+							<view class="inline-block">{{item.tradeName}}</view>
 						</view>
 					</view>
 				</view>
@@ -105,21 +116,21 @@
 		<view class="index-wzx shadow-model">
 			<image class="index-wzx-img" src="../../img/index-wzx-bg.png" mode="aspectFit"></image>
 			<view class="index-wzx-foot">
-				<view class="inline-block">您当前还可提问 <text class="green">5</text> 个问题</view>
+				<view class="inline-block">您当前还可提问 <text class="green">{{askMsg.quNum}}</text> 个问题</view>
 				<view data-url="../ask/ask" bindtap="indexTabClick" class="inline-block index-wzx-que">去提问</view>
 			</view>
 		</view>
 		<view class="index-list-title">
 			<view class="inline-block">精选好课</view>
-			<view class="inline-block index-list-title-more" data-url="../course/course" bindtap="indexTabClick" >全部 ></view>
+			<view class="inline-block index-list-title-more" data-url="../course/course" bindtap="indexTabClick">全部 ></view>
 		</view>
 		<view class="index-class-ul">
-			<view class="index-class-li shadow-model box-sizing" wx:for="{{3}}" wx:key="*this">
-				<image class="index-class-li-img" src="" mode="aspectFit"></image>
+			<view class="index-class-li shadow-model box-sizing" wx:for="{{courseList}}" wx:key="index" data-id="{{item.id}}" bindtap="courseClick">
+				<image class="index-class-li-img" src="{{item.coverUrl}}" mode="aspectFit"></image>
 				<view class="index-class-msg inline-block">
-					<view class="index-class-msg-title">房地产促销中买房赠物 税务处理</view>
-					<view>王家集</view>
-					<view class="vip-course">VIP课程</view>
+					<view class="index-class-msg-title">{{item.title}}</view>
+					<view>{{item.userName}}</view>
+					<view wx:if="{{item.ifFree==0}}" class="vip-course">VIP课程</view>
 				</view>
 			</view>
 		</view>

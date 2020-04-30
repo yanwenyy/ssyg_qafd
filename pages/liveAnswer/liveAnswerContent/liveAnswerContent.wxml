@@ -1,7 +1,8 @@
 <!--pages/liveAnswer/liveAnswerContent/liveAnswerContent.wxml-->
+<wxs module="tools" src="../../tools.wxs"></wxs>
 <view>
 	<view class="lac-head">
-		<image src="" mode="aepectFit"></image>
+		<image src="{{detail.coverUrl}}" mode="aepectFit"></image>
 	</view>
 	<view class="body">
 		<view>
@@ -9,33 +10,31 @@
 				<view class="cc-head box-sizing">
 					<view class="cc-head-msg">
             <view class="lac-ing inline-block">
-              <image class="lac-img-ing" wx:if="{{true}}" src="../../../img/zb-content-ing.png"></image>
-							<image class="lac-img-yg" wx:if="{{false}}" src="../../../img/zb-content-yg.png"></image>
-							<image class="lac-img-yg" wx:if="{{false}}" src="../../../img/zb-content-hf.png"></image>
+              <image class="lac-img-ing" wx:if="{{detail.status==2}}" src="../../../img/zb-content-ing.png"></image>
+							<image class="lac-img-yg" wx:if="{{detail.status==1}}" src="../../../img/zb-content-yg.png"></image>
+							<image class="lac-img-yg" wx:if="{{detail.status==4}}" src="../../../img/zb-content-hf.png"></image>
             </view>
-            纳税人两种重要额程序性权利重要额程利利 企业风险案例合集 
+            {{detail.title}}
           </view>
 					<view class="lac-head-msg">
 						<view class="inline-block">
-							<view class="lac-name">讲师：直播人</view>
-							<view class="lac-name">行业：房地产</view>
-							<view class="lac-name">时间：2019-02-11 10:30</view>
+							<view class="lac-name">讲师：{{detail.userName}}</view>
+							<view class="lac-name">行业：{{detail.tradeName}}</view>
+							<view class="lac-name">时间：{{tools.dateFormat(detail.startTime)}}</view>
 						</view>
-						<view class="inline-block cc-head-btn">立即预约</view>
+						<view bindtap="yuClick" wx:if="{{detail.status==1}}" class="inline-block cc-head-btn">立即预约</view>
 					</view>
 				</view>
 				<view class="v1 cc-model">
 					<view class="pcb-title">
-						介绍
+						{{detail.title}}
 					</view>
 					<view class="pcb-zcyw">
-						房产税是以房屋为征税对象，按房屋的计税余值或租金收入为计税依据， 产权所有人征收的一种财产税。
-						房产税是以房屋为征税对象，按房屋的计税余值或租金收入为计税依据， 产权所有人征收的一种财产税。
-						房产税是以房屋为征税对象，按房屋的计税余值或租金收入为计税依据， 产权所有人征收的一种财产税。
+						<rich-text>{{detail.introduce}}</rich-text>
 					</view>
 				</view>
 				<view class="v2 cc-model">
-					<view class="pcb-title">评论 (19090)</view>
+					<view class="pcb-title">评论 ({{detail.discussNum}})</view>
 					<view>
 						<view class="pcb-pl-list">
 							<image class="pcb-pl-list-img" src="" mode="aspectFit"></image>
@@ -90,11 +89,11 @@
 					<input class="inline-block" placeholder="发表一下您的意见～"></input>
 					<view class="inline-block pcb-foot-pl-img">
 						<image src="../../../img/pcb-pl.png" mode="aspectFit"></image>
-						<text class="inline-block">999+</text>
+						<text class="inline-block">{{detail.discussNum}}</text>
 					</view>
 					<view class="inline-block pcb-foot-pl-img">
 						<image src="../../../img/pcb-dz.png" mode="aspectFit"></image>
-						<text class="inline-block">999+</text>
+						<text class="inline-block">{{detail.praiseNum}}</text>
 					</view>
 					<view class="inline-block pcb-foot-pl-img">
 						<image src="../../../img/pcb-sc.png" mode="aspectFit"></image>

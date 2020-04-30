@@ -18,14 +18,14 @@
 			</view>
 			<view class="box-sizing">
 				<view class="cc-head box-sizing">
-					<view class="cc-head-msg">纳税人两种重要额程序性权利重要额程利利 企业风险案例合集 </view>
+					<view class="cc-head-msg">{{detail.title}} </view>
 					<view>
 						<view class="inline-block cc-head-img">
-							<image src="" mode="aspectFit" class="head-img"></image>
-							<text>讲师：张佳绩</text>
+							<image src="{{detail.headImg}}" mode="aspectFit" class="head-img"></image>
+							<text>讲师：{{detail.userName}}</text>
 						</view>
 						<!-- <view class="inline-block cc-head-btn">关注</view> -->
-						<view class="inline-block cc-head-vip"><image src="../../../img/cc-head-vip.png" mode="aspectFit"></image></view>
+						<view wx:if="{{detail.ifFree==0}}" class="inline-block cc-head-vip"><image src="../../../img/cc-head-vip.png" mode="aspectFit"></image></view>
 					</view>
 				</view>
 				<view class="v1 cc-model">
@@ -33,13 +33,11 @@
 						课程介绍
 					</view>
 					<view class="pcb-zcyw">
-						房产税是以房屋为征税对象，按房屋的计税余值或租金收入为计税依据， 产权所有人征收的一种财产税。
-						房产税是以房屋为征税对象，按房屋的计税余值或租金收入为计税依据， 产权所有人征收的一种财产税。
-						房产税是以房屋为征税对象，按房屋的计税余值或租金收入为计税依据， 产权所有人征收的一种财产税。
+						<rich-text>{{detail.introduce}}</rich-text>
 					</view>
 				</view>
 				<view class="v2 cc-model">
-					<view class="pcb-title">评论 (19090)</view>
+					<view class="pcb-title">评论 ({{detail.discussNum}})</view>
 					<view>
 						<view class="pcb-pl-list">
 							<image class="pcb-pl-list-img" src="" mode="aspectFit"></image>
@@ -94,11 +92,11 @@
 					<input class="inline-block" placeholder="发表一下您的意见～"></input>
 					<view class="inline-block pcb-foot-pl-img">
 						<image src="../../../img/pcb-pl.png" mode="aspectFit"></image>
-						<text class="inline-block">999+</text>
+						<text class="inline-block">{{detail.discussNum}}</text>
 					</view>
 					<view class="inline-block pcb-foot-pl-img">
 						<image src="../../../img/pcb-dz.png" mode="aspectFit"></image>
-						<text class="inline-block">999+</text>
+						<text class="inline-block">{{detail.praiseNum}}</text>
 					</view>
 					<view class="inline-block pcb-foot-pl-img">
 						<image src="../../../img/pcb-sc.png" mode="aspectFit"></image>

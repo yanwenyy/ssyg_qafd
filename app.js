@@ -82,7 +82,8 @@ App({
     userInfo: null,
     logMsg: null,
     system: null,
-    logMsg: ''
+    logMsg: '',
+    token:''
   },
   public: function () {
     var test = {
@@ -127,6 +128,51 @@ App({
       }
     })
   },
+  ajax_get: function (url, succ) {
+    wx.request({
+      url: this.public().url + url, //仅为示例，并非真实的接口地址
+      method: "get",
+      header: {
+        'content-type': 'application/json', // 默认值
+        'cookieId': this.globalData.logMsg.cookieId
+      },
+      success(res) {
+        succ(res)
+      }
+    })
+  },
+  getToken: function () {
+    var that = this;
+    wx.request({
+      url: this.public().token_url + "/app/accessToken/third", //仅为示例，并非真实的接口地址
+      data: {
+        "appid": "gwb",
+        "secret": "4f6f9adefc52b88458c6bc08f98d0601"
+      },
+      method: "POST",
+      header: {
+        'content-type': 'application/json', // 默认值
+        'cookieId': this.globalData.logMsg.cookieId
+      },
+      success(res) {
+        that.globalData.token = res.data.token;
+      }
+    })
+  },
+  ajax_wzx: function (url, data, succ) {
+    wx.request({
+      url: this.public().token_url + url, //仅为示例，并非真实的接口地址
+      data: JSON.stringify(data),
+      method: "POST",
+      header: {
+        'content-type': 'application/json', // 默认值
+        'token': this.globalData.token,
+      },
+      success(res) {
+        succ(res)
+      }
+    })
+  },
   //获取用户信息
   getUser:function(succ){
     wx.getUserInfo({
@@ -159,5 +205,19 @@ App({
     var mm = time.getMinutes();
     var s = time.getSeconds();
     return y + '-' + this.add0(m) + '-' + this.add0(d);
+  },
+
+  //去除数组里某项
+  indexOf: function (arr, val) {
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i] == val) return i;
+    }
+    return -1;
+  },
+  remove: function (arr, val) {
+    var index = this.indexOf(arr, val);
+    if (index > -1) {
+      arr.splice(index, 1);
+    }
   },
 })

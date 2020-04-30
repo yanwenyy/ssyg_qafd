@@ -8,47 +8,51 @@
   <view class="ask-list-body">
     <view class="ask-num">
       <image src="../../../img/ask-vip.png" mode="aspectFit"></image>
-      <text>剩余提问:1次</text>
+      <text>剩余提问:{{time}}次</text>
     </view>
     <view class="ask-show">
       <view class="ask-tab">
-        <view class="inline-block {{tabMsg=='企业咨询'?'green':''}}" style="margin-right:124rpx">
+        <view class="inline-block {{tabMsg=='企业咨询'?'green':''}}" style="margin-right:124rpx" bindtap="tabClick" data-msg="企业咨询">
             <text>企业咨询</text>
             <text wx:if="{{tabMsg=='企业咨询'}}" class="inline-block ask-tab-line"></text>
         </view>
-         <view class="inline-block {{tabMsg=='我的提问'?'green':''}}">
+         <view class="inline-block {{tabMsg=='我的提问'?'green':''}}" bindtap="tabClick" data-msg="我的提问">
             <text>我的提问</text>
             <text wx:if="{{tabMsg=='我的提问'}}" class="inline-block ask-tab-line"></text>
         </view>
       </view>
-      <view class="ask-list-msg">
-        <view wx:if="{{false}}" class="ask-list-company">
-          <view class="shadow-model ask-lc box-sizing" wx:for="{{2}}" wx:key="*this">
+      <view  wx:if="{{list!=''}}" class="ask-list-msg">
+        <view wx:if="{{tabMsg=='企业咨询'}}" class="ask-list-company">
+          <view class="shadow-model ask-lc box-sizing" wx:for="{{list}}" wx:key="index"  bindtap="goDetail"  data-id="{{item.uuid}}" data-uuid="{{item.phoneNumber}}">
               <view class="ask-lc-left inline-block">
-                  <image src="" mode="aspectFit" class="head-img"></image>
-                  <text class="inline-block">我</text>
+                  <image src="{{item.thirdUserHeadImg}}" mode="aspectFit" class="head-img"></image>
+                  <text class="inline-block"  wx:if="{{item.isOwn==0}}">我</text>
               </view>
               <view class="ask-lc-right inline-block">
-                <view class="ask-lc-name">王椰树</view>
-                <view class="ask-lc-msg">我单位市一家培训学校，请问与政府部门签订的培训项目，以后收到的政府补贴款应该计入哪类科目，是确认政府补助还...</view>
-                <view class="ask-lc-date">2019.01.09 12:00:00</view>
+                <view class="ask-lc-name">{{item.thirdUserName}}</view>
+                <view class="ask-lc-msg">{{item.content}}</view>
+                <view class="ask-lc-date">{{item.date}}</view>
               </view>
           </view>
         </view>
-        <view class="ask-list-mine">
+        <view wx:if="{{tabMsg=='我的提问'}}" class="ask-list-mine"  wx:for="{{list}}" wx:key="index"  bindtap="goDetail" data-id="{{item.uuid}}" data-uuid="{{item.phoneNumber}}">
           <view class="shadow-model ask-lm box-sizing">
-            <view class="ask-lm-msg">公司将租赁房屋又转租出去，增值税税率多少呀另外发票是否可以租赁房屋租赁房屋公司将租呀另外发票是否可以租。</view>
+            <view class="ask-lm-msg">{{item.content}}</view>
             <view class="ask-lm-date">
-              <view class="inline-block">2018-01-02 11:00</view>
-              <view class="inline-block green">抢答倒计时：{{countdown.countDown(systimestamp,1588212732000).day}}:{{countdown.countDown(systimestamp,1588212732000).hou}}:{{countdown.countDown(systimestamp,1588212732000).min}}:{{countdown.countDown(systimestamp,1588212732000).sec}}</view>
+              <view class="inline-block">{{item.date}}</view>
+              <view class="inline-block green">抢答倒计时：{{countdown.countDown(systimestamp,item.endDate).day}}:{{countdown.countDown(systimestamp,item.endDate).hou}}:{{countdown.countDown(systimestamp,item.endDate).min}}:{{countdown.countDown(systimestamp,item.endDate).sec}}</view>
+              <view wx:if="{{item.status==2}}" class="inline-block green">未采纳</view>
+              <view wx:if="{{item.status==3||item.status==4||item.status==9}}" class="inline-block">已采纳</view>
+              <view wx:if="{{item.status==5||item.status==6||item.status==7||item.status==8}}" class="inline-block">无人应答</view>
             </view>
           </view>
         </view>
       </view>
     </view>
-    <view wx:if="{{false}}" class="no-msg">
+    <view wx:if="{{list==''}}" class="no-msg">
       <image src="../../../img/ask-no-msg.png" mode="aspectFit"></image>
       <view>还没有提问过呢！</view>
     </view>
+    <view class="ask-btn" bindtap="askClick"><image src="../../../img/ask-btn.png" mode="aspectFit"></image></view>
   </view>
 </view>

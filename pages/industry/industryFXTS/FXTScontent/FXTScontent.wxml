@@ -1,0 +1,110 @@
+<!--pages/industry/industryFXTS/FXTScontent/FXTScontent.wxml-->
+<wxs module="tools" src="../../../tools.wxs"></wxs>
+<view class="body">
+	<view class="policeContent-head">
+		<view class="pch-title">{{detail.title}}</view>
+		<view class="pch-file"># {{detail.attributeName}}</view>
+		<view class="ssch-head">
+			<image src="{{detail.headImg}}" mode="aspectFit"></image>
+			<view class="inline-block">
+				<view class="ssch-head-name">{{detail.userName}}</view>
+				<view class="ssch-head-date">{{tools.dateFormat(detail.creatTime)}}</view>
+			</view>
+		</view>
+	</view>
+	<view class="policeContent-body">
+		<view class="pcb-show1 box-sizing">
+			<view class="v1">
+				<view class="pcb-zcyw">
+					<rich-text>{{detail.content}}</rich-text>
+				</view>
+				<view class="pcb-zcyw-dz">
+					<view class="pcb-zcyw-dz-btn">
+						<image src="" mode="aspectFit"></image>
+					</view>
+					<view class="pcb-zcyw-dz-list">
+						<image wx:for="{{8}}" wx:key="*this" src="" mode="aspectFit"></image>
+						<image bindtap="lookDZlist" wx:key="*this" src="" mode="aspectFit"></image>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+  <view class="policeContent-body">
+		<view class="pcb-show box-sizing">
+			<view class="v4">
+				<view class="pcb-title">评论 ({{detail.discussNum}})</view>
+				<view>
+					<view class="pcb-pl-list">
+						<image class="pcb-pl-list-img" src="" mode="aspectFit"></image>
+						<view class="inline-block pcb-pl-list-right">
+							<view class="pcb-pl-list-name">
+								<text>张佳绩</text>
+								<view class="inline-block pcb-pl-list-name-dz">
+									<image class="pcb-pl-list-name-dzimg" src="../../../../img/pcb-dz.png" mode="aspectFit"></image>
+									20
+								</view>
+							</view>
+							<view class="pcb-pl-list-msg">老师讲的好棒呀，我听了之后这方面的疑惑完全解决了呢？老师还有其他的课程吗？</view>
+							<view class="pcb-pl-list-date">10-10 10:00 <text>·删除</text></view>
+							<view class="pcb-pl-del">
+								<view class="inline-block"></view>
+								<text class="inline-block">评论已删除</text>
+								<view class="inline-block"></view>
+							</view>
+							<view class="pcb-pl-list-hf">
+								<view class="pcb-pl-list-hf-trangle"></view>
+								<view class="pcb-pl-list-hf-msg box-sizing">
+									<view class="pcb-pl-list">
+										<image class="pcb-pl-list-img-hf" src="" mode="aspectFit"></image>
+										<view class="inline-block pcb-pl-list-right">
+											<view class="pcb-pl-list-name">
+												<view class="inline-block">
+													张家集
+													<text class="green">·作者</text>
+													<text style="color:#333;margin:0 10rpx">回复</text>
+													张家集
+												</view>
+												<view class="inline-block pcb-pl-list-name-dz">
+													<image class="pcb-pl-list-name-dzimg" src="../../../../img/pcb-dz.png" mode="aspectFit"></image>
+													20
+												</view>
+											</view>
+											<view class="pcb-pl-list-msg">老师讲的好棒呀，我听了之后这方面的疑惑完全解决了呢？老师还有其他的课程吗？</view>
+											<view class="pcb-pl-list-date">10-10 10:00</view>
+
+										</view>
+									</view>
+									<view class="psb-pl-list-sq">收起</view>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="pcb-foot">
+			<view class="pcb-foot-pl box-sizing">
+				<input class="inline-block" placeholder="发表一下您的意见～"></input>
+				<view class="inline-block pcb-foot-pl-img">
+					<image src="../../../../img/pcb-pl.png" mode="aspectFit"></image>
+					<text class="inline-block">{{detail.discussNum}}</text>
+				</view>
+				<view class="inline-block pcb-foot-pl-img">
+					<image src="../../../../img/pcb-dz.png" mode="aspectFit"></image>
+					<text class="inline-block">{{detail.praiseNum}}</text>
+				</view>
+				<view class="inline-block pcb-foot-pl-img">
+					<image src="../../../../img/pcb-sc.png" mode="aspectFit"></image>
+				</view>
+				<view class="inline-block pcb-foot-pl-img">
+					<image src="../../../../img/pcb-zf.png" mode="aspectFit"></image>
+				</view>
+			</view>
+			<view wx:if="{{false}}" class="pcb-foot-hf">
+				<input class="box-sizing inline-block" placeholder="回复 张佳绩："></input>
+				<text class="green">发送</text>
+			</view>
+		</view>
+	</view>
+</view>

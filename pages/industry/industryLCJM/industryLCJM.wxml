@@ -1,0 +1,10 @@
+<!--pages/industry/industryLCJM/industryLCJM.wxml-->
+<view>
+  <view class="lcjm-body container">
+    <view class="lcjm-list shadow-model" wx:for="{{list}}" wx:key="index" data-id="{{item.id}}" bindtap="goContent">
+      <view>{{item.title}}</view>
+      <image src="{{item.coverUrl}}" mode="aspectFit"></image>
+      <button>查看</button>
+    </view>
+  </view>
+</view>

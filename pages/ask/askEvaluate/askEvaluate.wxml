@@ -1,21 +1,25 @@
 <!--pages/ask/askEvaluate/askEvaluate.wxml-->
 <view class="container">
-  <view class="ask-evaluate-head">
-    <image src="" mode="aspectFit" class="head-img"></image>
-    <view class="inline-block">
-      <view class="ask-eh-name">王专家</view>
-      <view class="ask-eh-position">
-        <image src="../../../img/ask-detail-position.png"></image>
-        税务师、律师
-      </view>
-    </view>
-  </view>
-  <view class="ask-evaluate-title">回答质量:</view>
-  <view class="ask-evaluate-star">
-    <image wx:for="{{5}}" wx:key="*this" src="../../../img/ask-detail-star.png" mode="aspectFit"></image>
-  </view>
-  <textarea class="ask-evaluate-text box-sizing" placeholder="写下您对咨询师的评价吧（30字内）" maxlength="30"></textarea>
-  <view class="sub-evaluate">
-    <view>提交</view>
-  </view>
+	<view class="ask-evaluate-head">
+		<image src="" mode="aspectFit" class="head-img"></image>
+		<view class="inline-block">
+			<view class="ask-eh-name">{{name}}</view>
+			<view class="ask-eh-position">
+				<image src="../../../img/ask-detail-position.png"></image>
+				{{dj}}
+			</view>
+		</view>
+	</view>
+	<view class="ask-evaluate-title">回答质量:</view>
+	<view class="ask-evaluate-star">
+		<image bindtap='starClick' src="{{starNum>0? '../../../img/ask-detail-star.png':'../../../img/ask-detail-star-no.png'}}" data-value="1" mode="scaleToFill"></image>
+		<image bindtap='starClick' src="{{starNum>1? '../../../img/ask-detail-star.png':'../../../img/ask-detail-star-no.png'}}" data-value="2" mode="scaleToFill"></image>
+		<image bindtap='starClick' src="{{starNum>2? '../../../img/ask-detail-star.png':'../../../img/ask-detail-star-no.png'}}" data-value="3" mode="scaleToFill"></image>
+		<image bindtap='starClick' src="{{starNum>3? '../../../img/ask-detail-star.png':'../../../img/ask-detail-star-no.png'}}" data-value="4" mode="scaleToFill"></image>
+		<image bindtap='starClick' src="{{starNum>4? '../../../img/ask-detail-star.png':'../../../img/ask-detail-star-no.png'}}" data-value="5" mode="scaleToFill"></image>
+	</view>
+	<textarea class="ask-evaluate-text box-sizing" placeholder="写下您对咨询师的评价吧（30字内）" maxlength="30"  bindinput="textInput"></textarea>
+	<view class="sub-evaluate">
+		<view bindtap="sub">提交</view>
+	</view>
 </view>

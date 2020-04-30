@@ -3,7 +3,7 @@
   font-size: 28rpx;
 }
 .course-search{
-  width: 77%;
+  width: 84%;
   height: 74rpx;
   background: #F6F6F6;
   border-radius: 8rpx;

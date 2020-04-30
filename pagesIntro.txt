@@ -4,10 +4,14 @@
     "pages/industry/industryChange/industryChange",//行业改变
      "pages/industry/industryZCGJ/industryZCGJ",//行业政策归集
      "pages/industry/industryZCGJ/policyContent/policyContent",//政策内容
+     "pages/industry/industryZCGJ/search/search",//政策归集搜索
+     "pages/industry/industryZCGJ/XGJDcontent/XGJDcontent",//相关解读详情
      "pages/industry/industryZCGJ/industryDZ/industryDZ",//点赞列表
      "pages/industry/industryFXTS/industryFXTS",//风险提示
+     "pages/industry/industryFXTS/FXTScontent/FXTScontent",//风险提示详情
      "pages/industry/industrySSCH/industrySSCH",//税收筹划
      "pages/industry/industrySSCH/SSCHcontent/SSCHcontent",//税收筹划内容
+     "pages/industry/industryLCJM/industryLCJM",//流程解码
      "pages/industry/industryLCJM/LCJMcontent/LCJMcontent",//流程解码内容
      "pages/ask/askList/askList",//微咨询列表
      "pages/ask/askRule/askRule",问答规则
@@ -18,6 +22,7 @@
      "pages/liveAnswer/liveAnswerContent/liveAnswerContent",//直播答疑内容
      "pages/course/course",//精选好课
      "pages/newCenter/newCenter",//新闻中心
+     "pages/newCenter/newContent/newContent",//新闻内容
      "pages/vip/confirmOrder/confirmOrder",//确认订单
      "pages/mine/companyMsg/companyMsg",//企业信息
      "pages/mine/mineTeam/mineTeam",//我的团队

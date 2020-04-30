@@ -128,5 +128,12 @@ Page({
     wx.navigateTo({
       url: '../industryDZ/industryDZ',
     })
+  },
+
+  //相关解读点击
+  xgjdClick:function(e){
+    wx.navigateTo({
+      url: '../XGJDcontent/XGJDcontent?id='+e.currentTarget.dataset.id,
+    })
   }
 })

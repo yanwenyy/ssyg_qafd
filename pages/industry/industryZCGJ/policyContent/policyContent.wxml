@@ -77,7 +77,7 @@
 			</view>
 			<view class="v3" wx:if="{{releatedetails!=''}}">
 				<view class="pcb-title">相关解读</view>
-				<view class="pcb-xgwj-list shadow-model box-sizing" wx:for="{{releatedetails}}" wx:key="index">
+				<view class="pcb-xgwj-list shadow-model box-sizing" wx:for="{{releatedetails}}" wx:key="index" bindtap="xgjdClick" data-id="{{item.id}}">
 					<view class="pcb-xgwj-title">{{item.expertTitle}}</view>
 					<view>发布时间：{{tools.dateFormat(item.createTime)}}</view>
 				</view>

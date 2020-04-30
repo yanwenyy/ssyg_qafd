@@ -13,3 +13,14 @@
 .ifx-list-title{
   margin: 20rpx 0 0 0;
 }
+.ifx-left{
+  width: 60%;
+  margin-right: 8rpx;
+}
+.ifx-right{
+  width: 234rpx;
+  height: 171rpx;
+  background: #eee;
+  vertical-align: top;
+  margin-top: 25rpx;
+}

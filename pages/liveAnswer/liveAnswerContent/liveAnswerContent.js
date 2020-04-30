@@ -1,18 +1,31 @@
 // pages/liveAnswer/liveAnswerContent/liveAnswerContent.js
+const app=getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    id:'',
+    detail:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
+    that.setData({
+      id:options.id
+    })
 
+    app.ajax("/minitax/broadacast/details",{
+      "id": that.data.id,
+    },function(res){
+      that.setData({
+        detail:res.data.data
+      })
+    })
   },
 
   /**
@@ -62,5 +75,19 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  //预约按钮点击
+  yuClick:function(){
+    var that=this;
+    app.ajax("/minitax/broadacast/book",{
+      id:that.data.id
+    },function(res){
+      wx.showToast({
+        title: res.data.msg,
+        icon: 'none',
+        duration: 2000
+      })
+    })
   }
 })

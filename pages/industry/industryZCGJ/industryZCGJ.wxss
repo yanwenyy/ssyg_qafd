@@ -1,6 +1,12 @@
 /* pages/industry/industryZCGJ/industryZCGJ.wxss */
 @import '../../index/index.wxss';
-
+@import "../../course/course.wxss";
+.course-head{
+  margin-bottom: 29rpx;
+}
+.course-search{
+  width: 84%;
+}
 .index-head-card-img {
   border-radius: 20rpx;
 }

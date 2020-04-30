@@ -1,18 +1,32 @@
 // pages/course/coursContent/coursContent.js
+const app=getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    navText: '介绍'
+    navText: '介绍',
+    id:'',
+    detail:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
+    that.setData({
+      id:options.id
+    })
 
+    app.ajax("/minitax/goodclass/details",{
+      "id": that.data.id,
+    },function(res){
+      that.setData({
+        detail:res.data.data
+      })
+    })
   },
 
   /**

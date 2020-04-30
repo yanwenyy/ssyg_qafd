@@ -1,0 +1,2 @@
+/* pages/newCenter/newContent/newContent.wxss */
+@import "../../industry/industrySSCH/SSCHcontent/SSCHcontent.wxss";

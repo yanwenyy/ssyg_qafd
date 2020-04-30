@@ -3,6 +3,7 @@
   font-size: 30rpx;
   line-height: 45rpx;
   height: 250rpx;
+  width: 100%;
 }
 .ask-title{
   font-size: 28rpx;
@@ -17,7 +18,6 @@
   position: relative;
   width: 164rpx;
   height:164rpx;
-  background: #eee;
   margin-right: 30rpx;
 }
 .ask-img>view{
@@ -71,4 +71,71 @@
   background: #28B7A3;
   border-radius: 12rpx;
   margin:0 auto;
+}
+.shadow-body{
+  width:100%;
+  background:#fff;
+  height:60%;
+  border-top-left-radius: 16rpx;
+  border-top-right-radius: 16rpx;
+  position: absolute;
+  bottom:0;
+  left:0;
+}
+.shadow-body-title{
+  width:100%;
+  height:118rpx;
+  line-height:117rpx;
+  font-size:36rpx;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  border-bottom:1px solid #eee;
+}
+.shadow-close{
+  width:40rpx;
+  height:40rpx;
+  position: absolute;
+  top:39rpx;
+  right:56rpx;
+}
+.shadow-body-ul{
+  padding:45rpx 54rpx;
+  height:65%;
+  overflow: auto;
+}
+.shadow-body-li{
+  margin-bottom: 72rpx;
+  display: block;
+}
+.shadow-body-li>view,.shadow-body-li-view{
+  font-size:32rpx;
+  width: 90%;
+  vertical-align: middle
+}
+.shadow-body-li>image{
+  width: 32rpx;
+  height:32rpx;
+  vertical-align: middle;
+}
+.sub-msg>button{
+  background: #F56A32;
+  height:88rpx;
+  color:#fff;
+  font-size:32rpx;
+  border:none;
+}
+.sub-msg-hy{
+  padding:0 32rpx;
+  margin-top:20rpx;
+}
+.sub-msg-hy>button{
+  background: #28B7A3;
+  color:#fff;
+  border:none;
+  margin-bottom: 48rpx;
+  font-size:32rpx;
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
 }

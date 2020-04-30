@@ -1,14 +1,15 @@
 <!--pages/ask/ask.wxml-->
 <view class="container">
-	<textarea class="ask-input box-sizing" placeholder="请输入您的问题,需详细描述您的问题，如：您的 企业状况、问题描述、问题背景等. " placeholder-class="phClass"></textarea>
-	<view class="ask-title">添加图片(1/3)</view>
+	<textarea class="ask-input box-sizing"  bindinput="contentInput" placeholder="请输入您的问题,需详细描述您的问题，如:您的 企业状况、问题描述、问题背景等. " placeholder-class="phClass"></textarea>
+	<view class="ask-title">添加图片({{imgList.length}}/3)</view>
 	<view>
-		<view class="inline-block ask-img" wx:for="{{askImg}}" wx:key="*this">
-			<image src="" mode="aspectFit"></image>
-			<view>X</view>
+		<view class="inline-block ask-img" wx:for="{{imgList}}" wx:key="*this">
+			 <image bindtap="imgLook" data-src="{{item}}" src="{{'data:image/png;base64,'+item}}" mode="scaleToFill" class="ques-img-show"></image>
+        <view class="del-img" bindtap="delImg" data-src="{{item}}">X</view>
+			<view bindtap="delImg" data-src="{{item}}">X</view>
 		</view>
-		<view class="inline-block ask-img">
-			<image src="../../img/ask-add-img.png" mode="aspectFit"></image>
+		<view class="inline-block ask-img"  wx:if="{{imgList.length<3}}">
+			<image bindtap="chooseImg"  src="../../img/ask-add-img.png" mode="aspectFit"></image>
 		</view>
 	</view>
 	<view class="ask-industry">
@@ -17,14 +18,33 @@
 			涉及行业
 		</view>
 		<view class="inline-block ask-industry-sel section">
-			<picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-				<view class="picker">
-					<text wx:if="{{index==''}}">请选择</text> <text wx:if="{{index!=''}}">{{array[index]}}</text> >
-				</view>
-			</picker>
+			<view bindtap="hyClick">
+        <text wx:if="{{industrySelName==''}}">请选择</text>
+        <text wx:if="{{industrySelName!=''}}">{{industrySelName}}</text>
+				>
+      </view>
 		</view>
 	</view>
+	  <view wx:if="{{shadow}}" class="shadow">
+    <view class="shadow-body">
+      <view class="shadow-body-title">
+        所在行业
+        <image bindtap="closeShadow" class="shadow-close" src="../../../img/shadow-close.png" mode="scaleToFill"></image>
+      </view>
+      <view class="shadow-body-ul box-sizing">
+        <radio-group bindchange="checkboxChange">
+          <label class="checkbox shadow-body-li" wx:for="{{industry}}" data-name="{{item.name}}" bindtap="hyLabelClick" data-index="{{index}}">
+            <view class="inline-block shadow-body-li-view">{{item.name}}</view>
+            <radio value="{{item.name}}" checked="{{item.checked}}" />
+          </label>
+        </radio-group>
+      </view>
+      <view bindtap="hySub" class="sub-msg-hy box-sizing">
+        <button>保存</button>
+      </view>
+    </view>
+  </view>
 	<view class="sub">
-		<view>发布</view>
+		<view bindtap="subMsg">发布</view>
 	</view>
 </view>

@@ -54,7 +54,16 @@ Page({
       that.setData({
         timeList: res.data.data
       })
-    })
+    });
+    var data = this.data;
+    //获取头部行业信息
+    app.ajax_nodata("/minitax/select/trade", function (res) {
+      that.setData({
+        headTrade: res.data.data,
+        tradeId: res.data.data.tradeId
+      })
+      that.getList(data.start, data.num, data.tradeId, data.region, data.taxId, data.timeLinessId, data.year);
+    });
   },
 
   /**
@@ -68,16 +77,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var data = this.data;
-    var that = this;
-    //获取头部行业信息
-    app.ajax_nodata("/minitax/select/trade", function (res) {
-      that.setData({
-        headTrade: res.data.data,
-        tradeId: res.data.data.tradeId
-      })
-      that.getList(data.start, data.num, data.tradeId, data.region, data.taxId, data.timeLinessId, data.year);
-    });
+   
   },
 
   /**
@@ -245,6 +245,13 @@ Page({
     this.setData({
       scrollTop: 139,
       navSel: false
+    })
+  },
+  
+  //搜索框点击
+  search:function(){
+    wx.navigateTo({
+      url: 'search/search',
     })
   }
 })

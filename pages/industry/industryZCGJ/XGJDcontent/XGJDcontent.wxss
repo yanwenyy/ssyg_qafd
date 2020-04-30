@@ -1,0 +1,5 @@
+/* pages/industry/industryZCGJ/XGJDcontent/XGJDcontent.wxss */
+@import "../../industrySSCH/SSCHcontent/SSCHcontent.wxss";
+.pcb-zcyw {
+  height: auto;
+}

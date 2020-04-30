@@ -107,6 +107,7 @@
 }
 .ask-lm{
   padding: 49rpx;
+  margin-bottom: 32rpx;
 }
 .ask-lm-msg{
   font-size: 30rpx;
@@ -128,4 +129,15 @@
   width: 380rpx;
   height: 251rpx;
   margin:129rpx 0 70rpx 0;
+}
+.ask-btn{
+  width: 100rpx;
+  height: 100rpx;
+  position: fixed;
+  bottom: 78rpx;
+  right: 32rpx;
+}
+.ask-btn>image{
+  width: 100%;
+  height: 100%;
 }

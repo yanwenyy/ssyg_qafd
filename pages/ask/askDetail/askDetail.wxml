@@ -2,76 +2,82 @@
 <view class="body">
 	<view class="ask-detail-que box-sizing">
 		<view class="ask-dq-head">
-			<image src="" mode="aspectFit" class="head-img"></image>
+			<image src="{{msg.question.thirdUserHeadImg}}" mode="aspectFit" class="head-img"></image>
 			<view class="inline-block ask-dqh-right">
 				<view class="inline-block">
-					<view class="ask-dqh-name">账号用户</view>
-					<view class="ask-dqh-date">2018-08-01 13:56:03</view>
+					<view class="ask-dqh-name">{{msg.question.thirdUserName}}</view>
+					<view class="ask-dqh-date">{{msg.question.date}}</view>
 				</view>
 			</view>
 		</view>
-		<view class="ask-dq-msg">因机器检修暂时停产，停产期间发生的固定资产折 旧税前扣除吗？有木有专家解答一下。</view>
-		<view class="ask-dq-img">
-			<image src="" mode="aspectFit"></image>
+		<view class="ask-dq-msg">{{msg.question.content}}</view>
+		<view class="ask-dq-img"  wx:if="{{msg.question.images!=''}}">
+			<image wx:for="{{msg.question.images}}" wx:key="index" src="{{queImg+item}}" data-src="{{queImg+item}}" mode="scaleToFill" class="quesDetail-head-img-show" bindtap="imgLook"></image>
 		</view>
 		<view class="ask-dq-foot">
 			<image src=".../../../../../img/ask-detail-label.png" mode="aspectFit"></image>
-			北京 高新技术
+			{{msg.question.area||''}} {{msg.question.quTrade}}
 		</view>
 	</view>
-	<view class="ask-detail-ans box-sizing">
+	<view class="ask-detail-ans box-sizing" wx:if="{{msg.answerUsers!=''}}">
 		<view class="ask-detail-ans-title">回答</view>
-		<view class="ask-detail-ans-show">
+		<view class="ask-detail-ans-show"  wx:for="{{msg.answerUsers}}" wx:if="{{item.status!=6}}" wx:key="index">
 			<view class="ask-dq-head">
 				<image src="" mode="aspectFit" class="head-img"></image>
 				<view class="inline-block ask-dqh-right">
 					<view class="inline-block">
-						<view class="ask-dqh-name">账号用户</view>
-						<view class="ask-dqh-date"> <image src="../../../img/ask-detail-position.png" mode="aspectFit"></image> 税务师、律师</view>
+						<view class="ask-dqh-name">{{item.userName}}</view>
+						<view class="ask-dqh-date"> <image src="../../../img/ask-detail-position.png" mode="aspectFit"></image> {{item.counselorDuty}}</view>
 					</view>
           <view class="ask-ans-img">
-            <image src="../../../img/ask-detail-best.png" mode="aspectFit"></image>
+            <image wx:if="{{item.status==2||item.status==7||item.checkStatus==2}}" src="../../../img/ask-detail-best.png" mode="aspectFit"></image>
           </view>
-          <view wx:if="{{false}}" class="ask-ans-cn">采纳</view>
+          <view wx:if="{{item.status==1&&msg.question.status==2&&userInfo.uuid==uuid}}" class="ask-ans-cn"  bindtap="cn" data-id="{{item.uuid}}">采纳</view>
 				</view>
 			</view>
-			<view class="ask-dq-msg">我来回答因机器检修暂时停产，停产期间发生的固 税前扣除吗？我来帮你解答一下，雇主为雇员负担 个人所得税款，应属于个人工资薪金的</view>
+			<view class="ask-dq-msg">{{item.content}}</view>
 			<view class="ask-dq-foot">
-				2018-08-01 13:56:03
+				{{item.time}}
 			</view>
-      <view class="ask-ans-evaluate box-sizing">
+      <view class="ask-ans-evaluate box-sizing" wx:if="{{(item.status==2||item.status==7||item.checkStatus==2)&&userInfo.uuid==uuid}}" >
         <view class="ask-ans-star">
           <text class="green">评价得分：</text>
-          <image src="../../../img/ask-detail-star.png" mode="aspectFit"></image>
+					<image src="{{item.score>0? '../../../img/ask-detail-star.png':'../../../img/ask-detail-star-no.png'}}" data-value="1" mode="scaleToFill"></image>
+            <image src="{{item.score>1? '../../../img/ask-detail-star.png':'../../../img/ask-detail-star-no.png'}}" data-value="2" mode="scaleToFill"></image>
+            <image src="{{item.score>2? '../../../img/ask-detail-star.png':'../../../img/ask-detail-star-no.png'}}" data-value="3" mode="scaleToFill"></image>
+            <image src="{{item.score>3? '../../../img/ask-detail-star.png':'../../../img/ask-detail-star-no.png'}}" data-value="4" mode="scaleToFill"></image>
+            <image src="{{item.score>4? '../../../img/ask-detail-star.png':'../../../img/ask-detail-star-no.png'}}" data-value="5" mode="scaleToFill"></image>
+          <!-- <image src="../../../img/ask-detail-star.png" mode="aspectFit"></image> -->
+					<text class="green" style="float:right" wx:if="{{item.score==0}}" bindtap="goPj" data-id="{{item.uuid}}" data-name="{{item.userName}}" data-dj="{{item.counselorDuty}}">去评价</text>
         </view>
-        <view class="ask-ans-evaluate-msg">李教授回答的特别好，我感觉我已经懂了点了想知 道更多的知识该怎们办</view>
+        <view class="ask-ans-evaluate-msg">{{item.appraisal||'暂无评价'}}</view>
       </view>
 		</view>
-    <view wx:if="{{false}}" class="ask-ans-no">
-      <image src="../../../img/ask-detail-nomsg.png" mode="aspectFit"></image>
-      <view>请耐心等待</view>
-      <view>咨询师24h 内给您回复</view>
-    </view>
 	</view>
-  <view class="ask-detail-ans box-sizing">
+  <view class="ask-detail-ans box-sizing" wx:for="{{msg.answerUsers}}" wx:if="{{item.status==6}}" wx:key="index">
 		<view class="ask-detail-ans-title">答案纠错</view>
 		<view class="ask-detail-ans-show">
 			<view class="ask-dq-head">
 				<image src="" mode="aspectFit" class="head-img"></image>
 				<view class="inline-block ask-dqh-right">
 					<view class="inline-block">
-						<view class="ask-dqh-name">账号用户</view>
-						<view class="ask-dqh-date"> <image src="../../../img/ask-detail-position.png" mode="aspectFit"></image> 税务师、律师</view>
+						<view class="ask-dqh-name">{{item.userName}}</view>
+						<view class="ask-dqh-date"> <image src="../../../img/ask-detail-position.png" mode="aspectFit"></image> {{item.counselorDuty}}</view>
 					</view>
           <view class="ask-ans-img">
             <image src="../../../img/ask-detail-wrong.png" mode="aspectFit"></image>
           </view>
 				</view>
 			</view>
-			<view class="ask-dq-msg">我来回答因机器检修暂时停产，停产期间发生的固 税前扣除吗？我来帮你解答一下，雇主为雇员负担 个人所得税款，应属于个人工资薪金的</view>
+			<view class="ask-dq-msg">{{item.content}}</view>
 			<view class="ask-dq-foot">
-				2018-08-01 13:56:03
+			{{item.time}}
 			</view>
 		</view>
 	</view>
+	 <view  wx:if="{{msg.changerAnswer==''&& msg.answerUsers==''}}" class="ask-ans-no">
+      <image src="../../../img/ask-detail-nomsg.png" mode="aspectFit"></image>
+      <view>请耐心等待</view>
+      <view>咨询师24h 内给您回复</view>
+    </view>
 </view>

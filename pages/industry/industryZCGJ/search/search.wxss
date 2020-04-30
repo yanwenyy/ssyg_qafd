@@ -1,0 +1,19 @@
+/* pages/industry/industryZCGJ/search/search.wxss */
+@import "../../../course/course.wxss";
+.course-list{
+  padding:44rpx;
+}
+.search-title{
+  font-size: 32rpx;
+  line-height: 50rpx;
+  color:#333;
+}
+.search-file{
+  font-size: 28rpx;
+  line-height: 41rpx;
+  margin:10rpx 0;
+}
+.search-time{
+  font-size: 26rpx;
+  line-height: 41rpx;
+}

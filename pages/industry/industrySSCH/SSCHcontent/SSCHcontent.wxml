@@ -1,13 +1,14 @@
 <!--pages/industry/industrySSCH/SSCHcontent/SSCHcontent.wxml-->
+<wxs module="tools" src="../../../tools.wxs"></wxs>
 <view class="body">
 	<view class="policeContent-head">
-		<view class="pch-title">关于修订城镇土地使用税和房产税申报表单的公告城镇土地使</view>
-		<view class="pch-file"># 政策难点易错点</view>
+		<view class="pch-title">{{detail.title}}</view>
+		<view class="pch-file"># {{detail.attributeName}}</view>
 		<view class="ssch-head">
 			<image src="" mode="aspectFit"></image>
 			<view class="inline-block">
-				<view class="ssch-head-name">王家集坐着的</view>
-				<view class="ssch-head-date">2019-02-23 10:00:00</view>
+				<view class="ssch-head-name">{{detail.userName}}</view>
+				<view class="ssch-head-date">{{tools.dateFormat(detail.creatTime)}}</view>
 			</view>
 		</view>
 	</view>
@@ -15,7 +16,7 @@
 		<view class="pcb-show1 box-sizing">
 			<view class="v1">
 				<view class="pcb-zcyw">
-					房产税是以房屋为征税对象，按房屋的计税余值或租金收入为计税依据， 产权所有人征收的一种财产税。
+					<rich-text>{{detail.content}}</rich-text>
 				</view>
 				<view class="pcb-zcyw-dz">
 					<view class="pcb-zcyw-dz-btn">
@@ -32,7 +33,7 @@
   <view class="policeContent-body">
 		<view class="pcb-show box-sizing">
 			<view class="v4">
-				<view class="pcb-title">评论 (19090)</view>
+				<view class="pcb-title">评论 ({{detail.discussNum}})</view>
 				<view>
 					<view class="pcb-pl-list">
 						<image class="pcb-pl-list-img" src="" mode="aspectFit"></image>
@@ -87,11 +88,11 @@
 				<input class="inline-block" placeholder="发表一下您的意见～"></input>
 				<view class="inline-block pcb-foot-pl-img">
 					<image src="../../../../img/pcb-pl.png" mode="aspectFit"></image>
-					<text class="inline-block">999+</text>
+					<text class="inline-block">{{detail.discussNum}}</text>
 				</view>
 				<view class="inline-block pcb-foot-pl-img">
 					<image src="../../../../img/pcb-dz.png" mode="aspectFit"></image>
-					<text class="inline-block">999+</text>
+					<text class="inline-block">{{detail.praiseNum}}</text>
 				</view>
 				<view class="inline-block pcb-foot-pl-img">
 					<image src="../../../../img/pcb-sc.png" mode="aspectFit"></image>

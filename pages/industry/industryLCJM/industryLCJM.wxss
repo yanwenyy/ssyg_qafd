@@ -1,0 +1,9 @@
+/* pages/industry/industryLCJM/industryLCJM.wxss */
+.lcjm-list{
+  padding:22rpx;
+}
+.lcjm-list>image{
+  width: 100%;
+  height:100rpx;
+  background: #eee;
+}

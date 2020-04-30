@@ -1,15 +1,18 @@
 {
   "pages": [
-    
     "pages/index/index",
     "pages/logs/logs",
     "pages/industry/industryChange/industryChange",
     "pages/industry/industryZCGJ/industryZCGJ",
     "pages/industry/industryZCGJ/policyContent/policyContent",
+    "pages/industry/industryZCGJ/search/search",
+    "pages/industry/industryZCGJ/XGJDcontent/XGJDcontent",
     "pages/industry/industryZCGJ/industryDZ/industryDZ",
     "pages/industry/industryFXTS/industryFXTS",
+    "pages/industry/industryFXTS/FXTScontent/FXTScontent",
     "pages/industry/industrySSCH/industrySSCH",
     "pages/industry/industrySSCH/SSCHcontent/SSCHcontent",
+    "pages/industry/industryLCJM/industryLCJM",
     "pages/industry/industryLCJM/LCJMcontent/LCJMcontent",
     "pages/ask/askList/askList",
     "pages/ask/askRule/askRule",
@@ -21,6 +24,7 @@
     "pages/course/course",
     "pages/course/coursContent/coursContent",
     "pages/newCenter/newCenter",
+    "pages/newCenter/newContent/newContent",
     "pages/mine/companyMsg/companyMsg",
     "pages/mine/mineTeam/mineTeam",
     "pages/mine/mineOrder/mineOrder",
@@ -47,14 +51,20 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#28B7A3",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "首页",
+        "iconPath": "img/tab-home.png",
+        "selectedIconPath": "img/tab-home-click.png"
       },
       {
         "pagePath": "pages/mine/mine",
-        "text": "我的"
+        "text": "我的",
+        "iconPath": "img/tab-mine.png",
+        "selectedIconPath": "img/tab-mine-click.png"
       }
     ]
   },

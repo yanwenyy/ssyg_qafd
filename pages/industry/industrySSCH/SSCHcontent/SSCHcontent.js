@@ -1,18 +1,32 @@
 // pages/industry/industrySSCH/SSCHcontent/SSCHcontent.js
+const app=getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    id:'',
+    detail:null,//详情信息
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
+    this.setData({
+      id:options.id
+    });
 
+    //详情
+    app.ajax("/minitax/taxplan/detailse",{
+      "id":this.data.id,
+    },function(res){
+      that.setData({
+        detail:res.data.data
+      })
+    })
   },
 
   /**

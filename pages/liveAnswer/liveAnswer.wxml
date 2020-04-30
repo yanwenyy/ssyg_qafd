@@ -1,18 +1,21 @@
 <!--pages/liveAnswer/liveAnswer.wxml-->
+<wxs module="tools" src="../tools.wxs"></wxs>
 <view class="container">
-  <view wx:for="{{2}}" wx:key="*this" class="shadow-model live-ans-list box-sizing">
+  <view wx:for="{{list}}" wx:key="index" data-id="{{item.id}}" bindtap="listClick" class="shadow-model live-ans-list box-sizing">
     <view class="live-ans-list-img">
-      <image src="" mode="aspectFit"></image>
+      <image src="{{item.coverUrl}}" mode="aspectFit"></image>
       <view class="live-ans-status">
-        <image src="../../img/zb-ing.png" mode="aspectFit"></image>
-        直播中
+        <image wx:if="{{item.status==2}}" src="../../img/zb-ing.png" mode="aspectFit"></image>
+        <image wx:if="{{item.status==4}}" src="../../img/zb-hf.png" mode="aspectFit"></image>
+        <image wx:if="{{item.status==1}}" src="../../img/zb-yg.png" mode="aspectFit"></image>
+        {{item.status==1?'预告':(item.status==2?'直播中':(item.status==3?'直播结束':'回访'))}}
       </view>
     </view>
-    <view class="live-ans-list-msg">2019年第一期房地产行业定向答疑2019年第一 期房地产行业定向答疑</view>
-    <view class="live-ans-list-name">讲师：直播人</view>
-    <view class="live-ans-list-name">时间：2019-02-11 10:30</view>
+    <view class="live-ans-list-msg">{{item.title}}</view>
+    <view class="live-ans-list-name">讲师：{{item.userName}}</view>
+    <view class="live-ans-list-name">时间：{{tools.dateFormat(item.startTime)}}</view>
     <view class="live-ans-list-hy">
-      <view class="inline-block">房地产</view>
+      <view class="inline-block">{{item.tradeName}}</view>
     </view>
   </view>
 </view>
