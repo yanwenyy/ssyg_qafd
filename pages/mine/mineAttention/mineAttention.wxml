@@ -1,19 +1,21 @@
 <!--pages/mine/mineAttention/mineAttention.wxml-->
 <view class="ma-body">
-  <view class="ma-list" wx:for="{{2}}" wx:key="index">
-    <image src="" class="head-img" mode="aspectFit"></image>
+  <view class="ma-list" wx:for="{{list}}" wx:key="index">
+    <image src="{{item.headImg}}" class="head-img" mode="aspectFit"></image>
     <view class="inline-block ma-list-right">
-      <view class="ma-list-name">王嘉佳校长</view>
-      <view class="inline-block ma-list-label">用户标签</view>
+      <view class="ma-list-name">{{item.userName}}</view>
+      <view class="inline-block ma-list-label" wx:for="{{item.identity}}" wx:key="index" wx:if="{{item!=0}}">{{item=="1"?"专家":"讲师"}}</view>
     </view>
-    <view class="ma-list-btn">+关注</view>
+    <view class="ma-list-btn" wx:if="{{item.status==0}}" data-status="{{item.status}}" data-index="{{index}}" data-id="{{item.uuid}}" bindtap="gzClick">+关注</view>
+    <view class="ma-list-btn ma-yes" wx:if="{{item.status==1}}" data-status="{{item.status}}" data-index="{{index}}" data-id="{{item.uuid}}" bindtap="gzClick">已关注</view>
+    <view class="ma-list-btn ma-yes" wx:if="{{item.status==2}}" data-status="{{item.status}}" data-index="{{index}}" data-id="{{item.uuid}}" bindtap="gzClick">相互关注</view>
   </view>
-  <view class="ma-list">
+  <!-- <view class="ma-list">
     <image src="" class="head-img" mode="aspectFit"></image>
     <view class="inline-block ma-list-right">
       <view class="ma-list-name">王嘉佳</view>
       <view class="inline-block ma-list-label">用户标签</view>
     </view>
     <view class="ma-list-btn ma-yes">已关注</view>
-  </view>
+  </view> -->
 </view>

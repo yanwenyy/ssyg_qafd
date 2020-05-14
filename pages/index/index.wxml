@@ -18,7 +18,7 @@
 					<view class="index-hcm-title">您的专属行业</view>
 					<view class="index-hcm-name">
 						<view class="inline-block index-hcm-name-msg">
-							<image class="inline-block" src="{{'https://'+industryIndex.tradeIcon}}" mode="aspectFit"></image>
+							<image class="inline-block" src="{{'http://'+industryIndex.tradeIcon}}" mode="aspectFit"></image>
 							<text>{{industryIndex.tradeName}}</text>
 						</view>
 						<!-- <image class="inline-block" src="../../img/index-head-kt.png" mode="aspectFit"></image> -->
@@ -33,11 +33,11 @@
 			</view>
 		</view>
 		<view class="product-intro">
-			<swiper class="index-swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+			<swiper class="index-swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true">
 				<block wx:for="{{imgList}}" wx:key="index">
 					<swiper-item>
 						<view class="swiper-item">
-							<image class="pro-intro-bg" src="{{item.imgUrl}}" mode="aspectFIt"></image>
+							<image class="pro-intro-bg" src="{{item.imgUrl?'http://'+item.imgUrl:''}}" mode="aspectFIt"></image>
 						</view>
 					</swiper-item>
 				</block>
@@ -59,7 +59,7 @@
 		<view>
 			<view class="index-list-new-group" wx:for="{{newList}}" wx:key="index" data-id="{{item.id}}" bindtap="newClick">
 				<view wx:if="{{item.coverType==1}}" class="list-new list-new-img-top shadow-model box-sizing">
-					<image src="{{item.coverUrl}}" mode="aspectFit"></image>
+					<image src="{{'http://'+item.coverUrl}}" mode="aspectFit"></image>
 					<view class="list-new-msg">{{item.title}}</view>
 					<view class="list-new-date">{{tools.dateFormat(item.creatTime)}}</view>
 				</view>
@@ -72,7 +72,7 @@
 						<view class="list-new-msg">{{item.title}}</view>
 						<view class="list-new-date">{{tools.dateFormat(item.creatTime)}}</view>
 					</view>
-					<image src="{{item.coverUrl}}" mode="aspectFit"></image>
+					<image src="{{'http://'+item.coverUrl}}" mode="aspectFit"></image>
 				</view>
 			</view>
 			<view class="sys-btn" bindtap="sysClick">
@@ -97,7 +97,7 @@
 					<text>{{item.status==1?'预告':(item.status==2?'直播中':(item.status==3?'直播结束':'回访'))}}</text>
 				</view>
 				<view class="zb-list-msg">
-					<image class="zb-list-msg-img" src="" mode="aspectFit"></image>
+					<image class="zb-list-msg-img" src="{{'http://'+item.coverUrl}}" mode="aspectFit"></image>
 					<view class="zb-list-msg-right inline-block">
 						<view class="zb-lmr-title">{{item.title}}</view>
 						<view class="zb-lmr-name">讲师：{{item.userName}}</view>
@@ -126,7 +126,7 @@
 		</view>
 		<view class="index-class-ul">
 			<view class="index-class-li shadow-model box-sizing" wx:for="{{courseList}}" wx:key="index" data-id="{{item.id}}" bindtap="courseClick">
-				<image class="index-class-li-img" src="{{item.coverUrl}}" mode="aspectFit"></image>
+				<image class="index-class-li-img" src="{{'http://'+item.coverUrl}}" mode="aspectFit"></image>
 				<view class="index-class-msg inline-block">
 					<view class="index-class-msg-title">{{item.title}}</view>
 					<view>{{item.userName}}</view>

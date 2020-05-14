@@ -16,7 +16,7 @@
 					<view class="index-hcm-title">您的专属行业</view>
 					<view class="index-hcm-name">
 						<view class="inline-block index-hcm-name-msg">
-							<image class="inline-block" src="" mode="aspectFit"></image>
+							<image class="inline-block" src="{{'http://'+headTrade.tradeIcon}}" mode="aspectFit"></image>
 							<text>{{headTrade.tradeName}}</text>
 						</view>
 					</view>

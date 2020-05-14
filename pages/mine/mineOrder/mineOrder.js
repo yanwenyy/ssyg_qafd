@@ -1,18 +1,22 @@
 // pages/mine/mineOrder/mineOrder.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    list: [],
+    start: 1,
+    num: 10,
+    status: true,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getList(this.data.start, this.data.num)
   },
 
   /**
@@ -54,7 +58,13 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (this.data.status == true) {
+      var start = this.data.start + 1
+      this.setData({
+        start: start
+      });
+      this.getList(this.data.start, this.data.num)
+    }
   },
 
   /**
@@ -62,5 +72,28 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+  getList: function (current, pageSize) {
+    var that = this;
+    app.ajax("/minitax/my/order", {
+      "current": current,
+      "pageSize": pageSize
+    }, function (res) {
+      var datas = res.data.data;
+      if (datas && datas != '') {
+        var list_change = that.data.list;
+        for (var i in datas) {
+          list_change.push(datas[i])
+        }
+        that.setData({
+          list: list_change
+        });
+      } else {
+        that.setData({
+          status: false
+        })
+      }
+    })
+  },
 })

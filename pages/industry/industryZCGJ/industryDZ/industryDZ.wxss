@@ -10,7 +10,7 @@
   margin-right: 25rpx;
 }
 .idz-list-right{
-  width: 83%;
+  width: 82%;
   border-bottom: 1px solid #eee;
   padding-bottom:29rpx;
   vertical-align: top;
@@ -27,6 +27,7 @@
   border:1rpx solid #28B7A3;
   color:#28B7A3;
   padding:0 18rpx;
+  margin-right: 20rpx;
 }
 .idz-list-date{
   font-size: 26rpx;

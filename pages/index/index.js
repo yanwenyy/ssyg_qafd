@@ -13,7 +13,7 @@ Page({
     imgList: [], //轮播图
     indicatorDots: false,
     vertical: false,
-    autoplay: false,
+    autoplay: true,
     interval: 2000,
     duration: 500,
     liveList:[],//直播答疑列表

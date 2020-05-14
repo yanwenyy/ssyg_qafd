@@ -160,6 +160,9 @@
   line-height: 50rpx;
   margin-bottom:18rpx;
 }
+.pcb-pl-list{
+  margin-bottom: 57rpx;
+}
 .pcb-pl-list-right{
   width: 85%;
 }
@@ -231,6 +234,9 @@
 .pcb-pl-list-hf-msg{
   background: #F8F8F8;
   padding:27rpx;
+  position: relative;
+  overflow: hidden;
+ 
 }
 .pcb-pl-list-img-hf{
   width: 38rpx;
@@ -245,6 +251,10 @@
   color:#22517F;
   margin-left:50rpx;
   margin-top:25rpx;
+  position: absolute;
+  bottom:11rpx;
+  left: 0;
+
 }
 .pcb-foot{
   position: fixed;

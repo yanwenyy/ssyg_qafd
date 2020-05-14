@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo:null
+    userInfo:null,
+    tabMsg:'',//收藏,评论,关注,粉丝数
   },
 
   /**
@@ -19,6 +20,13 @@ Page({
         userInfo:res.data.data
       })
     });
+
+    //收藏,评论,关注,粉丝数
+    app.ajax_nodata("/minitax/home/attentionnum",function(res){
+      that.setData({
+        tabMsg:res.data.data
+      })
+    })
   },
 
   /**

@@ -3,32 +3,32 @@
 <view class="body">
 	<view class="mp-head box-sizing">
 		<view>
-			<image class="mp-usrimg head-img" src="" mode="aspectFit"></image>
+			<image class="mp-usrimg head-img" src="{{introMsg.headImg}}" mode="aspectFit"></image>
 			<view class="inline-block">
-				<view class="mp-usrname">王家营队友</view>
-				<view class="mp-usrlabel inline-block">用户标签</view>
+				<view class="mp-usrname">{{introMsg.userName}}</view>
+				<view class="mp-usrlabel inline-block" wx:for="{{introMsg.identity}}" wx:key="index" wx:if="{{item!=0}}">{{item==1?'专家':'讲师'}}</view>
 			</view>
 		</view>
 		<view>
-			<view class="inline-block attention-num"><text>122</text>关注</view>
-			<view class="inline-block attention-num"><text>122</text>粉丝</view>
+			<view class="inline-block attention-num" bindtap="lookfans" data-code="0"><text>{{tabMsg.attentionNum}}</text>关注</view>
+			<view class="inline-block attention-num" bindtap="lookfans" data-code="1"><text>{{tabMsg.fansNum}}</text>粉丝</view>
 		</view>
 		<view class="mp-intro">
-			<text>还没有介绍，谢一句话吧，让更多人了解您</text>
-			<image src="../../../img/set-go.png" mode="aspectFit"></image>
+			<text>{{introMsg.introduce!=''&&introMsg.introduce!=null?introMsg.introduce:'还没有介绍，谢一句话吧，让更多人了解您'}}</text>
+			<image wx:if="{{introMsg.userId==userInfo.uuid}}" src="../../../img/set-go.png" mode="aspectFit" bindtap="introClick"></image>
 		</view>
-		<view class="mp-btn">+关注</view>
+		<view class="mp-btn" wx:if="{{!tabMsg.ifAttention}}" bindtap="gzClick">+关注</view>
 	</view>
 	<view class="mp-body">
 		<view class="mp-body-nav">
-			<view class="inline-block nav-act">动态<view class="mp-nav-line"></view>
+			<view bindtap="navClick" data-msg="动态" class="inline-block {{navMsg=='动态'?'nav-act':''}}" data-url="trendlist">动态<view wx:if="{{navMsg=='动态'}}" class="mp-nav-line"></view>
 			</view>
-			<view class="inline-block">文章</view>
-			<view class="inline-block">直播</view>
-			<view class="inline-block">课程</view>
+			<view bindtap="navClick" data-msg="文章" class="inline-block {{navMsg=='文章'?'nav-act':''}}" data-url="policylist">文章<view wx:if="{{navMsg=='文章'}}" class="mp-nav-line"></view></view>
+			<view bindtap="navClick" data-msg="直播" class="inline-block {{navMsg=='直播'?'nav-act':''}}" data-url="broadacast/list">直播<view wx:if="{{navMsg=='直播'}}" class="mp-nav-line"></view></view>
+			<view bindtap="navClick" data-msg="课程" class="inline-block {{navMsg=='课程'?'nav-act':''}}" data-url="goodclass/list">课程<view wx:if="{{navMsg=='课程'}}" class="mp-nav-line"></view></view>
 		</view>
-		<view class="dt">
-			<view class="dt-list box-sizing">
+		<view class="dt" wx:if="{{navMsg=='动态'}}">
+			<!-- <view class="dt-list box-sizing">
 				<view class="dt-list-title">
 					<text>评论了课程</text>
 					<text>2019-10-19 10:00</text>
@@ -42,20 +42,32 @@
 						<view class="vip-course">VIP课程</view>
 					</view>
 				</view>
-			</view>
-			<view class="dt-list box-sizing">
+			</view> -->
+			<view class="dt-list box-sizing" wx:for="{{list}}" wx:key="index" bindtap="listClick" data-id="{{item.moudleId}}" data-type="{{item.moudleType}}">
 				<view class="dt-list-title" style="margin-bottom:31rpx">
-					<text>发表了风险提示</text>
-					<text>2019-10-19 10:00</text>
+					<view class="inline-block">{{item.type==0?'评论':'发表'}}了
+						<text wx:if="{{item.moudleType==1}}">政策归集</text>
+						<text wx:if="{{item.moudleType==2}}">相关解读</text>
+						<text wx:if="{{item.moudleType==3}}">风险提示</text>
+						<text wx:if="{{item.moudleType==4}}">税收筹划</text>
+						<text wx:if="{{item.moudleType==5}}">解码图</text>
+						<text wx:if="{{item.moudleType==6}}">新闻中心</text>
+						<text wx:if="{{item.moudleType==7}}">精选好课</text>
+						<text wx:if="{{item.moudleType==8}}">直播答疑</text>
+					</view>
+					<text>{{tools.dateFormat(item.careadate)}}</text>
+				</view>
+				<view class="dt-list-title" style="margin-bottom:31rpx">
+					{{item.content}}
 				</view>
 				<view class="ifx-list shadow-model box-sizing">
-					<view class="ifx-list-title">关于修订城镇土地使用税和房产税申报表单的公告城镇土地使</view>
-					<view class="ifx-list-label">
+					<view class="ifx-list-title">{{item.title}}</view>
+					<!-- <view class="ifx-list-label">
 						<text class="green"># 政策难点易错点</text>
-					</view>
+					</view> -->
 				</view>
 			</view>
-			<view class="dt-list box-sizing">
+			<!-- <view class="dt-list box-sizing">
 				<view class="dt-list-title">
 					<text>评论了政策归集</text>
 					<text>2019-10-19 10:00</text>
@@ -67,48 +79,48 @@
 						[ 国家税务总局公告2019年第32号 ]
 					</view>
 				</view>
-			</view>
+			</view> -->
 		</view>
-		<view wx:if="{{false}}" class="wz">
+		<view wx:if="{{navMsg=='文章'}}" class="wz">
 			<scroll-view class="ifx-tab-list" scroll-x="true">
-				<view class="inline-block ifx-tab ifx-tab-act">政策归集</view>
-				<view class="inline-block ifx-tab">风险提示</view>
-				<view class="inline-block ifx-tab">税收筹划</view>
+				<view class="inline-block ifx-tab {{wzTabMsg=='政策归集'?'ifx-tab-act':''}}" bindtap="wzTabClick" data-msg="政策归集" data-url="policylist">政策归集</view>
+				<view class="inline-block ifx-tab {{wzTabMsg=='风险提示'?'ifx-tab-act':''}}" bindtap="wzTabClick" data-msg="风险提示" data-url="trisk/list">风险提示</view>
+				<view class="inline-block ifx-tab {{wzTabMsg=='税收筹划'?'ifx-tab-act':''}}" bindtap="wzTabClick" data-msg="税收筹划" data-url="taxplan/list">税收筹划</view>
 			</scroll-view>
-			<view class="zcgj">
-				<view class="wz-list" wx:for="{{2}}" wx:key="index">
-					<view class="wz-date">{{tools.dateFormat(1584939085000)}}</view>
+			<view class="zcgj" wx:if="wzTabMsg=='政策归集'">
+				<view class="wz-list" wx:for="{{list}}" wx:key="index" bindtap="listClick" data-id="{{item.id}}" data-type="1">
+					<view class="wz-date">{{tools.dateFormat(item.createTime)}}</view>
 					<view class="ifx-list shadow-model box-sizing">
-						<view class="ifx-list-title">关于修订城镇土地使用税和房产税申报表单的公告城镇土地使</view>
+						<view class="ifx-list-title">{{item.title}}</view>
 						<view class="ifx-list-label">
-							[ 国家税务总局公告2019年第32号 ]
+							[ {{item.fileNum}} ]
 						</view>
-						<view class="new-date">{{tools.dateFormat(1584939085000,"yyyy-mm-dd")}}</view>
+						<view class="new-date">{{tools.dateFormat(item.officialReleaseDate,"yyyy-mm-dd")}}</view>
 					</view>
 				</view>
 			</view>
-			<view class="fxts">
-				<view class="ifx-list shadow-model box-sizing">
+			<view class="fxts" wx:if="wzTabMsg=='风险提示'">
+				<view class="ifx-list shadow-model box-sizing"  wx:for="{{list}}" wx:key="index" bindtap="listClick" data-id="{{item.id}}" data-type="3">
 					<view class="ifx-list-head">
-						<image src="" mode="aspectFit"></image>
+						<image src="{{item.headImg}}" mode="aspectFit"></image>
 						<view class="inline-block">
-							<view class="ifx-list-head-name">王家集坐着的</view>
-							<view class="ifx-list-head-date">2019-12-05 10:00:00</view>
+							<view class="ifx-list-head-name">{{item.userName}}</view>
+							<view class="ifx-list-head-date">{{tools.dateFormat(item.createTime)}}</view>
 						</view>
 					</view>
-					<view class="ifx-list-title">关于修订城镇土地使用税和房产税申报表单的公告城镇土地使</view>
-					<view class="ifx-list-content">这是一部分内容的预览这是一部分内容的预览这是一部分内容的预览这是一部分内容的预览这是一部分内容的预览这是一部分内容的预览...</view>
+					<view class="ifx-list-title">{{item.title}}</view>
+					<view class="ifx-list-content">{{item.content}}</view>
 					<view class="ifx-list-label">
-						<text class="green"># 政策难点易错点</text>
+						<text class="green">#{{item.attributeName}}</text>
 					</view>
 					<view class="ifx-foot">
 						<view class="ifx-foot-list">
 							<image src="../../../img/pcb-pl.png" mode="aspectFit"></image>
-							<text class="inline-block">999+</text>
+							<text class="inline-block">{{item.discussNum}}</text>
 						</view>
 						<view class="ifx-foot-list">
 							<image src="../../../img/pcb-dz.png" mode="aspectFit"></image>
-							<text class="inline-block">999+</text>
+							<text class="inline-block">{{item.praiseNum	}}</text>
 						</view>
 						<view class="ifx-foot-list">
 							<image src="../../../img/pcb-sc.png" mode="aspectFit"></image>
@@ -119,28 +131,28 @@
 					</view>
 				</view>
 			</view>
-			<view class="ssch">
-				<view class="ifx-list shadow-model box-sizing">
+			<view class="ssch" wx:if="wzTabMsg=='税收筹划'">
+				<view class="ifx-list shadow-model box-sizing"  wx:for="{{list}}" wx:key="index" bindtap="listClick" data-id="{{item.id}}" data-type="4">
 					<view class="ifx-list-head">
-						<image src="" mode="aspectFit"></image>
+						<image src="{{item.headImg}}" mode="aspectFit"></image>
 						<view class="inline-block">
-							<view class="ifx-list-head-name">王家集坐着的</view>
-							<view class="ifx-list-head-date">2019-12-05 10:00:00</view>
+							<view class="ifx-list-head-name">{{item.userName}}</view>
+							<view class="ifx-list-head-date">{{tools.dateFormat(item.createTime)}}</view>
 						</view>
 					</view>
-					<view class="ifx-list-title">关于修订城镇土地使用税和房产税申报表单的公告城镇土地使</view>
-					<view class="ifx-list-content">这是一部分内容的预览这是一部分内容的预览这是一部分内容的预览这是一部分内容的预览这是一部分内容的预览这是一部分内容的预览...</view>
+					<view class="ifx-list-title">{{item.title}}</view>
+					<view class="ifx-list-content">{{item.content}}</view>
 					<view class="ifx-list-label">
-						<text class="green"># 政策难点易错点</text>
+						<text class="green">#{{item.attributeName}}</text>
 					</view>
 					<view class="ifx-foot">
 						<view class="ifx-foot-list">
 							<image src="../../../img/pcb-pl.png" mode="aspectFit"></image>
-							<text class="inline-block">999+</text>
+							<text class="inline-block">{{item.discussNum}}</text>
 						</view>
 						<view class="ifx-foot-list">
 							<image src="../../../img/pcb-dz.png" mode="aspectFit"></image>
-							<text class="inline-block">999+</text>
+							<text class="inline-block">{{item.praiseNum	}}</text>
 						</view>
 						<view class="ifx-foot-list">
 							<image src="../../../img/pcb-sc.png" mode="aspectFit"></image>
@@ -152,34 +164,52 @@
 				</view>
 			</view>
 		</view>
-		<view wx:if="{{false}}" class="zb">
-			<view class="shadow-model zb-list box-sizing inline-block" wx:for="{{3}}" wx:key="index">
+		<view wx:if="{{navMsg=='直播'}}" class="zb">
+			<view class="shadow-model zb-list box-sizing inline-block" wx:for="{{list}}" wx:key="index" bindtap="listClick" data-id="{{item.id}}" data-type="8">
 				<view class="zb-list-title">
-					<image src="../../../img/zb-ing.png" mode="aspectFit"></image>
-					<text>直播中</text>
+					<image wx:if="item.status==2" src="../../../img/zb-ing.png" mode="aspectFit"></image>
+					<image wx:if="item.status==1" src="../../../img/zb-yg.png" mode="aspectFit"></image>
+					<text wx:if="item.status==1">预告</text>
+					<text wx:if="item.status==2">直播中</text>
+					<text wx:if="item.status==3">直播结束</text>
+					<text wx:if="item.status==4">回放</text>
 				</view>
 				<view class="zb-list-msg">
-					<image class="zb-list-msg-img" src="" mode="aspectFit"></image>
+					<image class="zb-list-msg-img" src="http://{{item.coverUrl}}" mode="aspectFit"></image>
 					<view class="zb-list-msg-right inline-block">
-						<view class="zb-lmr-title">2019年第一期房地产行 期房地产行业定向答...</view>
-						<view class="zb-lmr-name">讲师：直播人</view>
-						<view class="zb-lmr-date">时间：2019-02-11 10:30</view>
+						<view class="zb-lmr-title">{{item.title}}</view>
+						<view class="zb-lmr-name">讲师：{{item.userName}}</view>
+						<view class="zb-lmr-date">时间：{{tools.dateFormat(item.startTime)}}</view>
 						<view class="zb-lmr-class">
-							<view class="inline-block">房地产</view>
+							<view class="inline-block">{{item.tradeName}}</view>
 						</view>
 					</view>
 				</view>
 			</view>
 		</view>
-		<view wx:if="{{false}}" class="kc">
-			<view wx:for="{{2}}" wx:key="index" class="course-list shadow-model box-sizing" bindtap="goContent">
-				<image src="" mode="aspectFit"></image>
+		<view wx:if="{{navMsg=='课程'}}" class="kc">
+			<view wx:for="{{list}}" wx:key="index" class="course-list shadow-model box-sizing"  bindtap="listClick" data-id="{{item.id}}" data-type="7">
+				<image src="http://{{item.coverUrl}}" mode="aspectFit"></image>
 				<view class="inline-block course-list-right">
-					<view class="course-list-right-name">房地产促销中买房赠物 税务处理</view>
-					<view>王家集</view>
-					<view class="vip-course">VIP课程</view>
+					<view class="course-list-right-name">{{item.title}}</view>
+					<view>{{item.userName}}</view>
+					<view class="vip-course" wx:if="{{item.ifFree==1}}">VIP课程</view>
 				</view>
 			</view>
 		</view>
 	</view>
+  <view wx:if="{{intro}}" class="shadow">
+    <view class="shadow-body">
+      <view class="shadow-body-title">
+        个人介绍
+        <image bindtap="closeShadow" class="shadow-close" src="../../../img/shadow-close.png" mode="scaleToFill"></image>
+      </view>
+      <view class="shadow-body-ul box-sizing">
+					<textarea bindinput="introInput" class="box-sizing" placeholder="请输入您的介绍"></textarea>
+      </view>
+      <view bindtap="sub" class="sub-msg-hy box-sizing">
+        <view class="inline-block">确定</view>
+      </view>
+    </view>
+  </view>
 </view>

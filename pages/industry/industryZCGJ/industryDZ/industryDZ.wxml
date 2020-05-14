@@ -1,13 +1,16 @@
 <!--pages/industry/industryZCGJ/industryDZ/industryDZ.wxml-->
+<wxs module="tools" src="../../../tools.wxs"></wxs>
 <view class="id-container">
-  <view class="idz-list" wx:for="{{2}}" wx:key="*this">
-    <image class="idz-list-img"></image>
+  <view class="idz-list" wx:for="{{list}}" wx:key="index" data-id="{{item.userId}}" bindtap="goPages">
+    <image class="idz-list-img" src="{{item.headImg}}"></image>
     <view class="idz-list-right inline-block">
       <view class="inline-block">
-          <view class="idz-list-name">用户名</view>
-          <view class="idz-list-position">签约内容官</view>
+          <view class="idz-list-name">{{item.userName}}</view>
+          <view>
+            <view class="idz-list-position inline-block" wx:for="{{item.identity}}" wx:key="index" wx:if="{{item!=0}}">{{item=="1"?"专家":"讲师"}}</view>
+          </view>
       </view>
-      <view class="inline-block idz-list-date">04-29  12:34</view>
+      <view class="inline-block idz-list-date">{{tools.dateFormat(item.careadate)}}</view>
     </view>
   </view>
 </view>

@@ -4,15 +4,17 @@
       <image src="" mode="scaleToFill"></image>
     </view>
     <view wx:if="{{scope}}" class="login-msg">
-        欢迎使用省税一哥，可使您有效提升对于财税新政的理解度，降低涉税职业风险，发现企业节税空间，让财税更简单！
+        <view>欢迎使用《省税一哥·税务行业全案辅导系统》企业版。</view>
+        <view>针对您所在的行业，定制属于您的税务全案辅导内容，成为企业贴身的税务顾问、规避涉税风险、降低税收成本、为企业筛选行业政策节省时间成本。</view>
     </view>
-    <view wx:if="{{!scope}}" class="login-msg" style="text-align:center">
-      省税一哥为企业会员产品，请校验您的会员身份。
+    <view wx:if="{{!scope}}" class="login-msg">
+     <view>欢迎使用《省税一哥·税务行业全案辅导系统》企业版。</view>
+     <view>请授权您要登陆的手机号，以验证您的所属企业</view>
     </view>
     <button wx:if="{{scope}}" class=""  open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 
-      了解一下         
+      立即使用         
     </button>
     <button wx:if="{{!scope}}" class="" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
-      开始校验
+      授权手机号登陆
     </button> 
 </view>

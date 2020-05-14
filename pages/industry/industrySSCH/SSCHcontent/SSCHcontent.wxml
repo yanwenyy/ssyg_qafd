@@ -20,62 +20,70 @@
 				</view>
 				<view class="pcb-zcyw-dz">
 					<view class="pcb-zcyw-dz-btn">
-						<image src="" mode="aspectFit"></image>
+						<image src="../../../../img/{{detail.ifPrase>0?'content_dz.png':'content_dz_no.png'}}" mode="aspectFit" data-parse="{{detail.ifPrase}}" bindtap="wzdzClick"></image>
 					</view>
 					<view class="pcb-zcyw-dz-list">
-						<image wx:for="{{8}}" wx:key="*this" src="" mode="aspectFit"></image>
-						<image bindtap="lookDZlist" wx:key="*this" src="" mode="aspectFit"></image>
+						<image wx:for="{{dzList}}" wx:key="index" src="{{item.headImg}}" mode="aspectFit"></image>
+						<image wx:if="{{dzList.length==8}}" bindtap="lookDZlist" wx:key="*this" src="../../../../img/dz-list-more.png" mode="aspectFit"></image>
 					</view>
+				</view>
+				<view class="pcb-zcyw-vip" wx:if="{{tradeDz.ifVip!=1}}">
+					<image src="../../../../img/ktvip.gif"></image>
 				</view>
 			</view>
 		</view>
 	</view>
-  <view class="policeContent-body">
+	<view class="policeContent-body">
 		<view class="pcb-show box-sizing">
 			<view class="v4">
 				<view class="pcb-title">评论 ({{detail.discussNum}})</view>
 				<view>
-					<view class="pcb-pl-list">
-						<image class="pcb-pl-list-img" src="" mode="aspectFit"></image>
+					<view class="pcb-pl-list" wx:for="{{commentList}}" wx:for-index="commentListIndex" wx:key="index">
+						<image class="pcb-pl-list-img" src="{{item.headImg}}" mode="aspectFit"></image>
 						<view class="inline-block pcb-pl-list-right">
 							<view class="pcb-pl-list-name">
-								<text>张佳绩</text>
+								<text>{{item.userName}}</text>
 								<view class="inline-block pcb-pl-list-name-dz">
-									<image class="pcb-pl-list-name-dzimg" src="../../../../img/pcb-dz.png" mode="aspectFit"></image>
-									20
+									<image class="pcb-pl-list-name-dzimg" src="{{item.ifPrase>0?'../../../../img/pcb-dz-act.png':'../../../../img/pcb-dz.png'}}" mode="aspectFit" bindtap="plDz" data-index="{{commentListIndex}}" data-id="{{item.id}}" data-parse="{{item.ifPrase}}"></image>
+									{{item.praiseNum}}
 								</view>
 							</view>
-							<view class="pcb-pl-list-msg">老师讲的好棒呀，我听了之后这方面的疑惑完全解决了呢？老师还有其他的课程吗？</view>
-							<view class="pcb-pl-list-date">10-10 10:00 <text>·删除</text></view>
-							<view class="pcb-pl-del">
+							<view wx:if="{{item.uDel!=1}}" class="pcb-pl-list-msg" bindtap="contentClick" data-id="{{item.id}}" data-name="{{item.userName}}">{{item.content}}</view>
+							<view class="pcb-pl-list-date" wx:if="{{item.uDel!=1}}">{{tools.dateFormat2(item.careadate,year)}} <text wx:if="{{item.userId==userInfo.uuid}}" bindtap="delComment" data-id="{{item.id}}">·删除</text></view>
+							<view class="pcb-pl-del" wx:if="{{item.uDel==1}}">
 								<view class="inline-block"></view>
 								<text class="inline-block">评论已删除</text>
 								<view class="inline-block"></view>
 							</view>
-							<view class="pcb-pl-list-hf">
+							<view class="pcb-pl-list-hf" wx:if="{{item.discussUsers!=''}}">
 								<view class="pcb-pl-list-hf-trangle"></view>
+								<!--  style="{{item.discussUsers.length>1&&item.zk==true?'height:auto':'height:224rpx'}}" -->
 								<view class="pcb-pl-list-hf-msg box-sizing">
-									<view class="pcb-pl-list">
-										<image class="pcb-pl-list-img-hf" src="" mode="aspectFit"></image>
+									<view class="pcb-pl-list" wx:for="{{item.discussUsers_change}}" wx:key="index">
+										<image class="pcb-pl-list-img-hf" src="{{item.headImg}}" mode="aspectFit"></image>
 										<view class="inline-block pcb-pl-list-right">
 											<view class="pcb-pl-list-name">
-												<view class="inline-block">
-													张家集
-													<text class="green">·作者</text>
-													<text style="color:#333;margin:0 10rpx">回复</text>
-													张家集
+												<view class="inline-block" style="width:85%;word-break: break-all;">
+													{{item.userName}}
+													<text class="green" wx:if="{{item.author==0}}">·作者</text>
+													<text wx:if="{{item.level==3}}" style="color:#333;margin:0 10rpx">回复</text>
+													<text wx:if="{{item.level==3}}">{{item.replyUserName}}</text>
 												</view>
 												<view class="inline-block pcb-pl-list-name-dz">
-													<image class="pcb-pl-list-name-dzimg" src="../../../../img/pcb-dz.png" mode="aspectFit"></image>
-													20
+													<image class="pcb-pl-list-name-dzimg" src="{{item.ifPrase>0?'../../../../img/pcb-dz-act.png':'../../../../img/pcb-dz.png'}}" mode="aspectFit" bindtap="plDz" data-index="{{index}}" data-id="{{item.id}}" data-parse="{{item.ifPrase}}" data-type="hf" data-parentindex="{{commentListIndex}}"></image>
+													{{item.praiseNum}}
 												</view>
 											</view>
-											<view class="pcb-pl-list-msg">老师讲的好棒呀，我听了之后这方面的疑惑完全解决了呢？老师还有其他的课程吗？</view>
-											<view class="pcb-pl-list-date">10-10 10:00</view>
-
+												<view wx:if="{{item.uDel!=1}}" class="pcb-pl-list-msg" bindtap="contentClick" data-id="{{item.id}}" data-name="{{item.userName}}">{{item.content}}</view>
+											<view wx:if="{{item.uDel!=1}}" class="pcb-pl-list-date">{{tools.dateFormat2(item.careadate,year)}}<text wx:if="{{item.userId==userInfo.uuid}}" bindtap="delComment" data-id="{{item.id}}">·删除</text></view>
+											<view class="pcb-pl-del" wx:if="{{item.uDel==1}}">
+												<view class="inline-block"></view>
+												<text class="inline-block">评论已删除</text>
+												<view class="inline-block"></view>
+											</view>
 										</view>
 									</view>
-									<view class="psb-pl-list-sq">收起</view>
+									<view wx:if="{{item.discussUsers.length>1}}" class="psb-pl-list-sq" data-id="{{index}}" bindtap="sqClick" data-msg="{{item.zk==true?'收起':''}}">{{item.zk==true?'收起':'更多回复'+(item.discussUsers.length-1)}}</view>
 								</view>
 							</view>
 						</view>
@@ -84,26 +92,27 @@
 			</view>
 		</view>
 		<view class="pcb-foot">
-			<view class="pcb-foot-pl box-sizing">
-				<input class="inline-block" placeholder="发表一下您的意见～"></input>
+			<view class="pcb-foot-pl box-sizing" wx:if="{{!commentInput}}">
+				<input class="inline-block" placeholder="发表一下您的意见～" disabled="true" bindtap="inputClick"></input>
 				<view class="inline-block pcb-foot-pl-img">
 					<image src="../../../../img/pcb-pl.png" mode="aspectFit"></image>
 					<text class="inline-block">{{detail.discussNum}}</text>
 				</view>
 				<view class="inline-block pcb-foot-pl-img">
-					<image src="../../../../img/pcb-dz.png" mode="aspectFit"></image>
+					<image src="../../../../img/{{detail.ifPrase>0?'pcb-dz-act.png':'pcb-dz.png'}}" mode="aspectFit" data-parse="{{detail.ifPrase}}" bindtap="wzdzClick"></image>
 					<text class="inline-block">{{detail.praiseNum}}</text>
 				</view>
 				<view class="inline-block pcb-foot-pl-img">
-					<image src="../../../../img/pcb-sc.png" mode="aspectFit"></image>
+					<image src="../../../../img/{{detail.ifCollect>0?'pcb-sc-act.png':'pcb-sc.png'}}" mode="aspectFit" data-collect="{{detail.ifCollect}}" bindtap="scClick"></image>
+					<text class="inline-block">{{detail.collectNum}}</text>
 				</view>
 				<view class="inline-block pcb-foot-pl-img">
 					<image src="../../../../img/pcb-zf.png" mode="aspectFit"></image>
 				</view>
 			</view>
-			<view wx:if="{{false}}" class="pcb-foot-hf">
-				<input class="box-sizing inline-block" placeholder="回复 张佳绩："></input>
-				<text class="green">发送</text>
+			<view wx:if="{{commentInput}}" class="pcb-foot-hf">
+				<input class="box-sizing inline-block" bindinput="commentInput" placeholder="{{commentPlaceHolder}}"></input>
+				<text class="green" bindtap="subComment">发送</text>
 			</view>
 		</view>
 	</view>

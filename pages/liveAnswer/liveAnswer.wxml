@@ -3,7 +3,7 @@
 <view class="container">
   <view wx:for="{{list}}" wx:key="index" data-id="{{item.id}}" bindtap="listClick" class="shadow-model live-ans-list box-sizing">
     <view class="live-ans-list-img">
-      <image src="{{item.coverUrl}}" mode="aspectFit"></image>
+      <image src="{{'http://'+item.coverUrl}}" mode="aspectFit"></image>
       <view class="live-ans-status">
         <image wx:if="{{item.status==2}}" src="../../img/zb-ing.png" mode="aspectFit"></image>
         <image wx:if="{{item.status==4}}" src="../../img/zb-hf.png" mode="aspectFit"></image>

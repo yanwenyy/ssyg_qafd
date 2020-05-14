@@ -80,7 +80,6 @@
   width: 52rpx;
   height: 45rpx;
   vertical-align: middle;
-  background: #eee;
   margin-right: 17rpx;
   margin-top: -5rpx;
 }

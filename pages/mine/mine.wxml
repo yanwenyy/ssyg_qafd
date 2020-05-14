@@ -13,19 +13,19 @@
 	</view>
 	<view class="mine-tab box-sizing">
 		<view class="inline-block" data-url="mineCollection/mineCollection" bindtap="goList">
-			<view class="mine-tab-num">250</view>
+			<view class="mine-tab-num">{{tabMsg.collectNum}}</view>
 			<view>收藏</view>
 		</view>
 		<view class="inline-block" data-url="mineComment/mineComment" bindtap="goList">
-			<view class="mine-tab-num">250</view>
+			<view class="mine-tab-num">{{tabMsg.discussNum}}</view>
 			<view>评论</view>
 		</view>
 		<view class="inline-block" data-url="mineAttention/mineAttention" bindtap="goList">
-			<view class="mine-tab-num">250</view>
+			<view class="mine-tab-num">{{tabMsg.attentionNum}}</view>
 			<view>关注</view>
 		</view>
 		<view class="inline-block" data-url="mineFans/mineFans" bindtap="goList">
-			<view class="mine-tab-num">250</view>
+			<view class="mine-tab-num">{{tabMsg.fansNum}}</view>
 			<view>粉丝</view>
 		</view>
 	</view>

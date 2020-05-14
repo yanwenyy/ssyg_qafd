@@ -67,7 +67,6 @@
   width:40rpx;
   height: 41rpx;
   vertical-align: middle;
-  background: #eee;
   margin-top:-5rpx;
 }
 .vip-list-date{

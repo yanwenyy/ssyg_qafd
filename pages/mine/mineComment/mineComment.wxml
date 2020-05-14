@@ -1,4 +1,5 @@
 <!--pages/mine/mineComment/mineComment.wxml-->
+<wxs src="../../tools.wxs" module="tools"></wxs>
 <view>
 	<view class="ask-tab">
 		<view bindtap="tabClick" data-msg="评论我的" class="inline-block {{tabMsg=='评论我的'?'green':''}}" style="margin-right:124rpx">
@@ -10,36 +11,48 @@
 			<text wx:if="{{tabMsg=='我评论的'}}" class="inline-block ask-tab-line"></text>
 		</view>
 	</view>
-  <view  wx:if="{{tabMsg=='评论我的'}}" class="comment-mine box-sizing">
-    <view class="comment-list">
-      <image class="head-img" src="" mode="aspectFit"></image>
-      <view class="comment-right inline-block">
-        <view class="comment-name">王家集坐着的</view>
-        <view class="comment-date">2019-12-05 10:00</view>
-        <view class="comment-title">这篇文章真好看，我要收藏</view>
-        <view class="comment-msg box-sizing">
-          <view class="comment-msg-title">关于修订城镇土地使用税和房产税申报表单的公告城镇土地使</view>
-          <view class="comment-msg-file">[ 国家税务总局公告2019年第32号 ]</view>
-        </view>
-      </view>
-    </view>
-  </view>
-  <view  wx:if="{{tabMsg=='我评论的'}}" class="mine-comment box-sizing">
-     <view class="comment-list">
-      <image class="head-img" src="" mode="aspectFit"></image>
-      <view class="comment-right inline-block">
-        <view class="comment-name mine-comment-name">
-          王家集坐着的
-          <view class="inline-block reply-comment">回复</view>
-        </view>
-        <view class="comment-title">
-          这篇文章真好看可收藏// <text class="blue">@一个小可爱：</text>这 文章真好看收藏了
-        </view>
-        <view class="comment-msg box-sizing">
-          <view class="comment-msg-title">原文：关于修订城镇土地使用税房税使.......</view>
-        </view>
-        <view class="mine-comment-foot">回复了您的评论 2019-12-31 10:00:00</view>
-      </view>
-    </view>
-  </view>
+	<view wx:if="{{tabMsg=='评论我的'}}" class="comment-mine box-sizing">
+		<view class="comment-list" wx:for="{{list}}" wx:key="index">
+			<image class="head-img" src="{{item.replyHeadImg}}" mode="aspectFit" data-id="{{item.replyUserId}}" bindtap="goPerson"></image>
+			<view class="comment-right inline-block">
+				<view class="comment-hf-btn" data-id="{{item.discussId}}" data-type="{{item.type}}" bindtap="hfClick">回复</view>
+				<view class="comment-name" data-id="{{item.replyUserId}}" bindtap="goPerson">{{item.replyUserName}}</view>
+				<view class="comment-date">{{tools.dateFormat(item.careadate)}}</view>
+				<view class="comment-title">
+					{{item.content}}
+					<view class="inline-block" wx:if="{{item.level!=1}}">// <text class="blue">@{{userInfo.nickname}}：</text>{{item.replyContent}}</view>
+				</view>
+				<view class="comment-msg box-sizing">
+					<view class="comment-msg-title" data-id="{{item.id}}" data-type="{{item.type}}" bindtap="titleClick">{{item.title}}</view>
+					<!-- <view class="comment-msg-file">[ 国家税务总局公告2019年第32号 ]</view> -->
+				</view>
+				<view class="mine-comment-foot">{{item.level==1?'评论了您的作品':'回复了您的评论'}}</view>
+			</view>
+		</view>
+	</view>
+	<view wx:if="{{tabMsg=='我评论的'}}" class="mine-comment box-sizing">
+		<view class="comment-list"  wx:for="{{list}}" wx:key="index">
+			<image class="head-img" src="{{userInfo.headImg}}" mode="aspectFit"></image>
+			<view class="comment-right inline-block">
+				<view class="comment-name mine-comment-name">
+					{{userInfo.nickname}}
+					<!-- <view class="inline-block reply-comment">回复</view> -->
+				</view>
+				<view class="comment-title">
+					{{item.content}}
+					<view class="inline-block" wx:if="{{item.level!=1}}">// <text class="blue" bindtap="goPerson" data-id="{{item.replyUserId}}">@{{item.replyUserName	}}：</text>{{item.replyContent}}</view>
+				</view>
+				<view class="comment-msg box-sizing">
+					<view class="comment-msg-title" data-id="{{item.id}}" data-type="{{item.type}}" bindtap="titleClick">{{item.title}}</view>
+				</view>
+				<view class="mine-comment-foot">{{item.level==1?'您评论了作品':'您回复了评论'}}   {{tools.dateFormat(item.careadate)}}</view>
+			</view>
+		</view>
+	</view>
+	<view class="pcb-foot" wx:if="{{commentInput}}">
+		<view class="pcb-foot-hf">
+			<input class="box-sizing inline-block" bindinput="commentInput" placeholder="请输入内容"></input>
+			<text class="green" bindtap="subComment">发送</text>
+		</view>
+	</view>
 </view>

@@ -24,3 +24,14 @@
   line-height: 41rpx;
   margin-top:-5rpx;
 }
+.ifx-list-right{
+  width: 310rpx;
+  height: 175rpx;
+  margin-right: 22rpx;
+  vertical-align: top;
+  background: #eee;
+  border-radius: 10rpx;
+}
+.ifx-list-left{
+  width: 45%;
+}

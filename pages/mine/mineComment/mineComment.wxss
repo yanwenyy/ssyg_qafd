@@ -1,5 +1,6 @@
 /* pages/mine/mineComment/mineComment.wxss */
 @import "../../ask/askList/askList.wxss";
+@import "../../industry/industryZCGJ/policyContent/policyContent.wxss";
 .ask-tab{
   font-size: 32rpx;
   font-weight: 400;
@@ -19,6 +20,20 @@
   width: 85%;
   border-bottom: 1rpx solid #eee;
   padding-bottom: 45rpx;
+  position: relative;
+}
+.comment-hf-btn{
+  width: 95rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  text-align: center;
+  color:#aaa;
+  border:1rpx solid #ddd;
+  font-size: 22rpx;
+  position: absolute;
+  right:0;
+  top:16rpx;
+  border-radius: 22rpx;
 }
 .comment-name{
   font-size: 26rpx;
@@ -72,4 +87,7 @@
   font-size: 24rpx;
   color:#aaa;
   margin-top: 34rpx;
+}
+.comment-list{
+  margin-bottom: 33rpx;
 }
