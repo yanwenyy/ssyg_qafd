@@ -7,6 +7,7 @@ Page({
    */
   data: {
     id: '',
+    modelId:'',//模板id
     detail: null,
     commentList: [], //评论列表
     userInfo: null,
@@ -32,9 +33,17 @@ Page({
     this.setData({
       id: options.id,
       userInfo: app.globalData.userInfo,
-      year: Y
+      year: Y,
+      isIphoneX:app.globalData.isIphoneX
     });
 
+
+    //推送模板id
+    app.ajax_get("/wx/moid",function(res){
+      that.setData({
+        modelId:res.data.data
+      })
+    })
 
   },
 
@@ -59,6 +68,7 @@ Page({
     app.ajax("/minitax/broadacast/details", {
       "id": that.data.id,
     }, function (res) {
+      res.data.data.introduce=res.data.data.introduce.replace(/\<img/gi, '<img class="rich-img" ');
       that.setData({
         detail: res.data.data
       })
@@ -106,21 +116,42 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: this.data.detail.title,
+      path: '/pages/share/zbdy/zbdy?id='+this.data.id
+    }
   },
 
   //预约按钮点击
-  yuClick: function () {
+  yuClick: function (e) {
     var that = this;
-    app.ajax("/minitax/broadacast/book", {
-      id: that.data.id
-    }, function (res) {
-      wx.showToast({
-        title: res.data.msg,
-        icon: 'none',
-        duration: 2000
-      })
-    })
+    if(e.currentTarget.dataset.book==0){
+      if (app.ifVip(this.data.detail.isVip != 1 && this.data.detail.tradePower ==0&&this.data.detail.self==0)) {
+        wx.requestSubscribeMessage({
+          tmplIds: [this.data.modelId],
+          success(res) {
+            app.ajax("/minitax/broadacast/book", {
+              id: that.data.id
+            }, function (res) {
+              wx.showToast({
+                title: res.data.msg,
+                icon: 'none',
+                duration: 2000
+              });
+              if(res.data.code==10000){
+                that.data.detail.ifbook=1;
+                that.setData({
+                  detail:that.data.detail
+                })
+              }
+            })
+          },
+          complete: function (res) {
+            console.log(res)
+          }
+        })
+      };
+    }
   },
 
   // 开通vip点击
@@ -205,11 +236,14 @@ Page({
 
   //评论内容点击
   contentClick: function (e) {
-    this.setData({
-      commentId: e.currentTarget.dataset.id,
-      commentPlaceHolder: '回复 ' + e.currentTarget.dataset.name,
-      commentInput: true
-    })
+    if (app.ifVip(this.data.detail.isVip != 1 && this.data.detail.tradePower ==0&&this.data.detail.self==0)) {
+      this.setData({
+        commentId: e.currentTarget.dataset.id,
+        commentPlaceHolder: '回复 ' + e.currentTarget.dataset.name,
+        commentInput: true,
+        focus:true
+      })
+    }
   },
 
   //展开收起点击
@@ -334,7 +368,7 @@ Page({
           that.setData({
             detail: data.detail
           });
-          that.onShow();
+          // that.onShow();
         }
       })
     } else {
@@ -349,7 +383,7 @@ Page({
           that.setData({
             detail: data.detail
           });
-          that.onShow();
+          // that.onShow();
         }
       })
     }

@@ -1,6 +1,7 @@
 /* pages/industry/industryLCJM/industryLCJM.wxss */
 .lcjm-list{
   padding:22rpx;
+  margin-bottom: 30rpx;
 }
 .lcjm-list>image{
   width: 100%;

@@ -1,0 +1,113 @@
+<!--pages/share/jxhk/jxhk.wxml-->
+<scopeBtn wx:if="{{scope&&!hasUserInfo}}" bind:myevent="onMyEvent"/>
+<view hidden="{{scope&&!hasUserInfo}}">
+	<ccvod vid='{{detail.ccid}}' siteid='A0123BC413D6FBAE' vc='' custom_id='' videoPoster="{{'http://'+detail.coverUrl}}" />
+	<cover-view wx:if="{{detail.ifFree==1&&detail.isVip!=1&&detail.tradePower==0&&detail.self==0}}" class="cc-video-shadow">
+		<cover-image class="cc-shadow-img" bindtap="goVip" src="../../../img/cc-video-vip.png" mode="widthFix"></cover-image>
+	</cover-view>
+	<view class="body">
+		<view>
+			<view class="pcp-nav {{scrollTop>230?'positionTop':''}}">
+				<view class="inline-block pcp-nav-list {{navText=='介绍'?'pcp-nav-list-act':''}}" bindtap="navClick" data-code="1" data-text="介绍">
+					介绍
+					<text wx:if="{{navText=='介绍'}}" class="inline-block pcp-nav-line"></text>
+				</view>
+				<view class="inline-block pcp-nav-list {{navText=='评价'?'pcp-nav-list-act':''}}" bindtap="navClick" data-code="2" data-text="评价">
+					评价
+					<text wx:if="{{navText=='评价'}}" class="inline-block pcp-nav-line"></text>
+				</view>
+			</view>
+			<view class="box-sizing">
+				<view class="cc-head box-sizing">
+					<view class="cc-head-msg">{{detail.title}} </view>
+					<view>
+						<view class="inline-block cc-head-img">
+							<image src="{{detail.headImg||(detail.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" class="head-img" catchtap="goPerson" data-id="{{detail.userId}}"></image>
+							<text>讲师：{{detail.ifPlatformAuthor==1?detail.realName:detail.lecturer}}</text>
+						</view>
+						<!-- <view class="inline-block cc-head-btn">关注</view> -->
+						<view wx:if="{{detail.ifFree==1}}" class="inline-block cc-head-vip">
+							<image src="../../../img/cc-head-vip.png" mode="aspectFit"></image>
+						</view>
+					</view>
+				</view>
+				<view class="v1 cc-model">
+					<view class="pcb-title">
+						课程介绍
+					</view>
+					<view class="pcb-zcyw">
+						<rich-text class="richClass"  nodes="{{detail.introduce}}" space="nbsp"></rich-text>
+					</view>
+				</view>
+				<view class="v2 cc-model">
+					<view class="pcb-title">评论 ({{detail.discussNum}})</view>
+					<view>
+						<view class="pcb-pl-list" wx:for="{{commentList}}" wx:for-index="commentListIndex" wx:key="index">
+							<image class="pcb-pl-list-img" src="{{item.headImg||(item.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
+							<view class="inline-block pcb-pl-list-right">
+								<view class="pcb-pl-list-name">
+									<text>{{item.userName}}</text>
+									<view class="inline-block pcb-pl-list-name-dz">
+										<image class="pcb-pl-list-name-dzimg" src="{{item.ifPrase>0?'../../../img/pcb-dz-act.png':'../../../img/pcb-dz.png'}}" mode="aspectFit" bindtap="plDz" data-index="{{commentListIndex}}" data-id="{{item.id}}" data-parse="{{item.ifPrase}}"></image>
+										{{item.praiseNum}}
+									</view>
+								</view>
+								<view wx:if="{{item.uDel!=1}}" class="pcb-pl-list-msg" bindtap="contentClick" data-id="{{item.id}}" data-name="{{item.userName}}">{{item.content}}</view>
+								<view class="pcb-pl-list-date" wx:if="{{item.uDel!=1}}">{{tools.dateFormat2(item.careadate,year)}} <text wx:if="{{item.userId==userInfo.uuid}}" bindtap="delComment" data-id="{{item.id}}">·删除</text></view>
+								<view class="pcb-pl-del" wx:if="{{item.uDel==1}}">
+									<view class="inline-block"></view>
+									<text class="inline-block">评论已删除</text>
+									<view class="inline-block"></view>
+								</view>
+								<view class="pcb-pl-list-hf" wx:if="{{item.discussUsers!=''}}">
+									<view class="pcb-pl-list-hf-trangle"></view>
+									<!--  style="{{item.discussUsers.length>1&&item.zk==true?'height:auto':'height:224rpx'}}" -->
+									<view class="pcb-pl-list-hf-msg box-sizing">
+										<view class="pcb-pl-list" wx:for="{{item.discussUsers_change}}" wx:key="index">
+											<image class="pcb-pl-list-img-hf" src="{{item.headImg||(item.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
+											<view class="inline-block pcb-pl-list-right">
+												<view class="pcb-pl-list-name">
+													<view class="inline-block" style="width:85%;word-break: break-all;">
+														{{item.userName}}
+														<text class="green" wx:if="{{item.author==0}}">·作者</text>
+														<text wx:if="{{item.level==3}}" style="color:#333;margin:0 10rpx">回复</text>
+														<text wx:if="{{item.level==3}}">{{item.replyUserName}}</text>
+													</view>
+													<view class="inline-block pcb-pl-list-name-dz">
+														<image class="pcb-pl-list-name-dzimg" src="{{item.ifPrase>0?'../../../img/pcb-dz-act.png':'../../../img/pcb-dz.png'}}" mode="aspectFit" bindtap="plDz" data-index="{{index}}" data-id="{{item.id}}" data-parse="{{item.ifPrase}}" data-type="hf" data-parentindex="{{commentListIndex}}"></image>
+														{{item.praiseNum}}
+													</view>
+												</view>
+												<view wx:if="{{item.uDel!=1}}" class="pcb-pl-list-msg" bindtap="contentClick" data-id="{{item.id}}" data-name="{{item.userName}}">{{item.content}}</view>
+												<view wx:if="{{item.uDel!=1}}" class="pcb-pl-list-date">{{tools.dateFormat2(item.careadate,year)}}<text wx:if="{{item.userId==userInfo.uuid}}" bindtap="delComment" data-id="{{item.id}}">·删除</text></view>
+												<view class="pcb-pl-del" wx:if="{{item.uDel==1}}">
+													<view class="inline-block"></view>
+													<text class="inline-block">评论已删除</text>
+													<view class="inline-block"></view>
+												</view>
+
+											</view>
+										</view>
+										<view wx:if="{{item.discussUsers.length>1}}" class="psb-pl-list-sq" data-id="{{commentListIndex}}" bindtap="sqClick" data-msg="{{item.zk==true?'收起':''}}">{{item.zk==true?'收起':'更多回复'+(item.discussUsers.length-1)}}</view>
+									</view>
+								</view>
+							</view>
+						</view>
+						<noMsg wx:if="{{commentList==''}}" imgUrl="no-pl" msg="快来抢坐沙发～"></noMsg>
+					</view>
+				</view>
+			</view>
+			 <view class="pcb-foot">
+        <view class="inline-block green share-bottom" bindtap="goHome">
+          <image src="/img/sharemsg-home.png" mode="scaleToFill"></image>
+          首页
+        </view>
+        <view class="inline-block green share-bottom">
+          <button class="detail-share-btn" open-type="share"></button>
+          <image src="/img/sharemsg-zf.png" mode="scaleToFill"></image>
+          转发
+        </view>
+      </view>
+		</view>
+	</view>
+</view>

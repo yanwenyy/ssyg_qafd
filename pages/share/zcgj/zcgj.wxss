@@ -1,0 +1,2 @@
+/* pages/share/zcgj/zcgj.wxss */
+@import "../../industry/industryZCGJ/policyContent/policyContent.wxss";

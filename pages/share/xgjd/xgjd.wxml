@@ -1,0 +1,23 @@
+<!--pages/share/xgjd/xgjd.wxml-->
+<wxs src="../../tools.wxs" module="tools"></wxs>
+<view class="body">
+	<view class="policeContent-head">
+		<view class="pch-title">{{detail.expertTitle}}</view>
+		<view class="ssch-head">
+			<image src="{{detail.headImg||(detail.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{detail.userid}}" bindtap="goPerson"></image>
+			<view class="inline-block">
+				<view class="ssch-head-name">{{detail.userName}}</view>
+				<view class="ssch-head-date">{{tools.dateFormat(detail.createTime)}}</view>
+			</view>
+		</view>
+	</view>
+	<view class="policeContent-body">
+		<view class="pcb-show1 box-sizing">
+			<view class="v1">
+				<view class="pcb-zcyw">
+					<rich-text class="richClass" nodes="{{detail.content}}" space="nbsp"></rich-text>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

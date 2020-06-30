@@ -141,5 +141,10 @@ Page({
         }
       })
     }
-  }
+  },
+
+  //列表点击
+  goPerson: function (e) {
+    app.goPerson(e.currentTarget.dataset.id)
+  },
 })

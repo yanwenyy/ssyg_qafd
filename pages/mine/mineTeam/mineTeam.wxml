@@ -1,21 +1,21 @@
 <!--pages/mine/mineTeam/mineTeam.wxml-->
 <view class="teamManage-body box-sizing">
-	<view class="pay-head" style="{{userInfo.companyName.length>14?'height:350rpx':'height:320rpx'}}">
+	<view class="pay-head" style="{{userInfo.companyName.length>14?'height:250rpx':'height:220rpx'}}">
 		<image class="pay-bg" src="../../../img/pay-bg.png" mode="scaleToFill"></image>
 		<view class="pay-msg box-sizing">
 			<view class="pay-msg-name">{{userInfo.companyName}}</view>
-			<view class="pay-msg-time">会员企业</view>
-			<view class="pay-msg-money">
+			<!-- <view class="pay-msg-time">会员企业</view> -->
+			<!-- <view class="pay-msg-money">
 				<view class="inline-block">失效时间：{{userInfo.vaildLastTime}}</view>
 				<view class="inline-block" bindtap="goPay">去续费 ></view>
-			</view>
+			</view> -->
 		</view>
 	</view>
 	<view class="teamManage-ul-title">我的团队 可邀请{{msg.yaoQingNum}}人</view>
 	<view class="teamManage-ul">
 		<view class="teamManage-li box-sizing" wx:for="{{msg.stationsRes}}" wx:key="index" wx:if="{{item.userId}}">
 			<view class="teamManage-li-user">
-				<image class="teamManage-li-img" src="{{item.headImg}}" mode="scaleToFill"></image>
+				<image class="teamManage-li-img" src="{{item.headImg||(item.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}" mode="scaleToFill"></image>
 				<view class="teamManage-li-user-mine" wx:if="{{item.role==0&&item.userId==userInfo.uuid}}">我</view>
 			</view>
 			<view class="teamManage-li-msg inline-block" style="{{item.role==0?'width:80%':'width:70%'}}">
@@ -31,7 +31,7 @@
 				<view></view>
 			</view>
 		</view>
-		<view wx:if="{{msg.yaoQingNum>0}}" class="teamManage-li teamManage-li-yq box-sizing" bindtap="goShare" data-name="yqts" data-msg="邀请同事">
+		<view wx:if="{{msg.yaoQingNum>0}}" class="teamManage-li teamManage-li-yq box-sizing"  data-title="邀请同事" data-name="yqts" data-url="/pages/share/acspetYq/acspetYq?id={{userInfo.uuid}}" bindtap="openShare">
 			<view class="teamManage-li-user">
 				<image class="teamManage-li-img" src="../../../img/teamManage-plus.png" mode="scaleToFill"></image>
 			</view>
@@ -57,26 +57,5 @@
 			</view>
 		</view>
 	</view>
-	<view class="shadow" wx:if="{{shadow_share}}">
-		<view wx:if="{{!canvas}}" class="shadow-body coach-model box-sizing">
-			<view class="shadow-title">
-				{{shadowTitle}}
-				<image class="close-shadow" mode="scaleToFill" src="../../../img/shadow-close.png" bindtap="closeShadowShare"></image>
-			</view>
-			<view class="shadow-msg">
-				<view class="inline-block shadow-msg-model">
-					<image class="shadow-msg-model-img" src="../../../img/share-zf.png" mode="scaleToFill"></image>
-					<button open-type="share" class="shadow-msg-model-btn"></button>
-				</view>
-				<view class="inline-block shadow-msg-model">
-					<image class="shadow-msg-model-img" src="../../../img/share-tp.png" mode="scaleToFill"></image>
-					<button class="shadow-msg-model-btn" bindtap='share'></button>
-				</view>
-			</view>
-		</view>
-		<view class="canvas-bg box-sizing" style="margin-top:{{margin}}" bindtap="closeCanvas">
-			<canvas canvas-id="shareImg" class="canvas"></canvas>
-			<button class="save-canvas" catchtap='save'>保存分享图</button>
-		</view>
-	</view>
+		<share-model wx:if="{{share}}" title="{{shareTitle}}" shareName="{{shareName}}" shareUrl="{{shareUrl}}" shadow="{{share}}"/>
 </view>

@@ -70,11 +70,9 @@ Page({
   onReachBottom: function () {
     var that=this;
     if (this.data.status == true) {
-      var num = this.data.num + 1
+      var start = this.data.start + 1
       this.setData({
-        num: num,
-        start: ((num - 1) * 10) + 1,
-        end: num * 10
+        start: start
       });
       //列表数据
       var data=that.data;

@@ -10,6 +10,7 @@ Page({
     hasUserInfo: false,
     phone:'',//用户手机号
     scope:true,//用户授权信息
+    jumpUrl:'',//分享过来的页面路径
   },
 
   /**
@@ -17,6 +18,14 @@ Page({
    */
   onLoad: function (options) {
     wx.hideHomeButton();
+    var jumpUrl=options.jumpUrl;
+    console.log(jumpUrl)
+    if(jumpUrl!=null&&jumpUrl!=undefined){
+      wx.reLaunch({
+        url: '/pages/'+jumpUrl+"/"+jumpUrl,
+      })
+    }
+    
   },
 
   /**
@@ -105,6 +114,12 @@ Page({
             // }
             wx.reLaunch({
               url: '../index/index',
+            })
+          }else{
+            wx.showToast({
+              title: res.data.msg,
+              icon: 'none',
+              duration: 2000
             })
           }
         })

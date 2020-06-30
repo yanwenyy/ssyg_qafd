@@ -1,6 +1,21 @@
 //app.js
 App({
-  onShow: function () {
+  onLaunch: function() {
+    let _self = this;
+    wx.getSystemInfo({
+     success: res => {
+     let modelmes = res.model;
+     if (modelmes.search('iPhone X') != -1) {
+      _self.globalData.isIphoneX = true;
+     
+     }
+     wx.setStorageSync('modelmes', modelmes)
+     }
+    })
+   },
+  onShow: function (options) {
+    // var path=options.path,
+    //     ifAcspetYq=path.indexOf('acspetYq');
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -98,7 +113,7 @@ App({
       head_src: 'https://api.jieshuibao.com/showImg/head/',
       question_src: 'https://api.jieshuibao.com/showImg/question/'
     }
-    return test
+    return test;
   },
   //ajax
   ajax: function (url, data, succ) {
@@ -220,4 +235,36 @@ App({
       arr.splice(index, 1);
     }
   },
+
+  //是否是会员
+  ifVip:function(data){
+    if(data){
+      wx.showModal({
+        confirmText: '立即开通',
+        content: '您还不是VIP开通后解锁全部权限',
+        // showCancel:false,
+        success (res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/vip/vip',
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      return false;
+    }else{
+      return true;
+    }
+  },
+
+  //去个人中心页
+  goPerson:function(id){
+    if(id&&id!=''){
+      wx.navigateTo({
+        url: '/pages/mine/minePage/minePage?id=' +id,
+      })
+    }
+  }
 })

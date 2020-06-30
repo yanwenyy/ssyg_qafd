@@ -25,17 +25,22 @@ Page({
     postIndex: -1, //职务下标
     userInfo: {},
     must: '',
+    productId:'',//行业id
+    productName:'',//行业名字
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     var that = this;
     app.getUser(function (res) {
       var data = res.data.data;
       that.setData({
-        userInfo: data
+        userInfo: data,
+        tradeId:options.tradeId,
+        productName:options.productName
       });
     })
     if (options.must == 1) {
@@ -232,9 +237,12 @@ Page({
         "trades": "," + data.industry[data.personalIndustryindex].tradeId + ",",
       }, function (res) {
         if (res.data.code == 10000) {
-          wx.navigateTo({
-            url: '../confirmOrder/confirmOrder',
-          })
+          app.getUser(function (res) {
+            app.globalData.userInfo = res.data.data;
+            wx.redirectTo({
+              url: '../openIndustry/openIndustry?id='+that.data.tradeId+"&productName="+that.data.productName,
+            })
+          });
         } else {
           wx.showToast({
             title: res.data.msg,

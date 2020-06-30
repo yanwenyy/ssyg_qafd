@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "scopeBtn":"/components/scopeBtn/scopeBtn",
+    "ccvod": "/components/ccvod/ccvod",
+    "noMsg":"/components/noMsg/noMsg"
+  }
+}

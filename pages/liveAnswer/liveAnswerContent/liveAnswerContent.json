@@ -1,5 +1,7 @@
 {
+  "navigationBarTitleText":"直播答疑",
   "usingComponents": {
-    "ccvod": "../../../components/ccvod/ccvod"
+    "ccvod": "../../../components/ccvod/ccvod",
+    "noMsg":"../../../components/noMsg/noMsg"
   }
 }

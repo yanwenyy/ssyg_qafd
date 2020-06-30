@@ -40,7 +40,7 @@
             <view class="ask-lm-msg">{{item.content}}</view>
             <view class="ask-lm-date">
               <view class="inline-block">{{item.date}}</view>
-              <view class="inline-block green">抢答倒计时：{{countdown.countDown(systimestamp,item.endDate).day}}:{{countdown.countDown(systimestamp,item.endDate).hou}}:{{countdown.countDown(systimestamp,item.endDate).min}}:{{countdown.countDown(systimestamp,item.endDate).sec}}</view>
+              <view wx:if="{{item.status==1}}" class="inline-block green">抢答倒计时：{{countdown.countDown(systimestamp,item.endDate).hou}}:{{countdown.countDown(systimestamp,item.endDate).min}}:{{countdown.countDown(systimestamp,item.endDate).sec}}</view>
               <view wx:if="{{item.status==2}}" class="inline-block green">未采纳</view>
               <view wx:if="{{item.status==3||item.status==4||item.status==9}}" class="inline-block">已采纳</view>
               <view wx:if="{{item.status==5||item.status==6||item.status==7||item.status==8}}" class="inline-block">无人应答</view>

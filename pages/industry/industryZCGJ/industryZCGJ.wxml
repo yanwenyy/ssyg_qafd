@@ -1,7 +1,7 @@
 <!--pages/industry/industryZCGJ/industryZCGJ.wxml-->
 <wxs module="tools" src="../../tools.wxs"></wxs>
-<view style="height:100%;position:fixed;width:100%;">
-	<scroll-view scroll-y="false" bindscroll="scroll" bindscrolltolower="scrollBottom" scroll-top="{{scrollTop}}" style="height:100%;">
+<view style="height:auto;position:relative;width:100%;">
+	<!-- <scroll-view scroll-y="false" bindscroll="scroll" bindscrolltolower="scrollBottom" scroll-top="{{scrollTop}}" style="height:100%;"> -->
 		<view class="bannercontainer">
 			<view class="course-head">
 				<view class="inline-block course-search">
@@ -11,12 +11,14 @@
 				<view class="inline-block">搜索</view>
 			</view>
 			<view class="index-head-card">
-				<image class="index-head-card-img" src="../../../img/index-head-bg.png" mode="aspectFit"></image>
+				<image class="index-head-card-img" src="../../../img/index-head-bg.png" mode="scaleToFill"></image>
 				<view class="index-head-card-msg box-sizing">
 					<view class="index-hcm-title">您的专属行业</view>
 					<view class="index-hcm-name">
 						<view class="inline-block index-hcm-name-msg">
-							<image class="inline-block" src="{{'http://'+headTrade.tradeIcon}}" mode="aspectFit"></image>
+							<view class="inline-block index-hcm-name-img box-sizing">
+								<image class="inline-block" src="{{'http://'+headTrade.tradeIcon}}" mode="aspectFit"></image>
+							</view>
 							<text>{{headTrade.tradeName}}</text>
 						</view>
 					</view>
@@ -24,7 +26,7 @@
 				</view>
 			</view>
 		</view>
-		<view class="page-group box-sizing {{scrollTop > 140 ? 'page-group-position' : ''}}">
+		<view class="page-group box-sizing {{scrollTop > headHeight ? 'page-group-position' : ''}}">
 			<view class="page-nav-list inline-block" bindtap="navClick" data-txt="税种">
 				<view class="{{navText=='税种'?'green':''}}">
 					{{taxId==''?'税种':taxMsg}}
@@ -46,39 +48,42 @@
 				</view>
 				<text wx:if="{{navText=='时效性'}}" class="nav-line"></text>
 			</view>
-			<view class="page-nav-list inline-block" bindtap="navClick" data-txt="地域">
-				<view class="{{navText=='地域'?'green':''}}">
-					<!-- 地域 -->
-					<picker mode="region" bindcancel="bindRegionCancel" bindchange="bindRegionChange" value="{{regionList}}" custom-item="{{customItem}}">
+			<view class="page-nav-list inline-block" bindtap="navClick" data-txt="地域" data-region="yes">
+				<view style="width:100%;height:100%"  class="{{navText=='地域'?'green':''}}">
+					{{region!=''||province!=''?regionMsg:'地域'}}
+					<region bind:change="regionChange"/>
+					<!-- <picker mode="region" bindcancel="bindRegionCancel" bindchange="bindRegionChange" value="{{regionList}}" custom-item="{{customItem}}">
 						<view class="picker">
-							{{region!=''?regionMsg:'地域'}}
+							{{region!=''||province!=''?regionMsg:'地域'}}
 							<image style="margin-left:5rpx" class="page-nav-img" src="../../../img/{{navText=='地域'?'sel-act':'sel'}}.png" mode="aspectFit"></image>
 						</view>
-					</picker>
+					</picker> -->
+					<image style="margin-left:5rpx" class="page-nav-img" src="../../../img/{{navText=='地域'?'sel-act':'sel'}}.png" mode="aspectFit"></image>
 				</view>
 				<text wx:if="{{navText=='地域'}}" class="nav-line"></text>
 			</view>
+			<view class="nav-sel-mask" wx:if="{{navSel}}">
+				<view wx:if="{{navText=='税种'}}" class="nav-sel box-sizing {{taxList.length>3?'':'nav-sel-h-a'}}">
+					<view class="nav-opt" bindtap="navOptClick" data-type="sz" data-id="" data-msg="">全部</view>
+					<view wx:for="{{taxList}}" wx:key="index" class="nav-opt" bindtap="navOptClick" data-type="sz" data-id="{{item.taxId}}" data-msg="{{item.taxName}}">{{item.taxName}}</view>
+				</view>
+				<view wx:if="{{navText=='发布年份'}}" class="nav-sel box-sizing {{yearList.length>3?'':'nav-sel-h-a'}}">
+					<view class="nav-opt" bindtap="navOptClick" data-type="fbnf" data-msg="">全部</view>
+					<view wx:for="{{yearList}}" data-type="fbnf" wx:key="index" class="nav-opt" bindtap="navOptClick" data-msg="{{item}}">{{item}}</view>
+				</view>
+				<view wx:if="{{navText=='时效性'}}" class="nav-sel box-sizing {{timeList.length>3?'':'nav-sel-h-a'}}">
+					<view class="nav-opt" bindtap="navOptClick" data-type="sxx" data-id="" data-msg="">全部</view>
+					<view wx:for="{{timeList}}" data-type="sxx" wx:key="index" class="nav-opt" bindtap="navOptClick" data-id="{{item.id}}" data-msg="{{item.name}}">{{item.name}}</view>
+				</view>
+			</view>
 		</view>
-		<view class="nav-sel-mask" wx:if="{{navSel}}">
-			<view wx:if="{{navText=='税种'}}" class="nav-sel box-sizing">
-				<view class="nav-opt" bindtap="navOptClick" data-type="sz" data-id="" data-msg="">全部</view>
-				<view wx:for="{{taxList}}" wx:key="index" class="nav-opt" bindtap="navOptClick" data-type="sz" data-id="{{item.taxId}}" data-msg="{{item.taxName}}">{{item.taxName}}</view>
-			</view>
-			<view wx:if="{{navText=='发布年份'}}" class="nav-sel box-sizing">
-				<view class="nav-opt" bindtap="navOptClick" data-type="fbnf" data-msg="">全部</view>
-				<view wx:for="{{yearList}}" data-type="fbnf" wx:key="index" class="nav-opt" bindtap="navOptClick" data-msg="{{item}}">{{item}}</view>
-			</view>
-			<view wx:if="{{navText=='时效性'}}" class="nav-sel box-sizing">
-				<view class="nav-opt" bindtap="navOptClick" data-type="sxx" data-id="" data-msg="">全部</view>
-				<view wx:for="{{timeList}}" data-type="sxx" wx:key="index" class="nav-opt" bindtap="navOptClick" data-id="{{item.id}}" data-msg="{{item.name}}">{{item.name}}</view>
-			</view>
-		</view>
-		<view class="goods-list {{scrollTop > 140 ? 'goods-list-padding' : ''}}">
+		
+		<view class="goods-list {{scrollTop > headHeight ? 'goods-list-padding' : ''}}">
 			<view bindtap="zcClick" class="goods-list-li box-sizing" wx:for="{{list}}" wx:key="index" data-id="{{item.id}}">
 				<view class="goods-list-li-title">{{item.title}}</view>
 				<view class="goods-list-li-file">[ {{item.fileNum}} ]</view>
-				<view class="goods-list-li-date">发布时间：{{tools.dateFormat(item.officialReleaseDate)}}</view>
+				<view class="goods-list-li-date">发布时间：{{tools.dateFormat(item.officialReleaseDate,"yyyy-MM-dd")}}</view>
 			</view>
 		</view>
-	</scroll-view>
+	<!-- </scroll-view> -->
 </view>

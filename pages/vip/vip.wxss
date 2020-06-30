@@ -3,7 +3,7 @@
   /* position: fixed;
   bottom:0;
   left: 0; */
-  margin-top:127rpx;
+  margin-top:140rpx;
   width: 100%;
   background: #fff;
 }
@@ -63,18 +63,32 @@
   color:#644535;
   margin-top:10rpx;
 }
-.vip-list-industry>image{
-  width:40rpx;
-  height: 41rpx;
+.card-icon{
+  width: 51rpx;
+  height: 51rpx;
+  line-height: 51rpx;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.3);
   vertical-align: middle;
-  margin-top:-5rpx;
+}
+.card-icon>image{
+  width:36rpx;
+  height: 31rpx;
+  /* vertical-align: middle; */
+  margin:10rpx 7rpx;
+  display: block;
+  /* margin-top:-5rpx; */
 }
 .vip-list-date{
   font-size: 24rpx;
   color:#98897B;
   display: flex;
   justify-content: space-between;
-  margin-top:75rpx;
+  /* margin-top:75rpx; */
+  position: absolute;
+  bottom: 50rpx;
+  width: 80%;
+  text-align: right;
 }
 /*  */
 .vip-bg{

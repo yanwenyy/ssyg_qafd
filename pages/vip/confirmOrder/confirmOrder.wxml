@@ -16,9 +16,9 @@
 			</view>
 			<view class="order-date">有效期至:{{tools.dateFormat(goodsInfo.endDate,'yyyy-MM-dd')}}</view>
 			<view class="inline-block order-name-right">¥{{goodsInfo.price}}</view>
-			<view class="coupon-list">
+			<view class="coupon-list"  wx:if="{{false}}">
 				<view class="inline-blcok">优惠券</view>
-				<view data-id="{{goodsInfo.discount_id}}" bindtap="goCoupon" wx:if="{{true}}" class="inline-blcok green">- ¥300.00 > </view>
+				<view data-id="{{goodsInfo.discount_id}}" bindtap="goCoupon" wx:if="{{true}}" class="inline-blcok green">- ¥0 > </view>
 				<view data-id="{{goodsInfo.discount_id}}" bindtap="goCoupon" wx:if="{{false}}" class="inline-blcok green">1张可用 > </view>
 				<view data-id="{{goodsInfo.discount_id}}" bindtap="goCoupon" wx:if="{{false}}" class="inline-blcok gray">暂无抵用券可用 > </view>
 			</view>

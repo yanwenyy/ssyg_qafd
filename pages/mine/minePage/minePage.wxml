@@ -1,11 +1,19 @@
 <!--pages/mine/minePage/minePage.wxml-->
+<wxs module="suc">
+function splitTile(val,num){
+	return val=val.length>num?val.slice(0,num)+"...":val
+}
+module.exports = {
+  splitTile : splitTile,
+}
+</wxs>
 <wxs module="tools" src="../../tools.wxs"></wxs>
 <view class="body">
 	<view class="mp-head box-sizing">
 		<view>
-			<image class="mp-usrimg head-img" src="{{introMsg.headImg}}" mode="aspectFit"></image>
+			<image class="mp-usrimg head-img" src="{{introMsg.headImg||(introMsg.identity==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit"></image>
 			<view class="inline-block">
-				<view class="mp-usrname">{{introMsg.userName}}</view>
+				<view class="mp-usrname">{{introMsg.realName||introMsg.userName}}</view>
 				<view class="mp-usrlabel inline-block" wx:for="{{introMsg.identity}}" wx:key="index" wx:if="{{item!=0}}">{{item==1?'专家':'讲师'}}</view>
 			</view>
 		</view>
@@ -17,7 +25,7 @@
 			<text>{{introMsg.introduce!=''&&introMsg.introduce!=null?introMsg.introduce:'还没有介绍，谢一句话吧，让更多人了解您'}}</text>
 			<image wx:if="{{introMsg.userId==userInfo.uuid}}" src="../../../img/set-go.png" mode="aspectFit" bindtap="introClick"></image>
 		</view>
-		<view class="mp-btn" wx:if="{{!tabMsg.ifAttention}}" bindtap="gzClick">+关注</view>
+		<view class="mp-btn {{!tabMsg.ifAttention?'mp-btn-act':''}}" data-attention="{{tabMsg.ifAttention}}" bindtap="gzClick">{{tabMsg.ifAttention?'取消关注':'+关注'}}</view>
 	</view>
 	<view class="mp-body">
 		<view class="mp-body-nav">
@@ -57,7 +65,7 @@
 					</view>
 					<text>{{tools.dateFormat(item.careadate)}}</text>
 				</view>
-				<view class="dt-list-title" style="margin-bottom:31rpx">
+				<view wx:if="{{item.type==0}}" class="dt-list-title" style="margin-bottom:31rpx">
 					{{item.content}}
 				</view>
 				<view class="ifx-list shadow-model box-sizing">
@@ -80,6 +88,7 @@
 					</view>
 				</view>
 			</view> -->
+			<noMsg wx:if="{{list==''}}" imgUrl="no-dt" msg="暂无动态"></noMsg>
 		</view>
 		<view wx:if="{{navMsg=='文章'}}" class="wz">
 			<scroll-view class="ifx-tab-list" scroll-x="true">
@@ -87,29 +96,29 @@
 				<view class="inline-block ifx-tab {{wzTabMsg=='风险提示'?'ifx-tab-act':''}}" bindtap="wzTabClick" data-msg="风险提示" data-url="trisk/list">风险提示</view>
 				<view class="inline-block ifx-tab {{wzTabMsg=='税收筹划'?'ifx-tab-act':''}}" bindtap="wzTabClick" data-msg="税收筹划" data-url="taxplan/list">税收筹划</view>
 			</scroll-view>
-			<view class="zcgj" wx:if="wzTabMsg=='政策归集'">
+			<view class="zcgj" wx:if="{{wzTabMsg=='政策归集'}}">
 				<view class="wz-list" wx:for="{{list}}" wx:key="index" bindtap="listClick" data-id="{{item.id}}" data-type="1">
 					<view class="wz-date">{{tools.dateFormat(item.createTime)}}</view>
 					<view class="ifx-list shadow-model box-sizing">
-						<view class="ifx-list-title">{{item.title}}</view>
+						<view class="ifx-list-title">{{item.title||''}}</view>
 						<view class="ifx-list-label">
 							[ {{item.fileNum}} ]
 						</view>
-						<view class="new-date">{{tools.dateFormat(item.officialReleaseDate,"yyyy-mm-dd")}}</view>
+						<view class="new-date">{{tools.dateFormat(item.officialReleaseDate,"yyyy-MM-dd")}}</view>
 					</view>
 				</view>
 			</view>
-			<view class="fxts" wx:if="wzTabMsg=='风险提示'">
+			<view class="fxts" wx:if="{{wzTabMsg=='风险提示'}}">
 				<view class="ifx-list shadow-model box-sizing"  wx:for="{{list}}" wx:key="index" bindtap="listClick" data-id="{{item.id}}" data-type="3">
 					<view class="ifx-list-head">
-						<image src="{{item.headImg}}" mode="aspectFit"></image>
+						<image src="{{item.headImg||(item.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
 						<view class="inline-block">
-							<view class="ifx-list-head-name">{{item.userName}}</view>
-							<view class="ifx-list-head-date">{{tools.dateFormat(item.createTime)}}</view>
+							<view class="ifx-list-head-name">{{item.ifPlatformAuthor==1?item.realName:item.lecturer}}</view>
+							<view class="ifx-list-head-date">{{tools.dateFormat(item.creatTime)}}</view>
 						</view>
 					</view>
 					<view class="ifx-list-title">{{item.title}}</view>
-					<view class="ifx-list-content">{{item.content}}</view>
+					<view class="ifx-list-content">{{item.summary||''}}</view>
 					<view class="ifx-list-label">
 						<text class="green">#{{item.attributeName}}</text>
 					</view>
@@ -131,17 +140,17 @@
 					</view>
 				</view>
 			</view>
-			<view class="ssch" wx:if="wzTabMsg=='税收筹划'">
+			<view class="ssch" wx:if="{{wzTabMsg=='税收筹划'}}">
 				<view class="ifx-list shadow-model box-sizing"  wx:for="{{list}}" wx:key="index" bindtap="listClick" data-id="{{item.id}}" data-type="4">
 					<view class="ifx-list-head">
-						<image src="{{item.headImg}}" mode="aspectFit"></image>
+						<image src="{{item.headImg||(item.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
 						<view class="inline-block">
-							<view class="ifx-list-head-name">{{item.userName}}</view>
-							<view class="ifx-list-head-date">{{tools.dateFormat(item.createTime)}}</view>
+							<view class="ifx-list-head-name">{{item.ifPlatformAuthor==1?item.realName:item.lecturer}}</view>
+							<view class="ifx-list-head-date">{{tools.dateFormat(item.creatTime)}}</view>
 						</view>
 					</view>
 					<view class="ifx-list-title">{{item.title}}</view>
-					<view class="ifx-list-content">{{item.content}}</view>
+					<view class="ifx-list-content">{{item.summary||''}}</view>
 					<view class="ifx-list-label">
 						<text class="green">#{{item.attributeName}}</text>
 					</view>
@@ -163,22 +172,25 @@
 					</view>
 				</view>
 			</view>
+			<noMsg wx:if="{{list==''}}" imgUrl="no-wz" msg="暂无发布文章"></noMsg>
 		</view>
 		<view wx:if="{{navMsg=='直播'}}" class="zb">
 			<view class="shadow-model zb-list box-sizing inline-block" wx:for="{{list}}" wx:key="index" bindtap="listClick" data-id="{{item.id}}" data-type="8">
 				<view class="zb-list-title">
-					<image wx:if="item.status==2" src="../../../img/zb-ing.png" mode="aspectFit"></image>
-					<image wx:if="item.status==1" src="../../../img/zb-yg.png" mode="aspectFit"></image>
-					<text wx:if="item.status==1">预告</text>
-					<text wx:if="item.status==2">直播中</text>
-					<text wx:if="item.status==3">直播结束</text>
-					<text wx:if="item.status==4">回放</text>
+					<image wx:if="{{item.status==2}}" src="../../../img/zb-ing.png" mode="aspectFit"></image>
+					<image wx:if="{{item.status==1}}" src="../../../img/zb-yg.png" mode="aspectFit"></image>
+					<image wx:if="{{item.status==4}}" src="../../../img/zb-hf.png" mode="aspectFit"></image>
+					<image wx:if="{{item.status==3}}" src="../../../img/zb-js.png" mode="aspectFit"></image>
+					<text wx:if="{{item.status==1}}">预告</text>
+					<text wx:if="{{item.status==2}}">直播中</text>
+					<text wx:if="{{item.status==3}}">直播结束</text>
+					<text wx:if="{{item.status==4}}">回放</text>
 				</view>
 				<view class="zb-list-msg">
-					<image class="zb-list-msg-img" src="http://{{item.coverUrl}}" mode="aspectFit"></image>
+					<image class="zb-list-msg-img" src="http://{{item.lecturerUrl}}" mode="scaleToFill"></image>
 					<view class="zb-list-msg-right inline-block">
-						<view class="zb-lmr-title">{{item.title}}</view>
-						<view class="zb-lmr-name">讲师：{{item.userName}}</view>
+						<view class="zb-lmr-title">{{suc.splitTile(item.title,23)}}</view>
+						<view class="zb-lmr-name">讲师：{{item.ifPlatformAuthor==1?item.realName:item.lecturer}}</view>
 						<view class="zb-lmr-date">时间：{{tools.dateFormat(item.startTime)}}</view>
 						<view class="zb-lmr-class">
 							<view class="inline-block">{{item.tradeName}}</view>
@@ -186,16 +198,18 @@
 					</view>
 				</view>
 			</view>
+			<noMsg wx:if="{{list==''}}" imgUrl="no-zb" msg="暂无直播"></noMsg>
 		</view>
 		<view wx:if="{{navMsg=='课程'}}" class="kc">
 			<view wx:for="{{list}}" wx:key="index" class="course-list shadow-model box-sizing"  bindtap="listClick" data-id="{{item.id}}" data-type="7">
 				<image src="http://{{item.coverUrl}}" mode="aspectFit"></image>
 				<view class="inline-block course-list-right">
-					<view class="course-list-right-name">{{item.title}}</view>
-					<view>{{item.userName}}</view>
+					<view class="course-list-right-name">{{suc.splitTile(item.title,16)}}</view>
+					<view>{{item.ifPlatformAuthor==1?item.realName:item.lecturer}}</view>
 					<view class="vip-course" wx:if="{{item.ifFree==1}}">VIP课程</view>
 				</view>
 			</view>
+			<noMsg wx:if="{{list==''}}" imgUrl="no-kc" msg="暂无课程"></noMsg>
 		</view>
 	</view>
   <view wx:if="{{intro}}" class="shadow">
@@ -205,7 +219,7 @@
         <image bindtap="closeShadow" class="shadow-close" src="../../../img/shadow-close.png" mode="scaleToFill"></image>
       </view>
       <view class="shadow-body-ul box-sizing">
-					<textarea bindinput="introInput" class="box-sizing" placeholder="请输入您的介绍"></textarea>
+					<textarea value="{{introMsg.introduce}}" bindinput="introInput" class="box-sizing" placeholder="请输入您的介绍"></textarea>
       </view>
       <view bindtap="sub" class="sub-msg-hy box-sizing">
         <view class="inline-block">确定</view>

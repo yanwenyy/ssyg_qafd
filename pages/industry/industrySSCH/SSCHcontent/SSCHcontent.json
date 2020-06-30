@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText":"税收筹划",
+  "usingComponents": {
+    "noMsg":"../../../../components/noMsg/noMsg"
+  }
 }

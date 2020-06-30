@@ -12,11 +12,21 @@
   border-radius: 31rpx;
   background: #F2F2F2;
   margin-right: 25rpx;
+  box-sizing: border-box;
 }
 .ifx-tab-act{
+  font-size: 26rpx;
+  height: 61rpx;
+  line-height: 61rpx;
+  padding:0 37rpx;
+  text-align: center;
+  margin-right: 25rpx;
   background:rgba(242,251,250,1);
-  border:2px solid rgba(40,183,163,1);
+  border:2rpx solid rgba(40,183,163,1);
   color:#28B7A3;
+  box-sizing: border-box;
+  padding-top: -2rpx;
+  border-radius: 33rpx;
 }
 .ifx-list{
   padding:42rpx 38rpx;
@@ -32,7 +42,7 @@
 }
 .ifx-list-head-name{
   font-size: 26rpx;
-  margin-bottom: 7rpx;
+  /* margin-bottom: 7rpx; */
 }
 .ifx-list-head-date{
   font-size: 22rpx;
@@ -40,7 +50,7 @@
 }
 .ifx-list-title{
   font-size: 30rpx;
-  line-height: 43rpx;
+  line-height: 44rpx;
   margin:30rpx 0 23rpx 0;
 }
 .ifx-list-content{
@@ -56,6 +66,7 @@
 .ifx-foot{
   display: flex;
   justify-content: space-between;
+  margin-top: 21rpx;
 }
 .ifx-foot-list{
   width: 55rpx;

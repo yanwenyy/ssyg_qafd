@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "scopeBtn":"/components/scopeBtn/scopeBtn"
+  }
+}

@@ -1,18 +1,24 @@
 <!--pages/industry/industryChange/industryChange.wxml-->
-<view class="container">
+<view class="container ich-body">
 	<view class="ich-intro">请选择您的定制行业，省税一哥将为您提供精准的行业内容服务。</view>
 	<view>
 		<view class="ich-title">已开通行业</view>
 		<radio-group class="radio-group" bindchange="openChange">
 			<view class="hyradio" wx:for-items="{{items}}" wx:key="*this">
 				<text>{{item.tradeName}}</text>
-				<radio class="radio " value="{{item.tradeId}}" checked="{{item.if_customize==1}}"></radio>
+				<view class="inline-block">
+					<text wx:if="{{item.tradeVisiblePower==1}}" class="green">免费看</text>
+					<radio class="radio " value="{{item.tradeId}}" checked="{{item.if_customize==1}}"></radio>
+				</view>
 			</view>
 			<view wx:if="{{items==''}}" class="open-no-msg">您当前暂未开通付费行业</view>
 			<view class="ich-title">未开通行业</view>
 			<view class="hyradio" wx:for-items="{{itemsno}}" wx:key="*this">
 				<text>{{item.tradeName}}</text>
-				<radio class="radio " value="{{item.tradeId}}" checked="{{item.if_customize==1}}"></radio>
+				<view class="inline-block">
+					<text wx:if="{{item.tradeVisiblePower==1}}" class="green">免费看</text>
+					<radio class="radio " value="{{item.tradeId}}" checked="{{item.if_customize==1}}"></radio>
+				</view>
 			</view>
 		</radio-group>
 	</view>

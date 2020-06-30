@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText":"风险提示",
+  "usingComponents": {
+    "noMsg":"../../../../components/noMsg/noMsg"
+  }
 }

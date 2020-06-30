@@ -7,10 +7,12 @@ Page({
    */
   data: {
     headTrade: null, //头部行业信息
+    headHeight:0,//头部的高度
     scrollTop: null,
     navText: '', //导航选中文字
     navSel: false, //导航选择框显示
     tradeId: '', //行业id
+    province: '',//省份
     region: '', //地区
     regionMsg: '', //tab地区显示
     customItem: '全部',
@@ -21,7 +23,7 @@ Page({
     timeMsg: '',
     year: '', //发布年份
     start: 1, //起始页
-    num: 5, //每页显示条数
+    num: 10, //每页显示条数
     status: true, //是否还有数据
     list: [], //政策列表
     taxList: [], //税种列表
@@ -35,6 +37,13 @@ Page({
   onLoad: function (options) {
     var that = this;
 
+    var query = wx.createSelectorQuery();
+    query.select('.bannercontainer').boundingClientRect(function (rect) {
+      // console.log(rect.height)
+      that.setData({
+        headHeight: rect.height
+      })
+    }).exec();
     //税种列表
     app.ajax_nodata("/minitax/tax/list", function (res) {
       that.setData({
@@ -62,7 +71,7 @@ Page({
         headTrade: res.data.data,
         tradeId: res.data.data.tradeId
       })
-      that.getList(data.start, data.num, data.tradeId, data.region, data.taxId, data.timeLinessId, data.year);
+      that.getList(data.start, data.num, data.tradeId, data.province, data.region, data.taxId, data.timeLinessId, data.year)
     });
   },
 
@@ -77,7 +86,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-   
+
   },
 
   /**
@@ -105,8 +114,14 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log(111)
-   
+    var data = this.data;
+    if (this.data.status == true) {
+      var start = this.data.start + 1
+      this.setData({
+        start: start
+      });
+      this.getList(data.start, data.num, data.tradeId, data.province, data.region, data.taxId, data.timeLinessId, data.year)
+    }
   },
 
   /**
@@ -117,30 +132,21 @@ Page({
   },
 
   //滚动条监听
-  scroll: function (e) {
+  onPageScroll: function (e) {
+    // console.log(e.scrollTop)
     this.setData({
-      scrollTop: e.detail.scrollTop
+      scrollTop: e.scrollTop,
+      navSel: false
     })
-  },
-
-  //滚动到底部
-  scrollBottom:function(e){
-    var data = this.data;
-    if (this.data.status == true) {
-      this.setData({
-        start: this.data.start + 1
-      });
-      this.getList(data.start, data.num, data.tradeId, data.region, data.taxId, data.timeLinessId, data.year)
-    }
   },
 
   //导航点击事件
   navClick: function (e) {
     this.setData({
-      scrollTop: 141,
+      // scrollTop: this.data.headHeight+1,
       navText: e.currentTarget.dataset.txt,
-      navSel: true
-    })
+      navSel: e.currentTarget.dataset.region!='yes'?true:false
+    });
   },
 
   //导航筛选点击
@@ -148,12 +154,12 @@ Page({
     var data = this.data;
     var dataset = e.currentTarget.dataset;
     this.setData({
-      scrollTop: 139,
+      // scrollTop: this.data.headHeight-1,
       navSel: false,
       start: 1, //起始页
-      num: 5, //每页显示条数
+      num: 10, //每页显示条数
       status: true, //是否还有数据
-      list:[],
+      list: [],
     });
     if (dataset.type == 'sz') {
       this.setData({
@@ -170,29 +176,30 @@ Page({
         timeMsg: dataset.msg
       });
     }
-    this.getList(data.start, data.num, data.tradeId, data.region, data.taxId, data.timeLinessId, data.year)
+    this.getList(data.start, data.num, data.tradeId, data.province, data.region, data.taxId, data.timeLinessId, data.year)
   },
 
   //政策列表点击
   zcClick: function (e) {
     wx.navigateTo({
-      url: 'policyContent/policyContent?policyId='+e.currentTarget.dataset.id,
+      url: 'policyContent/policyContent?policyId=' + e.currentTarget.dataset.id,
     })
   },
 
   //获取列表
-  getList: function (current, pageSize, tradeId, region, taxId, timeLinessId, year) {
+  getList: function (current, pageSize, tradeId, province, region, taxId, timeLinessId, year) {
     var that = this;
     app.ajax('/minitax/policy/list', {
       "current": current,
       "pageSize": pageSize,
       "tradeId": tradeId,
+      "province": province,
       "region": region,
       "taxId": taxId,
       "timeLinessId": timeLinessId,
       "year": year
     }, function (res) {
-      var datas=res.data.data;
+      var datas = res.data.data;
       if (datas && datas != '') {
         var list_change = that.data.list;
         for (var i in datas) {
@@ -201,7 +208,7 @@ Page({
         that.setData({
           list: list_change
         });
-      }else{
+      } else {
         that.setData({
           status: false
         })
@@ -213,45 +220,51 @@ Page({
   bindRegionChange: function (e) {
     var data = this.data;
     console.log('picker发送选择改变，携带值为', e.detail.value)
-    if (e.detail.value[1] == '全部') {
-      this.setData({
-        region: '',
-        regionMsg: '',
-        scrollTop: 139,
-        navSel: false,
-        start: 1, //起始页
-        num: 5, //每页显示条数
-        status: true, //是否还有数据
-        list:[],
-      })
-    } else {
-      this.setData({
-        region: e.detail.value[1],
-        regionMsg: e.detail.value[1].length > 4 ? e.detail.value[1].slice(0, 4) + "..." : e.detail.value[1],
-        scrollTop: 139,
-        navSel: false,
-        start: 1, //起始页
-        num: 5, //每页显示条数
-        status: true, //是否还有数据
-        list:[],
-      })
-    }
-    this.getList(data.start, data.num, data.tradeId, data.region, data.taxId, data.timeLinessId, data.year)
+    this.setData({
+      province: e.detail.value[0] == '全部' ? '' : e.detail.value[0],
+      region: e.detail.value[1] == '全部' ? '' : e.detail.value[1],
+      regionMsg: e.detail.value[1] == '全部' ? e.detail.value[0] : (e.detail.value[1].length > 4 ? e.detail.value[1].slice(0, 4) + "..." : e.detail.value[1]),
+      // scrollTop: this.data.headHeight-1,
+      navSel: false,
+      start: 1, //起始页
+      num: 10, //每页显示条数
+      status: true, //是否还有数据
+      list: [],
+    })
+    this.getList(data.start, data.num, data.tradeId, data.province, data.region, data.taxId, data.timeLinessId, data.year)
   },
 
   //地区取消点击
   bindRegionCancel: function () {
     var data = this.data;
     this.setData({
-      scrollTop: 139,
+      // scrollTop: this.data.headHeight-1,
       navSel: false
     })
   },
-  
+
   //搜索框点击
-  search:function(){
+  search: function () {
     wx.navigateTo({
       url: 'search/search',
     })
+  },
+
+  //地区组件传值
+  regionChange: function(e){
+    console.log(e.detail);
+    var data = this.data;
+    this.setData({
+      province: e.detail.province!='全部'?e.detail.province:'',
+      region: e.detail.city,
+      regionMsg: e.detail.province == '全国' ? e.detail.province : (e.detail.city.length > 4 ? e.detail.city.slice(0, 4) + "..." : e.detail.city),
+      // scrollTop: this.data.headHeight-1,
+      navSel: false,
+      start: 1, //起始页
+      num: 10, //每页显示条数
+      status: true, //是否还有数据
+      list: [],
+    })
+    this.getList(data.start, data.num, data.tradeId, data.province, data.region, data.taxId, data.timeLinessId, data.year)
   }
 })

@@ -6,37 +6,41 @@ Page({
    * 页面的初始数据
    */
   data: {
-    industryList:[],//行业列表
-    industryId:'',//行业id
+    industryList: [], //行业列表
+    industryId: '', //行业id
     product: false, //商品弹框
-    productList:[],
+    productName:'',
+    productList: [],
     userInfo: null,
-    productId:'',//商品id
+    productId: '', //商品id
+    from:'',//來源
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
+    var that = this;
     this.setData({
       userInfo: app.globalData.userInfo,
-      industryId:options.id||'',
-      product:options.id? true:false
+      industryId: options.id || '',
+      product: options.id ? true : false,
+      productName:options.productName||'',
+      from:options.id ? 'other' : '',
     });
-     //用户选择开通行业
-     app.ajax_nodata("/minitax/user/opentrade",function(res){
+    //用户选择开通行业
+    app.ajax_nodata("/minitax/user/opentrade", function (res) {
       that.setData({
-        industryList:res.data.data
+        industryList: res.data.data
       })
     });
-    if(this.data.industryId!=''){
-      app.ajax_nodata("/minitax/trade/goods/"+that.data.industryId,function(res){
+    if (this.data.industryId != '') {
+      app.ajax_nodata("/minitax/trade/goods/" + that.data.industryId, function (res) {
         that.setData({
           product: true,
-          industryId:that.data.industryId,
-          productList:res.data.data,
-          productId:res.data.data[0].goodsId
+          industryId: that.data.industryId,
+          productList: res.data.data,
+          productId: res.data.data[0].goodsId
         });
       })
     }
@@ -92,22 +96,30 @@ Page({
   },
 
   hyClick: function (e) {
-    var that=this;
-    if (e.currentTarget.dataset.status == 1) {
-      console.log(e.currentTarget.dataset)
-      wx.navigateTo({
-        url: '../confirmOrder/confirmOrder?productId='+e.currentTarget.dataset.goodsid,
-      })
+    var that = this;
+    if (this.data.userInfo.companyId != '' && this.data.userInfo.companyId != null) {
+      if (e.currentTarget.dataset.status == 1) {
+        console.log(e.currentTarget.dataset)
+        wx.navigateTo({
+          url: '../confirmOrder/confirmOrder?productId=' + e.currentTarget.dataset.goodsid,
+        })
+      } else {
+        app.ajax_nodata("/minitax/trade/goods/" + e.currentTarget.dataset.id, function (res) {
+          that.setData({
+            product: true,
+            industryId: e.currentTarget.dataset.id,
+            productList: res.data.data,
+            productId: res.data.data[0].goodsId,
+            productName:e.currentTarget.dataset.name
+          });
+        })
+      }
     } else {
-      app.ajax_nodata("/minitax/trade/goods/"+e.currentTarget.dataset.id,function(res){
-        that.setData({
-          product: true,
-          industryId:e.currentTarget.dataset.id,
-          productList:res.data.data,
-          productId:res.data.data[0].goodsId
-        });
+      wx.navigateTo({
+        url: '../editMsg/editMsg?source=company&tradeId=' + e.currentTarget.dataset.id+"&productName="+e.currentTarget.dataset.name
       })
     }
+
   },
 
   //关闭弹窗
@@ -125,19 +137,19 @@ Page({
     if (this.data.userInfo.companyId != '' && this.data.userInfo.companyId != null) {
       console.log(this.data.userInfo.companyId);
       wx.navigateTo({
-        url: '../confirmOrder/confirmOrder?productId='+this.data.productId,
+        url: '../confirmOrder/confirmOrder?productId=' + this.data.productId,
       })
     } else {
       wx.navigateTo({
-        url: '../editMsg/editMsg?source=company?productId='+this.data.productId,
+        url: '../editMsg/editMsg?source=company&tradeId=' + this.data.industryId+"&productName="+this.data.productName
       })
     }
   },
 
   //商品列表点击
-  productClick:function(e){
+  productClick: function (e) {
     this.setData({
-      productId:e.currentTarget.dataset.id
+      productId: e.currentTarget.dataset.id
     })
   }
 })

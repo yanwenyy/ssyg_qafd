@@ -16,12 +16,12 @@ Page({
     autoplay: true,
     interval: 2000,
     duration: 500,
-    liveList:[],//直播答疑列表
+    liveList: [], //直播答疑列表
     courseList: [], //精选好课列表
-    newList:[],//新闻中心列表
+    newList: [], //新闻中心列表
     newStart: 1, //起始页
     newNum: 3, //每页显示条数
-    askMsg:null,//咨询信息
+    askMsg: null, //咨询信息
   },
   //事件处理函数
   bindViewTap: function () {
@@ -30,7 +30,6 @@ Page({
     })
   },
   onShow: function () {
-
     var that = this;
     if (app.globalData.userInfo) {
       console.log(1);
@@ -62,6 +61,16 @@ Page({
       }
     }
   },
+
+  onMyEvent: function (e) {
+    this.onShow();
+  },
+
+
+  onPageScroll: function (e) {
+    // console.log(e.scrollTop)
+  },
+
   getUserInfo: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
@@ -80,14 +89,16 @@ Page({
     app.ajax_nodata("/minitax/trade/user", function (res) {
       that.setData({
         ifDZ: res.data.data.ifCustomize == '1' ? false : true,
-        industryIndex: res.data.data
+        industryIndex: res.data.data,
+        vipTime:res.data.data.trVipTime
       })
     });
 
     //用户当前定制的行业
     app.ajax_nodata("/minitax/select/trade", function (res) {
       that.setData({
-        tradeId: res.data.data.tradeId
+        tradeId: res.data.data.tradeId,
+        mfk: res.data.data.tradeVisiblePower
       })
     });
 
@@ -107,13 +118,19 @@ Page({
       });
 
       //直播答疑
-       app.ajax("/minitax/broadacast/list", {
+      app.ajax("/minitax/broadacast/list", {
         "current": 1,
         "pageSize": 10,
         "tradeId": that.data.tradeId,
       }, function (res) {
+        var datas=res.data.data;
+        var list_change = [];
+        for (var i in datas) {
+          datas[i].title=datas[i].title.length>18?datas[i].title.slice(0,18)+"...":datas[i].title
+          list_change.push(datas[i])
+        }
         that.setData({
-          liveList: res.data.data
+          liveList: list_change
         })
       })
 
@@ -123,20 +140,26 @@ Page({
         "pageSize": 10,
         "tradeId": that.data.tradeId,
       }, function (res) {
+        var datas=res.data.data;
+        var list_change = [];
+        for (var i in datas) {
+          datas[i].title=datas[i].title.length>16?datas[i].title.slice(0,16)+"...":datas[i].title
+          list_change.push(datas[i])
+        }
         that.setData({
-          courseList: res.data.data
+          courseList: list_change
         })
       });
 
       //新闻中心
-      that.getNew(that.data.newStart,that.data.newNum,that.data.tradeId);
-      
+      that.getNew(that.data.newStart, that.data.newNum, that.data.tradeId);
+
     });
 
     //咨询信息
-    app.ajax_nodata("/minitax/advisory/information",function(res){
+    app.ajax_nodata("/minitax/advisory/information", function (res) {
       that.setData({
-        askMsg:res.data.data
+        askMsg: res.data.data
       })
     })
   },
@@ -157,48 +180,90 @@ Page({
   },
 
   //精选好课点击
-  courseClick:function(e){
+  courseClick: function (e) {
     wx.navigateTo({
-      url: '../course/coursContent/coursContent?id='+e.currentTarget.dataset.id
+      url: '../course/coursContent/coursContent?id=' + e.currentTarget.dataset.id
     })
   },
 
   //直播答疑点击
-  liveClick:function(e){
+  liveClick: function (e) {
     wx.navigateTo({
-      url: '../liveAnswer/liveAnswerContent/liveAnswerContent?id='+e.currentTarget.dataset.id
+      url: '../liveAnswer/liveAnswerContent/liveAnswerContent?id=' + e.currentTarget.dataset.id
     })
   },
 
   //新闻中心列表
-  getNew:function(current, pageSize, tradeId){
-    var that=this;
+  getNew: function (current, pageSize, tradeId) {
+    var that = this;
     app.ajax("/minitax/newcenter/list", {
       "current": current,
       "pageSize": pageSize,
       "tradeId": tradeId
     }, function (res) {
-      that.setData({
-        newList: res.data.data
-      })
+      if (res.data.data != '') {
+        var datas=res.data.data;
+        var i=0,len=datas.length;
+        for(;i<len;i++){
+          datas[i].title=datas[i].title.length>32?datas[i].title.slice(0,32)+"...":datas[i].title;
+        }
+        that.setData({
+          newList: datas
+        })
+      } else {
+        that.setData({
+          newStart:1,
+          newNum:3,
+          newList:[],
+        })
+        //新闻中心
+        that.getNew(that.data.newStart, that.data.newNum, that.data.tradeId);
+      }
+
     })
   },
 
   //新闻中心列表点击
-  newClick:function(e){
-    wx.navigateTo({
-      url: '../newCenter/newContent/newContent?id='+e.currentTarget.dataset.id
-    })
+  newClick: function (e) {
+    if(e.currentTarget.dataset.type=="1"){
+      wx.navigateTo({
+        url: '/pages/index/bannerWeb/bannerWeb?url='+e.currentTarget.dataset.url
+      })
+    }else{
+      wx.navigateTo({
+        url: '../newCenter/newContent/newContent?id=' + e.currentTarget.dataset.id
+      })
+    }
   },
 
   //新闻中心刷一刷点击
-  sysClick:function(){
-    var that=this;
+  sysClick: function () {
+    var that = this;
     this.setData({
       newStart: that.data.newStart + 1,
     });
     //列表数据
-    var data=that.data;
-    that.getNew(data.newStart,data.newNum,data.tradeId)
+    var data = that.data;
+    that.getNew(data.newStart, data.newNum, data.tradeId)
+  },
+
+  //微咨询模块的按钮点击
+  queClick:function(e){
+    if (app.ifVip(this.data.askMsg.isVip != 1)) {
+      wx.navigateTo({
+        url: e.currentTarget.dataset.url,
+      })
+    }
+  },
+
+  //banner点击
+  bannerClick:function(e){
+    var target=e.currentTarget.dataset;
+    if(target.type==2){
+      wx.navigateTo({
+        url: 'bannerWeb/bannerWeb?url='+target.url,
+      })
+    }
   }
+
 })

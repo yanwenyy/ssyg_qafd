@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText":"行业解码",
+  "usingComponents": {
+    "noMsg":"../../../../components/noMsg/noMsg"
+  }
 }

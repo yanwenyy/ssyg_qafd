@@ -20,7 +20,7 @@
 .ifx-right{
   width: 234rpx;
   height: 171rpx;
-  background: #eee;
+  /* background: #eee; */
   vertical-align: top;
   margin-top: 25rpx;
 }

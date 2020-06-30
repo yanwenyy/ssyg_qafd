@@ -1,0 +1,2 @@
+/* components/scope/scope.wxss */
+@import "/pages/scope/scope.wxss"

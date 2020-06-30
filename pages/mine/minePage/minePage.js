@@ -9,6 +9,7 @@ Page({
     intro:false,
     userId:'',//用户id
     introMsg:'',//个人介绍
+    introInput:'',
     userInfo:null,//用户信息
     tabMsg:'',//关注数,粉丝数,是否关注
     navMsg:'动态',//导航信息
@@ -122,29 +123,56 @@ Page({
   //个人介绍输入
   introInput:function(e){
     this.setData({
-      introMsg:e.detail.value
+      introInput:e.detail.value
     })
   },
 
   //提交个人介绍
   sub:function(){
-    console.log(this.data.introMsg);
-    this.setData({
-      intro:false
+    console.log(this.data.introInput);
+    var that=this;
+    app.ajax("/minitax/edit/introduce",{
+      "introduce":this.data.introInput
+    },function(res){
+      if(res.data.code==10000){
+        that.data.introMsg.introduce=that.data.introInput
+        that.setData({
+          intro:false,
+          introMsg:that.data.introMsg
+        })
+      }else{
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'none',
+          duration: 2000
+        })
+      }
     })
+    
   },
 
    //关注按钮点击
    gzClick:function(e){
     var that=this;
-    app.ajax_get("/minitax/attention/add?userId="+that.data.userId,function(res){
-      if(res.data.code==10000){
-        that.data.tabMsg.ifAttention=true;
-        that.setData({
-          tabMsg:that.data.tabMsg
-        })
-      }
-    })
+    if(e.currentTarget.dataset.attention){
+      app.ajax_get("/minitax/attention/remove?userId="+that.data.userId,function(res){
+        if(res.data.code==10000){
+          that.data.tabMsg.ifAttention=false;
+          that.setData({
+            tabMsg:that.data.tabMsg
+          })
+        }
+      })
+    }else{
+      app.ajax_get("/minitax/attention/add?userId="+that.data.userId,function(res){
+        if(res.data.code==10000){
+          that.data.tabMsg.ifAttention=true;
+          that.setData({
+            tabMsg:that.data.tabMsg
+          })
+        }
+      })
+    }
   },
 
   //查看粉丝或关注列表
@@ -216,6 +244,7 @@ Page({
     var id = target.id,
       type = target.type;
     console.log(type);
+   
     switch (type) {
       case '1':
         wx.navigateTo({
@@ -238,9 +267,16 @@ Page({
         })
         break;
       case '5':
-        wx.navigateTo({
-          url: '../../industry/industryLCJM/LCJMcontent/LCJMcontent?id=' + id,
-        })
+        app.ajax("/minitax/process/detailse", {
+          "id": target.id,
+        }, function (res) {
+          var data = res.data.data;
+          if (app.ifVip(data.isVip != 1 && data.tradePower ==0&&data.self==0)) {
+            wx.navigateTo({
+              url: '../../industry/industryLCJM/LCJMcontent/LCJMcontent?id=' + id,
+            })
+          }
+        });
         break;
       case '6':
         wx.navigateTo({

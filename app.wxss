@@ -61,3 +61,43 @@
 button{
   padding:0!important;
 }
+.detail-share-btn{
+  width: 100%!important;
+  height: 100%!important;
+  position: absolute;
+  top:0;
+  left:0;
+  opacity: 0;
+}
+.pcb-zcyw{
+  box-sizing: border-box!important;
+}
+rich-text{
+  width: 100%!important;
+  box-sizing: border-box!important;
+}
+rich-text   .rich-img {
+  width: auto!important;
+  max-width:80%!important;
+  height: auto ;
+  margin:0 auto!important;
+}
+.share-bottom{
+  font-size: 32rpx;
+  width: 49%;
+  text-align: center;
+  position: relative;
+}
+.share-bottom:nth-child(1){
+  border-right:1rpx solid #eee;
+}
+.share-bottom>image{
+  width: 32rpx;
+  height: 32rpx;
+  vertical-align: middle;
+  margin-top: -5rpx;
+}
+radio .wx-radio-input.wx-radio-input-checked{
+  border: none;
+  background: #28B7A3!important;
+}

@@ -52,7 +52,6 @@ Component({
       this.setData({
         mask:false
       });
-      console.log(this.data.selectId);
       this.update(this.data.selectId)
     },
     //行业改变
@@ -67,14 +66,26 @@ Component({
       this.setData({
         mask:false
       });
-      console.log(this.data.selectId)
+      // console.log(this.data.selectId)
       this.update(this.data.selectId)
     },
 
     //提交信息
     update:function(id){
+      var that=this;
       app.ajax_nodata("/minitax/trade/custome/"+id,function(res){
         console.log(res)
+        if(res.data.code==10000){
+          var myEventDetail = {} // detail对象，提供给事件监听函数
+          var myEventOption = {} // 触发事件的选项
+          that.triggerEvent('myevent', myEventDetail, myEventOption)
+        }else{
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000
+          })
+        }
       })
     }
   }

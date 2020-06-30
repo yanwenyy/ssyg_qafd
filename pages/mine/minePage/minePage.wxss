@@ -46,18 +46,24 @@
 }
 .mp-intro{
   margin-top:38rpx;
-  height: 89rpx;
-  line-height: 89rpx;
+  /* height: 89rpx; */
+  /* line-height: 89rpx; */
+  padding:10rpx 0;
   font-size: 24rpx;
   color:#999;
   border-top: 1rpx solid #eee;
   display: flex;
   justify-content: space-between;
+  word-break: break-all;
+  vertical-align: middle;
+  position: relative;
 }
 .mp-intro>image{
   width: 11rpx;
   height: 22rpx;
-  margin-top:34rpx;
+  position: absolute;
+  top:15rpx;
+  right: 0;
 }
 .mp-btn{
   width: 184rpx;
@@ -67,10 +73,13 @@
   font-size: 29rpx;
   color:#fff;
   border-radius: 35rpx;
-  background:#28B7A3;
+  background:#eee;
   position: absolute;
   top:137rpx;
   right:49rpx;
+}
+.mp-btn-act{
+  background:#28B7A3;
 }
 .mp-body-nav{
   height: 98rpx;

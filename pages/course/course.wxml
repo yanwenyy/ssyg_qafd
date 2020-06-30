@@ -9,12 +9,13 @@
   </view>
   <view class="course-body">
     <view wx:for="{{list}}" wx:key="index" data-id="{{item.id}}" class="course-list shadow-model box-sizing" bindtap="goContent">
-      <image src="{{item.coverUrl}}" mode="aspectFit"></image>
+      <image src="http://{{item.coverUrl}}" mode="scaleToFill"></image>
       <view class="inline-block course-list-right">
         <view class="course-list-right-name">{{item.title}}</view>
-        <view>{{item.userName}}</view>
-        <view wx:if="{{item.ifFree==0}}" class="vip-course">VIP课程</view>
+        <view>{{item.ifPlatformAuthor==1?item.realName:item.lecturer}}</view>
+        <view wx:if="{{item.ifFree==1}}" class="vip-course">VIP课程</view>
       </view>
     </view>
   </view>
+  <noMsg wx:if="{{list==''}}" imgUrl="no-ss" msg="暂无搜索结果"></noMsg>
 </view>

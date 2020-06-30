@@ -34,7 +34,8 @@ Page({
     that.setData({
       id: options.id,
       userInfo: app.globalData.userInfo,
-      year: Y
+      year: Y,
+      isIphoneX:app.globalData.isIphoneX
     })
 
 
@@ -69,6 +70,7 @@ Page({
     app.ajax("/minitax/goodclass/details", {
       "id": that.data.id,
     }, function (res) {
+      res.data.data.introduce=res.data.data.introduce.replace(/\<img/gi, '<img class="rich-img" ');
       that.setData({
         detail: res.data.data
       })
@@ -116,7 +118,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: this.data.detail.title,
+      path: '/pages/share/jxhk/jxhk?id='+this.data.id
+    }
   },
 
   //锚点切换部分的功能实现
@@ -212,11 +217,14 @@ Page({
 
   //评论内容点击
   contentClick: function (e) {
-    this.setData({
-      commentId: e.currentTarget.dataset.id,
-      commentPlaceHolder: '回复 ' + e.currentTarget.dataset.name,
-      commentInput: true
-    })
+    if (app.ifVip(this.data.detail.ifFree==1&&this.data.detail.isVip != 1 && this.data.detail.tradePower ==0&&this.data.detail.self==0)) {
+      this.setData({
+        commentId: e.currentTarget.dataset.id,
+        commentPlaceHolder: '回复 ' + e.currentTarget.dataset.name,
+        commentInput: true,
+        focus:true
+      })
+    }
   },
 
   //展开收起点击
@@ -341,7 +349,7 @@ Page({
           that.setData({
             detail: data.detail
           });
-          that.onShow();
+          // that.onShow();
         }
       })
     } else {
@@ -356,7 +364,7 @@ Page({
           that.setData({
             detail: data.detail
           });
-          that.onShow();
+          // that.onShow();
         }
       })
     }
@@ -381,5 +389,10 @@ Page({
         }
       }
     })
-  }
+  },
+
+   //指导专家点击
+   goPerson: function (e) {
+    app.goPerson(e.currentTarget.dataset.id)
+  },
 })

@@ -10,3 +10,10 @@
 .pcb-foot-pl>input{
   width: 55%;
 }
+.lcjm-img{
+  width: 100%;
+  margin-bottom: 30rpx;
+}
+.pcb-title{
+  margin-top:0;
+}

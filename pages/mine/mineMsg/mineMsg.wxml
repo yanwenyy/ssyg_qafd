@@ -1,7 +1,7 @@
 <!--pages/mine/mineMsg/mineMsg.wxml-->
 <view class="mineMsg-body box-sizing">
   <view class="mineMsg-head">
-    <image src="{{userInfo.headImg}}" mode="scaleToFill"></image>
+    <image src="{{userInfo.headImg||'/img/user.png'}}" mode="scaleToFill"></image>
   </view>
   <view class="mineMsg-msg box-sizing">
     <view class="editMsg-list">
@@ -85,7 +85,6 @@
     <view class="shadow-body" wx:if="{{shadowHy}}">
       <view class="shadow-body-title">
         所在行业
-        <view class="hy-notice">企业会员行业修改后，次月生效 </view>
         <image bindtap="closeShadow" class="shadow-close" src="../../../img/shadow-close.png" mode="scaleToFill"></image>
       </view>
       <view class="shadow-body-ul box-sizing">

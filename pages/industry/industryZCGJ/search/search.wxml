@@ -12,7 +12,8 @@
     <view wx:for="{{list}}" wx:key="index" class="course-list shadow-model box-sizing" bindtap="goContent" data-id="{{item.id}}">
       <view class="search-title">{{item.title}}</view>
       <view class="search-file">[ {{item.fileNum}} ]</view>
-      <view class="search-time">{{tools.dateFormat(item.officialReleaseDate)}}</view>
+      <view class="search-time">{{tools.dateFormat(item.officialReleaseDate,"yyyy-MM-dd")}}</view>
     </view>
+    <noMsg wx:if="{{list==''&&status==false}}" imgUrl="no-ss" msg="暂无搜索结果"></noMsg>
   </view>
 </view>

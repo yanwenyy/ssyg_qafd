@@ -23,7 +23,7 @@
 		<view class="ask-detail-ans-title">回答</view>
 		<view class="ask-detail-ans-show"  wx:for="{{msg.answerUsers}}" wx:if="{{item.status!=6}}" wx:key="index">
 			<view class="ask-dq-head">
-				<image src="" mode="aspectFit" class="head-img"></image>
+				<image src="/img/user.png" mode="aspectFit" class="head-img"></image>
 				<view class="inline-block ask-dqh-right">
 					<view class="inline-block">
 						<view class="ask-dqh-name">{{item.userName}}</view>
@@ -58,7 +58,7 @@
 		<view class="ask-detail-ans-title">答案纠错</view>
 		<view class="ask-detail-ans-show">
 			<view class="ask-dq-head">
-				<image src="" mode="aspectFit" class="head-img"></image>
+				<image src="/img/user.png" mode="aspectFit" class="head-img"></image>
 				<view class="inline-block ask-dqh-right">
 					<view class="inline-block">
 						<view class="ask-dqh-name">{{item.userName}}</view>

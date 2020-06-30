@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    from:'',
     id: '',
     detail: null, //详情信息
     commentList: [], //评论列表
@@ -34,7 +35,9 @@ Page({
     this.setData({
       id: options.id,
       userInfo: app.globalData.userInfo,
-      year: Y
+      year: Y,
+      from:options.from,
+      isIphoneX:app.globalData.isIphoneX
     });
 
 
@@ -69,22 +72,25 @@ Page({
     app.ajax("/minitax/taxplan/detailse", {
       "id": this.data.id,
     }, function (res) {
+      res.data.data.content=res.data.data.content.replace(/\<img/gi, '<img class="rich-img" ');
       that.setData({
         detail: res.data.data
-      })
+      });
+      var query = wx.createSelectorQuery();
+      query.select('.richClass').boundingClientRect(function (rect) {
+        that.setData({
+          richHeight: rect.height
+        })
+      }).exec();
+      if(that.data.from=='sschList'){
+        wx.pageScrollTo({
+          selector:'.pcb-title'
+        })
+      }
     });
 
     //点赞列表
-    app.ajax("/minitax/praiselist", {
-      "current": 1,
-      "id": this.data.id,
-      "pageSize": 8,
-      "type": "4"
-    }, function (res) {
-      that.setData({
-        dzList: res.data.data
-      })
-    })
+    that.getDzList();
 
     //评论列表
     that.getCommentList(that.data.commentStart, that.data.commentNum, that.data.id);
@@ -128,7 +134,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '这是一条与您行业相关的税收政策',
+      path: '/pages/share/fxts/fxts?from=ssch&&id=' + this.data.id
+    }
   },
 
   //评论列表
@@ -176,41 +185,47 @@ Page({
   //提交评论信息
   subComment: function () {
     var that = this;
-    if (this.data.commentMsg != '') {
-      app.ajax("/minitax/add", {
-        "content": this.data.commentMsg,
-        "id": this.data.commentId == '' ? this.data.id : this.data.commentId,
-        "status": this.data.commentId == '' ? '1' : '2',
-        "type": "4"
-      }, function (res) {
+    if (app.ifVip(this.data.detail.isVip != 1 && this.data.detail.tradePower == 0 && this.data.detail.self == 0)) {
+      if (this.data.commentMsg != '') {
+        app.ajax("/minitax/add", {
+          "content": this.data.commentMsg,
+          "id": this.data.commentId == '' ? this.data.id : this.data.commentId,
+          "status": this.data.commentId == '' ? '1' : '2',
+          "type": "4"
+        }, function (res) {
 
-        // that.onShow();
-        that.setData({
-          commentInput: false,
-          commentList: [], //评论列表
-          commentStart: 1, //起始页
-          commentNum: 10, //每页显示条数
-          commentStatus: true, //是否还有数据
-        });
-        that.onShow();
-        // that.getCommentList(that.data.commentStart, that.data.commentNum, that.data.id);
-      })
-    } else {
-      wx.showToast({
-        title: '请输入评论内容',
-        icon: 'none',
-        duration: 2000
-      })
-    }
+          // that.onShow();
+          that.setData({
+            commentInput: false,
+            commentList: [], //评论列表
+            commentStart: 1, //起始页
+            commentNum: 10, //每页显示条数
+            commentStatus: true, //是否还有数据
+          });
+          that.onShow();
+          // that.getCommentList(that.data.commentStart, that.data.commentNum, that.data.id);
+        })
+      } else {
+        wx.showToast({
+          title: '请输入评论内容',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    };
+
   },
 
   //评论内容点击
   contentClick: function (e) {
-    this.setData({
-      commentId: e.currentTarget.dataset.id,
-      commentPlaceHolder: '回复 ' + e.currentTarget.dataset.name,
-      commentInput: true
-    })
+    if (app.ifVip(this.data.detail.isVip != 1 && this.data.detail.tradePower == 0 && this.data.detail.self == 0)) {
+      this.setData({
+        commentId: e.currentTarget.dataset.id,
+        commentPlaceHolder: '回复 ' + e.currentTarget.dataset.name,
+        commentInput: true,
+        focus:true
+      })
+    }
   },
 
   //展开收起点击
@@ -299,7 +314,7 @@ Page({
           that.setData({
             detail: data.detail
           })
-          that.onShow();
+          that.getDzList();
         }
       })
     } else {
@@ -314,11 +329,11 @@ Page({
           that.setData({
             detail: data.detail
           });
-          that.onShow();
+          that.getDzList();
         }
       })
     }
-   
+
   },
 
   //查看点赞列表
@@ -345,7 +360,7 @@ Page({
           that.setData({
             detail: data.detail
           });
-          that.onShow();
+          // that.onShow();
         }
       })
     } else {
@@ -360,23 +375,24 @@ Page({
           that.setData({
             detail: data.detail
           });
-          that.onShow();
+          // that.onShow();
         }
       })
     }
-   
+
   },
 
   //删除评论点击
-  delComment:function(e){
-    var target=e.currentTarget.dataset,that=this;
+  delComment: function (e) {
+    var target = e.currentTarget.dataset,
+      that = this;
     wx.showModal({
       title: '提示',
       content: '确定要删除此条评论吗?',
-      success (res) {
+      success(res) {
         if (res.confirm) {
-          app.ajax_get("/minitax/discuss/del?id="+target.id,function(res){
-            if(res.data.code==10000){
+          app.ajax_get("/minitax/discuss/del?id=" + target.id, function (res) {
+            if (res.data.code == 10000) {
               that.onShow();
             }
           })
@@ -384,6 +400,34 @@ Page({
           console.log('用户点击取消')
         }
       }
+    })
+  },
+
+  //去vip页面
+  goVip() {
+    wx.navigateTo({
+      url: '/pages/vip/vip',
+    })
+  },
+
+  //指导专家点击
+  goPerson: function (e) {
+    app.goPerson(e.currentTarget.dataset.id)
+  },
+
+   //点赞列表
+   getDzList:function(){
+    var that=this;
+     //点赞列表
+     app.ajax("/minitax/praiselist", {
+      "current": 1,
+      "id": this.data.id,
+      "pageSize": 8,
+      "type": "4"
+    }, function (res) {
+      that.setData({
+        dzList: res.data.data
+      })
     })
   }
 })

@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText":"精选好课",
+  "usingComponents": {
+    "noMsg":"/components/noMsg/noMsg"
+  }
 }

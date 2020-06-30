@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText":"相关解读",
+  "usingComponents": {
+    "noMsg":"../../../../components/noMsg/noMsg"
+  }
 }

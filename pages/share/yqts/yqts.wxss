@@ -1,0 +1,22 @@
+/* pages/share/yqts/yqts.wxss */
+@import "../../mine/companyMsg/companyMsg.wxss";
+.container{
+  background: #F4F7FD;
+}
+.companyManage-title{
+  font-weight: normal;
+}
+.yqts-ctitle{
+  font-size: 32rpx;
+  margin-bottom: 17rpx;
+}
+.yqts-cname{
+  font-size: 26rpx;
+  color:#aaa;
+}
+.yqts-ptitle{
+  font-size: 34rpx;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 78rpx;
+}

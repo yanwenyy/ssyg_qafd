@@ -16,7 +16,7 @@
   padding: 32rpx 28rpx;
 }
 .v2{
-  margin-bottom:130rpx ;
+  padding-bottom:160rpx ;
 }
 .pcb-title{
   margin:0 0 39rpx 0;
@@ -29,7 +29,7 @@
   font-size: 36rpx;
   font-weight: bold;
   line-height: 52rpx;
-  margin-bottom: 20rpx;
+  margin-bottom:33rpx;
 }
 .cc-head-img{
   font-size: 30rpx;
@@ -74,8 +74,8 @@
   z-index: 999999;
   text-align: center;
 }
-.cc-video-shadow>image{
-  width: 412rpx;
-  height: 78rpx;
+.cc-shadow-img{
+  width: 412rpx!important;
+  height: 78rpx!important;
   margin:160rpx auto;
 }

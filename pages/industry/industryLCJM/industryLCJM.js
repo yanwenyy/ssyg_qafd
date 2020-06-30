@@ -23,8 +23,8 @@ Page({
       that.setData({
         tradeId: res.data.data.tradeId
       });
-      var data=that.data;
-      that.getList(data.start, data.num,data.tradeId)
+      var data = that.data;
+      that.getList(data.start, data.num, data.tradeId)
     })
   },
 
@@ -39,7 +39,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-   
+
   },
 
   /**
@@ -68,11 +68,12 @@ Page({
    */
   onReachBottom: function () {
     if (this.data.status == true) {
+      var start = this.data.start + 1
       this.setData({
-        start: this.data.start + 1
+        start: start
       });
-      var data=this.data;
-      this.getList(data.start, data.num,data.tradeId)
+      var data = this.data;
+      this.getList(data.start, data.num, data.tradeId)
     }
   },
 
@@ -83,15 +84,15 @@ Page({
 
   },
 
-   //获取列表
-   getList: function (current, pageSize,tradeId) {
+  //获取列表
+  getList: function (current, pageSize, tradeId) {
     var that = this;
     app.ajax('/minitax/process/list', {
       "current": current,
       "pageSize": pageSize,
       "tradeId": tradeId,
     }, function (res) {
-      var datas=res.data.data;
+      var datas = res.data.data;
       if (datas && datas != '') {
         var list_change = that.data.list;
         for (var i in datas) {
@@ -100,7 +101,7 @@ Page({
         that.setData({
           list: list_change
         });
-      }else{
+      } else {
         that.setData({
           status: false
         })
@@ -109,9 +110,17 @@ Page({
   },
 
   //去详情页面
-  goContent:function(e){
-    wx.navigateTo({
-      url: 'LCJMcontent/LCJMcontent?id='+e.currentTarget.dataset.id,
-    })
+  goContent: function (e) {
+    var target = e.currentTarget.dataset;
+    app.ajax("/minitax/process/detailse", {
+      "id": target.id,
+    }, function (res) {
+      var data = res.data.data;
+      if (app.ifVip(data.isVip != 1 && data.tradePower ==0&&data.self==0)) {
+        wx.navigateTo({
+          url: 'LCJMcontent/LCJMcontent?id=' + target.id,
+        })
+      }
+    });
   }
 })

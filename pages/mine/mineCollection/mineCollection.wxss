@@ -23,6 +23,7 @@
 .ifx-list-label{
   line-height: 41rpx;
   margin-top:-5rpx;
+  margin-bottom: 10rpx;
 }
 .ifx-list-right{
   width: 310rpx;
@@ -34,4 +35,5 @@
 }
 .ifx-list-left{
   width: 45%;
+  word-break: break-all;
 }

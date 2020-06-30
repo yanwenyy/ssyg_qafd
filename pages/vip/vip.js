@@ -209,15 +209,21 @@ Page({
   //开通行业列表按钮点击
   ktClick:function(e){
     var target=e.currentTarget.dataset;
-    console.log(target)
-    if(Number(target.ifvip)==1){
+    if (this.data.userInfo.companyId != '' && this.data.userInfo.companyId != null) {
+      if(Number(target.ifvip)==1){
+        wx.navigateTo({
+          url: 'confirmOrder/confirmOrder?productId='+target.goodid,
+        })
+      }else{
+        wx.navigateTo({
+          url: 'openIndustry/openIndustry?id='+target.id+"&productName="+target.name,
+        })
+      }
+    } else {
       wx.navigateTo({
-        url: 'confirmOrder/confirmOrder?productId='+target.goodid,
-      })
-    }else{
-      wx.navigateTo({
-        url: 'openIndustry/openIndustry?id='+target.id,
+        url: 'editMsg/editMsg?source=company&tradeId=' + target.id+"&productName="+target.name,
       })
     }
+    
   }
 })

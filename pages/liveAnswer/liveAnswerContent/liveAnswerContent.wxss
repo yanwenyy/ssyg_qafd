@@ -2,7 +2,7 @@
 @import "../../course/coursContent/coursContent.wxss";
 .lac-head{
   width: 100%;
-  height: 432rpx;
+  height: 464rpx;
   background: #eee;
 }
 .lac-head>image{
@@ -22,6 +22,9 @@
   margin-top: 31rpx;
   width: 184rpx;
 }
+.cc-head-btn-yet{
+  background: #eee!important;
+}
 .lac-ing{
   font-size: 26rpx;
   color:#F56A32;
@@ -39,3 +42,10 @@
   vertical-align: middle;
   margin-top: -10rpx;
 }
+.pcb-zcyw {
+  height: auto;
+}
+.zburl{
+  width: 100%;
+}
+  

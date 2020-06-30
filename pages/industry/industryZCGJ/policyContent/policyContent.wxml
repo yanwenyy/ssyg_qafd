@@ -6,9 +6,9 @@
 		<view class="pch-file">[ {{policyContent.fileNum}} ]</view>
 		<view class="pch-list">发文机关：{{policyContent.office}}</view>
 		<view class="pch-list">税 种：{{policyContent.taxName}}</view>
-		<view class="pch-list">发布时间：{{tools.dateFormat(policyContent.officialReleaseDate)}}</view>
-		<view class="pch-list">政策地区：{{policyContent.region}}</view>
-		<view class="pch-list">时效性：{{policyContent.timelinessid}}</view>
+		<view class="pch-list">发布时间：{{tools.dateFormat(policyContent.officialReleaseDate,"yyyy-MM-dd")}}</view>
+		<view class="pch-list">政策地区：{{policyContent.region||'全国'}}</view>
+		<view class="pch-list">时效性：{{policyContent.timelinessName}}</view>
 	</view>
 	<view class="policeContent-body">
 		<view class="pcp-nav {{scrollTop>230?'positionTop':''}}">
@@ -16,11 +16,11 @@
 				政策
 				<text wx:if="{{navText=='政策'}}" class="inline-block pcp-nav-line"></text>
 			</view>
-			<view class="inline-block pcp-nav-list {{navText=='相关文件'?'pcp-nav-list-act':''}}" bindtap="navClick" data-code="2" data-text="相关文件">
+			<view wx:if="{{releatfile!=''}}" class="inline-block pcp-nav-list {{navText=='相关文件'?'pcp-nav-list-act':''}}" bindtap="navClick" data-code="2" data-text="相关文件">
 				相关文件
 				<text wx:if="{{navText=='相关文件'}}" class="inline-block pcp-nav-line"></text>
 			</view>
-			<view class="inline-block pcp-nav-list {{navText=='相关解读'?'pcp-nav-list-act':''}}" bindtap="navClick" data-code="3" data-text="相关解读">
+			<view wx:if="{{releatedetails!=''}}" class="inline-block pcp-nav-list {{navText=='相关解读'?'pcp-nav-list-act':''}}" bindtap="navClick" data-code="3" data-text="相关解读">
 				相关解读
 				<text wx:if="{{navText=='相关解读'}}" class="inline-block pcp-nav-line"></text>
 			</view>
@@ -34,19 +34,19 @@
 				<view class="pcb-zc-head box-sizing" data-id="{{policyContent.userid}}" bindtap="zdzjClick">
 					<view class="pcb-zc-head-title inline-block">指导专家</view>
 					<view class="pcb-zc-head-right inline-block">
-						<image src="{{policyContent.headImg}}" mode="aspectFit"></image>
+						<image src="{{policyContent.headImg||'/img/user-zj.png'}}" mode="aspectFit"></image>
 						<view class="inline-block">
-							<view class="pcb-zc-head-name">{{policyContent.userName}}</view>
+							<view class="pcb-zc-head-name">{{policyContent.realName}}</view>
 							<view class="pcb-zc-head-position green">{{policyContent.identity==0?'普通人':(policyContent.identity==1?'专家':'讲师')}}</view>
 						</view>
 					</view>
 				</view>
 				<view class="pcb-title">
-					<view class="inline-block psb-title-line"></view>
-					原文
+					<!-- <view class="inline-block psb-title-line"></view>
+					原文 -->
 				</view>
-				<view class="pcb-zcyw">
-					<rich-text>{{policyContent.content}}</rich-text>
+				<view class="pcb-zcyw {{policyContent.isVip!=1&&policyContent.tradePower==0&&policyContent.self==0?'pcb-zcyw-vip-msg':''}}">
+					<rich-text class="richClass" nodes="{{policyContent.content}}" space="nbsp"></rich-text>
 				</view>
 				<!-- <view class="pcb-zcjd">
 					<view class="psb-jd-title green">解读：</view>
@@ -59,34 +59,34 @@
 						<image src="../../../../img/{{policyContent.ifPrase>0?'content_dz.png':'content_dz_no.png'}}" mode="aspectFit" data-parse="{{policyContent.ifPrase}}" bindtap="wzdzClick"></image>
 					</view>
 					<view class="pcb-zcyw-dz-list">
-						<image wx:for="{{dzList}}" wx:key="index" src="{{item.headImg}}" mode="aspectFit"></image>
+						<image wx:for="{{dzList}}" wx:key="index" src="{{item.headImg||(item.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
 						<image wx:if="{{dzList.length==8}}" bindtap="lookDZlist" wx:key="*this" src="../../../../img/dz-list-more.png" mode="aspectFit"></image>
 					</view>
 				</view>
-				<view class="pcb-zcyw-vip" wx:if="{{tradeDz.ifVip!=1}}">
-					<image src="../../../../img/ktvip.gif"></image>
+				<view class="pcb-zcyw-vip" wx:if="{{richHeight>250&&policyContent.isVip!=1&&policyContent.tradePower==0&&policyContent.self==0}}">
+					<image src="../../../../img/ktvip.gif" bindtap="goVip" mode="widthFix"></image>
 				</view>
 			</view>
 			<view class="v2" wx:if="{{releatfile!=''}}">
-				<view class="pcb-title">相关文件</view>
-				<view class="pcb-xgwj-list shadow-model box-sizing" wx:for="{{releatfile}}" wx:key="index">
+				<view class="pcb-title" style="margin-top:75pcb-pl-list-hf-msgrpx">相关文件</view>
+				<view class="pcb-xgwj-list shadow-model box-sizing" wx:for="{{releatfile}}" wx:key="index" data-type="xgwj" bindtap="xgjdClick" data-id="{{item.id}}">
 					<view class="pcb-xgwj-title">{{item.title}}</view>
 					<view class="pcb-xgwj-file">[ {{item.fileNum}} ]</view>
-					<view>发布时间：{{tools.dateFormat(item.officialReleaseDate)}}</view>
+					<view>发布时间：{{tools.dateFormat(item.officialReleaseDate,"MM-dd")}}</view>
 				</view>
 			</view>
 			<view class="v3" wx:if="{{releatedetails!=''}}">
 				<view class="pcb-title">相关解读</view>
 				<view class="pcb-xgwj-list shadow-model box-sizing" wx:for="{{releatedetails}}" wx:key="index" bindtap="xgjdClick" data-id="{{item.id}}">
 					<view class="pcb-xgwj-title">{{item.expertTitle}}</view>
-					<view>发布时间：{{tools.dateFormat(item.createTime)}}</view>
+					<view>发布时间：{{tools.dateFormat(item.createTime,"MM-dd hh:mm")}}</view>
 				</view>
 			</view>
 			<view class="v4">
-				<view class="pcb-title">评论 ({{commentList.length}})</view>
+				<view class="pcb-title">评论 ({{commentData.total||0}})</view>
 				<view>
 					<view class="pcb-pl-list" wx:for="{{commentList}}" wx:for-index="commentListIndex" wx:key="index">
-						<image class="pcb-pl-list-img" src="{{item.headImg}}" mode="aspectFit"></image>
+						<image class="pcb-pl-list-img" src="{{item.headImg||(item.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
 						<view class="inline-block pcb-pl-list-right">
 							<view class="pcb-pl-list-name">
 								<text>{{item.userName}}</text>
@@ -107,7 +107,7 @@
 								<!--  style="{{item.discussUsers.length>1&&item.zk==true?'height:auto':'height:224rpx'}}" -->
 								<view class="pcb-pl-list-hf-msg box-sizing">
 									<view class="pcb-pl-list" wx:for="{{item.discussUsers_change}}" wx:key="index">
-										<image class="pcb-pl-list-img-hf" src="{{item.headImg}}" mode="aspectFit"></image>
+										<image class="pcb-pl-list-img-hf" src="{{item.headImg||(item.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
 										<view class="inline-block pcb-pl-list-right">
 											<view class="pcb-pl-list-name">
 												<view class="inline-block" style="width:85%;word-break: break-all;">
@@ -130,23 +130,25 @@
 											</view>
 										</view>
 									</view>
-									<view wx:if="{{item.discussUsers.length>1}}" class="psb-pl-list-sq" data-id="{{index}}" bindtap="sqClick" data-msg="{{item.zk==true?'收起':''}}">{{item.zk==true?'收起':'更多回复'+(item.discussUsers.length-1)}}</view>
+									<view wx:if="{{item.discussUsers.length>1}}" class="psb-pl-list-sq" data-id="{{commentListIndex}}" bindtap="sqClick" data-msg="{{item.zk==true?'收起':''}}">{{item.zk==true?'收起':'更多回复'+(item.discussUsers.length-1)}}</view>
 								</view>
 							</view>
 						</view>
 					</view>
+					<noMsg wx:if="{{commentList==''}}" imgUrl="no-pl" msg="快来抢坐沙发～"></noMsg>
 				</view>
 			</view>
 		</view>
-		<view class="pcb-foot">
+		<view class="pcb-foot" style="padding-bottom: {{isIphoneX ? '68rpx' : '30rpx'}};">
 			<view class="pcb-foot-pl box-sizing" wx:if="{{!commentInput}}">
-				<input class="inline-block" placeholder="发表一下您的意见～" disabled="true" bindtap="inputClick"></input>
+				<input wx:if="{{policyContent.isVip==1||policyContent.tradePower==1||policyContent.self==1}}" class="inline-block" placeholder="发表一下您的意见～" disabled="true" bindtap="inputClick"></input>
+				<image bindtap="goVip" wx:if="{{policyContent.isVip!=1&&policyContent.tradePower==0&&policyContent.self==0}}" class="detail-vip-input" src="/img/detail-vip-btn.png" mode="aspectFit"></image>
 				<view class="inline-block pcb-foot-pl-img">
 					<image src="../../../../img/pcb-pl.png" mode="aspectFit"></image>
-					<text class="inline-block">999+</text>
+					<text class="inline-block">{{commentData.total||0}}</text>
 				</view>
-				<view class="inline-block pcb-foot-pl-img">
-					<image src="../../../../img/{{policyContent.ifPrase>0?'pcb-dz-act.png':'pcb-dz.png'}}" mode="aspectFit" data-parse="{{policyContent.ifPrase}}" bindtap="wzdzClick"></image>
+				<view class="inline-block pcb-foot-pl-img" data-parse="{{policyContent.ifPrase}}"  bindtap="wzdzClick">
+					<image src="../../../../img/{{policyContent.ifPrase>0?'pcb-dz-act.png':'pcb-dz.png'}}" mode="aspectFit"></image>
 					<text class="inline-block">{{policyContent.praiseNum}}</text>
 				</view>
 				<view class="inline-block pcb-foot-pl-img">
@@ -154,10 +156,11 @@
 				</view>
 				<view class="inline-block pcb-foot-pl-img">
 					<image src="../../../../img/pcb-zf.png" mode="aspectFit"></image>
+					<button class="detail-share-btn" open-type="share"></button>
 				</view>
 			</view>
-			<view wx:if="{{commentInput}}" class="pcb-foot-hf">
-				<input class="box-sizing inline-block" bindinput="commentInput" placeholder="{{commentPlaceHolder}}"></input>
+			<view wx:if="{{commentInput}}" class="pcb-foot-hf" >
+				<input focus="{{focus}}" class="box-sizing inline-block" bindinput="commentInput" placeholder="{{commentPlaceHolder}}" cursor-spacing="20rpx"></input>
 				<text class="green" bindtap="subComment">发送</text>
 			</view>
 		</view>

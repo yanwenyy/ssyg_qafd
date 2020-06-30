@@ -6,9 +6,9 @@
     <view wx:for="{{tabList}}" wx:key="index" data-id="{{item.id}}" data-msg="{{item.name}}" class="inline-block ifx-tab {{tabMsg==item.name?'ifx-tab-act':''}}" bindtap="tabClick">{{item.name}}</view>
 	</scroll-view>
 	<view class="container">
-		<view class="ifx-list-group" wx:for="{{list}}" wx:key="index" data-id="{{item.id}}" bindtap="listClick">
-			<view class="ifx-list shadow-model box-sizing" wx:if="{{item.coverType==1}}">
-				<image src="{{'http://'+item.coverUrl}}" mode="aspectFit" class="new-img"></image>
+		<view class="ifx-list-group" wx:for="{{list}}" wx:key="index" data-id="{{item.id}}" data-type="{{item.contentType}}" data-url="{{item.url}}" bindtap="listClick">
+			<view class="ifx-list shadow-model box-sizing" wx:if="{{item.coverType==3}}">
+				<image src="{{'http://'+item.coverUrl}}" mode="scaleToFill" class="new-img"></image>
 				<view class="ifx-list-title">{{item.title}}</view>
 				<view class="ifx-list-label">
 					<text class="green"># {{item.attributeName}}</text>
@@ -22,7 +22,7 @@
 				</view>
 				<view class="new-date">{{tools.dateFormat(item.creatTime)}}</view>
 			</view>
-			<view class="ifx-list shadow-model box-sizing" wx:if="{{item.coverType==3}}">
+			<view class="ifx-list shadow-model box-sizing" wx:if="{{item.coverType==1}}">
 				<view class="ifx-left inline-block">
 					<view class="ifx-list-title">{{item.title}}</view>
 					<view class="ifx-list-label">
@@ -30,7 +30,7 @@
 					</view>
 					<view class="new-date">{{tools.dateFormat(item.creatTime)}}</view>
 				</view>
-				<image class="ifx-right" src="{{'http://'+item.coverUrl}}" mode="aspectFit"></image>
+				<image class="ifx-right" src="{{'http://'+item.coverUrl}}" mode="scaleToFill"></image>
 			</view>
 		</view>
 	</view>

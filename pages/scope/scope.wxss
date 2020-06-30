@@ -1,6 +1,9 @@
 /* pages/scope/scope.wxss */
 .scope-body{
+  width: 100%;
   padding:0 53rpx;
+  position: absolute;
+  bottom:10%;
 }
 .scope-body>button{
   margin-top:70rpx;
@@ -15,14 +18,27 @@
 }
 .login-img{
   text-align: center;
-  padding:94rpx 0 ;
+  /* padding:94rpx 0 ; */
+  width: 502rpx;
+  margin: auto;
 }
 .login-img>image{
-  width: 570rpx;
-  height:560rpx;
+  width: 100%;
 }
 .login-msg{
-  font-size:32rpx;
-  color:#666;
-  line-height: 54rpx;
+  font-size:30rpx;
+  color:#333;
+  line-height: 48rpx;
+}
+.login-msg-list{
+  margin-bottom: 42rpx;
+}
+.login-msg-title{
+  text-align: center;
+  margin-bottom: 125rpx;
+}
+.login-notice{
+  font-size: 26rpx;
+  color:#999;
+  text-align: center;
 }

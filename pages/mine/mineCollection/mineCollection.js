@@ -11,7 +11,7 @@ Page({
     list: [],
     start: 1,
     num: 10,
-    status: true,
+    status: true
   },
 
   /**
@@ -107,6 +107,11 @@ Page({
       if (datas && datas != '') {
         var list_change = that.data.list;
         for (var i in datas) {
+          if (datas[i].moudle == '8') {
+            datas[i].title = datas[i].title.length > 38 ? datas[i].title.slice(0, 38) + "..." : datas[i].title
+          } else if (datas[i].moudle == '7') {
+            datas[i].title = datas[i].title.length > 16 ? datas[i].title.slice(0, 16) + "..." : datas[i].title
+          }
           list_change.push(datas[i])
         }
         that.setData({
@@ -125,49 +130,201 @@ Page({
     var target = e.currentTarget.dataset;
     var id = target.id,
       type = target.type;
-    console.log(type);
     switch (type) {
       case '1':
-        wx.navigateTo({
-          url: '../../industry/industryZCGJ/policyContent/policyContent?policyId=' + id,
-        })
+        //政策详情
+        app.ajax("/minitax/policy/details", {
+          "policyId": id,
+        }, function (res) {
+          if (res.data.data != null && res.data.data != '') {
+            wx.navigateTo({
+              url: '../../industry/industryZCGJ/policyContent/policyContent?policyId=' + id,
+            })
+          }else{
+            wx.showModal({
+              title: '提示',
+              content: '您收藏的内容已被删除或隐藏',
+              showCancel:false,
+            })
+          }
+        });
         break;
       case '2':
-        wx.navigateTo({
-          url: '../../industry/industryZCGJ/XGJDcontent/XGJDcontent?id=' + id,
-        })
+        //政策详情
+        app.ajax("/minitax/policy/releatedetails", {
+          "id": id,
+        }, function (res) {
+          if (res.data.data != null && res.data.data != '') {
+            wx.navigateTo({
+              url: '../../industry/industryZCGJ/XGJDcontent/XGJDcontent?id=' + id,
+            })
+          }else{
+            wx.showModal({
+              title: '提示',
+              content: '您收藏的内容已被删除或隐藏',
+              showCancel:false,
+            })
+          }
+        });
+
         break;
       case '3':
-        wx.navigateTo({
-          url: '../../industry/industryFXTS/FXTScontent/FXTScontent?id=' + id,
-        })
+        //政策详情
+        app.ajax("/minitax/trisk/detailse", {
+          "id": id,
+        }, function (res) {
+          if (res.data.data != null && res.data.data != '') {
+            wx.navigateTo({
+              url: '../../industry/industryFXTS/FXTScontent/FXTScontent?id=' + id,
+            })
+          }else{
+            wx.showModal({
+              title: '提示',
+              content: '您收藏的内容已被删除或隐藏',
+              showCancel:false,
+            })
+          }
+        });
+
         break;
       case '4':
-        wx.navigateTo({
-          url: '../../industry/industrySSCH/SSCHcontent/SSCHcontent?id=' + id,
-        })
+        //政策详情
+        app.ajax("/minitax/taxplan/detailse", {
+          "id": id,
+        }, function (res) {
+          if (res.data.data != null && res.data.data != '') {
+            wx.navigateTo({
+              url: '../../industry/industrySSCH/SSCHcontent/SSCHcontent?id=' + id,
+            })
+          }else{
+            wx.showModal({
+              title: '提示',
+              content: '您收藏的内容已被删除或隐藏',
+              showCancel:false,
+            })
+          }
+        });
+
         break;
       case '5':
-        wx.navigateTo({
-          url: '../../industry/industryLCJM/LCJMcontent/LCJMcontent?id=' + id,
-        })
+        //政策详情
+        app.ajax("/minitax/process/detailse", {
+          "id": id,
+        }, function (res) {
+          if (res.data.data != null && res.data.data != '') {
+            wx.navigateTo({
+              url: '../../industry/industryLCJM/LCJMcontent/LCJMcontent?id=' + id,
+            })
+          }else{
+            wx.showModal({
+              title: '提示',
+              content: '您收藏的内容已被删除或隐藏',
+              showCancel:false,
+            })
+          }
+        });
+
         break;
       case '6':
-        console.log(111);
-        wx.navigateTo({
-          url: '../../newCenter/newContent/newContent?id=' + id,
-        })
+        //政策详情
+        app.ajax("/minitax/newcenter/detailse", {
+          "id": id,
+        }, function (res) {
+          if (res.data.data != null && res.data.data != '') {
+            wx.navigateTo({
+              url: '../../newCenter/newContent/newContent?id=' + id,
+            })
+          }else{
+            wx.showModal({
+              title: '提示',
+              content: '您收藏的内容已被删除或隐藏',
+              showCancel:false,
+            })
+          }
+        });
+
         break;
       case '7':
-        wx.navigateTo({
-          url: '../../course/coursContent/coursContent?id=' + id,
-        })
+        //政策详情
+        app.ajax("/minitax/goodclass/details", {
+          "id": id,
+        }, function (res) {
+          if (res.data.data != null && res.data.data != '') {
+            wx.navigateTo({
+              url: '../../course/coursContent/coursContent?id=' + id,
+            })
+          }else{
+            wx.showModal({
+              title: '提示',
+              content: '您收藏的内容已被删除或隐藏',
+              showCancel:false,
+            })
+          }
+        });
         break;
       case '8':
-        wx.navigateTo({
-          url: '../../liveAnswer/liveAnswerContent/liveAnswerContent?id=' + id,
-        })
+        //政策详情
+        app.ajax("/minitax/broadacast/details", {
+          "id": id,
+        }, function (res) {
+          if (res.data.data != null && res.data.data != '') {
+            wx.navigateTo({
+              url: '../../liveAnswer/liveAnswerContent/liveAnswerContent?id=' + id,
+            })
+          }else{
+            wx.showModal({
+              title: '提示',
+              content: '您收藏的内容已被删除或隐藏',
+              showCancel:false,
+            })
+          }
+        });
         break;
     }
+  },
+
+  ifDel: function (val, id) {
+    var url = '', dataName = {}, that = this;
+    if (val == 1) {
+      dataName = {
+        "policyId": id
+      }
+    } else {
+      dataName = {
+        "id": id
+      }
+    }
+    switch (val) {
+      case '1':
+        url = '/minitax/policy/details';
+        break;
+      case '2':
+        url = '/minitax/policy/releatedetails';
+        break;
+      case '3':
+        url = '/minitax/trisk/detailse';
+        break;
+      case '4':
+        url = '/minitax/taxplan/detailse';
+        break;
+      case '5':
+        url = '/minitax/process/detailse';
+        break;
+      case '6':
+        url = '/minitax/newcenter/detailse';
+        break;
+      case '7':
+        url = '/minitax/goodclass/details';
+        break;
+      case '8':
+        url = '/minitax/broadacast/details';
+        break;
+    }
+    //政策详情
+    app.ajax(url, dataName, function (res) {
+      that.setData({
+        detailData: res.data.data
+      })
+    });
   }
 })

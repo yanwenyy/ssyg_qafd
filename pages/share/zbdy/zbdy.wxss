@@ -1,0 +1,2 @@
+/* pages/share/zbdy/zbdy.wxss */
+@import "../../liveAnswer/liveAnswerContent/liveAnswerContent.wxss";

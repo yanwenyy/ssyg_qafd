@@ -9,7 +9,7 @@ Page({
     id: '', //业务id
     type: '', //类型
     start: 1, //起始页
-    num: 5, //每页显示条数
+    num: 10, //每页显示条数
     status: true, //是否还有数据
     list: [], //政策列表
   },

@@ -11,7 +11,7 @@
       <image src="../../../img/mine-order-img.png" mode="scaleToFill"></image>
       <view class="inline-block mine-order-msg-right">
         <view class="mine-omr-name">{{item.productName}}</view>
-        <view>有效期：{{tools.dateFormat(item.vipStartTime,"yyyy.mm.dd")}}-{{tools.dateFormat(item.vipEndTime,"yyyy.mm.dd")}}</view>
+        <view>有效期：{{tools.dateFormat(item.vipStartTime,"yyyy.MM.dd")}}-{{tools.dateFormat(item.vipEndTime,"yyyy.MM.dd")}}</view>
         <view>支付时间：{{tools.dateFormat(item.paysuctime)}}  </view>
       </view>
     </view>
@@ -21,11 +21,12 @@
     </view>
     <view class="mine-order-money">
       <text>优惠金额</text>
-      <text>-¥{{item.discountPrice}}</text>
+      <text>-¥{{item.discountPrice||0}}</text>
     </view>
     <view class="mine-order-foot">
       <text>实付金额：</text>
       <text class="mine-order-foot-money">¥{{item.sum}}</text>
     </view>
   </view>
+  <noMsg wx:if="{{list==''}}" imgUrl="no-dd" msg="暂无订单～"></noMsg>
 </view>

@@ -165,6 +165,7 @@ Page({
               i,
               list_change = that.data.list;
           for (i in datas) {
+            datas[i].content=datas[i].content.length>55? datas[i].content.slice(0,55)+"...":datas[i].content
             datas[i].date = app.format(datas[i].date);
             list_change.push(datas[i])
           }
@@ -189,6 +190,7 @@ Page({
             i,
             list_change = that.data.list;
           for (i in datas) {
+            datas[i].content=datas[i].content.length>55? datas[i].content.slice(0,55)+"...":datas[i].content
             datas[i].date = that.format(datas[i].date);
             list_change.push(datas[i])
           }

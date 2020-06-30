@@ -26,7 +26,7 @@
 .editMsg-list-input{
   display: flex;
   justify-content: space-between;
-  padding-bottom: 28rpx;
+  padding-bottom: 20rpx;
   border-bottom:1px solid #eee;
 }
 .editMsg-list-input>input{
@@ -57,6 +57,7 @@
 }
 .mineMsg-body{
   padding:0 42rpx;
+  padding-bottom: 68rpx;
 }
 .mineMsg-head{
   text-align: center;
@@ -88,6 +89,10 @@
   border:none;
   margin-bottom: 48rpx;
   font-size:32rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  width: 100%;
+
 }
 .shadow-body{
   width:100%;

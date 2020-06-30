@@ -33,7 +33,8 @@ Page({
     this.setData({
       id: options.id,
       userInfo: app.globalData.userInfo,
-      year: Y
+      year: Y,
+      isIphoneX:app.globalData.isIphoneX
     });
 
    
@@ -61,22 +62,14 @@ Page({
      app.ajax("/minitax/newcenter/detailse",{
       "id":this.data.id,
     },function(res){
+      res.data.data.content=res.data.data.content.replace(/\<img/gi, '<img class="rich-img" ');
       that.setData({
         detail:res.data.data
       })
     });
 
      //点赞列表
-     app.ajax("/minitax/praiselist", {
-      "current": 1,
-      "id": this.data.id,
-      "pageSize": 8,
-      "type": "6"
-    }, function (res) {
-      that.setData({
-        dzList: res.data.data
-      })
-    });
+     that.getDzList();
     
     //评论列表
     that.getCommentList(that.data.commentStart, that.data.commentNum, that.data.id);
@@ -120,7 +113,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: this.data.detail.title,
+      path: '/pages/share/newCenter/newCenter?id='+this.data.id
+    }
   },
 
   //评论列表
@@ -201,7 +197,8 @@ Page({
     this.setData({
       commentId: e.currentTarget.dataset.id,
       commentPlaceHolder: '回复 ' + e.currentTarget.dataset.name,
-      commentInput: true
+      commentInput: true,
+      focus:true
     })
   },
 
@@ -291,7 +288,7 @@ Page({
          that.setData({
            detail: data.detail
          });
-         that.onShow();
+         that.getDzList();
        }
      })
    } else {
@@ -306,7 +303,7 @@ Page({
          that.setData({
            detail: data.detail
          });
-         that.onShow();
+         that.getDzList();
        }
      })
    }
@@ -336,7 +333,7 @@ Page({
           that.setData({
             detail: data.detail
           });
-          that.onShow();
+          // that.onShow();
         }
       })
     } else {
@@ -351,7 +348,7 @@ Page({
           that.setData({
             detail: data.detail
           });
-          that.onShow();
+          // that.onShow();
         }
       })
     }
@@ -376,5 +373,26 @@ Page({
         }
       }
     })
+  },
+
+   //指导专家点击
+   goPerson: function (e) {
+    app.goPerson(e.currentTarget.dataset.id)
+  },
+
+  //点赞列表
+  getDzList:function(){
+    var that=this;
+     //点赞列表
+     app.ajax("/minitax/praiselist", {
+      "current": 1,
+      "id": this.data.id,
+      "pageSize": 8,
+      "type": "6"
+    }, function (res) {
+      that.setData({
+        dzList: res.data.data
+      })
+    });
   }
 })

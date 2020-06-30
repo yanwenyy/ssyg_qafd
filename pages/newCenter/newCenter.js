@@ -11,7 +11,7 @@ Page({
     attributeid:null,//属性id
     tradeId: '', //行业id
     start: 1, //起始页
-    num: 5, //每页显示条数
+    num: 10, //每页显示条数
     status: true, //是否还有数据
     list: [], //政策列表
   },
@@ -80,11 +80,9 @@ Page({
   onReachBottom: function () {
     var that=this;
     if (this.data.status == true) {
-      var num = this.data.num + 1
+      var start = this.data.start + 1
       this.setData({
-        num: num,
-        start: ((num - 1) * 10) + 1,
-        end: num * 10
+        start: start
       });
       //列表数据
       var data=that.data;
@@ -111,6 +109,7 @@ Page({
       if (datas && datas != '') {
         var list_change = that.data.list;
         for (var i in datas) {
+          datas[i].title=datas[i].title.length>32?datas[i].title.slice(0,32)+"...":datas[i].title;
           list_change.push(datas[i])
         }
         that.setData({
@@ -131,7 +130,7 @@ Page({
       tabMsg:e.currentTarget.dataset.msg,
       attributeid:e.currentTarget.dataset.id,
       start:1,
-      num:5,
+      num:10,
       status:true,
       list:[]
     })
@@ -142,8 +141,14 @@ Page({
 
   //列表点击
   listClick:function(e){
-    wx.navigateTo({
-      url: 'newContent/newContent?id='+e.currentTarget.dataset.id
-    })
+    if(e.currentTarget.dataset.type=="1"){
+      wx.navigateTo({
+        url: '/pages/index/bannerWeb/bannerWeb?url='+e.currentTarget.dataset.url
+      })
+    }else{
+      wx.navigateTo({
+        url: 'newContent/newContent?id='+e.currentTarget.dataset.id
+      })
+    }
   } 
 })

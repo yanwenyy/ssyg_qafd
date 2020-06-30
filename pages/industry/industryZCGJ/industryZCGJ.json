@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "region":"/components/region/region"
+  },
   "navigationBarTitleText":"政策归集"
 }

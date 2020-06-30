@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText":"我的团队",
+  "usingComponents": {
+    "share-model":"/components/shareModel/shareModel"
+  }
 }

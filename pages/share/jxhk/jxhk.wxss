@@ -1,0 +1,2 @@
+/* pages/share/jxhk/jxhk.wxss */
+@import "../../course/coursContent/coursContent.wxss";

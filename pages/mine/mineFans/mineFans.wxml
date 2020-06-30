@@ -1,13 +1,14 @@
 <!--pages/mine/mineFans/mineFans.wxml-->
 <view class="ma-body">
-  <view class="ma-list" wx:for="{{list}}" wx:key="index">
-    <image src="{{item.headImg}}" class="head-img" mode="aspectFit"></image>
+  <view class="ma-list" wx:for="{{list}}" wx:key="index" bindtap="goPerson"  data-id="{{item.uuid}}">
+    <image src="{{item.headImg||(item.identity==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}" class="head-img" mode="aspectFit"></image>
     <view class="inline-block ma-list-right">
-      <view class="ma-list-name">{{item.userName}}</view>
+      <view class="ma-list-name">{{item.realName||item.userName}}</view>
       <view class="inline-block ma-list-label" wx:for="{{item.identity}}" wx:key="index" wx:if="{{item!=0}}">{{item=="1"?"专家":"讲师"}}</view>
     </view>
-    <view class="ma-list-btn" wx:if="{{item.status==0}}" data-status="{{item.status}}" data-index="{{index}}" data-id="{{item.uuid}}" bindtap="gzClick">+关注</view>
-    <view class="ma-list-btn ma-yes" wx:if="{{item.status==1}}" data-status="{{item.status}}" data-index="{{index}}" data-id="{{item.uuid}}" bindtap="gzClick">已关注</view>
-    <view class="ma-list-btn ma-yes" wx:if="{{item.status==2}}" data-status="{{item.status}}" data-index="{{index}}" data-id="{{item.uuid}}" bindtap="gzClick">相互关注</view>
+    <view class="ma-list-btn" wx:if="{{item.status==0}}" data-status="{{item.status}}" data-index="{{index}}" data-id="{{item.uuid}}" catchtap="gzClick">+关注</view>
+    <view class="ma-list-btn ma-yes" wx:if="{{item.status==1}}" data-status="{{item.status}}" data-index="{{index}}" data-id="{{item.uuid}}" catchtap="gzClick">已关注</view>
+    <view class="ma-list-btn ma-yes" wx:if="{{item.status==2}}" data-status="{{item.status}}" data-index="{{index}}" data-id="{{item.uuid}}" catchtap="gzClick">相互关注</view>
   </view>
+  <noMsg wx:if="{{list==''}}" imgUrl="no-fs" msg=" 暂无粉丝"></noMsg>
 </view>

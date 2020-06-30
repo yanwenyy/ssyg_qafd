@@ -1,7 +1,7 @@
 <!--pages/ask/askEvaluate/askEvaluate.wxml-->
 <view class="container">
 	<view class="ask-evaluate-head">
-		<image src="" mode="aspectFit" class="head-img"></image>
+		<image src="/img/user.png" mode="aspectFit" class="head-img"></image>
 		<view class="inline-block">
 			<view class="ask-eh-name">{{name}}</view>
 			<view class="ask-eh-position">

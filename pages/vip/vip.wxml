@@ -5,7 +5,7 @@
 		<image src="../../img/vip-bg.png" mode="aspectFit"></image>
 		<view class="vip-bg-msg box-sizing">
 			<view>
-				<image src="{{userInfo.headImg}}" mode="aspectFit" class="head-img"></image>
+				<image src="{{userInfo.headImg||'/img/user.png'}}" mode="aspectFit" class="head-img"></image>
 				<view class="inline-block">
 					<view class="user-name">{{userInfo.nickname}}</view>
 					<view class="user-industry">您目前开通{{industryIndex.openNum}}个行业</view>
@@ -25,12 +25,14 @@
 						<view class="vip-list-msg box-sizing">
 							<view  wx:if="{{item.ifVip!=0}}" class="vip-list-name">{{item.cardType==1?'A':(item.cardType==2?'B':'C')}}卡</view>
 							<view class="vip-list-industry">
-								<image src="{{'https://'+item.tradeIcon}}" mode="aspectFit"></image>
+								<view class="inline-block card-icon">
+									<image src="{{'https://'+item.tradeIcon}}" mode="aspectFit"></image>
+								</view>
 								{{item.tradeName}}
 							</view>
 							<view class="vip-list-date">
 								<text wx:if="{{item.ifVip!=0}}">{{tools.dateFormat(item.trVipTime,'yyyy-MM-dd')}}过期</text>
-								<text data-id="{{item.tradeId}}" data-ifvip="{{item.ifVip}}" data-goodId="{{item.goodsId}}" catchtap="ktClick">{{item.ifVip==0?'立即开通':'续费'}} ></text>
+								<text data-id="{{item.tradeId}}" data-ifvip="{{item.ifVip}}" data-goodId="{{item.goodsId}}" data-name="{{item.tradeName}}" catchtap="ktClick">{{item.ifVip==0?'立即开通':'续费'}} ></text>
 							</view>
 						</view>
 					</view>

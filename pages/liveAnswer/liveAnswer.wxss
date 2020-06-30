@@ -11,10 +11,11 @@
 .live-ans-list-img>image{
   width: 100%;
   height: 100%;
-  background: #eee;
+  border-radius: 12rpx;
 }
 .live-ans-status{
-  width: 124rpx;
+  /* width: 124rpx; */
+  padding:0 16rpx;
   height: 42rpx;
   line-height: 42rpx;
   font-size: 20rpx;
@@ -25,16 +26,17 @@
   position: absolute;
   top:28rpx;
   left:19rpx;
+  vertical-align: middle;
 }
 .live-ans-status>image{
-  width: 33rpx;
+  width: 27rpx;
   height: 30rpx;
   vertical-align: middle;
 }
 .live-ans-list-msg{
   font-size: 30rpx;
   font-weight: bold;
-  line-height: 42rpx;
+  line-height: 46rpx;
   margin-top:15rpx;
 }
 .live-ans-list-name{
@@ -51,4 +53,5 @@
   padding:0 19rpx;
   border-radius: 8rpx;
   margin-right: 30rpx;
+  margin-bottom: 10rpx;
 }

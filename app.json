@@ -1,7 +1,8 @@
 {
   "pages": [
-   
+    
     "pages/index/index",
+    "pages/index/bannerWeb/bannerWeb",
     "pages/logs/logs",
     "pages/industry/industryChange/industryChange",
     "pages/industry/industryZCGJ/industryZCGJ",
@@ -42,8 +43,15 @@
     "pages/vip/openIndustry/openIndustry",
     "pages/vip/confirmOrder/confirmOrder",
     "pages/vip/editMsg/editMsg",
-    "pages/vip/coupon/coupon"
-    
+    "pages/vip/coupon/coupon",
+    "pages/share/acspetYq/acspetYq",
+    "pages/share/yqts/yqts",
+    "pages/share/newCenter/newCenter",
+    "pages/share/fxts/fxts",
+    "pages/share/jxhk/jxhk",
+    "pages/share/zbdy/zbdy",
+    "pages/share/zcgj/zcgj",
+    "pages/share/xgjd/xgjd"
   ],
   "window": {
     "backgroundTextStyle": "light",

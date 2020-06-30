@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "share-model":"../../components/shareModel/shareModel"
+  }
 }

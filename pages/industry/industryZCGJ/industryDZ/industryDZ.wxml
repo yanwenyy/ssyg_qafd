@@ -2,7 +2,7 @@
 <wxs module="tools" src="../../../tools.wxs"></wxs>
 <view class="id-container">
   <view class="idz-list" wx:for="{{list}}" wx:key="index" data-id="{{item.userId}}" bindtap="goPages">
-    <image class="idz-list-img" src="{{item.headImg}}"></image>
+    <image class="idz-list-img" src="{{item.headImg||(item.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
     <view class="idz-list-right inline-block">
       <view class="inline-block">
           <view class="idz-list-name">{{item.userName}}</view>
@@ -13,4 +13,5 @@
       <view class="inline-block idz-list-date">{{tools.dateFormat(item.careadate)}}</view>
     </view>
   </view>
+  <noMsg wx:if="{{list==''}}" imgUrl="no-dz" msg=" 暂无点赞"></noMsg>
 </view>

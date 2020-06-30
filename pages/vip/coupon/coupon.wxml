@@ -1,6 +1,6 @@
 <!--pages/vip/coupon/coupon.wxml-->
 <view class="body container">
-  <view class="coupon-list" bindtap="goConfirim">
+  <view class="coupon-list" bindtap="goConfirim" wx:for="{{list}}" wx:key="index">
     <image src="{{source==''?'../../../img/coupon.png':'../../../img/coupon-nouse.png'}}" mode="aspectFit"></image>
     <view class="coupon-list-msg">
       <view class="coupon-money"><text>¥</text>300</view>
@@ -11,4 +11,5 @@
       <image wx:if="{{source==''}}" class="coupon-select" src="../../../img/coupon-select-no.png" mode="aspectFit"></image>
     </view>
   </view>
+  <noMsg wx:if="{{list==''}}" imgUrl="no-yhq" msg=" 暂无可用优惠券"></noMsg>
 </view>

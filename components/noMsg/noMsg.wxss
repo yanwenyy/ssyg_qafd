@@ -1,0 +1,11 @@
+/* components/noMsg/noMsg.wxss */
+.nomsg-body{
+  text-align: center;
+  font-size: 28rpx;
+  color:#666;
+  padding-top:50rpx;
+}
+.nomsg-body>image{
+  width: 369rpx;
+  margin-bottom: 44rpx;
+}

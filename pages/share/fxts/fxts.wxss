@@ -1,0 +1,2 @@
+/* pages/share/fxts/fxts.wxss */
+@import "../../industry/industryFXTS/FXTScontent/FXTScontent.wxss";

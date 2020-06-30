@@ -11,9 +11,10 @@ Page({
     attributeid:null,//属性id
     tradeId: '', //行业id
     start: 1, //起始页
-    num: 5, //每页显示条数
+    num: 10, //每页显示条数
     status: true, //是否还有数据
     list: [], //政策列表
+    shareId:'',
   },
 
   /**
@@ -80,11 +81,9 @@ Page({
   onReachBottom: function () {
     var that=this;
     if (this.data.status == true) {
-      var num = this.data.num + 1
+      var start = this.data.start + 1
       this.setData({
-        num: num,
-        start: ((num - 1) * 10) + 1,
-        end: num * 10
+        start: start
       });
       //列表数据
       var data=that.data;
@@ -95,8 +94,16 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (res) {
+    
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      return {
+        title: '这是一条与您行业相关的税收政策',
+        path: '/pages/share/fxts/fxts?from=ssch&&id=' + res.target.id
+      }
+    }
+    
   },
 
   getList: function (attributeid, current, pageSize, tradeId) {
@@ -131,7 +138,7 @@ Page({
       tabMsg:e.currentTarget.dataset.msg,
       attributeid:e.currentTarget.dataset.id,
       start:1,
-      num:5,
+      num:10,
       status:true,
       list:[]
     })
@@ -145,5 +152,95 @@ Page({
     wx.navigateTo({
       url: 'SSCHcontent/SSCHcontent?id='+e.currentTarget.dataset.id
     })
-  }
+  },
+
+    //点赞
+    dzClick: function (e) {
+      var target = e.currentTarget.dataset,
+        id = target.id,
+        index = target.index,
+        that = this;
+      if (target.parse == 0) {
+        app.ajax("/minitax/praiseadd", {
+          "id": id,
+          "status": 0,
+          "type": "4"
+        }, function (res) {
+          if (res.data.code == 10000) {
+            that.data.list[index].ifPrase = 1;
+            that.data.list[index].praiseNum = that.data.list[index].praiseNum + 1;
+            that.setData({
+              list: that.data.list
+            })
+          }
+        })
+      } else {
+        app.ajax("/minitax/praiseadd", {
+          "id": id,
+          "status": 1,
+          "type": "4"
+        }, function (res) {
+          if (res.data.code == 10000) {
+            that.data.list[index].ifPrase = 0;
+            that.data.list[index].praiseNum = that.data.list[index].praiseNum - 1;
+            that.setData({
+              list: that.data.list
+            })
+          }
+        })
+      }
+    },
+  
+    //收藏点击
+    scClick: function (e) {
+      var target = e.currentTarget.dataset,
+        data = this.data,
+        id = target.id,
+        index = target.index,
+        that = this;
+      if (target.collect == 0) {
+        app.ajax("/minitax/collect/add", {
+          "id": id,
+          "status": 0,
+          "type": "4"
+        }, function (res) {
+          if (res.data.code == 10000) {
+            data.list[index].ifCollect = 1;
+            // data.list[index].collectNum = data.detail.collectNum + 1;
+            that.setData({
+              list: that.data.list
+            })
+          }
+        })
+      } else {
+        app.ajax("/minitax/collect/add", {
+          "id": id,
+          "status": 1,
+          "type": "4"
+        }, function (res) {
+          if (res.data.code == 10000) {
+            data.list[index].ifCollect = 0;
+            // data.list[index].collectNum = data.detail.collectNum - 1;
+            that.setData({
+              list: that.data.list
+            })
+          }
+        })
+      }
+    },
+  
+    //评论点击
+    plClick: function (e) {
+      wx.navigateTo({
+        url: 'SSCHcontent/SSCHcontent?from=sschList&id=' + e.currentTarget.dataset.id,
+      })
+    },
+
+    //分享按钮点击
+    share:function(e){
+      this.setData({
+        shareId:e.currentTarget.id
+      })
+     
+    }
 })

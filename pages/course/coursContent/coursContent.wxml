@@ -1,9 +1,9 @@
 <!--pages/course/coursContent/coursContent.wxml-->
 <view>
 	<ccvod vid='{{detail.ccid}}' siteid='A0123BC413D6FBAE' vc='' custom_id='' videoPoster="{{'http://'+detail.coverUrl}}" />
-	<view wx:if="{{detail.ifFree==1&&tradeDz.ifVip!=1}}" class="cc-video-shadow">
-		<image bindtap="goVip" src="../../../img/cc-video-vip.png" mode="aspectFit"></image>
-	</view>
+	<cover-view wx:if="{{detail.ifFree==1&&detail.isVip!=1&&detail.tradePower==0&&detail.self==0}}" class="cc-video-shadow">
+		<cover-image class="cc-shadow-img" bindtap="goVip" src="../../../img/cc-video-vip.png" mode="widthFix"></cover-image>
+	</cover-view>
 	<view class="body">
 		<view>
 			<view class="pcp-nav {{scrollTop>230?'positionTop':''}}">
@@ -19,13 +19,13 @@
 			<view class="box-sizing">
 				<view class="cc-head box-sizing">
 					<view class="cc-head-msg">{{detail.title}} </view>
-					<view>
+					<view style="margin:15rpx 0;">
 						<view class="inline-block cc-head-img">
-							<image src="{{detail.headImg}}" mode="aspectFit" class="head-img"></image>
-							<text>讲师：{{detail.userName}}</text>
+							<image src="{{detail.headImg||(detail.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" class="head-img" catchtap="goPerson" data-id="{{detail.userId}}"></image>
+							<text>讲师：{{detail.ifPlatformAuthor==1?detail.realName:detail.lecturer}}</text>
 						</view>
 						<!-- <view class="inline-block cc-head-btn">关注</view> -->
-						<view wx:if="{{detail.ifFree==0}}" class="inline-block cc-head-vip">
+						<view wx:if="{{detail.ifFree==1}}" class="inline-block cc-head-vip">
 							<image src="../../../img/cc-head-vip.png" mode="aspectFit"></image>
 						</view>
 					</view>
@@ -35,14 +35,14 @@
 						课程介绍
 					</view>
 					<view class="pcb-zcyw">
-						<rich-text>{{detail.introduce}}</rich-text>
+						<rich-text nodes="{{detail.introduce}}" space="nbsp"></rich-text>
 					</view>
 				</view>
 				<view class="v2 cc-model">
 					<view class="pcb-title">评论 ({{detail.discussNum}})</view>
 					<view>
 						<view class="pcb-pl-list" wx:for="{{commentList}}" wx:for-index="commentListIndex" wx:key="index">
-							<image class="pcb-pl-list-img" src="{{item.headImg}}" mode="aspectFit"></image>
+							<image class="pcb-pl-list-img" src="{{item.headImg||(item.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
 							<view class="inline-block pcb-pl-list-right">
 								<view class="pcb-pl-list-name">
 									<text>{{item.userName}}</text>
@@ -63,7 +63,7 @@
 									<!--  style="{{item.discussUsers.length>1&&item.zk==true?'height:auto':'height:224rpx'}}" -->
 									<view class="pcb-pl-list-hf-msg box-sizing">
 										<view class="pcb-pl-list" wx:for="{{item.discussUsers_change}}" wx:key="index">
-											<image class="pcb-pl-list-img-hf" src="{{item.headImg}}" mode="aspectFit"></image>
+											<image class="pcb-pl-list-img-hf" src="{{item.headImg||(item.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
 											<view class="inline-block pcb-pl-list-right">
 												<view class="pcb-pl-list-name">
 													<view class="inline-block" style="width:85%;word-break: break-all;">
@@ -87,35 +87,38 @@
 
 											</view>
 										</view>
-										<view wx:if="{{item.discussUsers.length>1}}" class="psb-pl-list-sq" data-id="{{index}}" bindtap="sqClick" data-msg="{{item.zk==true?'收起':''}}">{{item.zk==true?'收起':'更多回复'+(item.discussUsers.length-1)}}</view>
+										<view wx:if="{{item.discussUsers.length>1}}" class="psb-pl-list-sq" data-id="{{commentListIndex}}" bindtap="sqClick" data-msg="{{item.zk==true?'收起':''}}">{{item.zk==true?'收起':'更多回复'+(item.discussUsers.length-1)}}</view>
 									</view>
 								</view>
 							</view>
 						</view>
+						<noMsg wx:if="{{commentList==''}}" imgUrl="no-pl" msg="快来抢坐沙发～"></noMsg>
 					</view>
 				</view>
 			</view>
-			<view class="pcb-foot">
+			<view class="pcb-foot" style="padding-bottom: {{isIphoneX ? '68rpx' : '30rpx'}};">
 				<view class="pcb-foot-pl box-sizing" wx:if="{{!commentInput}}">
-					<input class="inline-block" placeholder="发表一下您的意见～" disabled="true" bindtap="inputClick"></input>
+					<input wx:if="{{detail.ifFree==0||detail.isVip==1||detail.tradePower==1||detail.self==1}}" class="inline-block" placeholder="发表一下您的意见～" disabled="true" bindtap="inputClick"></input>
+					<image bindtap="goVip" wx:if="{{detail.ifFree==1&&detail.isVip!=1&&detail.tradePower==0&&detail.self==0}}" class="detail-vip-input" src="/img/detail-vip-btn.png" mode="aspectFit"></image>
 					<view class="inline-block pcb-foot-pl-img">
 						<image src="../../../img/pcb-pl.png" mode="aspectFit"></image>
 						<text class="inline-block">{{detail.discussNum}}</text>
 					</view>
-					<view class="inline-block pcb-foot-pl-img">
-						<image src="../../../img/{{detail.ifPrase>0?'pcb-dz-act.png':'pcb-dz.png'}}" mode="aspectFit" data-parse="{{detail.ifPrase}}" bindtap="wzdzClick"></image>
+					<view class="inline-block pcb-foot-pl-img" data-parse="{{detail.ifPrase}}" bindtap="wzdzClick">
+						<image src="../../../img/{{detail.ifPrase>0?'pcb-dz-act.png':'pcb-dz.png'}}" mode="aspectFit"></image>
 						<text class="inline-block">{{detail.praiseNum}}</text>
 					</view>
 					<view class="inline-block pcb-foot-pl-img">
 						<image src="../../../img/{{detail.ifCollect>0?'pcb-sc-act.png':'pcb-sc.png'}}" mode="aspectFit" data-collect="{{detail.ifCollect}}" bindtap="scClick"></image>
-						<text class="inline-block">{{detail.collectNum}}</text>
+						<!-- <text class="inline-block">{{detail.collectNum}}</text> -->
 					</view>
 					<view class="inline-block pcb-foot-pl-img">
 						<image src="../../../img/pcb-zf.png" mode="aspectFit"></image>
+						<button class="detail-share-btn" open-type="share"></button>
 					</view>
 				</view>
 				<view wx:if="{{commentInput}}" class="pcb-foot-hf">
-					<input class="box-sizing inline-block" bindinput="commentInput" placeholder="{{commentPlaceHolder}}"></input>
+					<input focus="{{focus}}" class="box-sizing inline-block" bindinput="commentInput" placeholder="{{commentPlaceHolder}}" cursor-spacing="20rpx"></input>
 					<text class="green" bindtap="subComment">发送</text>
 				</view>
 			</view>

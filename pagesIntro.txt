@@ -1,5 +1,6 @@
 "pages": [
     "pages/index/index",
+    "pages/index/bannerWeb/bannerWeb",//广告位跳转
     "pages/logs/logs",
     "pages/industry/industryChange/industryChange",//行业改变
      "pages/industry/industryZCGJ/industryZCGJ",//行业政策归集
@@ -40,4 +41,10 @@
       "pages/vip/openIndustry/openIndustry",//会员购买选择开通行业
       "pages/vip/editMsg/editMsg",//会员购买后填写企业信息
       "pages/vip/coupon/coupon",//优惠券页面
+      "pages/share/acspetYq/acspetYq",//接受同事邀请
+      "pages/share/yqts/yqts",//邀请同事填写信息的页面
+      "pages/share/newCenter/newCenter",//分享的newCenter
+      "pages/share/zcgj/zcgj",//分享的政策归集
+      "pages/share/fxts/fxts",//分享的风险提示
+      "pages/share/xgjd/xgjd",//分享的相关解读
   ],

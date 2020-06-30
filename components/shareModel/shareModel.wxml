@@ -1,0 +1,25 @@
+<!--components/shareModel/shareModel.wxml-->
+<view class="shadow" wx:if="{{shadow}}">
+    <view wx:if="{{!canvas}}" class="shadow-body shadow-model box-sizing">
+      <view class="shadow-title">
+        {{title}}
+        <image class="close-shadow" mode="scaleToFill" src="../../img/shadow-close.png" bindtap="closeShadow"></image>
+      </view>
+      <view class="shadow-msg">
+        <view class="inline-block shadow-msg-model">
+          <image class="shadow-msg-model-img" src="../../img/share-zf.png" mode="scaleToFill"></image>
+          <button open-type="share" class="shadow-msg-model-btn"></button>
+          <view class="share-msg-name">分享好友</view>
+        </view>
+        <view class="inline-block shadow-msg-model">
+          <image class="shadow-msg-model-img" src="../../img/share-tp.png" mode="scaleToFill"></image>
+          <button class="shadow-msg-model-btn" bindtap='share'></button>
+          <view class="share-msg-name">生成图片</view>
+        </view>
+      </view>
+    </view>
+    <view class="canvas-bg box-sizing" style="margin-top:{{margin}}px" bindtap="closeCanvas">
+      <canvas  canvas-id="shareImg" class="canvas"></canvas>
+      <button class="save-canvas" catchtap='save'>保存图片</button>
+    </view>
+  </view>

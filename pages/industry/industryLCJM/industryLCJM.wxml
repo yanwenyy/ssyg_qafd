@@ -1,9 +1,9 @@
 <!--pages/industry/industryLCJM/industryLCJM.wxml-->
 <view>
   <view class="lcjm-body container">
-    <view class="lcjm-list shadow-model box-sizing" wx:for="{{list}}" wx:key="index" data-id="{{item.id}}" bindtap="goContent">
+    <view class="lcjm-list shadow-model box-sizing" wx:for="{{list}}" wx:key="index" data-id="{{item.id}}" data-vip="{{item.isVip}}" data-power="{{item.tradePower}}" bindtap="goContent">
       <view>{{item.title}}</view>
-      <image src="{{'http://'+item.coverUrl}}" mode="aspectFit"></image>
+      <image src="{{'http://'+item.coverUrl}}" mode="widthFix"></image>
       <button>查看</button>
     </view>
   </view>
