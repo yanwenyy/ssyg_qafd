@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     phone: '', //手机号
     code: '', //验证码
     smsMessageSid: '', //验证码id

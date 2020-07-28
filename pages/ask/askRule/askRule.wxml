@@ -3,17 +3,17 @@
   <view class="ask-rule-title">1. 问答流程：</view>
   <view class="ask-rule-p-list">
     <view class="inline-block ask-rule-process">
-      <image src="../../../img/ask-rule1.png" mode="aspect"></image>
+      <image src="{{imgUrl}}/ask-rule1.png" mode="aspect"></image>
       <view>1.提问</view>
     </view>
     <view class="ask-rule-process-line inline-block"></view>
     <view class="inline-block ask-rule-process">
-      <image src="../../../img/ask-rule2.png" mode="aspect"></image>
+      <image src="{{imgUrl}}/ask-rule2.png" mode="aspect"></image>
       <view>2.内收到答案  </view>
     </view>
     <view class="ask-rule-process-line inline-block"></view>
     <view class="inline-block ask-rule-process">
-      <image src="../../../img/ask-rule3.png" mode="aspect"></image>
+      <image src="{{imgUrl}}/ask-rule3.png" mode="aspect"></image>
       <view>3.采纳最优 </view>
     </view>
   </view>

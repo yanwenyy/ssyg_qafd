@@ -2,16 +2,16 @@
 <wxs module="tools" src="../../tools.wxs"></wxs>
 <view style="height:auto;position:relative;width:100%;">
 	<!-- <scroll-view scroll-y="false" bindscroll="scroll" bindscrolltolower="scrollBottom" scroll-top="{{scrollTop}}" style="height:100%;"> -->
-		<view class="bannercontainer">
-			<view class="course-head">
-				<view class="inline-block course-search">
-					<image src="../../../img/search-img.png" mode="aspectFit"></image>
-					<input disabled class="inline-block box-sizing" placeholder="请输入要搜索的内容" bindtap="search"></input>
-				</view>
-				<view class="inline-block">搜索</view>
+	<view class="bannercontainer">
+		<view class="course-head">
+			<view class="inline-block course-search">
+				<image src="{{imgUrl}}/search-img-white.png" mode="aspectFit"></image>
+				<input disabled class="inline-block box-sizing" placeholder="请输入要搜索的内容" bindtap="search" placeholder-class="input-placeholder"></input>
 			</view>
-			<view class="index-head-card">
-				<image class="index-head-card-img" src="../../../img/index-head-bg.png" mode="scaleToFill"></image>
+			<view class="inline-block">搜索</view>
+		</view>
+		<!-- <view class="index-head-card">
+				<image class="index-head-card-img" src="{{imgUrl}}/index-head-bg.png" mode="scaleToFill"></image>
 				<view class="index-head-card-msg box-sizing">
 					<view class="index-hcm-title">您的专属行业</view>
 					<view class="index-hcm-name">
@@ -24,41 +24,52 @@
 					</view>
 					<view class="index-hcm-intro">{{headTrade.introduce||''}}</view>
 				</view>
+			</view> -->
+	</view>
+	<view class="new-head-tab {{scrollTop > headHeight ? 'page-group-position' : ''}}">
+		<view class="search-tab">
+			<view class="inline-block" bindtap="tabClick" data-type="1">
+				<text class="{{tabType=='1'?'green':''}}">行业政策</text>
+				<view wx:if="{{tabType=='1'}}" class="search-tab-line"></view>
+			</view>
+			<view class="inline-block" bindtap="tabClick" data-type="2">
+				<text class="{{tabType=='2'?'green':''}}">普适政策</text>
+				<view wx:if="{{tabType=='2'}}" class="search-tab-line"></view>
 			</view>
 		</view>
-		<view class="page-group box-sizing {{scrollTop > headHeight ? 'page-group-position' : ''}}">
+		<view class="page-group box-sizing">
 			<view class="page-nav-list inline-block" bindtap="navClick" data-txt="税种">
 				<view class="{{navText=='税种'?'green':''}}">
 					{{taxId==''?'税种':taxMsg}}
-					<image class="page-nav-img" src="../../../img/{{navText=='税种'?'sel-act':'sel'}}.png" mode="aspectFit"></image>
+					<image class="page-nav-img" src="{{imgUrl}}/{{navText=='税种'?'sel-act':'sel'}}.png" mode="aspectFit"></image>
 				</view>
 				<text wx:if="{{navText=='税种'}}" class="nav-line"></text>
 			</view>
 			<view class="page-nav-list inline-block" bindtap="navClick" data-txt="发布年份">
 				<view class="{{navText=='发布年份'?'green':''}}">
 					{{year==''?'发布年份':year}}
-					<image class="page-nav-img" src="../../../img/{{navText=='发布年份'?'sel-act':'sel'}}.png" mode="aspectFit"></image>
+					<image class="page-nav-img" src="{{imgUrl}}/{{navText=='发布年份'?'sel-act':'sel'}}.png" mode="aspectFit"></image>
 				</view>
 				<text wx:if="{{navText=='发布年份'}}" class="nav-line"></text>
 			</view>
 			<view class="page-nav-list inline-block" bindtap="navClick" data-txt="时效性">
 				<view class="{{navText=='时效性'?'green':''}}">
 					{{timeLinessId==''?'时效性':timeMsg}}
-					<image class="page-nav-img" src="../../../img/{{navText=='时效性'?'sel-act':'sel'}}.png" mode="aspectFit"></image>
+					<image class="page-nav-img" src="{{imgUrl}}/{{navText=='时效性'?'sel-act':'sel'}}.png" mode="aspectFit"></image>
 				</view>
 				<text wx:if="{{navText=='时效性'}}" class="nav-line"></text>
 			</view>
 			<view class="page-nav-list inline-block" bindtap="navClick" data-txt="地域" data-region="yes">
-				<view style="width:100%;height:100%"  class="{{navText=='地域'?'green':''}}">
+				<view style="width:100%;height:100%" class="{{navText=='地域'?'green':''}}">
 					{{region!=''||province!=''?regionMsg:'地域'}}
-					<region bind:change="regionChange"/>
+					<region bind:change="regionChange" />
 					<!-- <picker mode="region" bindcancel="bindRegionCancel" bindchange="bindRegionChange" value="{{regionList}}" custom-item="{{customItem}}">
 						<view class="picker">
 							{{region!=''||province!=''?regionMsg:'地域'}}
-							<image style="margin-left:5rpx" class="page-nav-img" src="../../../img/{{navText=='地域'?'sel-act':'sel'}}.png" mode="aspectFit"></image>
+							<image style="margin-left:5rpx" class="page-nav-img" src="{{imgUrl}}/{{navText=='地域'?'sel-act':'sel'}}.png" mode="aspectFit"></image>
 						</view>
 					</picker> -->
-					<image style="margin-left:5rpx" class="page-nav-img" src="../../../img/{{navText=='地域'?'sel-act':'sel'}}.png" mode="aspectFit"></image>
+					<image style="margin-left:5rpx" class="page-nav-img" src="{{imgUrl}}/{{navText=='地域'?'sel-act':'sel'}}.png" mode="aspectFit"></image>
 				</view>
 				<text wx:if="{{navText=='地域'}}" class="nav-line"></text>
 			</view>
@@ -77,13 +88,24 @@
 				</view>
 			</view>
 		</view>
-		
-		<view class="goods-list {{scrollTop > headHeight ? 'goods-list-padding' : ''}}">
-			<view bindtap="zcClick" class="goods-list-li box-sizing" wx:for="{{list}}" wx:key="index" data-id="{{item.id}}">
-				<view class="goods-list-li-title">{{item.title}}</view>
-				<view class="goods-list-li-file">[ {{item.fileNum}} ]</view>
-				<view class="goods-list-li-date">发布时间：{{tools.dateFormat(item.officialReleaseDate,"yyyy-MM-dd")}}</view>
-			</view>
+		<view class="label-list">
+			<view wx:for="{{labelList}}" wx:key="index" data-id="{{item.tagId}}" class="inline-block {{item.tagId==tagId?'label-list-act':''}}" bindtap="labelClick">{{item.tagName}}</view>
 		</view>
+	</view>
+	<!-- <view class="goods-list {{scrollTop > headHeight ? 'goods-list-padding' : ''}}"> -->
+	<view class="goods-list" style="padding-top:{{scrollTop > headHeight ? paddingHeight : 0}}px">
+		<view wx:if="{{tabType=='hy'}}" class="new-card box-sizing">
+			<view class="inline-block new-card-tImg">
+				<image src="{{'http://'+headTrade.tradeIcon}}" mode="scaleToFill"></image>
+			</view>
+			<view class="inline-block new-card-name">{{headTrade.tradeName}}</view>
+			<image src="{{imgUrl}}/zcgj-new-cardinro.png" class="new-card-itro" mode="scaleToFill"></image>
+		</view>
+		<view bindtap="zcClick" class="goods-list-li box-sizing" wx:for="{{list}}" wx:key="index" data-id="{{item.id}}">
+			<view class="goods-list-li-title">{{item.title}}</view>
+			<view class="goods-list-li-file">[ {{item.fileNum}} ]</view>
+			<view class="goods-list-li-date">发布时间：{{tools.dateFormat(item.officialReleaseDate,"yyyy-MM-dd")}}</view>
+		</view>
+	</view>
 	<!-- </scroll-view> -->
 </view>

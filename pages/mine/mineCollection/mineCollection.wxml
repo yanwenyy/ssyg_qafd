@@ -3,6 +3,7 @@
 <view>
 	<scroll-view class="ifx-tab-list" scroll-x="true">
 		<view class="inline-block ifx-tab {{type==''?'ifx-tab-act':''}}" data-msg="全部" data-type="" bindtap="tabClick">全部</view>
+		<view class="inline-block ifx-tab {{type=='10'?'ifx-tab-act':''}}" data-msg="政策原文" data-type="10" bindtap="tabClick">政策原文</view>
 		<view class="inline-block ifx-tab {{type=='1'?'ifx-tab-act':''}}" data-msg="政策归集" data-type="1" bindtap="tabClick">政策归集</view>
 		<view class="inline-block ifx-tab {{type=='3'?'ifx-tab-act':''}}" data-msg="风险提示" data-type="3" bindtap="tabClick">风险提示</view>
 		<view class="inline-block ifx-tab {{type=='4'?'ifx-tab-act':''}}" data-msg="税收筹划方案" data-type="4" bindtap="tabClick">税收筹划方案</view>
@@ -13,7 +14,7 @@
 	</scroll-view>
 	<view class="container">
 		<view wx:for="{{list}}" wx:key="index" bindtap="listClick" data-type="{{item.moudle}}" data-id="{{item.moudleId}}">
-			<view wx:if="{{item.moudle==1||item.moudle==2}}" class="ifx-list shadow-model box-sizing">
+			<view wx:if="{{item.moudle==1||item.moudle==2||item.moudle==10}}" class="ifx-list shadow-model box-sizing">
 				<view class="ifx-list-title">{{item.title}}</view>
 				<view class="ifx-list-content">[ {{item.fileNum}} ]</view>
 				<view class="mc-date">{{tools.dateFormat(item.careadate)}}</view>

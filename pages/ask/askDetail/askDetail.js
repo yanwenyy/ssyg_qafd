@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     starNum:1,//星星等级
     id:'',//问题id
     msg:{},//问题信息

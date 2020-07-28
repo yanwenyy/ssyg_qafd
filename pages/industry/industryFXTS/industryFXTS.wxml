@@ -8,7 +8,7 @@
   <view class="container">
       <view class="ifx-list shadow-model box-sizing" wx:for="{{list}}" wx:key="index" data-id="{{item.id}}" bindtap="listClick">
         <view class="ifx-list-head">
-            <image catchtap="goPerson" src="{{item.headImg||(item.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
+            <image catchtap="goPerson" src="{{item.headImg||(item.ifPlatformAuthor==1?imgUrl+'/user-zj.png':imgUrl+'/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
             <view class="inline-block">
               <view class="ifx-list-head-name">{{item.ifPlatformAuthor==1?item.realName:item.lecturer}}</view>
               <view class="ifx-list-head-date">{{tools.dateFormat(item.creatTime)}}</view>
@@ -21,19 +21,19 @@
         </view>
         <view class="ifx-foot">
           <view class="ifx-foot-list" catchtap="plClick"  data-id="{{item.id}}">
-            <image src="../../../img/pcb-pl.png" mode="aspectFit" ></image>
+            <image src="{{imgUrl}}/pcb-pl.png" mode="aspectFit" ></image>
             <text class="inline-block">{{item.discussNum}}</text>
           </view>
           <view class="ifx-foot-list" catchtap="dzClick" data-id="{{item.id}}" data-index="{{index}}" data-parse="{{item.ifPrase}}">
-            <image src="../../../img/{{item.ifPrase>0?'pcb-dz-act':'pcb-dz'}}.png" mode="aspectFit" ></image>
+            <image src="{{imgUrl}}/{{item.ifPrase>0?'pcb-dz-act':'pcb-dz'}}.png" mode="aspectFit" ></image>
             <text class="inline-block">{{item.praiseNum}}</text>
           </view>
           <view class="ifx-foot-list" catchtap="scClick" data-id="{{item.id}}" data-index="{{index}}" data-collect="{{item.ifCollect}}">
-            <image src="../../../img/{{item.ifCollect>0?'pcb-sc-act':'pcb-sc'}}.png" mode="aspectFit"></image>
+            <image src="{{imgUrl}}/{{item.ifCollect>0?'pcb-sc-act':'pcb-sc'}}.png" mode="aspectFit"></image>
           </view>
           <view class="ifx-foot-list">
             <button id="{{item.id}}" catchtap="share" class="detail-share-btn" open-type="share"></button>
-            <image src="../../../img/pcb-zf.png" mode="aspectFit"></image>
+            <image src="{{imgUrl}}/pcb-zf.png" mode="aspectFit"></image>
           </view>
         </view>
       </view>

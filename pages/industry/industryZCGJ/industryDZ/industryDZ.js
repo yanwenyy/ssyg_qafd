@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     id: '', //业务id
     type: '', //类型
     start: 1, //起始页

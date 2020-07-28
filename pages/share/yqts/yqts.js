@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     userInfo: '',
     region: [],//地区
     industry: [],//行业

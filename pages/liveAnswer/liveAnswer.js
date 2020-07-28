@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     tradeId: '', //行业id
     start: 1, //起始页
     num: 5, //每页显示条数

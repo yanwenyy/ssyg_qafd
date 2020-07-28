@@ -1,12 +1,14 @@
 // pages/mine/company/teamManage/teamManage.js
 const app=getApp();
-const base64src = require('../../../utils/base64src.js')
+const base64src = require('../../../utils/base64src.js');
+var imgUrl=app.globalData.imgUrl;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     msg:{},//团队信息
     shadow:false,
     shadowId:'',//操作的用户id
@@ -92,7 +94,7 @@ Page({
     return {
       title: that.data.userInfo.companyName+'邀请您的加入',
       path: 'pages/share/acspetYq/acspetYq?uuid='+this.data.userInfo.uuid,
-      imageUrl:'/img/share-yqts.png'
+      imageUrl:imgUrl+'/share-yqts.png'
     }
   },
  

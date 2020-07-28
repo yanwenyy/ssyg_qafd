@@ -1,0 +1,5 @@
+<!--pages/mine/help/help.wxml-->
+<view>
+  <image class="bg-img" src="/img/help-bg.png" mode="widthFix"></image>
+</view>
+

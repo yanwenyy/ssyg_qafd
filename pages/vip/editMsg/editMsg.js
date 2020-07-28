@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     userInfo: {},
     company: true, //企业用户
     personal: false, //个人用户

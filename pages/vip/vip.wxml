@@ -2,15 +2,15 @@
 <wxs module="tools" src="../tools.wxs"></wxs>
 <view>
 	<view class="vip-bg">
-		<image src="../../img/vip-bg.png" mode="aspectFit"></image>
+		<image src="{{imgUrl}}/vip-bg.png" mode="aspectFit"></image>
 		<view class="vip-bg-msg box-sizing">
 			<view>
-				<image src="{{userInfo.headImg||'/img/user.png'}}" mode="aspectFit" class="head-img"></image>
+				<image src="{{userInfo.headImg||imgUrl+'/user.png'}}" mode="aspectFit" class="head-img"></image>
 				<view class="inline-block">
 					<view class="user-name">{{userInfo.nickname}}</view>
 					<view class="user-industry">您目前开通{{industryIndex.openNum}}个行业</view>
 				</view>
-				<view class="vip-title">省税一哥·行业税务全案辅导VIP</view>
+				<view class="vip-title">行税之星VIP</view>
 				<view class="vip-sel-title">请选择您要开通的行业</view>
 				<view class="vip-share">分享</view>
 			</view>
@@ -21,7 +21,7 @@
 			<swiper-item item-id="{{index}}" data-item-id="{{index}}" bindtap='clickChange'>
 				<view class='li'>
 					<view class='li1 {{currentItemId == index ? "selected" : ""}}'>
-						<image src="{{currentItemId == index ? '../../img/vip-list-sel.png' : '../../img/vip-list.png'}}" mode="aspectFit"></image>
+						<image src="{{currentItemId == index ? imgUrl+'/vip-list-sel.png' : imgUrl+'/vip-list.png'}}" mode="aspectFit"></image>
 						<view class="vip-list-msg box-sizing">
 							<view  wx:if="{{item.ifVip!=0}}" class="vip-list-name">{{item.cardType==1?'A':(item.cardType==2?'B':'C')}}卡</view>
 							<view class="vip-list-industry">

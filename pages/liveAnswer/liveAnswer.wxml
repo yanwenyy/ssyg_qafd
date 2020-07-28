@@ -5,10 +5,10 @@
     <view class="live-ans-list-img">
       <image src="{{'http://'+item.coverUrl}}" mode="aspectFit"></image>
       <view class="live-ans-status">
-        <image wx:if="{{item.status==2}}" src="../../img/zb-ing.png" mode="widthFix"></image>
-        <image wx:if="{{item.status==4}}" src="../../img/zb-hf.png" mode="widthFix"></image>
-        <image wx:if="{{item.status==1}}" src="../../img/zb-yg.png" mode="widthFix"></image>
-        <image wx:if="{{item.status==3}}" src="../../img/zb-js.png" mode="widthFix"></image>
+        <image wx:if="{{item.status==2}}" src="{{imgUrl}}/zb-ing.png" mode="widthFix"></image>
+        <image wx:if="{{item.status==4}}" src="{{imgUrl}}/zb-hf.png" mode="widthFix"></image>
+        <image wx:if="{{item.status==1}}" src="{{imgUrl}}/zb-yg.png" mode="widthFix"></image>
+        <image wx:if="{{item.status==3}}" src="{{imgUrl}}/zb-js.png" mode="widthFix"></image>
         {{item.status==1?'预告':(item.status==2?'直播中':(item.status==3?'直播结束':'回放'))}}
       </view>
     </view>

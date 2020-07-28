@@ -2,21 +2,21 @@
 <view class="set-body box-sizing">
   <view class="set-list" bindtap="openShadow">
     <view class="inline-block set-list-name">
-      <image class="set-list-name-img" src="../../../img/set-ggsjh.png" mode="scaleToFill"></image>
+      <image class="set-list-name-img" src="{{imgUrl}}/set-ggsjh.png" mode="scaleToFill"></image>
       <text>更改手机号</text>
     </view>
     <view class="inline-block set-list-right">
       <text>{{userInfo.phone}}</text>
-      <image class="set-go" src="../../../img/set-go.png" mode="scaleToFill"></image>
+      <image class="set-go" src="{{imgUrl}}/set-go.png" mode="scaleToFill"></image>
     </view>
   </view>
   <view class="set-list" bindtap="delCompany" wx:if="{{userInfo.category==1}}">
     <view class="inline-block set-list-name">
-      <image class="set-list-name-img" src="../../../img/set-jcbd.png" mode="scaleToFill"></image>
+      <image class="set-list-name-img" src="{{imgUrl}}/set-jcbd.png" mode="scaleToFill"></image>
       <text>解除公司绑定</text>
     </view>
     <view class="inline-block set-list-right">
-      <image class="set-go" src="../../../img/set-go.png" mode="scaleToFill"></image>
+      <image class="set-go" src="{{imgUrl}}/set-go.png" mode="scaleToFill"></image>
     </view>
   </view>
   <view class="set-btn box-sizing">
@@ -26,7 +26,7 @@
     <view class="set-shadow-body box-sizing coach-model">
       <view class="set-shadow-title">
         更改手机号码
-        <image class="set-shadow-close" src="../../../img/shadow-close.png" mode="scaleToFill" bindtap="closeShadow"></image>
+        <image class="set-shadow-close" src="{{imgUrl}}/shadow-close.png" mode="scaleToFill" bindtap="closeShadow"></image>
       </view>
       <view class="set-shadow-model">
         <view class="set-shadow-input-group">

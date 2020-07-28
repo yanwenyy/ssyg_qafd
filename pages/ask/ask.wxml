@@ -9,12 +9,12 @@
 			<view bindtap="delImg" data-src="{{item}}">X</view>
 		</view>
 		<view class="inline-block ask-img"  wx:if="{{imgList.length<3}}">
-			<image bindtap="chooseImg"  src="../../img/ask-add-img.png" mode="aspectFit"></image>
+			<image bindtap="chooseImg"  src="{{imgUrl}}/ask-add-img.png" mode="aspectFit"></image>
 		</view>
 	</view>
 	<view class="ask-industry">
 		<view class="inline-block ask-industry-title">
-			<image src="../../img/ask-label.png"></image>
+			<image src="{{imgUrl}}/ask-label.png"></image>
 			涉及行业
 		</view>
 		<view class="inline-block ask-industry-sel section">
@@ -29,7 +29,7 @@
     <view class="shadow-body">
       <view class="shadow-body-title">
         所在行业
-        <image bindtap="closeShadow" class="shadow-close" src="../../../img/shadow-close.png" mode="scaleToFill"></image>
+        <image bindtap="closeShadow" class="shadow-close" src="../{{imgUrl}}/shadow-close.png" mode="scaleToFill"></image>
       </view>
       <view class="shadow-body-ul box-sizing">
         <radio-group bindchange="checkboxChange">

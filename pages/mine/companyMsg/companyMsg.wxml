@@ -15,7 +15,7 @@
               <text wx:if="{{natureName==''||natureName==null}}" class="placeholder-text">请选择</text>
               <text wx:if="{{natureName!=''&&natureName!=null}}" class="input-picker-text">{{natureName}}</text> 
           </view>
-          <image src="../../../img/testCard-more.png" mode="scaleToFill"></image>
+          <image src="{{imgUrl}}/testCard-more.png" mode="scaleToFill"></image>
         </view>
       </view>
       <view class="editMsg-list">
@@ -26,7 +26,7 @@
               <text wx:if="{{industrySelName==''&&tradeStr!=null}}"  class="input-picker-text">{{tradeStr}}</text> 
               <text wx:for="{{industrySelName}}" wx:key="index" class="input-picker-text">{{item}}</text> 
           </view>
-          <image src="../../../img/testCard-more.png" mode="scaleToFill"></image>
+          <image src="{{imgUrl}}/testCard-more.png" mode="scaleToFill"></image>
         </view>
       </view>
       <view class="editMsg-list">
@@ -36,7 +36,7 @@
               <text wx:if="{{scaleName==''||scaleName==null}}" class="placeholder-text">请选择</text>
               <text wx:if="{{scaleName!=''&&scaleName!=null}}" class="input-picker-text">{{scaleName}}</text> 
           </view>
-          <image src="../../../img/testCard-more.png" mode="scaleToFill"></image>
+          <image src="{{imgUrl}}/testCard-more.png" mode="scaleToFill"></image>
         </view>
       </view>
       <view class="editMsg-list">
@@ -48,7 +48,7 @@
               {{region[0]||''}} {{region[1]||''}} {{region[2]}}
             </view>
           </picker>
-          <image src="../../../img/testCard-more.png" mode="scaleToFill"></image>
+          <image src="{{imgUrl}}/testCard-more.png" mode="scaleToFill"></image>
         </view>
       </view>
     </view>
@@ -57,7 +57,7 @@
       <view class="shadow-body" wx:if="{{shadowHy}}">
           <view class="shadow-body-title">
               所在行业
-              <image bindtap="closeShadow" class="shadow-close" src="../../../img/shadow-close.png" mode="scaleToFill"></image>
+              <image bindtap="closeShadow" class="shadow-close" src="{{imgUrl}}/shadow-close.png" mode="scaleToFill"></image>
           </view>
           <view class="shadow-body-ul box-sizing">
               <radio-group bindchange="checkboxChange">
@@ -72,7 +72,7 @@
       <view class="shadow-body" wx:if="{{shadowXz}}">
           <view class="shadow-body-title">
               企业性质
-              <image bindtap="closeShadow" class="shadow-close" src="../../../img/shadow-close.png" mode="scaleToFill"></image>
+              <image bindtap="closeShadow" class="shadow-close" src="{{imgUrl}}/shadow-close.png" mode="scaleToFill"></image>
           </view>
           <view class="shadow-body-ul box-sizing">
               <radio-group bindchange="xzChange">
@@ -87,7 +87,7 @@
       <view class="shadow-body" wx:if="{{shadowGm}}">
           <view class="shadow-body-title">
               规模
-              <image bindtap="closeShadow" class="shadow-close" src="../../../img/shadow-close.png" mode="scaleToFill"></image>
+              <image bindtap="closeShadow" class="shadow-close" src="{{imgUrl}}/shadow-close.png" mode="scaleToFill"></image>
           </view>
           <view class="shadow-body-ul box-sizing">
               <radio-group bindchange="gmChange">

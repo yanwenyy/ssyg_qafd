@@ -1,0 +1,4 @@
+<!--pages/mine/cooperation/cooperation.wxml-->
+<view>
+  <image class="bg-img" src="/img/swhz-bg.png" mode="widthFix"></image>
+</view>

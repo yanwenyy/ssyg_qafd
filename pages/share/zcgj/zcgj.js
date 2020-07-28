@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     navText: '政策',
     id: '',//政策id
     policyContent: '',//政策详情

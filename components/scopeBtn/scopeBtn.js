@@ -12,6 +12,7 @@ Component({
    * 组件的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     userInfo: {},//用户信息
     hasUserInfo: false,
     phone: '',//用户手机号

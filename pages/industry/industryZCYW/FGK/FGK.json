@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "region":"/components/region/region",
+    "noMsg":"/components/noMsg/noMsg"
+  },
+  "navigationBarTitleText":"政策法规库"
+}

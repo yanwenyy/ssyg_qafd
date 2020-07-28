@@ -2,5 +2,7 @@
   "usingComponents": {
     "region":"/components/region/region"
   },
-  "navigationBarTitleText":"政策归集"
+  "navigationBarTitleText":"政策归集",
+  "navigationBarBackgroundColor":"#28B7A3",
+  "navigationBarTextStyle":"white"
 }

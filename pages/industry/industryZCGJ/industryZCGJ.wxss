@@ -2,13 +2,18 @@
 @import '../../index/index.wxss';
 @import "../../course/course.wxss";
 .course-head{
-  margin-bottom: 29rpx;
+  /* margin-bottom: 29rpx; */
+  color:#fff;
 }
 .green{
   font-weight: bold;
 }
 .course-search{
   width: 84%;
+  background: rgba(246,246,246,0.32);
+}
+.input-placeholder{
+  color:#fff;
 }
 .index-head-card-img {
   border-radius: 20rpx;
@@ -17,6 +22,7 @@
 .bannercontainer {
   padding: 32rpx 34rpx;
   box-sizing: border-box;
+  background: #28B7A3;
 }
 
 
@@ -34,6 +40,8 @@
 .page-group-position {
   position: fixed;
   z-index: 99999999;
+  top: 0;
+  left: 0;
 }
 
 .page-nav-list {
@@ -94,7 +102,7 @@
   background: #fff;
 }
 .goods-list-padding{
-  padding-top:200rpx;
+  padding-top:600rpx;
 }
 .goods-list-li{
   padding:44rpx 31rpx;
@@ -109,4 +117,90 @@
 }
 .goods-list-li-file{
   margin:19rpx 0 27rpx 0;
+}
+
+.search-tab{
+  width: 100%;
+  height: 98rpx;
+  line-height: 98rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color:#666;
+  background: #fff;
+}
+.search-tab>view{
+  position: relative;
+  text-align: center;
+}
+.search-tab>view:nth-child(1){
+  margin-right: 250rpx;
+}
+.search-tab-line{
+  width: 50%;
+  height: 3rpx;
+  background: #28B7A3;
+  position: absolute;
+  bottom: 0;
+  left:25%;
+}
+.green{
+  font-weight: bold;
+}
+.new-head-tab{
+  width: 100%;
+}
+.label-list{
+  padding:30rpx 20rpx;
+  overflow-x: auto;
+  white-space:nowrap;
+  background: #fff;
+}
+.label-list>view{
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 26rpx;
+  padding:0 34rpx;
+  background: #F6F6F6;
+  color:#999;
+  border-radius: 30rpx;
+  margin-right: 26rpx;
+}
+.label-list-act{
+  color:#28B7A3!important;
+  background: #F2FBFA!important;
+}
+.new-card{
+  background: #FEF6E9;
+  width: 683rpx;
+  margin:19rpx auto 0 auto;
+  padding:36rpx 23rpx;
+  border-radius: 14rpx;
+}
+.new-card-tImg{
+  width: 51rpx;
+  height: 51rpx;
+  border-radius: 50%;
+  background: rgba(0,0,0,.3);
+  line-height: 51rpx;
+  text-align: center;
+}
+.new-card-tImg>image{
+  width: 36rpx;
+  height: 31rpx;
+  vertical-align: middle;
+  margin-top: -8rpx;
+}
+.new-card-name{
+  font-size: 31rpx;
+  color:#6F584B;
+  font-weight: bold;
+  vertical-align: middle;
+  width: 42%;
+  margin-left:10rpx;
+}
+.new-card-itro{
+  width: 307rpx;
+  height: 56rpx;
+  vertical-align: middle;
 }

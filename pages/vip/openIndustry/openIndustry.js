@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     industryList: [], //行业列表
     industryId: '', //行业id
     product: false, //商品弹框

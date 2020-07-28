@@ -8,7 +8,7 @@
       <text wx:if="{{item.status==2}}" class="red">支付失败</text>
     </view>
     <view class="mine-order-msg">
-      <image src="../../../img/mine-order-img.png" mode="scaleToFill"></image>
+      <image src="{{imgUrl}}/mine-order-img.png" mode="scaleToFill"></image>
       <view class="inline-block mine-order-msg-right">
         <view class="mine-omr-name">{{item.productName}}</view>
         <view>有效期：{{tools.dateFormat(item.vipStartTime,"yyyy.MM.dd")}}-{{tools.dateFormat(item.vipEndTime,"yyyy.MM.dd")}}</view>

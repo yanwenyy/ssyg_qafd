@@ -1,7 +1,7 @@
 <!--pages/mine/mineMsg/mineMsg.wxml-->
 <view class="mineMsg-body box-sizing">
   <view class="mineMsg-head">
-    <image src="{{userInfo.headImg||'/img/user.png'}}" mode="scaleToFill"></image>
+    <image src="{{userInfo.headImg||imgUrl+'/user.png'}}" mode="scaleToFill"></image>
   </view>
   <view class="mineMsg-msg box-sizing">
     <view class="editMsg-list">
@@ -31,7 +31,7 @@
             {{region[0]||''}} {{region[1]||''}} {{region[2]}}
           </view>
         </picker>
-        <image src="../../../img/testCard-more.png" mode="scaleToFill"></image>
+        <image src="{{imgUrl}}/testCard-more.png" mode="scaleToFill"></image>
       </view>
     </view>
     <!-- <view class="editMsg-list">
@@ -42,7 +42,7 @@
                 {{userInfo.trade&&personalIndustryindex=='-1'? userInfo.trade:(personalIndustryindex=='-1'? '请选择':industry[personalIndustryindex].tradeName)}}
             </view>
           </picker>
-          <image src="../../../img/testCard-more.png" mode="scaleToFill"></image>
+          <image src="{{imgUrl}}/testCard-more.png" mode="scaleToFill"></image>
         </view>
       </view> -->
     <view class="editMsg-list">
@@ -53,7 +53,7 @@
           <text wx:if="{{industrySelName==''&&userInfo.trade!=null&&userInfo.trade!=''}}" class="input-picker-text">{{userInfo.tradeStr}}</text>
           <text wx:for="{{industrySelName}}" wx:key="index" class="input-picker-text">{{item}}</text>
         </view>
-        <image src="../../../img/testCard-more.png" mode="scaleToFill"></image>
+        <image src="{{imgUrl}}/testCard-more.png" mode="scaleToFill"></image>
       </view>
     </view>
     <!-- <view class="editMsg-list">
@@ -64,7 +64,7 @@
             {{userInfo.positiotn&&postIndex=='-1'? userInfo.positiotn:(postIndex=='-1'? '请选择':post[postIndex].name)}}
             </view>
           </picker>
-          <image src="../../../img/testCard-more.png" mode="scaleToFill"></image>
+          <image src="{{imgUrl}}/testCard-more.png" mode="scaleToFill"></image>
         </view>
       </view> -->
     <view class="editMsg-list">
@@ -74,7 +74,7 @@
           <text wx:if="{{postName==''||postName==null}}" class="placeholder-text">请选择</text>
           <text class="input-picker-text">{{postName}}</text>
         </view>
-        <image src="../../../img/testCard-more.png" mode="scaleToFill"></image>
+        <image src="{{imgUrl}}/testCard-more.png" mode="scaleToFill"></image>
       </view>
     </view>
   </view>
@@ -85,25 +85,9 @@
     <view class="shadow-body" wx:if="{{shadowHy}}">
       <view class="shadow-body-title">
         所在行业
-        <image bindtap="closeShadow" class="shadow-close" src="../../../img/shadow-close.png" mode="scaleToFill"></image>
+        <image bindtap="closeShadow" class="shadow-close" src="{{imgUrl}}/shadow-close.png" mode="scaleToFill"></image>
       </view>
       <view class="shadow-body-ul box-sizing">
-        <!-- <view class="shadow-body-li">
-                  <view class="inline-block">房地产</view>
-                  <image src="../../../img/shadow-li-sel.png" mode="scaleToFill"></image>
-              </view> -->
-        <!-- <view class="shadow-body-li" bindtap="hyListClick" wx:for="{{industry}}"  wx:key="index" data-name="{{item.tradeName}}" data-id="{{item.tradeId}}" >
-                  <view class="inline-block">{{item.tradeName}}</view>
-                  {{func.indexOf(industrySelId,tradeId)}}
-                  <image src="{{func.indexOf(industrySelId,tradeId)>-1?'../../../img/shadow-li-sel.png':'../../../img/shadow-li-sel-no.png'}}" mode="scaleToFill"></image>
-                 
-              </view> -->
-        <!-- <checkbox-group bindchange="checkboxChange">
-          <label class="checkbox shadow-body-li" wx:for="{{industry}}" data-name="{{item.tradeName}}" bindtap="hyLabelClick" data-index="{{index}}">
-            <view class="inline-block shadow-body-li-view">{{item.tradeName}}</view>
-            <checkbox value="{{item.tradeId}}" checked="{{item.checked}}" />
-          </label>
-        </checkbox-group> -->
         <radio-group bindchange="checkboxChange">
           <label class="checkbox shadow-body-li" wx:for="{{industry}}" data-name="{{item.tradeName}}" bindtap="hyLabelClick" data-index="{{index}}">
             <view class="inline-block shadow-body-li-view">{{item.tradeName}}</view>
@@ -118,7 +102,7 @@
     <view class="shadow-body" wx:if="{{shadowZw}}">
       <view class="shadow-body-title">
         职务
-        <image bindtap="closeShadow" class="shadow-close" src="../../../img/shadow-close.png" mode="scaleToFill"></image>
+        <image bindtap="closeShadow" class="shadow-close" src="{{imgUrl}}/shadow-close.png" mode="scaleToFill"></image>
       </view>
       <view class="shadow-body-ul box-sizing">
         <radio-group bindchange="radioChange">

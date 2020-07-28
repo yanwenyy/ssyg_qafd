@@ -8,6 +8,9 @@
      "pages/industry/industryZCGJ/search/search",//政策归集搜索
      "pages/industry/industryZCGJ/XGJDcontent/XGJDcontent",//相关解读详情
      "pages/industry/industryZCGJ/industryDZ/industryDZ",//点赞列表
+      "pages/industry/industryZCYW/search/search",//政策原文搜索
+    "pages/industry/industryZCYW/FGK/FGK",//法规库
+    "pages/industry/industryZCYW/zcywContent/zcywContent",//政策原文搜索
      "pages/industry/industryFXTS/industryFXTS",//风险提示
      "pages/industry/industryFXTS/FXTScontent/FXTScontent",//风险提示详情
      "pages/industry/industrySSCH/industrySSCH",//税收筹划
@@ -37,6 +40,8 @@
       "pages/mine/minePage/minePage",//个人中心页面
       "pages/mine/mineAttention/mineAttention",//我的关注
       "pages/mine/mineFans/mineFans",//我的粉丝
+      "pages/mine/cooperation/cooperation",//商务合作
+      "pages/mine/help/help",//帮助中心
       "pages/vip/vip",//会员展示页
       "pages/vip/openIndustry/openIndustry",//会员购买选择开通行业
       "pages/vip/editMsg/editMsg",//会员购买后填写企业信息

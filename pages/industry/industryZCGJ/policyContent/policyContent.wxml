@@ -31,10 +31,10 @@
 		</view>
 		<view class="pcb-show box-sizing">
 			<view class="v1">
-				<view class="pcb-zc-head box-sizing" data-id="{{policyContent.userid}}" bindtap="zdzjClick">
+				<view wx:if="{{false}}" class="pcb-zc-head box-sizing" data-id="{{policyContent.userid}}" bindtap="zdzjClick">
 					<view class="pcb-zc-head-title inline-block">指导专家</view>
 					<view class="pcb-zc-head-right inline-block">
-						<image src="{{policyContent.headImg||'/img/user-zj.png'}}" mode="aspectFit"></image>
+						<image src="{{policyContent.headImg||imgUrl+'/user-zj.png'}}" mode="aspectFit"></image>
 						<view class="inline-block">
 							<view class="pcb-zc-head-name">{{policyContent.realName}}</view>
 							<view class="pcb-zc-head-position green">{{policyContent.identity==0?'普通人':(policyContent.identity==1?'专家':'讲师')}}</view>
@@ -56,20 +56,25 @@
 				</view> -->
 				<view class="pcb-zcyw-dz" wx:if="{{tradeDz.ifVip==1}}">
 					<view class="pcb-zcyw-dz-btn">
-						<image src="../../../../img/{{policyContent.ifPrase>0?'content_dz.png':'content_dz_no.png'}}" mode="aspectFit" data-parse="{{policyContent.ifPrase}}" bindtap="wzdzClick"></image>
+						<image src="{{imgUrl}}/{{policyContent.ifPrase>0?'content_dz.png':'content_dz_no.png'}}" mode="aspectFit" data-parse="{{policyContent.ifPrase}}" bindtap="wzdzClick"></image>
 					</view>
 					<view class="pcb-zcyw-dz-list">
-						<image wx:for="{{dzList}}" wx:key="index" src="{{item.headImg||(item.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
-						<image wx:if="{{dzList.length==8}}" bindtap="lookDZlist" wx:key="*this" src="../../../../img/dz-list-more.png" mode="aspectFit"></image>
+						<image wx:for="{{dzList}}" wx:key="index" src="{{item.headImg||(item.ifPlatformAuthor==1?imgUrl+'/user-zj.png':imgUrl+'/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
+						<image wx:if="{{dzList.length==8}}" bindtap="lookDZlist" wx:key="*this" src="{{imgUrl}}/dz-list-more.png" mode="aspectFit"></image>
 					</view>
 				</view>
 				<view class="pcb-zcyw-vip" wx:if="{{richHeight>250&&policyContent.isVip!=1&&policyContent.tradePower==0&&policyContent.self==0}}">
-					<image src="../../../../img/ktvip.gif" bindtap="goVip" mode="widthFix"></image>
+					<image src="{{imgUrl}}/ktvip.gif" bindtap="goVip" mode="widthFix"></image>
 				</view>
 			</view>
-			<view class="v2" wx:if="{{releatfile!=''}}">
+			<view class="v2" wx:if="{{releatfile!=''||releatfileYw!=''}}">
 				<view class="pcb-title" style="margin-top:75pcb-pl-list-hf-msgrpx">相关文件</view>
 				<view class="pcb-xgwj-list shadow-model box-sizing" wx:for="{{releatfile}}" wx:key="index" data-type="xgwj" bindtap="xgjdClick" data-id="{{item.id}}">
+					<view class="pcb-xgwj-title">{{item.title}}</view>
+					<view class="pcb-xgwj-file">[ {{item.fileNum}} ]</view>
+					<view>发布时间：{{tools.dateFormat(item.officialReleaseDate,"MM-dd")}}</view>
+				</view>
+					<view class="pcb-xgwj-list shadow-model box-sizing" wx:for="{{releatfileYw}}" wx:key="index" data-type="ywxgwj" bindtap="xgjdClick" data-id="{{item.id}}">
 					<view class="pcb-xgwj-title">{{item.title}}</view>
 					<view class="pcb-xgwj-file">[ {{item.fileNum}} ]</view>
 					<view>发布时间：{{tools.dateFormat(item.officialReleaseDate,"MM-dd")}}</view>
@@ -86,12 +91,12 @@
 				<view class="pcb-title">评论 ({{commentData.total||0}})</view>
 				<view>
 					<view class="pcb-pl-list" wx:for="{{commentList}}" wx:for-index="commentListIndex" wx:key="index">
-						<image class="pcb-pl-list-img" src="{{item.headImg||(item.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
+						<image class="pcb-pl-list-img" src="{{item.headImg||(item.ifPlatformAuthor==1?imgUrl+'/user-zj.png':imgUrl+'/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
 						<view class="inline-block pcb-pl-list-right">
 							<view class="pcb-pl-list-name">
 								<text>{{item.userName}}</text>
 								<view class="inline-block pcb-pl-list-name-dz">
-									<image class="pcb-pl-list-name-dzimg" src="{{item.ifPrase>0?'../../../../img/pcb-dz-act.png':'../../../../img/pcb-dz.png'}}" mode="aspectFit" bindtap="plDz" data-index="{{commentListIndex}}" data-id="{{item.id}}" data-parse="{{item.ifPrase}}"></image>
+									<image class="pcb-pl-list-name-dzimg" src="{{item.ifPrase>0?imgUrl+'/pcb-dz-act.png':imgUrl+'/pcb-dz.png'}}" mode="aspectFit" bindtap="plDz" data-index="{{commentListIndex}}" data-id="{{item.id}}" data-parse="{{item.ifPrase}}"></image>
 									{{item.praiseNum}}
 								</view>
 							</view>
@@ -107,7 +112,7 @@
 								<!--  style="{{item.discussUsers.length>1&&item.zk==true?'height:auto':'height:224rpx'}}" -->
 								<view class="pcb-pl-list-hf-msg box-sizing">
 									<view class="pcb-pl-list" wx:for="{{item.discussUsers_change}}" wx:key="index">
-										<image class="pcb-pl-list-img-hf" src="{{item.headImg||(item.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
+										<image class="pcb-pl-list-img-hf" src="{{item.headImg||(item.ifPlatformAuthor==1?imgUrl+'/user-zj.png':imgUrl+'/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
 										<view class="inline-block pcb-pl-list-right">
 											<view class="pcb-pl-list-name">
 												<view class="inline-block" style="width:85%;word-break: break-all;">
@@ -117,7 +122,7 @@
 													<text wx:if="{{item.level==3}}">{{item.replyUserName}}</text>
 												</view>
 												<view class="inline-block pcb-pl-list-name-dz">
-													<image class="pcb-pl-list-name-dzimg" src="{{item.ifPrase>0?'../../../../img/pcb-dz-act.png':'../../../../img/pcb-dz.png'}}" mode="aspectFit" bindtap="plDz" data-index="{{index}}" data-id="{{item.id}}" data-parse="{{item.ifPrase}}" data-type="hf" data-parentindex="{{commentListIndex}}"></image>
+													<image class="pcb-pl-list-name-dzimg" src="{{item.ifPrase>0?imgUrl+'/pcb-dz-act.png':imgUrl+'/pcb-dz.png'}}" mode="aspectFit" bindtap="plDz" data-index="{{index}}" data-id="{{item.id}}" data-parse="{{item.ifPrase}}" data-type="hf" data-parentindex="{{commentListIndex}}"></image>
 													{{item.praiseNum}}
 												</view>
 											</view>
@@ -142,20 +147,20 @@
 		<view class="pcb-foot" style="padding-bottom: {{isIphoneX ? '68rpx' : '30rpx'}};">
 			<view class="pcb-foot-pl box-sizing" wx:if="{{!commentInput}}">
 				<input wx:if="{{policyContent.isVip==1||policyContent.tradePower==1||policyContent.self==1}}" class="inline-block" placeholder="发表一下您的意见～" disabled="true" bindtap="inputClick"></input>
-				<image bindtap="goVip" wx:if="{{policyContent.isVip!=1&&policyContent.tradePower==0&&policyContent.self==0}}" class="detail-vip-input" src="/img/detail-vip-btn.png" mode="aspectFit"></image>
+				<image bindtap="goVip" wx:if="{{policyContent.isVip!=1&&policyContent.tradePower==0&&policyContent.self==0}}" class="detail-vip-input" src="{{imgUrl}}/detail-vip-btn.png" mode="aspectFit"></image>
 				<view class="inline-block pcb-foot-pl-img">
-					<image src="../../../../img/pcb-pl.png" mode="aspectFit"></image>
+					<image src="{{imgUrl}}/pcb-pl.png" mode="aspectFit"></image>
 					<text class="inline-block">{{commentData.total||0}}</text>
 				</view>
 				<view class="inline-block pcb-foot-pl-img" data-parse="{{policyContent.ifPrase}}"  bindtap="wzdzClick">
-					<image src="../../../../img/{{policyContent.ifPrase>0?'pcb-dz-act.png':'pcb-dz.png'}}" mode="aspectFit"></image>
+					<image src="{{imgUrl}}/{{policyContent.ifPrase>0?'pcb-dz-act.png':'pcb-dz.png'}}" mode="aspectFit"></image>
 					<text class="inline-block">{{policyContent.praiseNum}}</text>
 				</view>
 				<view class="inline-block pcb-foot-pl-img">
-					<image src="../../../../img/{{policyContent.ifCollect>0?'pcb-sc-act.png':'pcb-sc.png'}}" mode="aspectFit" data-collect="{{policyContent.ifCollect}}" bindtap="scClick"></image>
+					<image src="{{imgUrl}}/{{policyContent.ifCollect>0?'pcb-sc-act.png':'pcb-sc.png'}}" mode="aspectFit" data-collect="{{policyContent.ifCollect}}" bindtap="scClick"></image>
 				</view>
 				<view class="inline-block pcb-foot-pl-img">
-					<image src="../../../../img/pcb-zf.png" mode="aspectFit"></image>
+					<image src="{{imgUrl}}/pcb-zf.png" mode="aspectFit"></image>
 					<button class="detail-share-btn" open-type="share"></button>
 				</view>
 			</view>
@@ -165,4 +170,11 @@
 			</view>
 		</view>
 	</view>
+
+	<!-- 可拖动按钮 -->
+<movable-area>
+  <movable-view x="{{x}}" y="{{y}}" direction="all" bindtap="transmit">
+    <image src="{{imgUrl}}/lookyw.png" mode="widthFix" style="width:108rpx;height:auto"></image>
+  </movable-view>
+</movable-area>
 </view>

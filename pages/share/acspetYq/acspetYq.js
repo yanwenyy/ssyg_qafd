@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     userId: '', //邀请人的uuid
     msg: {}, //用户信息
     yqUserInfo: null, //邀请者的信息

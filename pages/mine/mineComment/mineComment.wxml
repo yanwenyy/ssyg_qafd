@@ -13,7 +13,7 @@
 	</view>
 	<view wx:if="{{tabMsg=='评论我的'}}" class="comment-mine box-sizing">
 		<view class="comment-list" wx:for="{{list}}" wx:key="index">
-			<image class="head-img" src="{{item.replyHeadImg||'/img/user.png'}}" mode="aspectFit" data-id="{{item.replyUserId}}" bindtap="goPerson"></image>
+			<image class="head-img" src="{{item.replyHeadImg||imgUrl+'/user.png'}}" mode="aspectFit" data-id="{{item.replyUserId}}" bindtap="goPerson"></image>
 			<view class="comment-right inline-block">
 				<view class="comment-hf-btn" data-id="{{item.discussId}}" data-type="{{item.type}}" bindtap="hfClick">回复</view>
 				<view class="comment-name" data-id="{{item.replyUserId}}" bindtap="goPerson">{{item.replyUserName}}</view>
@@ -32,7 +32,7 @@
 	</view>
 	<view wx:if="{{tabMsg=='我评论的'}}" class="mine-comment box-sizing">
 		<view class="comment-list"  wx:for="{{list}}" wx:key="index">
-			<image class="head-img" src="{{userInfo.headImg||'/img/user.png'}}" mode="aspectFit"></image>
+			<image class="head-img" src="{{userInfo.headImg||imgUrl+'/user.png'}}" mode="aspectFit"></image>
 			<view class="comment-right inline-block">
 				<view class="comment-name mine-comment-name">
 					{{userInfo.nickname}}

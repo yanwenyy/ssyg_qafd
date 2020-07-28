@@ -13,7 +13,9 @@
     </view> -->
 		<view class="index-head shadow-model">
 			<view class="index-head-card">
-				<image class="index-head-card-img" src="../../img/index-head-bg.png" mode="scaleToFill"></image>
+				<image wx:if="{{industryIndex.isVip==0}}" class="index-head-card-img" src="{{imgUrl}}/index-head-bg.png" mode="scaleToFill"></image>
+				<image wx:if="{{industryIndex.isVip==1}}" class="index-head-card-img" src="{{imgUrl}}/index-head-bg-vip.png" mode="scaleToFill"></image>
+				<image wx:if="{{industryIndex.isVip==2}}" class="index-head-card-img" src="{{imgUrl}}/index-head-bg=gq.png" mode="scaleToFill"></image>
 				<view class="index-head-card-msg box-sizing">
 					<view class="index-hcm-title">您的专属行业</view>
 					<view class="index-hcm-name">
@@ -26,16 +28,16 @@
 									<view wx:if="{{industryIndex.tradeVisiblePower==1}}" class="free-look inline-block">免费看</view>
 							</view>
 						</view>
-						<!-- <image class="inline-block" src="../../img/index-head-kt.png" mode="aspectFit"></image> -->
+						<!-- <image class="inline-block" src="{{imgUrl}}/index-head-kt.png" mode="aspectFit"></image> -->
 						<view class="index-hcm-btn green" data-url="../vip/vip" bindtap="indexTabClick">{{industryIndex.isVip==0?'立即开通':'续费'}}</view>
 					</view>
 					<view wx:if="{{industryIndex.isVip==1}}" class="index-hcm-date">{{tools.dateFormat(vipTime,'yyyy-MM-dd')}}过期</view>
-					<view class="index-hcm-intro">{{industryIndex.introduce||''}}</view>
+					<view class="index-hcm-intro" data-title="{{industryIndex.tradeName}}" data-msg="{{industryIndex.introduce}}" bindtap="introClick">{{industryIndex.introduce||''}}</view>
 				</view>
 			</view>
 			<view class="index-head-foot box-sizing">
 				<view class="inline-block">您目前开通 <text class="green">{{industryIndex.openNum}}</text> 个行业</view>
-				<view class="inline-block change-hy" bindtap="changeIndustry">更换行业 <image class="more-icon" src="/img/set-go.png" mode="widthFix"></image></view>
+				<view class="inline-block change-hy" bindtap="changeIndustry">更换行业 <image class="more-icon" src="{{imgUrl}}/set-go.png" mode="widthFix"></image></view>
 			</view>
 		</view>
 		<view class="product-intro">
@@ -48,19 +50,19 @@
 					</swiper-item>
 				</block>
 			</swiper>
-			<!-- <image class="pro-intro-bg" src="../../img/index-pro-intro.png" mode="aspectFIt"></image> -->
+			<!-- <image class="pro-intro-bg" src="{{imgUrl}}/index-pro-intro.png" mode="aspectFIt"></image> -->
 			<view class="pro-intro-list box-sizing">
-				<image data-url="../industry/industryZCGJ/industryZCGJ" bindtap="indexTabClick" src="../../img/index-pro-intro0.png" mode="aspectFIt" class="box-siizng"></image>
-				<image data-url="../industry/industryFXTS/industryFXTS" bindtap="indexTabClick" src="../../img/index-pro-intro1.png" mode="aspectFIt" class="box-siizng"></image>
-				<image data-url="../industry/industryLCJM/industryLCJM" bindtap="indexTabClick" src="../../img/index-pro-intro2.png" mode="aspectFIt" class="box-siizng"></image>
-				<image data-url="../industry/industrySSCH/industrySSCH" bindtap="indexTabClick" src="../../img/index-pro-intro3.png" mode="aspectFIt" class="box-siizng"></image>
+				<image data-url="../industry/industryZCGJ/industryZCGJ" bindtap="indexTabClick" src="{{imgUrl}}/index-pro-intro0.png" mode="aspectFIt" class="box-siizng"></image>
+				<image data-url="../industry/industryFXTS/industryFXTS" bindtap="indexTabClick" src="{{imgUrl}}/index-pro-intro1.png" mode="aspectFIt" class="box-siizng"></image>
+				<image data-url="../industry/industryLCJM/industryLCJM" bindtap="indexTabClick" src="{{imgUrl}}/index-pro-intro2.png" mode="aspectFIt" class="box-siizng"></image>
+				<image data-url="../industry/industrySSCH/industrySSCH" bindtap="indexTabClick" src="{{imgUrl}}/index-pro-intro3.png" mode="aspectFIt" class="box-siizng"></image>
 			</view>
 		</view>
 	</view>
 	<view class="list-container" wx:if="{{newList!=''}}">
 		<view class="index-list-title">
 			<view class="inline-block">新闻中心</view>
-			<view class="inline-block index-list-title-more" data-url="../newCenter/newCenter" bindtap="indexTabClick">全部 <image class="more-icon" src="/img/set-go.png" mode="widthFix"></image></view>
+			<view class="inline-block index-list-title-more" data-url="../newCenter/newCenter" bindtap="indexTabClick">全部 <image class="more-icon" src="{{imgUrl}}/set-go.png" mode="widthFix"></image></view>
 		</view>
 		<view>
 			<view class="index-list-new-group" wx:for="{{newList}}" wx:key="index" data-id="{{item.id}}" data-type="{{item.contentType}}" data-url="{{item.url}}" bindtap="newClick">
@@ -82,25 +84,25 @@
 				</view>
 			</view>
 			<view wx:if="{{newList!=''}}" class="sys-btn" bindtap="sysClick">
-				<image src="../../img/sys.png" mode="aspectFit"></image>
+				<image src="{{imgUrl}}/sys.png" mode="aspectFit"></image>
 			</view>
 		</view>
 		<view class="index-list-title" wx:if="{{liveList!=''}}">
 			<view class="inline-block">
 				直播答疑
 				<!-- <view class="inline-block zb-yg">
-					<image src="../../img/zb-yg.png" mode="aspectFit"></image>预告
+					<image src="{{imgUrl}}/zb-yg.png" mode="aspectFit"></image>预告
 				</view> -->
 			</view>
-			<view class="inline-block index-list-title-more" data-url="../liveAnswer/liveAnswer" bindtap="indexTabClick">全部 <image class="more-icon" src="/img/set-go.png" mode="widthFix"></image></view>
+			<view class="inline-block index-list-title-more" data-url="../liveAnswer/liveAnswer" bindtap="indexTabClick">全部 <image class="more-icon" src="{{imgUrl}}/set-go.png" mode="widthFix"></image></view>
 		</view>
 		<view class="zb-list-group">
 			<view class="shadow-model zb-list box-sizing inline-block" wx:for="{{liveList}}" wx:key="index" data-id="{{item.id}}" bindtap="liveClick">
 				<view class="zb-list-title">
-					<image wx:if="{{item.status==2}}" src="../../img/zb-ing.png" mode="aspectFit"></image>
-					<image wx:if="{{item.status==4}}" src="../../img/zb-hf.png" mode="aspectFit"></image>
-					<image wx:if="{{item.status==1}}" src="../../img/zb-yg.png" mode="aspectFit"></image>
-					<image wx:if="{{item.status==3}}" src="../../img/zb-js.png" mode="aspectFit"></image>
+					<image wx:if="{{item.status==2}}" src="{{imgUrl}}/zb-ing.png" mode="aspectFit"></image>
+					<image wx:if="{{item.status==4}}" src="{{imgUrl}}/zb-hf.png" mode="aspectFit"></image>
+					<image wx:if="{{item.status==1}}" src="{{imgUrl}}/zb-yg.png" mode="aspectFit"></image>
+					<image wx:if="{{item.status==3}}" src="{{imgUrl}}/zb-js.png" mode="aspectFit"></image>
 					<text>{{item.status==1?'预告':(item.status==2?'直播中':(item.status==3?'直播结束':'回放'))}}</text>
 				</view>
 				<view class="zb-list-msg">
@@ -118,10 +120,10 @@
 		</view>
 		<view class="index-list-title" hidden="{{askMsg.purview==0&&askMsg.isVip==1}}">
 			<view class="inline-block">企业微咨询</view>
-			<view class="inline-block index-list-title-more" data-url="../ask/askList/askList" bindtap="queClick">全部 <image class="more-icon" src="/img/set-go.png" mode="widthFix"></image></view>
+			<view class="inline-block index-list-title-more" data-url="../ask/askList/askList" bindtap="queClick">全部 <image class="more-icon" src="{{imgUrl}}/set-go.png" mode="widthFix"></image></view>
 		</view>
 		<view class="index-wzx shadow-model" hidden="{{askMsg.purview==0&&askMsg.isVip==1}}">
-			<image class="index-wzx-img" src="../../img/index-wzx-bg.png" mode="aspectFit"  data-url="../ask/askList/askList" bindtap="queClick"></image>
+			<image class="index-wzx-img" src="{{imgUrl}}/index-wzx-bg.png" mode="aspectFit"  data-url="../ask/askList/askList" bindtap="queClick"></image>
 			<view class="index-wzx-foot">
 				<view class="inline-block">您当前还可提问 <text class="green">{{askMsg.quNum||0}}</text> 个问题</view>
 				<view data-url="../ask/ask" bindtap="queClick" class="inline-block index-wzx-que">去提问</view>
@@ -129,7 +131,7 @@
 		</view>
 		<view class="index-list-title" wx:if="{{courseList!=''}}">
 			<view class="inline-block">精选好课</view>
-			<view class="inline-block index-list-title-more" data-url="../course/course" bindtap="indexTabClick">全部 <image class="more-icon" src="/img/set-go.png" mode="widthFix"></image></view>
+			<view class="inline-block index-list-title-more" data-url="../course/course" bindtap="indexTabClick">全部 <image class="more-icon" src="{{imgUrl}}/set-go.png" mode="widthFix"></image></view>
 		</view>
 		<view class="index-class-ul">
 			<view class="index-class-li shadow-model box-sizing" wx:for="{{courseList}}" wx:key="index" data-id="{{item.id}}" bindtap="courseClick">

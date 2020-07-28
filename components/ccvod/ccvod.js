@@ -41,6 +41,7 @@ Component({
    * 组件的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     videoSrcList: [], // 获取视频地址列表
     videoSrc: '', // 显示的视频地址
     videoPoster: '', // 视频封面

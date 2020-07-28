@@ -6,12 +6,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     content: '',
     start: 1, //起始页
     num: 10, //每页显示条数
     status: true, //是否还有数据
     list: [], //政策列表
     tradeId: '', //行业id
+    tabType:"1"
   },
 
   /**
@@ -71,7 +73,7 @@ Page({
         start: this.data.start + 1
       });
       var data = this.data;
-      this.getList(data.start, data.num, data.content, data.tradeId)
+      this.getList(data.start, data.num, data.content, data.tradeId,data.tabType)
     }
   },
 
@@ -83,13 +85,14 @@ Page({
   },
 
   //获取列表
-  getList: function (current, pageSize, content, tradeId) {
+  getList: function (current, pageSize, content, tradeId,property) {
     var that = this;
     app.ajax('/minitax/policy/list', {
       "current": current,
       "pageSize": pageSize,
       "content": content,
       "tradeId": tradeId,
+      "property":property
     }, function (res) {
       var datas = res.data.data;
       if (datas && datas != '') {
@@ -124,7 +127,7 @@ Page({
       list: [], //政策列表
     })
     var data = this.data;
-    this.getList(data.start, data.num, data.content, data.tradeId)
+    this.getList(data.start, data.num, data.content, data.tradeId,data.tabType)
   },
 
   //政策列表点击
@@ -132,5 +135,18 @@ Page({
     wx.navigateTo({
       url: '../policyContent/policyContent?policyId=' + e.currentTarget.dataset.id,
     })
+  },
+
+  //tab筛选
+  tabClick:function(e){
+    this.setData({
+      start: 1, //起始页
+      num: 10, //每页显示条数
+      status: true, //是否还有数据
+      list: [], //政策列表
+      tabType:e.currentTarget.dataset.type
+    })
+    var data = this.data;
+    this.getList(data.start, data.num, data.content, data.tradeId,data.tabType)
   }
 })

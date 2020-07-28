@@ -4,6 +4,7 @@ const app = getApp()
 
 Page({
   data: {
+    imgUrl:app.globalData.imgUrl,
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -264,6 +265,17 @@ Page({
         url: 'bannerWeb/bannerWeb?url='+target.url,
       })
     }
+  },
+
+  //行业介绍点击
+  introClick:function(e){
+    var target=e.currentTarget.dataset;
+    wx.showModal({
+      title: target.title,
+      content: target.msg,
+      showCancel:false,
+      confirmText:'关闭'
+    })
   }
 
 })

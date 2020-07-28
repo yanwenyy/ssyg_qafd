@@ -1,0 +1,2 @@
+/* pages/industry/industryZCYW/search/search.wxss */
+@import "../../industryZCGJ/search/search.wxss"

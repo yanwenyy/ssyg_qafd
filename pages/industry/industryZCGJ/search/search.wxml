@@ -3,11 +3,21 @@
 <view class="container">
   <view class="course-head">
     <view class="inline-block course-search">
-      <image src="../../../../img/search-img.png" mode="aspectFit"></image>
+      <image src="{{imgUrl}}/search-img.png" mode="aspectFit"></image>
       <input class="inline-block box-sizing" bindinput="inputClick" placeholder="请输入要搜索的内容"></input>
     </view>
     <view bindtap="searchClick" class="inline-block">搜索</view>
   </view>
+  <view class="search-tab">
+    <view class="inline-block" bindtap="tabClick" data-type="1">
+      <text class="{{tabType=='1'?'green':''}}">行业政策</text>
+      <view wx:if="{{tabType=='1'}}" class="search-tab-line"></view>
+    </view>
+    <view class="inline-block" bindtap="tabClick" data-type="2">
+      <text class="{{tabType=='2'?'green':''}}">普适政策</text>
+      <view wx:if="{{tabType=='2'}}" class="search-tab-line"></view>
+    </view>
+  </view> 
   <view class="course-body">
     <view wx:for="{{list}}" wx:key="index" class="course-list shadow-model box-sizing" bindtap="goContent" data-id="{{item.id}}">
       <view class="search-title">{{item.title}}</view>

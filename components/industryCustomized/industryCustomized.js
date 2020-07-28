@@ -12,6 +12,7 @@ Component({
    * 组件的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     mask:true,
     items: [],
     selectId:'',//选中的id

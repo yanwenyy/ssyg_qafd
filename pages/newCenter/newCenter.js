@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     tabList:[],//tab列表
     tabMsg:'全部',
     attributeid:null,//属性id

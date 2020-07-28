@@ -2,7 +2,7 @@
 <view>
 	<ccvod vid='{{detail.ccid}}' siteid='A0123BC413D6FBAE' vc='' custom_id='' videoPoster="{{'http://'+detail.coverUrl}}" />
 	<cover-view wx:if="{{detail.ifFree==1&&detail.isVip!=1&&detail.tradePower==0&&detail.self==0}}" class="cc-video-shadow">
-		<cover-image class="cc-shadow-img" bindtap="goVip" src="../../../img/cc-video-vip.png" mode="widthFix"></cover-image>
+		<cover-image class="cc-shadow-img" bindtap="goVip" src="{{imgUrl}}/cc-video-vip.png" mode="widthFix"></cover-image>
 	</cover-view>
 	<view class="body">
 		<view>
@@ -21,12 +21,12 @@
 					<view class="cc-head-msg">{{detail.title}} </view>
 					<view style="margin:15rpx 0;">
 						<view class="inline-block cc-head-img">
-							<image src="{{detail.headImg||(detail.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" class="head-img" catchtap="goPerson" data-id="{{detail.userId}}"></image>
+							<image src="{{detail.headImg||(detail.ifPlatformAuthor==1?imgUrl+'/user-zj.png':imgUrl+'/user.png')}}" mode="aspectFit" class="head-img" catchtap="goPerson" data-id="{{detail.userId}}"></image>
 							<text>讲师：{{detail.ifPlatformAuthor==1?detail.realName:detail.lecturer}}</text>
 						</view>
 						<!-- <view class="inline-block cc-head-btn">关注</view> -->
 						<view wx:if="{{detail.ifFree==1}}" class="inline-block cc-head-vip">
-							<image src="../../../img/cc-head-vip.png" mode="aspectFit"></image>
+							<image src="{{imgUrl}}/cc-head-vip.png" mode="aspectFit"></image>
 						</view>
 					</view>
 				</view>
@@ -42,12 +42,12 @@
 					<view class="pcb-title">评论 ({{detail.discussNum}})</view>
 					<view>
 						<view class="pcb-pl-list" wx:for="{{commentList}}" wx:for-index="commentListIndex" wx:key="index">
-							<image class="pcb-pl-list-img" src="{{item.headImg||(item.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
+							<image class="pcb-pl-list-img" src="{{item.headImg||(item.ifPlatformAuthor==1?imgUrl+'/user-zj.png':imgUrl+'/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
 							<view class="inline-block pcb-pl-list-right">
 								<view class="pcb-pl-list-name">
 									<text>{{item.userName}}</text>
 									<view class="inline-block pcb-pl-list-name-dz">
-										<image class="pcb-pl-list-name-dzimg" src="{{item.ifPrase>0?'../../../img/pcb-dz-act.png':'../../../img/pcb-dz.png'}}" mode="aspectFit" bindtap="plDz" data-index="{{commentListIndex}}" data-id="{{item.id}}" data-parse="{{item.ifPrase}}"></image>
+										<image class="pcb-pl-list-name-dzimg" src="{{item.ifPrase>0?'{{imgUrl}}/pcb-dz-act.png':'{{imgUrl}}/pcb-dz.png'}}" mode="aspectFit" bindtap="plDz" data-index="{{commentListIndex}}" data-id="{{item.id}}" data-parse="{{item.ifPrase}}"></image>
 										{{item.praiseNum}}
 									</view>
 								</view>
@@ -63,7 +63,7 @@
 									<!--  style="{{item.discussUsers.length>1&&item.zk==true?'height:auto':'height:224rpx'}}" -->
 									<view class="pcb-pl-list-hf-msg box-sizing">
 										<view class="pcb-pl-list" wx:for="{{item.discussUsers_change}}" wx:key="index">
-											<image class="pcb-pl-list-img-hf" src="{{item.headImg||(item.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
+											<image class="pcb-pl-list-img-hf" src="{{item.headImg||(item.ifPlatformAuthor==1?imgUrl+'/user-zj.png':imgUrl+'/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
 											<view class="inline-block pcb-pl-list-right">
 												<view class="pcb-pl-list-name">
 													<view class="inline-block" style="width:85%;word-break: break-all;">
@@ -73,7 +73,7 @@
 														<text wx:if="{{item.level==3}}">{{item.replyUserName}}</text>
 													</view>
 													<view class="inline-block pcb-pl-list-name-dz">
-														<image class="pcb-pl-list-name-dzimg" src="{{item.ifPrase>0?'../../../img/pcb-dz-act.png':'../../../img/pcb-dz.png'}}" mode="aspectFit" bindtap="plDz" data-index="{{index}}" data-id="{{item.id}}" data-parse="{{item.ifPrase}}" data-type="hf" data-parentindex="{{commentListIndex}}"></image>
+														<image class="pcb-pl-list-name-dzimg" src="{{item.ifPrase>0?'{{imgUrl}}/pcb-dz-act.png':'{{imgUrl}}/pcb-dz.png'}}" mode="aspectFit" bindtap="plDz" data-index="{{index}}" data-id="{{item.id}}" data-parse="{{item.ifPrase}}" data-type="hf" data-parentindex="{{commentListIndex}}"></image>
 														{{item.praiseNum}}
 													</view>
 												</view>
@@ -99,21 +99,21 @@
 			<view class="pcb-foot" style="padding-bottom: {{isIphoneX ? '68rpx' : '30rpx'}};">
 				<view class="pcb-foot-pl box-sizing" wx:if="{{!commentInput}}">
 					<input wx:if="{{detail.ifFree==0||detail.isVip==1||detail.tradePower==1||detail.self==1}}" class="inline-block" placeholder="发表一下您的意见～" disabled="true" bindtap="inputClick"></input>
-					<image bindtap="goVip" wx:if="{{detail.ifFree==1&&detail.isVip!=1&&detail.tradePower==0&&detail.self==0}}" class="detail-vip-input" src="/img/detail-vip-btn.png" mode="aspectFit"></image>
+					<image bindtap="goVip" wx:if="{{detail.ifFree==1&&detail.isVip!=1&&detail.tradePower==0&&detail.self==0}}" class="detail-vip-input" src="{{imgUrl}}/detail-vip-btn.png" mode="aspectFit"></image>
 					<view class="inline-block pcb-foot-pl-img">
-						<image src="../../../img/pcb-pl.png" mode="aspectFit"></image>
+						<image src="{{imgUrl}}/pcb-pl.png" mode="aspectFit"></image>
 						<text class="inline-block">{{detail.discussNum}}</text>
 					</view>
 					<view class="inline-block pcb-foot-pl-img" data-parse="{{detail.ifPrase}}" bindtap="wzdzClick">
-						<image src="../../../img/{{detail.ifPrase>0?'pcb-dz-act.png':'pcb-dz.png'}}" mode="aspectFit"></image>
+						<image src="{{imgUrl}}/{{detail.ifPrase>0?'pcb-dz-act.png':'pcb-dz.png'}}" mode="aspectFit"></image>
 						<text class="inline-block">{{detail.praiseNum}}</text>
 					</view>
 					<view class="inline-block pcb-foot-pl-img">
-						<image src="../../../img/{{detail.ifCollect>0?'pcb-sc-act.png':'pcb-sc.png'}}" mode="aspectFit" data-collect="{{detail.ifCollect}}" bindtap="scClick"></image>
+						<image src="{{imgUrl}}/{{detail.ifCollect>0?'pcb-sc-act.png':'pcb-sc.png'}}" mode="aspectFit" data-collect="{{detail.ifCollect}}" bindtap="scClick"></image>
 						<!-- <text class="inline-block">{{detail.collectNum}}</text> -->
 					</view>
 					<view class="inline-block pcb-foot-pl-img">
-						<image src="../../../img/pcb-zf.png" mode="aspectFit"></image>
+						<image src="{{imgUrl}}/pcb-zf.png" mode="aspectFit"></image>
 						<button class="detail-share-btn" open-type="share"></button>
 					</view>
 				</view>

@@ -1,0 +1,6 @@
+/* pages/mine/help/help.wxss */
+.bg-img{
+  width: 100%;
+  margin:0;
+  padding:0;
+}

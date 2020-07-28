@@ -1,6 +1,7 @@
 // components/shareModel/shareModel.js
 const app = getApp();
-const base64src = require('../../utils/base64src.js')
+const base64src = require('../../utils/base64src.js');
+var imgUrl=app.globalData.imgUrl;
 Component({
   /**
    * 组件的属性列表
@@ -28,6 +29,7 @@ Component({
    * 组件的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     userInfo: null,
     // 分享
     screenWidth: '',//屏幕宽
@@ -216,7 +218,7 @@ Component({
       ctx.rect(0, 0, unit * 297, unit * 356)
       ctx.setFillStyle('#fff')
       ctx.fill();
-      ctx.drawImage('../../img/yqts-bg.png', unit * 22, unit * 23, unit * 260, unit * 304);
+      ctx.drawImage(imgUrl+'/yqts-bg.png', unit * 22, unit * 23, unit * 260, unit * 304);
       ctx.save();
       ctx.setFontSize('19');
       ctx.setFillStyle('#9B601F');
@@ -242,7 +244,7 @@ Component({
       ctx.fill();
       ctx.setStrokeStyle("#E2B279");
       ctx.stroke();
-      ctx.drawImage('../../img/conform-order-icon.png', unit * 59, unit * 244, unit * 14, unit * 16);
+      ctx.drawImage(imgUrl+'/conform-order-icon.png', unit * 59, unit * 244, unit * 14, unit * 16);
       ctx.setFontSize('15');
       ctx.setFillStyle('#B07937');
       var str = this.data.userInfo.companyName || '';
@@ -253,7 +255,7 @@ Component({
       ctx.fillRect(0, unit * 356, unit * 297, unit * 118);
       ctx.setFontSize('14');
       ctx.setFillStyle('#333');
-      ctx.fillText('省税一哥·全案辅导系统 ', unit * 24, unit * 399);
+      ctx.fillText('行税之星系统 ', unit * 24, unit * 399);
       ctx.setFontSize('12');
       ctx.setFillStyle('#999');
       ctx.fillText('长按二维码进入小程序', unit * 24, unit * 417);
@@ -289,7 +291,7 @@ Component({
       ctx.rect(0, 0, unit * 297, unit * 356)
       ctx.setFillStyle('#fff')
       ctx.fill();
-      ctx.drawImage('../../img/yqts-bg.png', unit * 22, unit * 23, unit * 260, unit * 304);
+      ctx.drawImage(imgUrl+'/yqts-bg.png', unit * 22, unit * 23, unit * 260, unit * 304);
       ctx.save();
       ctx.arc(72, 70, 18, 0, 2 * Math.PI);
       ctx.clip();
@@ -299,7 +301,7 @@ Component({
       ctx.setFillStyle('#333');
       ctx.fillText(this.data.userInfo.realName || this.data.userInfo.userName, 110, 73);
       ctx.fillText('我为“省税一哥”代言', 54, 116);
-      // ctx.drawImage('../../img/yqts-share-dy.png', 44, 149, 209, 122);
+      // ctx.drawImage(imgUrl+'/yqts-share-dy.png', 44, 149, 209, 122);
       ctx.setFontSize('7');
       ctx.setFillStyle('#fff');
       ctx.fillText('省税一哥', 20, 400);

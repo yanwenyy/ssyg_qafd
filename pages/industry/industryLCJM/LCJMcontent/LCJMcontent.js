@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     id: '',
     detail: null, //详情信息
     commentData:'',//评论详情

@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     imgList: [], //添加图片list,
     content: '', //输入的问题
     industry: [], //行业

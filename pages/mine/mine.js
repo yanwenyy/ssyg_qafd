@@ -1,11 +1,13 @@
 // pages/mine/mine.js
 var app=getApp();
+var imgUrl=app.globalData.imgUrl;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     userInfo:null,
     tabMsg:'',//收藏,评论,关注,粉丝数
     share:false,//分享框是否显示
@@ -94,13 +96,13 @@ Page({
         return {
           title: '我为“省税一哥”代言',
           path: 'pages/index/index',
-          imageUrl: '../../img/share-zc.png'
+          imageUrl: imgUrl+'/share-zc.png'
         }
       } else {
         return {
           title: that.data.userInfo.companyName+'邀请您的加入',
           path: 'pages/share/acspetYq/acspetYq?uuid='+this.data.userInfo.uuid,
-          imageUrl:'/img/share-yqts.png'
+          imageUrl:imgUrl+'/share-yqts.png'
         }
       }
     }

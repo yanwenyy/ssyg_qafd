@@ -1,5 +1,5 @@
 <!--components/noMsg/noMsg.wxml-->
 <view class="nomsg-body">
-  <image src="../../img/{{imgUrl}}.png" mode="widthFix"></image>
+  <image src="{{appimgUrl+'/'+imgUrl}}.png" mode="widthFix"></image>
   <view>{{msg}}</view>
 </view>

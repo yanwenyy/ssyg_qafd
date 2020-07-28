@@ -11,7 +11,7 @@ module.exports = {
 <view class="body">
 	<view class="mp-head box-sizing">
 		<view>
-			<image class="mp-usrimg head-img" src="{{introMsg.headImg||(introMsg.identity==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit"></image>
+			<image class="mp-usrimg head-img" src="{{introMsg.headImg||(introMsg.identity==1?imgUrl+'/user-zj.png':imgUrl+'/user.png')}}" mode="aspectFit"></image>
 			<view class="inline-block">
 				<view class="mp-usrname">{{introMsg.realName||introMsg.userName}}</view>
 				<view class="mp-usrlabel inline-block" wx:for="{{introMsg.identity}}" wx:key="index" wx:if="{{item!=0}}">{{item==1?'专家':'讲师'}}</view>
@@ -23,7 +23,7 @@ module.exports = {
 		</view>
 		<view class="mp-intro">
 			<text>{{introMsg.introduce!=''&&introMsg.introduce!=null?introMsg.introduce:'还没有介绍，谢一句话吧，让更多人了解您'}}</text>
-			<image wx:if="{{introMsg.userId==userInfo.uuid}}" src="../../../img/set-go.png" mode="aspectFit" bindtap="introClick"></image>
+			<image wx:if="{{introMsg.userId==userInfo.uuid}}" src="{{imgUrl}}/set-go.png" mode="aspectFit" bindtap="introClick"></image>
 		</view>
 		<view class="mp-btn {{!tabMsg.ifAttention?'mp-btn-act':''}}" data-attention="{{tabMsg.ifAttention}}" bindtap="gzClick">{{tabMsg.ifAttention?'取消关注':'+关注'}}</view>
 	</view>
@@ -111,7 +111,7 @@ module.exports = {
 			<view class="fxts" wx:if="{{wzTabMsg=='风险提示'}}">
 				<view class="ifx-list shadow-model box-sizing"  wx:for="{{list}}" wx:key="index" bindtap="listClick" data-id="{{item.id}}" data-type="3">
 					<view class="ifx-list-head">
-						<image src="{{item.headImg||(item.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
+						<image src="{{item.headImg||(item.ifPlatformAuthor==1?imgUrl+'/user-zj.png':imgUrl+'/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
 						<view class="inline-block">
 							<view class="ifx-list-head-name">{{item.ifPlatformAuthor==1?item.realName:item.lecturer}}</view>
 							<view class="ifx-list-head-date">{{tools.dateFormat(item.creatTime)}}</view>
@@ -124,18 +124,18 @@ module.exports = {
 					</view>
 					<view class="ifx-foot">
 						<view class="ifx-foot-list">
-							<image src="../../../img/pcb-pl.png" mode="aspectFit"></image>
+							<image src="{{imgUrl}}/pcb-pl.png" mode="aspectFit"></image>
 							<text class="inline-block">{{item.discussNum}}</text>
 						</view>
 						<view class="ifx-foot-list">
-							<image src="../../../img/pcb-dz.png" mode="aspectFit"></image>
+							<image src="{{imgUrl}}/pcb-dz.png" mode="aspectFit"></image>
 							<text class="inline-block">{{item.praiseNum	}}</text>
 						</view>
 						<view class="ifx-foot-list">
-							<image src="../../../img/pcb-sc.png" mode="aspectFit"></image>
+							<image src="{{imgUrl}}/pcb-sc.png" mode="aspectFit"></image>
 						</view>
 						<view class="ifx-foot-list">
-							<image src="../../../img/pcb-zf.png" mode="aspectFit"></image>
+							<image src="{{imgUrl}}/pcb-zf.png" mode="aspectFit"></image>
 						</view>
 					</view>
 				</view>
@@ -143,7 +143,7 @@ module.exports = {
 			<view class="ssch" wx:if="{{wzTabMsg=='税收筹划'}}">
 				<view class="ifx-list shadow-model box-sizing"  wx:for="{{list}}" wx:key="index" bindtap="listClick" data-id="{{item.id}}" data-type="4">
 					<view class="ifx-list-head">
-						<image src="{{item.headImg||(item.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
+						<image src="{{item.headImg||(item.ifPlatformAuthor==1?imgUrl+'/user-zj.png':imgUrl+'/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
 						<view class="inline-block">
 							<view class="ifx-list-head-name">{{item.ifPlatformAuthor==1?item.realName:item.lecturer}}</view>
 							<view class="ifx-list-head-date">{{tools.dateFormat(item.creatTime)}}</view>
@@ -156,18 +156,18 @@ module.exports = {
 					</view>
 					<view class="ifx-foot">
 						<view class="ifx-foot-list">
-							<image src="../../../img/pcb-pl.png" mode="aspectFit"></image>
+							<image src="{{imgUrl}}/pcb-pl.png" mode="aspectFit"></image>
 							<text class="inline-block">{{item.discussNum}}</text>
 						</view>
 						<view class="ifx-foot-list">
-							<image src="../../../img/pcb-dz.png" mode="aspectFit"></image>
+							<image src="{{imgUrl}}/pcb-dz.png" mode="aspectFit"></image>
 							<text class="inline-block">{{item.praiseNum	}}</text>
 						</view>
 						<view class="ifx-foot-list">
-							<image src="../../../img/pcb-sc.png" mode="aspectFit"></image>
+							<image src="{{imgUrl}}/pcb-sc.png" mode="aspectFit"></image>
 						</view>
 						<view class="ifx-foot-list">
-							<image src="../../../img/pcb-zf.png" mode="aspectFit"></image>
+							<image src="{{imgUrl}}/pcb-zf.png" mode="aspectFit"></image>
 						</view>
 					</view>
 				</view>
@@ -177,10 +177,10 @@ module.exports = {
 		<view wx:if="{{navMsg=='直播'}}" class="zb">
 			<view class="shadow-model zb-list box-sizing inline-block" wx:for="{{list}}" wx:key="index" bindtap="listClick" data-id="{{item.id}}" data-type="8">
 				<view class="zb-list-title">
-					<image wx:if="{{item.status==2}}" src="../../../img/zb-ing.png" mode="aspectFit"></image>
-					<image wx:if="{{item.status==1}}" src="../../../img/zb-yg.png" mode="aspectFit"></image>
-					<image wx:if="{{item.status==4}}" src="../../../img/zb-hf.png" mode="aspectFit"></image>
-					<image wx:if="{{item.status==3}}" src="../../../img/zb-js.png" mode="aspectFit"></image>
+					<image wx:if="{{item.status==2}}" src="{{imgUrl}}/zb-ing.png" mode="aspectFit"></image>
+					<image wx:if="{{item.status==1}}" src="{{imgUrl}}/zb-yg.png" mode="aspectFit"></image>
+					<image wx:if="{{item.status==4}}" src="{{imgUrl}}/zb-hf.png" mode="aspectFit"></image>
+					<image wx:if="{{item.status==3}}" src="{{imgUrl}}/zb-js.png" mode="aspectFit"></image>
 					<text wx:if="{{item.status==1}}">预告</text>
 					<text wx:if="{{item.status==2}}">直播中</text>
 					<text wx:if="{{item.status==3}}">直播结束</text>
@@ -216,7 +216,7 @@ module.exports = {
     <view class="shadow-body">
       <view class="shadow-body-title">
         个人介绍
-        <image bindtap="closeShadow" class="shadow-close" src="../../../img/shadow-close.png" mode="scaleToFill"></image>
+        <image bindtap="closeShadow" class="shadow-close" src="{{imgUrl}}/shadow-close.png" mode="scaleToFill"></image>
       </view>
       <view class="shadow-body-ul box-sizing">
 					<textarea value="{{introMsg.introduce}}" bindinput="introInput" class="box-sizing" placeholder="请输入您的介绍"></textarea>

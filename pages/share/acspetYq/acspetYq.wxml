@@ -2,18 +2,18 @@
 <view class="container">
 	<view class="ayq-model shadow-model box-sizing">
 		<view class="ayq-show">
-			<image src="../../../img/ayq-view.png" mode="scaleToFill"></image>
+			<image src="{{imgUrl}}/ayq-view.png" mode="scaleToFill"></image>
 			<view class="box-sizing ayq-show-msg">
 				<view class="ayq-msg-title">加入企业邀请</view>
 				<view>
-					<image class="ayq-msg-headimg head-img" src="{{yqUserInfo.headImg||'/img/user.png'}}" mode="aspectFit"></image>
+					<image class="ayq-msg-headimg head-img" src="{{yqUserInfo.headImg||imgUrl+'/user.png'}}" mode="aspectFit"></image>
 					<view class="inline-block">
 						<view class="ayq-msg-name">{{yqUserInfo.nickname}}</view>
 						<view class="ayq-msg-yq">邀请您加入企业</view>
 					</view>
 				</view>
 				<view class="ayq-msg-footer box-sizing">
-					<image class="ayq-msg-cicon" src="../../../img/jion-cimg.png" mode="aspectFit"></image>
+					<image class="ayq-msg-cicon" src="{{imgUrl}}/jion-cimg.png" mode="aspectFit"></image>
 					<view class="ayq-msg-cname inline-block">{{yqUserInfo.companyName}}</view>
 				</view>
 			</view>
@@ -23,7 +23,7 @@
 	<button wx:if="{{scope&&!getPhoneBtn}}" class="jionTeamBtn" open-type="getUserInfo" bindgetuserinfo="getUserInfo">授权登录</button>
 	<button wx:if="{{getPhoneBtn}}" class="jionTeamBtn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">授权手机号</button>
 	<view class="jumpJion" bindtap="goHome" wx:if="{{!scope&&hasUserInfo}}">
-		<image src="../../../img/jump-jion.png" mode="aspectFit"></image>
+		<image src="{{imgUrl}}/jump-jion.png" mode="aspectFit"></image>
     不加入，直接进入小程序
 	</view>
 </view>

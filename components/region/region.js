@@ -41,7 +41,7 @@ Component({
    */
   methods: {
     bindMultiPickerChange: function (e) {
-      console.log('picker发送选择改变，携带值为', e.detail.value)
+      // console.log('picker发送选择改变，携带值为', e.detail.value)
       this.setData({
         multiIndex: e.detail.value
       });
@@ -55,13 +55,13 @@ Component({
       this.triggerEvent('change', myEventDetail, myEventOption)
     },
     bindMultiPickerColumnChange: function (e) {
-      console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+      // console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
       if (e.detail.column == 0&&e.detail.name!='全国'&&e.detail.name!='全部') {
         this.setData({
           multiIndex: [e.detail.value, 0]
         });
         var province = this.data.multiArray[0];
-        var city = districts[province[e.detail.value].id], cityList = [];
+        var city = districts[province[e.detail.value].id], cityList = [{id:'',name:'全部'}];
         for (var i in city) {
           let o = {};
           o.id = i;

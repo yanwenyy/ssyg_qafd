@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     starNum: 1,//星星数量
     id:'',//咨询师的id
     name:'',//咨询师的名字

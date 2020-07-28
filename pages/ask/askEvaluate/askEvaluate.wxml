@@ -1,22 +1,22 @@
 <!--pages/ask/askEvaluate/askEvaluate.wxml-->
 <view class="container">
 	<view class="ask-evaluate-head">
-		<image src="/img/user.png" mode="aspectFit" class="head-img"></image>
+		<image src="{{imgUrl}}/user.png" mode="aspectFit" class="head-img"></image>
 		<view class="inline-block">
 			<view class="ask-eh-name">{{name}}</view>
 			<view class="ask-eh-position">
-				<image src="../../../img/ask-detail-position.png"></image>
+				<image src="{{imgUrl}}/ask-detail-position.png"></image>
 				{{dj}}
 			</view>
 		</view>
 	</view>
 	<view class="ask-evaluate-title">回答质量:</view>
 	<view class="ask-evaluate-star">
-		<image bindtap='starClick' src="{{starNum>0? '../../../img/ask-detail-star.png':'../../../img/ask-detail-star-no.png'}}" data-value="1" mode="scaleToFill"></image>
-		<image bindtap='starClick' src="{{starNum>1? '../../../img/ask-detail-star.png':'../../../img/ask-detail-star-no.png'}}" data-value="2" mode="scaleToFill"></image>
-		<image bindtap='starClick' src="{{starNum>2? '../../../img/ask-detail-star.png':'../../../img/ask-detail-star-no.png'}}" data-value="3" mode="scaleToFill"></image>
-		<image bindtap='starClick' src="{{starNum>3? '../../../img/ask-detail-star.png':'../../../img/ask-detail-star-no.png'}}" data-value="4" mode="scaleToFill"></image>
-		<image bindtap='starClick' src="{{starNum>4? '../../../img/ask-detail-star.png':'../../../img/ask-detail-star-no.png'}}" data-value="5" mode="scaleToFill"></image>
+		<image bindtap='starClick' src="{{starNum>0? '{{imgUrl}}/ask-detail-star.png':'{{imgUrl}}/ask-detail-star-no.png'}}" data-value="1" mode="scaleToFill"></image>
+		<image bindtap='starClick' src="{{starNum>1? '{{imgUrl}}/ask-detail-star.png':'{{imgUrl}}/ask-detail-star-no.png'}}" data-value="2" mode="scaleToFill"></image>
+		<image bindtap='starClick' src="{{starNum>2? '{{imgUrl}}/ask-detail-star.png':'{{imgUrl}}/ask-detail-star-no.png'}}" data-value="3" mode="scaleToFill"></image>
+		<image bindtap='starClick' src="{{starNum>3? '{{imgUrl}}/ask-detail-star.png':'{{imgUrl}}/ask-detail-star-no.png'}}" data-value="4" mode="scaleToFill"></image>
+		<image bindtap='starClick' src="{{starNum>4? '{{imgUrl}}/ask-detail-star.png':'{{imgUrl}}/ask-detail-star-no.png'}}" data-value="5" mode="scaleToFill"></image>
 	</view>
 	<textarea class="ask-evaluate-text box-sizing" placeholder="写下您对咨询师的评价吧（30字内）" maxlength="30"  bindinput="textInput"></textarea>
 	<view class="sub-evaluate">

@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     source: '', //来源
     productId: '', //商品id
     goodsInfo: null, //商品信息

@@ -1,7 +1,7 @@
 <!--pages/mine/mineFans/mineFans.wxml-->
 <view class="ma-body">
   <view class="ma-list" wx:for="{{list}}" wx:key="index" bindtap="goPerson"  data-id="{{item.uuid}}">
-    <image src="{{item.headImg||(item.identity==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}" class="head-img" mode="aspectFit"></image>
+    <image src="{{item.headImg||(item.identity==1?imgUrl+'/user-zj.png':imgUrl+'/user.png')}}" mode="aspectFit" data-id="{{item.userId}}" class="head-img" mode="aspectFit"></image>
     <view class="inline-block ma-list-right">
       <view class="ma-list-name">{{item.realName||item.userName}}</view>
       <view class="inline-block ma-list-label" wx:for="{{item.identity}}" wx:key="index" wx:if="{{item!=0}}">{{item=="1"?"专家":"讲师"}}</view>

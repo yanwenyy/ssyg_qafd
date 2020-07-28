@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/index/index",
     "pages/index/bannerWeb/bannerWeb",
     "pages/logs/logs",
@@ -10,7 +9,10 @@
     "pages/industry/industryZCGJ/search/search",
     "pages/industry/industryZCGJ/XGJDcontent/XGJDcontent",
     "pages/industry/industryZCGJ/industryDZ/industryDZ",
+    "pages/industry/industryZCYW/search/search",
+    "pages/industry/industryZCYW/FGK/FGK",
     "pages/industry/industryFXTS/industryFXTS",
+    "pages/industry/industryZCYW/zcywContent/zcywContent",
     "pages/industry/industryFXTS/FXTScontent/FXTScontent",
     "pages/industry/industrySSCH/industrySSCH",
     "pages/industry/industrySSCH/SSCHcontent/SSCHcontent",
@@ -38,6 +40,8 @@
     "pages/mine/minePage/minePage",
     "pages/mine/mineAttention/mineAttention",
     "pages/mine/mineFans/mineFans",
+    "pages/mine/cooperation/cooperation",
+    "pages/mine/help/help",
     "pages/scope/scope",
     "pages/vip/vip",
     "pages/vip/openIndustry/openIndustry",
@@ -56,7 +60,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "行业全案辅导",
+    "navigationBarTitleText": "行业之星",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -68,6 +72,12 @@
         "text": "首页",
         "iconPath": "img/tab-home.png",
         "selectedIconPath": "img/tab-home-click.png"
+      },
+      {
+        "pagePath": "pages/industry/industryZCYW/FGK/FGK",
+        "text": "法规库",
+        "iconPath": "img/tab-fgk.png",
+        "selectedIconPath": "img/tab-fgk-click.png"
       },
       {
         "pagePath": "pages/mine/mine",

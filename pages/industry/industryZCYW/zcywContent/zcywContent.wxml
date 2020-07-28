@@ -1,0 +1,56 @@
+<!--pages/industry/industryZCYW/zcywContent/zcywContent.wxml-->
+<wxs module="tools" src="../../../tools.wxs"></wxs>
+<wxs module="fj">
+function getFile(val,type){
+	return val.indexOf(type)>0
+}
+module.exports = {
+  getFile : getFile,
+}
+</wxs>
+<view class="body">
+	<view class="policeContent-head">
+		<view class="pch-title">{{policyContent.title}}</view>
+		<view class="pch-file">[ {{policyContent.fileNum}} ]</view>
+		<view class="pch-list">发文机关：{{policyContent.office}}</view>
+		<view class="pch-list">税 种：{{policyContent.taxName}}</view>
+    <view class="pch-list">时效性：{{policyContent.timelinessName}}</view>
+		<view class="pch-list">发布时间：{{tools.dateFormat(policyContent.officialReleaseDate,"yyyy-MM-dd")}}</view>
+		<view class="pch-list">政策地区：{{policyContent.region||'全国'}}</view>
+	</view>
+	<view class="policeContent-body">
+		<view class="pcb-show box-sizing">
+		<view class="v1">
+				<view class="pcb-title">
+					<!-- <view class="inline-block psb-title-line"></view>
+					原文 -->
+				</view>
+				<view class="pcb-zcyw">
+					<rich-text class="richClass" nodes="{{policyContent.content}}" space="nbsp"></rich-text>
+				</view>
+        <view wx:if="{{fjList!=''}}" class="zcyw-fj box-sizing">
+          <view class="fj-notice"> <text class="notice-icon inline-block">!</text> 小程序暂不支持下载附件，可点击预览</view>
+          <view class="fj-list" wx:for="{{fjList}}" wx:key="index" data-url="{{fj.getFile(item.fileRealName,'png')||fj.getFile(item.fileRealName,'jpg')?item.fileRealName:item.fileOriginalName}}" bindtap="downLoad">
+            <image wx:if="{{fj.getFile(item.fileRealName,'pdf')}}" src="{{imgUrl}}/fj-pdf.png" mode="scaleToFill"></image>
+            <image wx:if="{{fj.getFile(item.fileRealName,'doc')}}" src="{{imgUrl}}/fj-word.png" mode="scaleToFill"></image>
+            <image wx:if="{{fj.getFile(item.fileRealName,'xls')}}" src="{{imgUrl}}/fj-exl.png" mode="scaleToFill"></image>
+						<image wx:if="{{fj.getFile(item.fileRealName,'png')||fj.getFile(item.fileRealName,'jpg')}}" src="" mode="scaleToFill"></image>
+            <view class="inline-block fj-list-name">{{fj.getFile(item.fileRealName,'png')||fj.getFile(item.fileRealName,'jpg')?'https://'+item.fileRealName:item.fileRealName}}</view>
+          </view>
+        </view>
+			</view>
+		</view>
+		<view class="pcb-foot" style="padding-bottom: {{isIphoneX ? '68rpx' : '30rpx'}};" >
+			<view class="inline-block green share-bottom"   data-collect="{{policyContent.ifCollect}}" bindtap="scClick">
+				<image wx:if="{{policyContent.ifCollect>0}}" src="{{imgUrl}}/zcyw-sc-act.png" mode="scaleToFill"></image>
+				<image wx:if="{{policyContent.ifCollect==0}}" src="{{imgUrl}}/zcyw-sc.png" mode="scaleToFill"></image>
+				收藏
+			</view>
+			<view class="inline-block green share-bottom">
+				<button class="detail-share-btn" open-type="share"></button>
+				<image src="{{imgUrl}}/sharemsg-zf.png" mode="scaleToFill"></image>
+				转发
+			</view>
+		</view>
+	</view>
+</view>

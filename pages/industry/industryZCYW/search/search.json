@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "noMsg":"/components/noMsg/noMsg"
+  },
+  "navigationBarTitleText":"政策原文搜索"
+}

@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     intro:false,
     userId:'',//用户id
     introMsg:'',//个人介绍

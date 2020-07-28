@@ -2,15 +2,15 @@
 <wxs module="tools" src="../../tools.wxs"></wxs>
 <view class="container">
 	<view class="oi-head">
-		<image src="../../../img/oi-head.png" mode="aspectFit"></image>
+		<image src="{{imgUrl}}/oi-head.png" mode="aspectFit"></image>
 		<view class="oi-head-msg box-sizing">
-			<view class="oi-head-msg-title">省税一哥·行业税务全案辅导VIP</view>
+			<view class="oi-head-msg-title">行税之星VIP</view>
 			<view class="oi-head-msg-type">企业贴身财务顾问</view>
 		</view>
 	</view>
 	<view class="oi-notice">注意：行业开通后不可修改，请谨慎选择</view>
 	<view wx:for="{{industryList}}" wx:key="index" class="oi-list" data-status="{{item.ifVip}}" data-id="{{item.tradeId}}" data-goodsId="{{item.goodsId}}" data-name="{{item.tradeName}}" bindtap="hyClick">
-		<image src="../../../img/oi-list.png" mode="scaleToFill"></image>
+		<image src="{{imgUrl}}/oi-list.png" mode="scaleToFill"></image>
 		<view class="oi-list-msg box-sizing">
 			<view class="oi-list-title" style="{{item.ifVip==0?'margin-top:25rpx':''}}">
 				<view class="inline-block card-icon">
@@ -31,7 +31,7 @@
 		<view class="od-shadow box-sizing">
 			<view class="od-shadow-title">
 				请选择商品
-				<image wx:if="{{from!='other'}}" bindtap="closeShadow" src="../../../img/shadow-close.png" mode="aspectFit">X</image>
+				<image wx:if="{{from!='other'}}" bindtap="closeShadow" src="{{imgUrl}}/shadow-close.png" mode="aspectFit">X</image>
 			</view>
 			<view class="od-shadow-notice">{{productName}}</view>
 			<view class="od-shadow-body">
@@ -43,8 +43,8 @@
 						<text class="inline-block od-product-type">{{item.goodsName}}</text>
 					</view>
 					<view class="od-product-foot {{item.goodsId==productId?'od-product-foot-act':''}}">{{item.explain||''}}</view>
-					<image wx:if="{{item.ifBuy==1}}" class="od-product-buy" src="../../../img/od-product-buy.png" mode="aspectFit"></image>
-					<image class="od-product-sel" src="{{item.goodsId==productId?'../../../img/od-product-sel.png':'../../../img/od-product-sel-no.png'}}"></image>
+					<image wx:if="{{item.ifBuy==1}}" class="od-product-buy" src="{{imgUrl}}/od-product-buy.png" mode="aspectFit"></image>
+					<image class="od-product-sel" src="{{item.goodsId==productId?imgUrl+'/od-product-sel.png':imgUrl+'/od-product-sel-no.png'}}"></image>
 				</view>
 			</view>
 			<view class="od-shadow-btn" bindtap="subMsg">确定</view>

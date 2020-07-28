@@ -2,14 +2,14 @@
 <wxs module="tools" src="../../tools.wxs"></wxs>
 <view class="container body">
 	<view class="order-head">
-		<image src="../../../img/order-head.png" mode="aspectFit"></image>
+		<image src="{{imgUrl}}/order-head.png" mode="aspectFit"></image>
 		<view class="order-head-msg box-sizing">
-			<image src="../../../img/conform-order-icon.png" mode="aspectFit"></image>
+			<image src="{{imgUrl}}/conform-order-icon.png" mode="aspectFit"></image>
 			<text>{{userInfo.companyName}}</text>
 		</view>
 	</view>
 	<view class="order-body">
-		<image src="../../../img/order-bg.png" mode="aspectFit"></image>
+		<image src="{{imgUrl}}/order-bg.png" mode="aspectFit"></image>
 		<view class="order-body-msg box-sizing">
 			<view class="order-name">
 				<text class="inline-block order-name-left">{{goodsInfo.tradeName}}{{goodsInfo.cardType==1?'A':(goodsInfo.cardType==1?'B':'C')}}卡 {{goodsInfo.goodsName}}</text>

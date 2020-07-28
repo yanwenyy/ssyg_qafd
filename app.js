@@ -5,9 +5,9 @@ App({
     wx.getSystemInfo({
      success: res => {
      let modelmes = res.model;
+     _self.globalData.birpx= res.windowWidth / 375;
      if (modelmes.search('iPhone X') != -1) {
       _self.globalData.isIphoneX = true;
-     
      }
      wx.setStorageSync('modelmes', modelmes)
      }
@@ -98,7 +98,9 @@ App({
     logMsg: null,
     system: null,
     logMsg: '',
-    token:''
+    token:'',
+    imgUrl:'https://ssyg-xcx-img.oss-cn-beijing.aliyuncs.com/qafd',
+    birpx:''
   },
   public: function () {
     var test = {

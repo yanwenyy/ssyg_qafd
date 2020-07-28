@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl: app.globalData.imgUrl,
     tabMsg: '全部',
     type: '',
     list: [],
@@ -140,11 +141,11 @@ Page({
             wx.navigateTo({
               url: '../../industry/industryZCGJ/policyContent/policyContent?policyId=' + id,
             })
-          }else{
+          } else {
             wx.showModal({
               title: '提示',
               content: '您收藏的内容已被删除或隐藏',
-              showCancel:false,
+              showCancel: false,
             })
           }
         });
@@ -158,11 +159,11 @@ Page({
             wx.navigateTo({
               url: '../../industry/industryZCGJ/XGJDcontent/XGJDcontent?id=' + id,
             })
-          }else{
+          } else {
             wx.showModal({
               title: '提示',
               content: '您收藏的内容已被删除或隐藏',
-              showCancel:false,
+              showCancel: false,
             })
           }
         });
@@ -177,11 +178,11 @@ Page({
             wx.navigateTo({
               url: '../../industry/industryFXTS/FXTScontent/FXTScontent?id=' + id,
             })
-          }else{
+          } else {
             wx.showModal({
               title: '提示',
               content: '您收藏的内容已被删除或隐藏',
-              showCancel:false,
+              showCancel: false,
             })
           }
         });
@@ -196,11 +197,11 @@ Page({
             wx.navigateTo({
               url: '../../industry/industrySSCH/SSCHcontent/SSCHcontent?id=' + id,
             })
-          }else{
+          } else {
             wx.showModal({
               title: '提示',
               content: '您收藏的内容已被删除或隐藏',
-              showCancel:false,
+              showCancel: false,
             })
           }
         });
@@ -215,11 +216,11 @@ Page({
             wx.navigateTo({
               url: '../../industry/industryLCJM/LCJMcontent/LCJMcontent?id=' + id,
             })
-          }else{
+          } else {
             wx.showModal({
               title: '提示',
               content: '您收藏的内容已被删除或隐藏',
-              showCancel:false,
+              showCancel: false,
             })
           }
         });
@@ -234,11 +235,11 @@ Page({
             wx.navigateTo({
               url: '../../newCenter/newContent/newContent?id=' + id,
             })
-          }else{
+          } else {
             wx.showModal({
               title: '提示',
               content: '您收藏的内容已被删除或隐藏',
-              showCancel:false,
+              showCancel: false,
             })
           }
         });
@@ -253,11 +254,11 @@ Page({
             wx.navigateTo({
               url: '../../course/coursContent/coursContent?id=' + id,
             })
-          }else{
+          } else {
             wx.showModal({
               title: '提示',
               content: '您收藏的内容已被删除或隐藏',
-              showCancel:false,
+              showCancel: false,
             })
           }
         });
@@ -271,14 +272,19 @@ Page({
             wx.navigateTo({
               url: '../../liveAnswer/liveAnswerContent/liveAnswerContent?id=' + id,
             })
-          }else{
+          } else {
             wx.showModal({
               title: '提示',
               content: '您收藏的内容已被删除或隐藏',
-              showCancel:false,
+              showCancel: false,
             })
           }
         });
+      case '10':
+        //政策详情
+        wx.navigateTo({
+          url: '../../industry/industryZCYW/zcywContent/zcywContent?policyId=' + id,
+        })
         break;
     }
   },

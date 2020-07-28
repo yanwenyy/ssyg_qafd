@@ -2,12 +2,12 @@
 <wxs src="../../tools.wxs" module="countdown" />
 <view>
   <view class="ask-list-head">
-    <image src="../../../img/ask-head.png" mode="aspectFit"></image>
+    <image src="{{imgUrl}}/ask-head.png" mode="aspectFit"></image>
     <view bindtap="ruleClick" class="rule-btn"></view>
   </view>
   <view class="ask-list-body">
     <view class="ask-num">
-      <image src="../../../img/ask-vip.png" mode="aspectFit"></image>
+      <image src="{{imgUrl}}/ask-vip.png" mode="aspectFit"></image>
       <text>剩余提问:{{time}}次</text>
     </view>
     <view class="ask-show">
@@ -50,9 +50,9 @@
       </view>
     </view>
     <view wx:if="{{list==''}}" class="no-msg">
-      <image src="../../../img/ask-no-msg.png" mode="aspectFit"></image>
+      <image src="{{imgUrl}}/ask-no-msg.png" mode="aspectFit"></image>
       <view>还没有提问过呢！</view>
     </view>
-    <view class="ask-btn" bindtap="askClick"><image src="../../../img/ask-btn.png" mode="aspectFit"></image></view>
+    <view class="ask-btn" bindtap="askClick"><image src="{{imgUrl}}/ask-btn.png" mode="aspectFit"></image></view>
   </view>
 </view>

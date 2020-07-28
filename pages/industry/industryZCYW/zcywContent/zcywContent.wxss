@@ -1,0 +1,55 @@
+/* pages/industry/industryZCYW/zcywContent/zcywContent.wxss */
+@import '../../../share/fxts/fxts.wxss';
+.zcyw-fj{
+  background: #F6F8FE;
+  padding:57rpx 53rpx;
+  border-radius: 16rpx;
+  border:1px solid rgba(239,243,253,1);
+  margin-top:93rpx;
+}
+.fj-notice{
+  font-size: 26rpx;
+  color:#FB5347;
+  text-align: center;
+  margin-bottom: 64rpx;
+}
+.notice-icon{
+  width: 20rpx;
+  height: 20rpx;
+  padding:3rpx;
+  border-radius: 50%;
+  border:2rpx solid #FB5347;
+  text-align: center;
+  line-height: 20rpx;
+  font-size: 14rpx;
+  vertical-align: top;
+  margin-top: 5rpx;
+}
+.fj-list:not(:last-child){
+  margin-bottom: 53rpx;
+}
+.fj-list>image{
+  width: 58rpx;
+  height: 66rpx;
+  min-width: 58rpx;
+  min-height: 66rpx;
+  background: #eee;
+  margin-right: 20rpx;
+  vertical-align: middle;
+}
+.fj-list-name{
+  width: 80%;
+  border-bottom: 1rpx solid #DADADA;
+  line-height: 47rpx;
+  font-size: 28rpx;
+  color: #666;
+  padding-bottom: 10rpx;
+  vertical-align: middle;
+  word-break: break-all;
+}
+.pch-file{
+  color: #666;
+}
+.pcb-zcyw {
+  min-height: auto;
+}

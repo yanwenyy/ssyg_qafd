@@ -14,12 +14,12 @@
 
         <!-- 播放暂停按钮 -->
         <cover-view wx:if='{{interFaceShow}}' catchtap="videoPlay" class='ccPlayBtn'>
-          <cover-image class='btnBg' src='{{!isPlaying?"../../img/ccPlayBtn.png":"../../img/ccPauseBtn.png"}}'></cover-image>
+          <cover-image class='btnBg' src='{{!isPlaying?imgUrl+"/ccPlayBtn.png":imgUrl+"/ccPauseBtn.png"}}'></cover-image>
         </cover-view>
 
         <!-- 全屏按钮 -->
         <cover-view wx:if='{{interFaceShow}}' catchtap="fullScreen" class='fullBtn'>
-          <cover-image class='btnBg' src='../../img/ccFullBtn.png'></cover-image>
+          <cover-image class='btnBg' src='{{imgUrl}}/ccFullBtn.png'></cover-image>
         </cover-view>
 
         <!-- 倍速按钮 -->
@@ -48,7 +48,7 @@
       <view class='ccH5ProgressBar'>
         <progress percent="{{percent}}" activeColor='#ff920a' backgroundColor='#a5a5a5' strokeWidth="2" />
         <view class='ccH5DragBtn' style='left:{{dragBtnleft}}px;;' bindtouchmove='dragTime' bindtouchend='dragTimeEnd'>
-          <image class='btnBg' src='../../img/ccDragBtn.png'></image>
+          <image class='btnBg' src='{{imgUrl}}/ccDragBtn.png'></image>
         </view>
       </view>
 

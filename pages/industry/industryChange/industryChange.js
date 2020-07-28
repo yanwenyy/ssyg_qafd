@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     items: [],//已开通行业
     itemsno:[],//未开通行业
     selectId:'',//已选择的行业

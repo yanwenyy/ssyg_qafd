@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     headTrade: null, //头部行业信息
     headHeight:0,//头部的高度
     scrollTop: null,
@@ -29,6 +30,9 @@ Page({
     taxList: [], //税种列表
     yearList: [], //年份列表
     timeList: [], //时效性列表
+    tabType:"1",//行业,普适筛选
+    labelList:[],//标签列表
+    tagId:'',//标签id
   },
 
   /**
@@ -39,13 +43,19 @@ Page({
 
     var query = wx.createSelectorQuery();
     query.select('.bannercontainer').boundingClientRect(function (rect) {
-      // console.log(rect.height)
       that.setData({
         headHeight: rect.height
       })
     }).exec();
+    query.select('.new-head-tab').boundingClientRect(function (rect) {
+      that.setData({
+        paddingHeight: rect.height+20
+      })
+    }).exec();
     //税种列表
-    app.ajax_nodata("/minitax/tax/list", function (res) {
+    app.ajax("/minitax/tax/list",{
+      type:2
+    } ,function (res) {
       that.setData({
         taxList: res.data.data
       })
@@ -59,11 +69,24 @@ Page({
     });
 
     //时效性列表
-    app.ajax_nodata("/minitax/timeliness/list", function (res) {
+    app.ajax("/minitax/timeliness/list", {
+      type:2
+    } ,function (res) {
       that.setData({
         timeList: res.data.data
       })
     });
+
+     //标签列表
+     app.ajax("/minitax/tag/list", {
+      type:2
+    } ,function (res) {
+      that.setData({
+        labelList: res.data.data
+      })
+    });
+
+
     var data = this.data;
     //获取头部行业信息
     app.ajax_nodata("/minitax/select/trade", function (res) {
@@ -71,7 +94,7 @@ Page({
         headTrade: res.data.data,
         tradeId: res.data.data.tradeId
       })
-      that.getList(data.start, data.num, data.tradeId, data.province, data.region, data.taxId, data.timeLinessId, data.year)
+      that.getList(data.start, data.num, data.tradeId, data.province, data.region, data.taxId, data.timeLinessId, data.year,data.tagId,data.tabType)
     });
   },
 
@@ -120,7 +143,7 @@ Page({
       this.setData({
         start: start
       });
-      this.getList(data.start, data.num, data.tradeId, data.province, data.region, data.taxId, data.timeLinessId, data.year)
+      this.getList(data.start, data.num, data.tradeId, data.province, data.region, data.taxId, data.timeLinessId, data.year,data.tagId,data.tabType)
     }
   },
 
@@ -153,6 +176,7 @@ Page({
   navOptClick: function (e) {
     var data = this.data;
     var dataset = e.currentTarget.dataset;
+    this.goFrist();
     this.setData({
       // scrollTop: this.data.headHeight-1,
       navSel: false,
@@ -173,10 +197,10 @@ Page({
     } else if (dataset.type == 'sxx') {
       this.setData({
         timeLinessId: dataset.id,
-        timeMsg: dataset.msg
+        timeMsg: dataset.msg.length<5?dataset.msg:dataset.msg.slice(0,5)+".."
       });
     }
-    this.getList(data.start, data.num, data.tradeId, data.province, data.region, data.taxId, data.timeLinessId, data.year)
+    this.getList(data.start, data.num, data.tradeId, data.province, data.region, data.taxId, data.timeLinessId, data.year,data.tagId,data.tabType)
   },
 
   //政策列表点击
@@ -187,7 +211,7 @@ Page({
   },
 
   //获取列表
-  getList: function (current, pageSize, tradeId, province, region, taxId, timeLinessId, year) {
+  getList: function (current, pageSize, tradeId, province, region, taxId, timeLinessId, year,tagId,property) {
     var that = this;
     app.ajax('/minitax/policy/list', {
       "current": current,
@@ -197,7 +221,9 @@ Page({
       "region": region,
       "taxId": taxId,
       "timeLinessId": timeLinessId,
-      "year": year
+      "year": year,
+      "tagId":tagId,
+      "property":property
     }, function (res) {
       var datas = res.data.data;
       if (datas && datas != '') {
@@ -231,7 +257,7 @@ Page({
       status: true, //是否还有数据
       list: [],
     })
-    this.getList(data.start, data.num, data.tradeId, data.province, data.region, data.taxId, data.timeLinessId, data.year)
+    this.getList(data.start, data.num, data.tradeId, data.province, data.region, data.taxId, data.timeLinessId, data.year,data.tagId,data.tabType)
   },
 
   //地区取消点击
@@ -252,12 +278,13 @@ Page({
 
   //地区组件传值
   regionChange: function(e){
-    console.log(e.detail);
+    // console.log(e.detail);
     var data = this.data;
+    this.goFrist();
     this.setData({
       province: e.detail.province!='全部'?e.detail.province:'',
-      region: e.detail.city,
-      regionMsg: e.detail.province == '全国' ? e.detail.province : (e.detail.city.length > 4 ? e.detail.city.slice(0, 4) + "..." : e.detail.city),
+      region: e.detail.city!='全部'?e.detail.city:'',
+      regionMsg: e.detail.province == '全国'||e.detail.city == '全部' ? e.detail.province : (e.detail.city.length > 4 ? e.detail.city.slice(0, 4) + "..." : e.detail.city),
       // scrollTop: this.data.headHeight-1,
       navSel: false,
       start: 1, //起始页
@@ -265,6 +292,45 @@ Page({
       status: true, //是否还有数据
       list: [],
     })
-    this.getList(data.start, data.num, data.tradeId, data.province, data.region, data.taxId, data.timeLinessId, data.year)
+    this.getList(data.start, data.num, data.tradeId, data.province, data.region, data.taxId, data.timeLinessId, data.year,data.tagId,data.tabType)
+  },
+
+  //列表滚动到第一条
+  goFrist:function(){
+    wx.pageScrollTo({
+      scrollTop: this.data.headHeight,
+      duration: 300
+    })
+  },
+
+  //tab筛选
+  tabClick:function(e){
+    var data=this.data;
+    this.setData({
+      tabType:e.currentTarget.dataset.type,
+      navSel: false,
+      start: 1, //起始页
+      num: 10, //每页显示条数
+      status: true, //是否还有数据
+      list: [],
+    });
+    this.goFrist();
+    this.getList(data.start, data.num, data.tradeId, data.province, data.region, data.taxId, data.timeLinessId, data.year,data.tagId,data.tabType)
+  },
+
+  //标签点击
+  labelClick:function(e){
+    var id=e.currentTarget.dataset.id,
+        data=this.data;
+    this.goFrist();
+    this.setData({
+      tagId:this.data.tagId==id?'':id,
+      navSel: false,
+      start: 1, //起始页
+      num: 10, //每页显示条数
+      status: true, //是否还有数据
+      list: [],
+    });
+    this.getList(data.start, data.num, data.tradeId, data.province, data.region, data.taxId, data.timeLinessId, data.year,data.tagId,data.tabType)
   }
 })

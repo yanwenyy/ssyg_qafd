@@ -7,11 +7,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     navText: '政策',
     scrollTopscrollTop: 0,
     policyContent: null, //政策详情
     policyId: '', //政策id
     releatfile: [], //相关文件
+    releatfileYw:[],//原文的相关文件
     releatedetails: [], //相关解读
     commentData: '', //评论详情
     commentList: [], //评论列表
@@ -25,7 +27,10 @@ Page({
     commentPlaceHolder: "", //评论框占位符
     commentId: '', //评论id
     tradeDz: null, //定制的行业信息
-    dzList: [], //点赞列表
+    dzList: [], //点赞列表,
+    // 可拖动按钮
+    x:300*app.globalData.birpx,
+    y:430*app.globalData.birpx,
   },
 
   /**
@@ -49,6 +54,7 @@ Page({
       "policyId": this.data.policyId,
     }, function (res) {
       res.data.data.content = res.data.data.content.replace(/\<img/gi, '<img class="rich-img" ');
+      res.data.data.content=res.data.data.content.replace(/(\\r)|(\\n)/g,'<br>');
       that.setData({
         policyContent: res.data.data
       });
@@ -65,9 +71,21 @@ Page({
       "policyId": this.data.policyId,
       "current": 0,
       "pageSize": 1000,
+      "type":"2"
     }, function (res) {
       that.setData({
         releatfile: res.data.data
+      })
+    });
+     //原文相关文件
+     app.ajax("/minitax/policy/releatfile", {
+      "policyId": this.data.policyId,
+      "current": 0,
+      "pageSize": 1000,
+      "type":"1",
+    }, function (res) {
+      that.setData({
+        releatfileYw: res.data.data
       })
     });
 
@@ -194,6 +212,10 @@ Page({
       if (e.currentTarget.dataset.type == "xgwj") {
         wx.navigateTo({
           url: '/pages/industry/industryZCGJ/policyContent/policyContent?policyId=' + e.currentTarget.dataset.id,
+        })
+      }else if(e.currentTarget.dataset.type == "ywxgwj"){
+        wx.navigateTo({
+          url: '../../industryZCYW/zcywContent/zcywContent?policyId=' +this.data.policyContent.policyOriginalId,
         })
       } else {
         wx.navigateTo({
@@ -482,5 +504,12 @@ Page({
         dzList: res.data.data
       })
     });
+  },
+
+  //可拖动按钮
+  transmit(e){
+    wx.navigateTo({
+      url: '../../industryZCYW/zcywContent/zcywContent?policyId=' +this.data.policyContent.policyOriginalId,
+    })
   }
 })

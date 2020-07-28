@@ -1,7 +1,7 @@
 <!--pages/mine/mineTeam/mineTeam.wxml-->
 <view class="teamManage-body box-sizing">
 	<view class="pay-head" style="{{userInfo.companyName.length>14?'height:250rpx':'height:220rpx'}}">
-		<image class="pay-bg" src="../../../img/pay-bg.png" mode="scaleToFill"></image>
+		<image class="pay-bg" src="{{imgUrl}}/pay-bg.png" mode="scaleToFill"></image>
 		<view class="pay-msg box-sizing">
 			<view class="pay-msg-name">{{userInfo.companyName}}</view>
 			<!-- <view class="pay-msg-time">会员企业</view> -->
@@ -15,7 +15,7 @@
 	<view class="teamManage-ul">
 		<view class="teamManage-li box-sizing" wx:for="{{msg.stationsRes}}" wx:key="index" wx:if="{{item.userId}}">
 			<view class="teamManage-li-user">
-				<image class="teamManage-li-img" src="{{item.headImg||(item.ifPlatformAuthor==1?'/img/user-zj.png':'/img/user.png')}}" mode="aspectFit" data-id="{{item.userId}}" mode="scaleToFill"></image>
+				<image class="teamManage-li-img" src="{{item.headImg||(item.ifPlatformAuthor==1?imgUrl+'/user-zj.png':imgUrl+'/user.png')}}" mode="aspectFit" data-id="{{item.userId}}" mode="scaleToFill"></image>
 				<view class="teamManage-li-user-mine" wx:if="{{item.role==0&&item.userId==userInfo.uuid}}">我</view>
 			</view>
 			<view class="teamManage-li-msg inline-block" style="{{item.role==0?'width:80%':'width:70%'}}">
@@ -33,14 +33,14 @@
 		</view>
 		<view wx:if="{{msg.yaoQingNum>0}}" class="teamManage-li teamManage-li-yq box-sizing"  data-title="邀请同事" data-name="yqts" data-url="/pages/share/acspetYq/acspetYq?id={{userInfo.uuid}}" bindtap="openShare">
 			<view class="teamManage-li-user">
-				<image class="teamManage-li-img" src="../../../img/teamManage-plus.png" mode="scaleToFill"></image>
+				<image class="teamManage-li-img" src="{{imgUrl}}/teamManage-plus.png" mode="scaleToFill"></image>
 			</view>
 			<view class="teamManage-li-share inline-block">
 				虚位以待
 			</view>
 			<view class="inline-block green teamManage-li-share-btn">
 				邀请同事
-				<image class="teamManage-li-share-go" src="../../../img/go-coach.png" mode="scaleToFill"></image>
+				<image class="teamManage-li-share-go" src="{{imgUrl}}/go-coach.png" mode="scaleToFill"></image>
 			</view>
 		</view>
 	</view>

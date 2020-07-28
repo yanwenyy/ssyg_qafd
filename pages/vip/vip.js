@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl:app.globalData.imgUrl,
     sq_btn: false, //授权信息
     pn_btn: false, //获取手机号后开通
     kt_btn: false, //授权过的开通按钮
