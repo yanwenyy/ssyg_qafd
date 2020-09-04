@@ -184,6 +184,7 @@
   background: rgba(0,0,0,.3);
   line-height: 51rpx;
   text-align: center;
+  vertical-align: middle;
 }
 .new-card-tImg>image{
   width: 36rpx;

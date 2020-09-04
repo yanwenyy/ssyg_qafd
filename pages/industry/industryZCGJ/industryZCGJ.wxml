@@ -1,4 +1,12 @@
 <!--pages/industry/industryZCGJ/industryZCGJ.wxml-->
+<wxs module="suc">
+function splitTile(val,num){
+	return val=val.length>num?val.slice(0,num)+"...":val
+}
+module.exports = {
+  splitTile : splitTile,
+}
+</wxs>
 <wxs module="tools" src="../../tools.wxs"></wxs>
 <view style="height:auto;position:relative;width:100%;">
 	<!-- <scroll-view scroll-y="false" bindscroll="scroll" bindscrolltolower="scrollBottom" scroll-top="{{scrollTop}}" style="height:100%;"> -->
@@ -94,7 +102,7 @@
 	</view>
 	<!-- <view class="goods-list {{scrollTop > headHeight ? 'goods-list-padding' : ''}}"> -->
 	<view class="goods-list" style="padding-top:{{scrollTop > headHeight ? paddingHeight : 0}}px">
-		<view wx:if="{{tabType=='hy'}}" class="new-card box-sizing">
+		<view wx:if="{{tabType=='1'}}" class="new-card box-sizing">
 			<view class="inline-block new-card-tImg">
 				<image src="{{'http://'+headTrade.tradeIcon}}" mode="scaleToFill"></image>
 			</view>
@@ -102,7 +110,7 @@
 			<image src="{{imgUrl}}/zcgj-new-cardinro.png" class="new-card-itro" mode="scaleToFill"></image>
 		</view>
 		<view bindtap="zcClick" class="goods-list-li box-sizing" wx:for="{{list}}" wx:key="index" data-id="{{item.id}}">
-			<view class="goods-list-li-title">{{item.title}}</view>
+			<view class="goods-list-li-title">{{suc.splitTile(item.title,43)}}</view>
 			<view class="goods-list-li-file">[ {{item.fileNum}} ]</view>
 			<view class="goods-list-li-date">发布时间：{{tools.dateFormat(item.officialReleaseDate,"yyyy-MM-dd")}}</view>
 		</view>

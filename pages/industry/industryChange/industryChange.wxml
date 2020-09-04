@@ -1,6 +1,6 @@
 <!--pages/industry/industryChange/industryChange.wxml-->
 <view class="container ich-body">
-	<view class="ich-intro">请选择您的定制行业，省税一哥将为您提供精准的行业内容服务。</view>
+	<view class="ich-intro">请选择您的定制行业，行税之星将为您提供精准的行业内容服务。</view>
 	<view>
 		<view class="ich-title">已开通行业</view>
 		<radio-group class="radio-group" bindchange="openChange">

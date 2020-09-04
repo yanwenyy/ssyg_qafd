@@ -282,8 +282,20 @@ Page({
         });
       case '10':
         //政策详情
-        wx.navigateTo({
-          url: '../../industry/industryZCYW/zcywContent/zcywContent?policyId=' + id,
+        app.ajax("/minitax/policyoriginal/details", {
+          "policyId":id,
+          }, function (res) {
+          if (res.data.data != null && res.data.data != '') {
+            wx.navigateTo({
+              url: '../../industry/industryZCYW/zcywContent/zcywContent?policyId=' + id,
+            })
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: '您收藏的内容已被删除或隐藏',
+              showCancel:false
+            })
+          }
         })
         break;
     }

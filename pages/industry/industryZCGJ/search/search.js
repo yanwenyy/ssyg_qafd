@@ -127,7 +127,9 @@ Page({
       list: [], //政策列表
     })
     var data = this.data;
-    this.getList(data.start, data.num, data.content, data.tradeId,data.tabType)
+    if(data.content!=''){
+      this.getList(data.start, data.num, data.content, data.tradeId,data.tabType)
+    }
   },
 
   //政策列表点击
@@ -145,8 +147,10 @@ Page({
       status: true, //是否还有数据
       list: [], //政策列表
       tabType:e.currentTarget.dataset.type
-    })
+    });
     var data = this.data;
-    this.getList(data.start, data.num, data.content, data.tradeId,data.tabType)
+    if(data.content!=''){
+      this.getList(data.start, data.num, data.content, data.tradeId,data.tabType)
+    }
   }
 })

@@ -5,13 +5,13 @@
       <image wx:if="{{!scope}}" src="{{imgUrl}}/login-img2.png" mode="widthFix"></image>
     </view>
     <view wx:if="{{scope}}" class="login-msg">
-        <view class="login-msg-list">欢迎使用《行业之星》企业版。</view>
+        <view class="login-msg-list">欢迎使用《行税之星》企业版。</view>
         <view>针对您所在的行业，定制属于您的税务全案辅导内容，成为企业贴身的税务顾问、规避涉税风险、降低税收成本、为企业筛选行业政策节省时间成本。</view>
     </view>
     <view wx:if="{{!scope}}" class="login-msg">
      <view class="login-msg-title">
         <view>欢迎使用</view>
-        <view>行业之星系统</view>
+        <view>行税之星系统</view>
      </view>
      <view class="login-notice">请授权您要登陆的手机号，以验证您的所属企业</view>
     </view>

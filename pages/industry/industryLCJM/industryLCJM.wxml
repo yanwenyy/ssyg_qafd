@@ -1,6 +1,11 @@
 <!--pages/industry/industryLCJM/industryLCJM.wxml-->
 <view>
-  <view class="lcjm-body container">
+  <view class="nomsg-body">
+    <image src="/img/no-lcjm-list.png" mode="widthFix"></image>
+    <view>模块正在建设当中</view>
+    <view>敬请期待</view>
+  </view>
+  <view wx-if="{{false}}" class="lcjm-body container">
     <view class="lcjm-list shadow-model box-sizing" wx:for="{{list}}" wx:key="index" data-id="{{item.id}}" data-vip="{{item.isVip}}" data-power="{{item.tradePower}}" bindtap="goContent">
       <view>{{item.title}}</view>
       <image src="{{'http://'+item.coverUrl}}" mode="widthFix"></image>

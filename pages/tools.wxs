@@ -120,8 +120,14 @@ var countDown=function(newtime,o) {//倒计时函数
   return obj;
 }
 
+//多余文字...展示
+function splitTile(val,num){
+	return val=val.length>num?val.slice(0,num)+"...":val
+}
+
 module.exports = {
   dateFormat: dateFormat,
   dateFormat2: dateFormat2,
-  countDown: countDown
+  countDown: countDown,
+  splitTile:splitTile
 }

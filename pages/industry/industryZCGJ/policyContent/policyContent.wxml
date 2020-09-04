@@ -4,11 +4,11 @@
 	<view class="policeContent-head">
 		<view class="pch-title">{{policyContent.title}}</view>
 		<view class="pch-file">[ {{policyContent.fileNum}} ]</view>
-		<view class="pch-list">发文机关：{{policyContent.office}}</view>
-		<view class="pch-list">税 种：{{policyContent.taxName}}</view>
+		<view class="pch-list">发文机关：{{policyContent.office||''}}</view>
+		<view class="pch-list">税 种：{{policyContent.taxName||''}}</view>
 		<view class="pch-list">发布时间：{{tools.dateFormat(policyContent.officialReleaseDate,"yyyy-MM-dd")}}</view>
 		<view class="pch-list">政策地区：{{policyContent.region||'全国'}}</view>
-		<view class="pch-list">时效性：{{policyContent.timelinessName}}</view>
+		<view class="pch-list">时效性：{{policyContent.timelinessName||''}}</view>
 	</view>
 	<view class="policeContent-body">
 		<view class="pcp-nav {{scrollTop>230?'positionTop':''}}">
@@ -74,8 +74,8 @@
 					<view class="pcb-xgwj-file">[ {{item.fileNum}} ]</view>
 					<view>发布时间：{{tools.dateFormat(item.officialReleaseDate,"MM-dd")}}</view>
 				</view>
-					<view class="pcb-xgwj-list shadow-model box-sizing" wx:for="{{releatfileYw}}" wx:key="index" data-type="ywxgwj" bindtap="xgjdClick" data-id="{{item.id}}">
-					<view class="pcb-xgwj-title">{{item.title}}</view>
+					<view class="pcb-xgwj-list shadow-model box-sizing" wx:for="{{releatfileYw}}" wx:key="index" data-type="ywxgwj" bindtap="xgjdClick" data-id="{{item.relativePolicyId}}">
+					<view class="pcb-xgwj-title">{{tools.splitTile(item.title,35)}}</view>
 					<view class="pcb-xgwj-file">[ {{item.fileNum}} ]</view>
 					<view>发布时间：{{tools.dateFormat(item.officialReleaseDate,"MM-dd")}}</view>
 				</view>
@@ -83,7 +83,7 @@
 			<view class="v3" wx:if="{{releatedetails!=''}}">
 				<view class="pcb-title">相关解读</view>
 				<view class="pcb-xgwj-list shadow-model box-sizing" wx:for="{{releatedetails}}" wx:key="index" bindtap="xgjdClick" data-id="{{item.id}}">
-					<view class="pcb-xgwj-title">{{item.expertTitle}}</view>
+					<view class="pcb-xgwj-title">{{tools.splitTile(item.expertTitle,35)}}</view>
 					<view>发布时间：{{tools.dateFormat(item.createTime,"MM-dd hh:mm")}}</view>
 				</view>
 			</view>

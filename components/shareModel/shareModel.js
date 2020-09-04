@@ -300,11 +300,11 @@ Component({
       ctx.setFontSize('16');
       ctx.setFillStyle('#333');
       ctx.fillText(this.data.userInfo.realName || this.data.userInfo.userName, 110, 73);
-      ctx.fillText('我为“省税一哥”代言', 54, 116);
+      ctx.fillText('我为“行税之星”代言', 54, 116);
       // ctx.drawImage(imgUrl+'/yqts-share-dy.png', 44, 149, 209, 122);
       ctx.setFontSize('7');
       ctx.setFillStyle('#fff');
-      ctx.fillText('省税一哥', 20, 400);
+      ctx.fillText('行税之星', 20, 400);
       ctx.setFontSize('10');
       ctx.fillText('您的财税顾问', 20, 422);
       // ctx.drawImage("data:image/png;base64," + this.data.code_src, 212, 346, 66, 66);

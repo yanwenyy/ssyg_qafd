@@ -1,4 +1,16 @@
 /* pages/industry/industryLCJM/industryLCJM.wxss */
+.nomsg-body>image{
+  width: 369rpx;
+  margin-bottom: 44rpx;
+}
+.nomsg-body{
+  text-align: center;
+  font-size: 28rpx;
+  color: #666;
+  padding-top: 20%;
+
+}
+
 .lcjm-list{
   padding:22rpx;
   margin-bottom: 30rpx;

@@ -12,7 +12,7 @@
 				</view>
 				<view class="vip-title">行税之星VIP</view>
 				<view class="vip-sel-title">请选择您要开通的行业</view>
-				<view class="vip-share">分享</view>
+				<view wx:if="{{false}}" class="vip-share">分享</view>
 			</view>
 		</view>
 	</view>

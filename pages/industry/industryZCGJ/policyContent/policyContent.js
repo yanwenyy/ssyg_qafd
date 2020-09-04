@@ -7,13 +7,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgUrl:app.globalData.imgUrl,
+    imgUrl: app.globalData.imgUrl,
     navText: '政策',
     scrollTopscrollTop: 0,
     policyContent: null, //政策详情
     policyId: '', //政策id
     releatfile: [], //相关文件
-    releatfileYw:[],//原文的相关文件
+    releatfileYw: [],//原文的相关文件
     releatedetails: [], //相关解读
     commentData: '', //评论详情
     commentList: [], //评论列表
@@ -29,8 +29,8 @@ Page({
     tradeDz: null, //定制的行业信息
     dzList: [], //点赞列表,
     // 可拖动按钮
-    x:300*app.globalData.birpx,
-    y:430*app.globalData.birpx,
+    x: 300 * app.globalData.birpx,
+    y: 430 * app.globalData.birpx,
   },
 
   /**
@@ -46,43 +46,52 @@ Page({
       policyId: options.policyId,
       userInfo: app.globalData.userInfo,
       year: Y,
-      isIphoneX:app.globalData.isIphoneX
+      isIphoneX: app.globalData.isIphoneX
     })
 
-    //政策详情
-    app.ajax("/minitax/policy/details", {
-      "policyId": this.data.policyId,
-    }, function (res) {
-      res.data.data.content = res.data.data.content.replace(/\<img/gi, '<img class="rich-img" ');
-      res.data.data.content=res.data.data.content.replace(/(\\r)|(\\n)/g,'<br>');
+
+    //获取头部行业信息
+    app.ajax_nodata("/minitax/select/trade", function (res) {
       that.setData({
-        policyContent: res.data.data
-      });
-      var query = wx.createSelectorQuery();
-      query.select('.richClass').boundingClientRect(function (rect) {
+        tradeId: res.data.data.tradeId
+      })
+      //政策详情
+      app.ajax("/minitax/policy/details", {
+        "policyId": that.data.policyId,
+        "tradeId": that.data.tradeId
+      }, function (res) {
+        res.data.data.content = res.data.data.content.replace(/\<img/gi, '<img class="rich-img" ');
+        res.data.data.content = res.data.data.content.replace(/(\\r)|(\\n)/g, '<br>');
         that.setData({
-          richHeight: rect.height
-        })
-      }).exec();
+          policyContent: res.data.data
+        });
+        var query = wx.createSelectorQuery();
+        query.select('.richClass').boundingClientRect(function (rect) {
+          that.setData({
+            richHeight: rect.height
+          })
+        }).exec();
+      });
     });
+
 
     //相关文件
     app.ajax("/minitax/policy/releatfile", {
-      "policyId": this.data.policyId,
+      "id": this.data.policyId,
       "current": 0,
       "pageSize": 1000,
-      "type":"2"
+      "type": "2"
     }, function (res) {
       that.setData({
         releatfile: res.data.data
       })
     });
-     //原文相关文件
-     app.ajax("/minitax/policy/releatfile", {
-      "policyId": this.data.policyId,
+    //原文相关文件
+    app.ajax("/minitax/policy/releatfile", {
+      "id": this.data.policyId,
       "current": 0,
       "pageSize": 1000,
-      "type":"1",
+      "type": "1",
     }, function (res) {
       that.setData({
         releatfileYw: res.data.data
@@ -208,15 +217,46 @@ Page({
 
   //相关解读点击
   xgjdClick: function (e) {
+    var that=this;
     if (app.ifVip(this.data.policyContent.isVip != 1 && this.data.policyContent.tradePower == 0 && this.data.policyContent.self == 0)) {
       if (e.currentTarget.dataset.type == "xgwj") {
-        wx.navigateTo({
-          url: '/pages/industry/industryZCGJ/policyContent/policyContent?policyId=' + e.currentTarget.dataset.id,
-        })
-      }else if(e.currentTarget.dataset.type == "ywxgwj"){
-        wx.navigateTo({
-          url: '../../industryZCYW/zcywContent/zcywContent?policyId=' +this.data.policyContent.policyOriginalId,
-        })
+         //政策详情
+      app.ajax("/minitax/policy/details", {
+        "policyId": e.currentTarget.dataset.id,
+        "tradeId": that.data.tradeId
+      }, function (res) {
+        if (res.data.data) {
+          wx.navigateTo({
+            url: '/pages/industry/industryZCGJ/policyContent/policyContent?policyId=' + e.currentTarget.dataset.id,
+          })
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '该政策已被删除或隐藏',
+            showCancel: false
+          })
+        }
+      });
+       
+      } else if (e.currentTarget.dataset.type == "ywxgwj") {
+        var relativePolicyId=e.currentTarget.dataset.id;
+        //政策详情
+        app.ajax("/minitax/policyoriginal/details", {
+          "policyId": that.data.policyContent.policyOriginalId,
+        }, function (res) {
+          if (res.data.data) {
+            wx.navigateTo({
+              url: '../../industryZCYW/zcywContent/zcywContent?policyId=' + relativePolicyId,
+            })
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: '该政策下暂无原文，或原文被隐藏',
+              showCancel: false
+            })
+          }
+        });
+      
       } else {
         wx.navigateTo({
           url: '../XGJDcontent/XGJDcontent?id=' + e.currentTarget.dataset.id,
@@ -491,10 +531,10 @@ Page({
   },
 
   //点赞列表
-  getDzList:function(){
-    var that=this;
-     //点赞列表
-     app.ajax("/minitax/praiselist", {
+  getDzList: function () {
+    var that = this;
+    //点赞列表
+    app.ajax("/minitax/praiselist", {
       "current": 1,
       "id": that.data.policyId,
       "pageSize": 8,
@@ -507,9 +547,24 @@ Page({
   },
 
   //可拖动按钮
-  transmit(e){
-    wx.navigateTo({
-      url: '../../industryZCYW/zcywContent/zcywContent?policyId=' +this.data.policyContent.policyOriginalId,
-    })
+  transmit(e) {
+    var that = this;
+    //政策详情
+    app.ajax("/minitax/policyoriginal/details", {
+      "policyId": that.data.policyContent.policyOriginalId,
+    }, function (res) {
+      if (res.data.data) {
+        wx.navigateTo({
+          url: '../../industryZCYW/zcywContent/zcywContent?policyId=' + that.data.policyContent.policyOriginalId,
+        })
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: '该政策下暂无原文，或原文被隐藏',
+          showCancel: false
+        })
+      }
+    });
+
   }
 })

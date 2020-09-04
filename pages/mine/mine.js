@@ -94,7 +94,7 @@ Page({
       // 来自页面内转发按钮
       if (this.data.shareName == "fxdy") {
         return {
-          title: '我为“省税一哥”代言',
+          title: '我为“行税之星”代言',
           path: 'pages/index/index',
           imageUrl: imgUrl+'/share-zc.png'
         }
@@ -125,7 +125,7 @@ Page({
     })
   },
 
-  //去省税一哥新政辅导小程序
+  //去行税之星新政辅导小程序
   goSSYG:function(){
     wx.navigateToMiniProgram({
       appId: 'wxb522129e3ee3abe7',
