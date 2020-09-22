@@ -101,3 +101,6 @@ radio .wx-radio-input.wx-radio-input-checked{
   border: none;
   background: #28B7A3!important;
 }
+.nbsp{
+  color:transparent;
+}

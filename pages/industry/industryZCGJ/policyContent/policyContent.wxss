@@ -365,3 +365,6 @@ movable-view{
   justify-content: center;
   pointer-events: auto;
 }
+.vTop{
+  padding-top: 110rpx;
+}

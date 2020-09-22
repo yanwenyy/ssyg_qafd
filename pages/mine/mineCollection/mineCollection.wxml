@@ -10,7 +10,7 @@
 		<view class="inline-block ifx-tab {{type=='5'?'ifx-tab-act':''}}" data-msg="解码图" data-type="5" bindtap="tabClick">解码图</view>
 		<view class="inline-block ifx-tab {{type=='6'?'ifx-tab-act':''}}" data-msg="新闻中心" data-type="6" bindtap="tabClick">新闻中心</view>
 		<view class="inline-block ifx-tab {{type=='8'?'ifx-tab-act':''}}" data-msg="直播答疑" data-type="8" bindtap="tabClick">直播答疑</view>
-		<view class="inline-block ifx-tab {{type=='7'?'ifx-tab-act':''}}" data-msg="课程" data-type="7" bindtap="tabClick">课程</view>
+		<!-- <view class="inline-block ifx-tab {{type=='7'?'ifx-tab-act':''}}" data-msg="课程" data-type="7" bindtap="tabClick">课程</view> -->
 	</scroll-view>
 	<view class="container">
 		<view wx:for="{{list}}" wx:key="index" bindtap="listClick" data-type="{{item.moudle}}" data-id="{{item.moudleId}}">
@@ -18,6 +18,9 @@
 				<view class="ifx-list-title">{{item.title}}</view>
 				<view class="ifx-list-content">[ {{item.fileNum}} ]</view>
 				<view class="mc-date">{{tools.dateFormat(item.careadate)}}</view>
+				<view style="margin-top:10rpx" class="ifx-list-label" wx:if="item.moudle==1||item.moudle==10">
+					<text class="green inline-block"># {{item.moudle==1?'政策归集':'政策原文'}}</text>
+				</view>
 			</view>
 			<view wx:if="{{item.moudle==3||item.moudle==4||item.moudle==6}}" class="ifx-list shadow-model box-sizing">
 				<!-- <view class="ifx-list-head">

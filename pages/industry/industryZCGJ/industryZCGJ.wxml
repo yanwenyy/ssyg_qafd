@@ -14,7 +14,7 @@ module.exports = {
 		<view class="course-head">
 			<view class="inline-block course-search">
 				<image src="{{imgUrl}}/search-img-white.png" mode="aspectFit"></image>
-				<input disabled class="inline-block box-sizing" placeholder="请输入要搜索的内容" bindtap="search" placeholder-class="input-placeholder"></input>
+				<input disabled class="inline-block box-sizing" placeholder="请输入要搜索的内容" bindtap="search" placeholder-style="color:#fff"></input>
 			</view>
 			<view class="inline-block">搜索</view>
 		</view>
@@ -47,28 +47,28 @@ module.exports = {
 		</view>
 		<view class="page-group box-sizing">
 			<view class="page-nav-list inline-block" bindtap="navClick" data-txt="税种">
-				<view class="{{navText=='税种'?'green':''}}">
+				<view class="{{taxId!=''?'green':''}}">
 					{{taxId==''?'税种':taxMsg}}
-					<image class="page-nav-img" src="{{imgUrl}}/{{navText=='税种'?'sel-act':'sel'}}.png" mode="aspectFit"></image>
+					<image class="page-nav-img" src="{{imgUrl}}/{{taxId!=''?'sel-act':'sel'}}.png" mode="aspectFit"></image>
 				</view>
-				<text wx:if="{{navText=='税种'}}" class="nav-line"></text>
+				<text wx:if="{{taxId!=''}}" class="nav-line"></text>
 			</view>
 			<view class="page-nav-list inline-block" bindtap="navClick" data-txt="发布年份">
-				<view class="{{navText=='发布年份'?'green':''}}">
+				<view class="{{year!=''?'green':''}}">
 					{{year==''?'发布年份':year}}
-					<image class="page-nav-img" src="{{imgUrl}}/{{navText=='发布年份'?'sel-act':'sel'}}.png" mode="aspectFit"></image>
+					<image class="page-nav-img" src="{{imgUrl}}/{{year!=''?'sel-act':'sel'}}.png" mode="aspectFit"></image>
 				</view>
-				<text wx:if="{{navText=='发布年份'}}" class="nav-line"></text>
+				<text wx:if="{{year!=''}}" class="nav-line"></text>
 			</view>
 			<view class="page-nav-list inline-block" bindtap="navClick" data-txt="时效性">
-				<view class="{{navText=='时效性'?'green':''}}">
+				<view class="{{timeLinessId!=''?'green':''}}">
 					{{timeLinessId==''?'时效性':timeMsg}}
-					<image class="page-nav-img" src="{{imgUrl}}/{{navText=='时效性'?'sel-act':'sel'}}.png" mode="aspectFit"></image>
+					<image class="page-nav-img" src="{{imgUrl}}/{{timeLinessId!=''?'sel-act':'sel'}}.png" mode="aspectFit"></image>
 				</view>
-				<text wx:if="{{navText=='时效性'}}" class="nav-line"></text>
+				<text wx:if="{{timeLinessId!=''}}" class="nav-line"></text>
 			</view>
 			<view class="page-nav-list inline-block" bindtap="navClick" data-txt="地域" data-region="yes">
-				<view style="width:100%;height:100%" class="{{navText=='地域'?'green':''}}">
+				<view style="width:100%;height:100%" class="{{region!=''||province!=''?'green':''}}">
 					{{region!=''||province!=''?regionMsg:'地域'}}
 					<region bind:change="regionChange" />
 					<!-- <picker mode="region" bindcancel="bindRegionCancel" bindchange="bindRegionChange" value="{{regionList}}" custom-item="{{customItem}}">
@@ -77,9 +77,9 @@ module.exports = {
 							<image style="margin-left:5rpx" class="page-nav-img" src="{{imgUrl}}/{{navText=='地域'?'sel-act':'sel'}}.png" mode="aspectFit"></image>
 						</view>
 					</picker> -->
-					<image style="margin-left:5rpx" class="page-nav-img" src="{{imgUrl}}/{{navText=='地域'?'sel-act':'sel'}}.png" mode="aspectFit"></image>
+					<image style="margin-left:5rpx" class="page-nav-img" src="{{imgUrl}}/{{region!=''||province!=''?'sel-act':'sel'}}.png" mode="aspectFit"></image>
 				</view>
-				<text wx:if="{{navText=='地域'}}" class="nav-line"></text>
+				<text wx:if="{{region!=''||province!=''}}" class="nav-line"></text>
 			</view>
 			<view class="nav-sel-mask" wx:if="{{navSel}}">
 				<view wx:if="{{navText=='税种'}}" class="nav-sel box-sizing {{taxList.length>3?'':'nav-sel-h-a'}}">
@@ -114,6 +114,7 @@ module.exports = {
 			<view class="goods-list-li-file">[ {{item.fileNum}} ]</view>
 			<view class="goods-list-li-date">发布时间：{{tools.dateFormat(item.officialReleaseDate,"yyyy-MM-dd")}}</view>
 		</view>
+		<noMsg wx:if="{{list==''&&status==false}}" imgUrl="no-yw" msg="暂无相关内容"></noMsg>
 	</view>
 	<!-- </scroll-view> -->
 </view>

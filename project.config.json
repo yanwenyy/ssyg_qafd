@@ -26,7 +26,7 @@
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.8.3",
+	"libVersion": "2.9.5",
 	"appid": "wx65ef8c843f41bb66",
 	"projectname": "ssyg_qafd",
 	"debugOptions": {

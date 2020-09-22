@@ -287,5 +287,12 @@ Page({
       imgCodeid: codemessages,
       imgcodeSrc: app.public().url + "/RandomCodeImage/randCode/" + codemessages + ""
     })
+  },
+
+  //去免责声明页面
+  goDis:function(){
+    wx.navigateTo({
+      url: '../disclaimers/disclaimers',
+    })
   }
 })

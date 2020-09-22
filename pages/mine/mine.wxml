@@ -58,9 +58,10 @@
 			</view>
 		</view>
 	</view>
-	<view class="mine-system" bindtap="goSSYG">
+	<!-- 小程序跳转 -->
+	<!-- <view class="mine-system" bindtap="goSSYG">
 		<image src="{{imgUrl}}/mine-system.png" mode="aspectFit"></image>
-	</view>
+	</view> -->
 	<view class="mine-list shadow-model box-sizing">
 		<view class="mine-list-show" data-url="../vip/coupon/coupon?source=mine" bindtap="goList">
 			<view class="inline-block mine-list-left">

@@ -26,6 +26,7 @@ App({
         that.globalData.system = res;
       }
     })
+    
     // 登录
     wx.login({
       success: res => {
@@ -40,12 +41,16 @@ App({
             'content-type': 'application/json' // 默认值
           },
           success(res) {
+            const pages = getCurrentPages()
+            var currentPage = pages[pages.length-1] //获取当前页面的对象
+            console.log(currentPage.route)
+            var url = currentPage.route //当前页面url
             that.globalData.logMsg = res.data.data;
             var data = res.data.data;
             if (that.cookieIdReadyCallback) {
               that.cookieIdReadyCallback(res)
             }
-            if (data.authorize == 0) {
+            if (data.authorize == 0&&url.indexOf("pages/share")==-1) {
               // 获取用户信息
               wx.getSetting({
                 success: res => {
@@ -75,16 +80,16 @@ App({
                        
                       }
                     })
-                  }else{
+                  }else if(url.indexOf("pages/share")==-1){
                     wx.reLaunch({
-                      url: '../scope/scope',
+                      url: '/pages/scope/scope',
                     })
                   }
                 }
               });
             } else {
               wx.reLaunch({
-                url: '../scope/scope',
+                url: '/pages/scope/scope',
               })
             }
           }

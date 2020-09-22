@@ -59,8 +59,8 @@
 			</view>
 		</view>
 	</view>
-	<view class="list-container" wx:if="{{newList!=''}}">
-		<view class="index-list-title">
+	<view class="list-container">
+		<view class="index-list-title"  wx:if="{{newList!=''}}">
 			<view class="inline-block">新闻中心</view>
 			<view class="inline-block index-list-title-more" data-url="../newCenter/newCenter" bindtap="indexTabClick">全部 <image class="more-icon" src="{{imgUrl}}/set-go.png" mode="widthFix"></image></view>
 		</view>
@@ -83,7 +83,7 @@
 					<image src="{{'http://'+item.coverUrl}}" mode="scaleToFill"></image>
 				</view>
 			</view>
-			<view wx:if="{{newList!=''}}" class="sys-btn" bindtap="sysClick">
+			<view wx:if="{{newList!=''&&newList.length>2||newStart>1}}" class="sys-btn" bindtap="sysClick">
 				<image src="{{imgUrl}}/sys.png" mode="aspectFit"></image>
 			</view>
 		</view>
@@ -129,7 +129,7 @@
 				<view data-url="../ask/ask" bindtap="queClick" class="inline-block index-wzx-que">去提问</view>
 			</view>
 		</view>
-		<view class="index-list-title" wx:if="{{courseList!=''}}">
+		<!-- <view class="index-list-title" wx:if="{{courseList!=''}}">
 			<view class="inline-block">精选好课</view>
 			<view class="inline-block index-list-title-more" data-url="../course/course" bindtap="indexTabClick">全部 <image class="more-icon" src="{{imgUrl}}/set-go.png" mode="widthFix"></image></view>
 		</view>
@@ -142,6 +142,6 @@
 					<view wx:if="{{item.ifFree==1}}" class="vip-course">VIP课程</view>
 				</view>
 			</view>
-		</view>
+		</view> -->
 	</view>
 </view>

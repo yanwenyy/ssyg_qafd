@@ -174,7 +174,8 @@ Page({
   //评论框点击
   inputClick: function (e) {
     this.setData({
-      commentInput: true
+      commentInput: true,
+      focus: true,
     })
   },
 

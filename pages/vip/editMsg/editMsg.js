@@ -252,6 +252,12 @@ Page({
           })
         }
       })
+    }else{
+      wx.showToast({
+        title: '请完善信息',
+        icon: 'none',
+        duration: 2000
+      })
     }
   }
 })

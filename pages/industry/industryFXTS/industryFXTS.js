@@ -35,7 +35,7 @@ Page({
    */
   onShow: function () {
     var that = this;
-    that.setData({
+    this.setData({
       start: 1, //起始页
       num: 10, //每页显示条数
       status: true, //是否还有数据
@@ -116,6 +116,7 @@ Page({
 
   getList: function (attributeid, current, pageSize, tradeId) {
     var that = this;
+    console.log(current)
     app.ajax("/minitax/trisk/list", {
       "attributeid": attributeid,
       "current": current,

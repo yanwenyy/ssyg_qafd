@@ -5,11 +5,11 @@
 	<view class="policeContent-head">
 		<view class="pch-title">{{policyContent.title}}</view>
 		<view class="pch-file">[ {{policyContent.fileNum}} ]</view>
-		<view class="pch-list">发文机关：{{policyContent.office}}</view>
-		<view class="pch-list">税 种：{{policyContent.taxName}}</view>
+		<view class="pch-list">发文机关：{{policyContent.office||''}}</view>
+		<view class="pch-list">税 种：{{policyContent.taxName||''}}</view>
 		<view class="pch-list">发布时间：{{tools.dateFormat(policyContent.officialReleaseDate,"yyyy-MM-dd")}}</view>
 		<view class="pch-list">政策地区：{{policyContent.region||"全国"}}</view>
-		<view class="pch-list">时效性：{{policyContent.timelinessName}}</view>
+		<view class="pch-list">时效性：{{policyContent.timelinessName||''}}</view>
 	</view>
 	<view class="policeContent-body">
 		<view class="pcp-nav {{scrollTop>230?'positionTop':''}}">
@@ -32,7 +32,7 @@
 		</view>
 		<view class="pcb-show box-sizing">
 			<view class="v1">
-				<view class="pcb-zc-head box-sizing">
+				<!-- <view class="pcb-zc-head box-sizing">
 					<view class="pcb-zc-head-title inline-block">指导专家</view>
 					<view class="pcb-zc-head-right inline-block">
 						<image src="{{policyContent.headImg||(policyContent.ifPlatformAuthor==1?imgUrl+'/user-zj.png':imgUrl+'/user.png')}}" mode="aspectFit"></image>
@@ -41,7 +41,7 @@
 							<view class="pcb-zc-head-position green">{{policyContent.identity==0?'普通人':(policyContent.identity==1?'专家':'讲师')}}</view>
 						</view>
 					</view>
-				</view>
+				</view> -->
 				<view class="pcb-title">
 					<!-- <view class="inline-block psb-title-line"></view>
 					原文 -->

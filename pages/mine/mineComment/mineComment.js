@@ -113,13 +113,8 @@ Page({
       }, function (res) {
         var datas = res.data.data;
         if (datas && datas != '') {
-          var list_change = that.data.list;
-          for (var i in datas) {
-            datas[i].title = datas[i].title.length > 15 ? datas[i].title.slice(0, 15) + "..." : datas[i].title;
-            list_change.push(datas[i])
-          }
           that.setData({
-            list: list_change
+            list: datas
           });
         } else {
           that.setData({
@@ -135,12 +130,8 @@ Page({
         var datas = res.data.data;
         if (datas && datas != '') {
           var list_change = that.data.list;
-          for (var i in datas) {
-            datas[i].title = datas[i].title.length > 15 ? datas[i].title.slice(0, 15) + "..." : datas[i].title;
-            list_change.push(datas[i])
-          }
           that.setData({
-            list: list_change
+            list: datas
           });
         } else {
           that.setData({

@@ -19,6 +19,15 @@
       <image class="set-go" src="{{imgUrl}}/set-go.png" mode="scaleToFill"></image>
     </view>
   </view>
+  <view class="set-list" bindtap="goDis">
+    <view class="inline-block set-list-name">
+      <image class="set-list-name-img" src="/img/set-disclaimers.png" mode="scaleToFill"></image>
+      <text>免责声明</text>
+    </view>
+    <view class="inline-block set-list-right">
+      <image class="set-go" src="{{imgUrl}}/set-go.png" mode="scaleToFill"></image>
+    </view>
+  </view>
   <view class="set-btn box-sizing">
     <button bindtap="toLogin">退出登录</button>
   </view>

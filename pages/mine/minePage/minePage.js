@@ -159,6 +159,7 @@ Page({
       app.ajax_get("/minitax/attention/remove?userId="+that.data.userId,function(res){
         if(res.data.code==10000){
           that.data.tabMsg.ifAttention=false;
+          that.data.tabMsg.fansNum=that.data.tabMsg.fansNum-1;
           that.setData({
             tabMsg:that.data.tabMsg
           })
@@ -168,6 +169,7 @@ Page({
       app.ajax_get("/minitax/attention/add?userId="+that.data.userId,function(res){
         if(res.data.code==10000){
           that.data.tabMsg.ifAttention=true;
+          that.data.tabMsg.fansNum=that.data.tabMsg.fansNum+1;
           that.setData({
             tabMsg:that.data.tabMsg
           })

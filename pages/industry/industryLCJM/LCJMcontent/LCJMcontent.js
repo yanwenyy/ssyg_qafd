@@ -6,10 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgUrl:app.globalData.imgUrl,
+    imgUrl: app.globalData.imgUrl,
     id: '',
     detail: null, //详情信息
-    commentData:'',//评论详情
+    commentData: '',//评论详情
     commentList: [], //评论列表
     userInfo: null,
     year: '', //今年
@@ -37,7 +37,7 @@ Page({
       id: options.id,
       userInfo: app.globalData.userInfo,
       year: Y,
-      isIphoneX:app.globalData.isIphoneX
+      isIphoneX: app.globalData.isIphoneX
     });
 
 
@@ -64,14 +64,14 @@ Page({
     app.ajax("/minitax/process/detailse", {
       "id": this.data.id,
     }, function (res) {
-      res.data.data.content=res.data.data.content.replace(/\<img/gi, '<img class="rich-img" ');
-      var i=0,imgPre=[],imgList=res.data.data.annexs,len=imgList.length;
-      for(;i<len;i++){
-        imgPre.push("http://"+imgList[i].fileOriginalName)
+      res.data.data.content = res.data.data.content.replace(/\<img/gi, '<img class="rich-img" ');
+      var i = 0, imgPre = [], imgList = res.data.data.annexs, len = imgList.length;
+      for (; i < len; i++) {
+        imgPre.push("http://" + imgList[i].fileOriginalName)
       }
       that.setData({
         detail: res.data.data,
-        imgPre:imgPre
+        imgPre: imgPre
       })
     });
 
@@ -141,7 +141,7 @@ Page({
           list_change.push(datas[i])
         }
         that.setData({
-          commentData:res.data,
+          commentData: res.data,
           commentList: list_change
         });
       } else {
@@ -155,7 +155,8 @@ Page({
   //评论框点击
   inputClick: function (e) {
     this.setData({
-      commentInput: true
+      commentInput: true,
+      focus: true,
     })
   },
 
@@ -203,7 +204,7 @@ Page({
       commentId: e.currentTarget.dataset.id,
       commentPlaceHolder: '回复 ' + e.currentTarget.dataset.name,
       commentInput: true,
-      focus:true
+      focus: true
     })
   },
 
@@ -230,9 +231,9 @@ Page({
     var target = e.currentTarget.dataset,
       id = target.id,
       index = target.index,
-      type=target.type,
-      parnetIndex=target.parentindex,
-      that=this;
+      type = target.type,
+      parnetIndex = target.parentindex,
+      that = this;
     if (target.parse == 0) {
       app.ajax("/minitax/praiseadd", {
         "id": id,
@@ -240,11 +241,11 @@ Page({
         "type": "9"
       }, function (res) {
         if (res.data.code == 10000) {
-          if(type=="hf"){
+          if (type == "hf") {
             console.log(parnetIndex);
             that.data.commentList[parnetIndex].discussUsers_change[index].ifPrase = 1;
             that.data.commentList[parnetIndex].discussUsers_change[index].praiseNum = that.data.commentList[parnetIndex].discussUsers_change[index].praiseNum + 1;
-          }else{
+          } else {
             that.data.commentList[index].ifPrase = 1;
             that.data.commentList[index].praiseNum = that.data.commentList[index].praiseNum + 1;
           }
@@ -260,11 +261,11 @@ Page({
         "type": "9"
       }, function (res) {
         if (res.data.code == 10000) {
-          if(type=="hf"){
+          if (type == "hf") {
             console.log(parnetIndex);
             that.data.commentList[parnetIndex].discussUsers_change[index].ifPrase = 0;
             that.data.commentList[parnetIndex].discussUsers_change[index].praiseNum = that.data.commentList[parnetIndex].discussUsers_change[index].praiseNum - 1;
-          }else{
+          } else {
             that.data.commentList[index].ifPrase = 0;
             that.data.commentList[index].praiseNum = that.data.commentList[index].praiseNum - 1;
           }
@@ -277,19 +278,19 @@ Page({
   },
 
   //文章点赞
-  wzdzClick:function(e){
+  wzdzClick: function (e) {
     var target = e.currentTarget.dataset,
-        data=this.data,
-        that=this;
+      data = this.data,
+      that = this;
     if (target.parse == 0) {
       app.ajax("/minitax/praiseadd", {
-        "id":data.detail.id,
+        "id": data.detail.id,
         "status": 0,
         "type": "5"
       }, function (res) {
         if (res.data.code == 10000) {
-          data.detail.ifPrase=1;
-          data.detail.praiseNum=data.detail.praiseNum+1;
+          data.detail.ifPrase = 1;
+          data.detail.praiseNum = data.detail.praiseNum + 1;
           that.setData({
             detail: data.detail
           });
@@ -298,13 +299,13 @@ Page({
       })
     } else {
       app.ajax("/minitax/praiseadd", {
-        "id":data.detail.id,
+        "id": data.detail.id,
         "status": 1,
         "type": "5"
       }, function (res) {
         if (res.data.code == 10000) {
-          data.detail.ifPrase=0;
-          data.detail.praiseNum=data.detail.praiseNum-1;
+          data.detail.ifPrase = 0;
+          data.detail.praiseNum = data.detail.praiseNum - 1;
           that.setData({
             detail: data.detail
           });
@@ -312,7 +313,7 @@ Page({
         }
       })
     }
-   
+
   },
 
   //查看点赞列表
@@ -358,19 +359,19 @@ Page({
         }
       })
     }
-    
+
   },
 
   //删除评论点击
-  delComment:function(e){
-    var target=e.currentTarget.dataset,that=this;
+  delComment: function (e) {
+    var target = e.currentTarget.dataset, that = this;
     wx.showModal({
       title: '提示',
       content: '确定要删除此条评论吗?',
-      success (res) {
+      success(res) {
         if (res.confirm) {
-          app.ajax_get("/minitax/discuss/del?id="+target.id,function(res){
-            if(res.data.code==10000){
+          app.ajax_get("/minitax/discuss/del?id=" + target.id, function (res) {
+            if (res.data.code == 10000) {
               that.onShow();
             }
           })
@@ -382,7 +383,7 @@ Page({
   },
 
   //流程解码图片预览
-  preImg:function(e){
+  preImg: function (e) {
     console.log(e.currentTarget.dataset.id)
     wx.previewImage({
       current: e.currentTarget.dataset.id, // 当前显示图片的http链接
@@ -390,11 +391,11 @@ Page({
     })
   },
 
-   //点赞列表
-   getDzList:function(){
-    var that=this;
-     //点赞列表
-     app.ajax("/minitax/praiselist", {
+  //点赞列表
+  getDzList: function () {
+    var that = this;
+    //点赞列表
+    app.ajax("/minitax/praiselist", {
       "current": 1,
       "id": this.data.id,
       "pageSize": 8,
@@ -404,5 +405,10 @@ Page({
         dzList: res.data.data
       })
     })
-  }
+  },
+
+  //去个人中心页面
+  goPerson: function (e) {
+    app.goPerson(e.currentTarget.dataset.id)
+  },
 })

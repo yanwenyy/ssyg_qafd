@@ -218,7 +218,7 @@ Component({
       ctx.rect(0, 0, unit * 297, unit * 356)
       ctx.setFillStyle('#fff')
       ctx.fill();
-      ctx.drawImage(imgUrl+'/yqts-bg.png', unit * 22, unit * 23, unit * 260, unit * 304);
+      ctx.drawImage('../../img/yqts-bg.png', unit * 22, unit * 23, unit * 260, unit * 304);
       ctx.save();
       ctx.setFontSize('19');
       ctx.setFillStyle('#9B601F');
@@ -244,7 +244,7 @@ Component({
       ctx.fill();
       ctx.setStrokeStyle("#E2B279");
       ctx.stroke();
-      ctx.drawImage(imgUrl+'/conform-order-icon.png', unit * 59, unit * 244, unit * 14, unit * 16);
+      ctx.drawImage('../../img/conform-order-icon.png', unit * 59, unit * 244, unit * 14, unit * 16);
       ctx.setFontSize('15');
       ctx.setFillStyle('#B07937');
       var str = this.data.userInfo.companyName || '';
@@ -291,7 +291,7 @@ Component({
       ctx.rect(0, 0, unit * 297, unit * 356)
       ctx.setFillStyle('#fff')
       ctx.fill();
-      ctx.drawImage(imgUrl+'/yqts-bg.png', unit * 22, unit * 23, unit * 260, unit * 304);
+      ctx.drawImage('../../img/yqts-bg.png', unit * 22, unit * 23, unit * 260, unit * 304);
       ctx.save();
       ctx.arc(72, 70, 18, 0, 2 * Math.PI);
       ctx.clip();

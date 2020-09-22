@@ -167,7 +167,7 @@ Page({
   navClick: function (e) {
     this.setData({
       // scrollTop: this.data.headHeight+1,
-      navText: e.currentTarget.dataset.txt,
+      navText:e.currentTarget.dataset.txt,
       navSel: e.currentTarget.dataset.region!='yes'?true:false
     });
   },
@@ -313,6 +313,19 @@ Page({
       num: 10, //每页显示条数
       status: true, //是否还有数据
       list: [],
+      navText: '', //导航选中文字
+      navSel: false, //导航选择框显示
+      province: '',//省份
+      region: '', //地区
+      regionMsg: '', //tab地区显示
+      customItem: '全部',
+      regionList: ['北京市', '北京市', '东城区'], //地区列表
+      taxId: '', //税种id
+      taxMsg: '',
+      timeLinessId: '', //时效性id
+      timeMsg: '',
+      year: '', //发布年份
+      tagId:'',//标签id
     });
     this.goFrist();
     this.getList(data.start, data.num, data.tradeId, data.province, data.region, data.taxId, data.timeLinessId, data.year,data.tagId,data.tabType)

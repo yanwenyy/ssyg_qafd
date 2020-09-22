@@ -1,5 +1,13 @@
 <!--pages/mine/mineComment/mineComment.wxml-->
 <wxs src="../../tools.wxs" module="tools"></wxs>
+<wxs module="suc">
+function splitTile(val,num){
+	return val=val.length>num?val.slice(0,num)+"...":val
+}
+module.exports = {
+  splitTile : splitTile,
+}
+</wxs>
 <view>
 	<view class="ask-tab">
 		<view bindtap="tabClick" data-msg="评论我的" class="inline-block {{tabMsg=='评论我的'?'green':''}}" style="margin-right:124rpx">
@@ -23,7 +31,7 @@
 					<view class="inline-block" wx:if="{{item.level!=1}}">// <text class="blue">@{{userInfo.nickname}}：</text>{{item.replyContent}}</view>
 				</view>
 				<view class="comment-msg box-sizing">
-					<view class="comment-msg-title" data-id="{{item.id}}" data-type="{{item.type}}" bindtap="titleClick">{{item.title}}</view>
+					<view class="comment-msg-title" data-id="{{item.id}}" data-type="{{item.type}}" bindtap="titleClick">{{suc.splitTile(item.title,15)}}</view>
 					<!-- <view class="comment-msg-file">[ 国家税务总局公告2019年第32号 ]</view> -->
 				</view>
 				<view class="mine-comment-foot">{{item.level==1?'评论了您的作品':'回复了您的评论'}}</view>
@@ -43,7 +51,7 @@
 					<view class="inline-block" wx:if="{{item.level!=1}}">// <text class="blue" bindtap="goPerson" data-id="{{item.replyUserId}}">@{{item.replyUserName	}}：</text>{{item.replyContent}}</view>
 				</view>
 				<view class="comment-msg box-sizing">
-					<view class="comment-msg-title" data-id="{{item.id}}" data-type="{{item.type}}" bindtap="titleClick">{{item.title}}</view>
+					<view class="comment-msg-title" data-id="{{item.id}}" data-type="{{item.type}}" bindtap="titleClick">{{suc.splitTile(item.title,15)}}</view>
 				</view>
 				<view class="mine-comment-foot">{{item.level==1?'您评论了作品':'您回复了评论'}}   {{tools.dateFormat(item.careadate)}}</view>
 			</view>
@@ -51,7 +59,7 @@
 	</view>
 	<view class="pcb-foot" wx:if="{{commentInput}}">
 		<view class="pcb-foot-hf">
-			<input focus="{{focus}}" class="box-sizing inline-block" bindinput="commentInput" placeholder="请输入内容" cursor-spacing="20rpx"></input>
+			<input bindconfirm="subComment" focus="{{focus}}" class="box-sizing inline-block" bindinput="commentInput" placeholder="请输入内容" cursor-spacing="20rpx"></input>
 			<text class="green" bindtap="subComment">发送</text>
 		</view>
 	</view>

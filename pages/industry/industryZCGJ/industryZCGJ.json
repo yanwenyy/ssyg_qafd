@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "region":"/components/region/region"
+    "region":"/components/region/region",
+    "noMsg":"/components/noMsg/noMsg"
   },
   "navigationBarTitleText":"政策归集",
   "navigationBarBackgroundColor":"#28B7A3",

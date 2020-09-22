@@ -99,6 +99,7 @@ Page({
           imageUrl: imgUrl+'/share-zc.png'
         }
       } else {
+        console.log(this.data.userInfo.uuid)
         return {
           title: that.data.userInfo.companyName+'邀请您的加入',
           path: 'pages/share/acspetYq/acspetYq?uuid='+this.data.userInfo.uuid,
@@ -116,7 +117,7 @@ Page({
 
   openShare:function(e){
     var target=e.currentTarget.dataset;
-    console.log(target.url)
+    // console.log(target.url)
     this.setData({
       shareTitle:target.title,
       shareName:target.name,

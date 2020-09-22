@@ -42,6 +42,7 @@
       "pages/mine/mineFans/mineFans",//我的粉丝
       "pages/mine/cooperation/cooperation",//商务合作
       "pages/mine/help/help",//帮助中心
+      "pages/mine/disclaimers/disclaimers", //免责声明
       "pages/vip/vip",//会员展示页
       "pages/vip/openIndustry/openIndustry",//会员购买选择开通行业
       "pages/vip/editMsg/editMsg",//会员购买后填写企业信息

@@ -24,7 +24,8 @@ Page({
   onLoad: function (options) {
     var that = this;
     that.setData({
-      userId: options.uuid
+      userId: options.uuid,
+      // userId:'c57ef75cff30490fb6e7d4ba8ac7a385'
     });
     app.cookieIdReadyCallback = res => {
       that.setData({
@@ -34,6 +35,7 @@ Page({
       wx.getSetting({
         success: res => {
           if (res.authSetting['scope.userInfo']) {
+            console.log(that.logMsg)
             // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
             if (that.data.logMsg.phone != '' && that.data.logMsg.phone != null) {
               that.data.getPhoneBtn = false;
@@ -115,9 +117,10 @@ Page({
 
   goAccept: function () {
     var that=this;
+    console.log(app.globalData.logMsg.openid||app.globalData.logMsg.taxOpenid)
     app.ajax("/yaoqing/joinStateion", {
       "userId": this.data.userId,
-      "openid": app.globalData.logMsg.openid
+      "openid": app.globalData.logMsg.openid||app.globalData.logMsg.taxOpenid
     }, function (res) {
       if (res.data.code == 10000) {
         wx.navigateTo({

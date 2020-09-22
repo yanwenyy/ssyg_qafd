@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/index/index",
     "pages/index/bannerWeb/bannerWeb",
     "pages/logs/logs",
@@ -42,6 +43,7 @@
     "pages/mine/mineFans/mineFans",
     "pages/mine/cooperation/cooperation",
     "pages/mine/help/help",
+    "pages/mine/disclaimers/disclaimers",
     "pages/scope/scope",
     "pages/vip/vip",
     "pages/vip/openIndustry/openIndustry",
@@ -56,6 +58,7 @@
     "pages/share/zbdy/zbdy",
     "pages/share/zcgj/zcgj",
     "pages/share/xgjd/xgjd"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

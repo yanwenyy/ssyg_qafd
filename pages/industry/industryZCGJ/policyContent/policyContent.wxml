@@ -16,7 +16,7 @@
 				政策
 				<text wx:if="{{navText=='政策'}}" class="inline-block pcp-nav-line"></text>
 			</view>
-			<view wx:if="{{releatfile!=''}}" class="inline-block pcp-nav-list {{navText=='相关文件'?'pcp-nav-list-act':''}}" bindtap="navClick" data-code="2" data-text="相关文件">
+			<view wx:if="{{releatfile!=''||releatfileYw!=''}}" class="inline-block pcp-nav-list {{navText=='相关文件'?'pcp-nav-list-act':''}}" bindtap="navClick" data-code="2" data-text="相关文件">
 				相关文件
 				<text wx:if="{{navText=='相关文件'}}" class="inline-block pcp-nav-line"></text>
 			</view>
@@ -30,7 +30,7 @@
 			</view>
 		</view>
 		<view class="pcb-show box-sizing">
-			<view class="v1">
+			<view class="v1 {{scrollTop>230?'vTop':''}}">
 				<view wx:if="{{false}}" class="pcb-zc-head box-sizing" data-id="{{policyContent.userid}}" bindtap="zdzjClick">
 					<view class="pcb-zc-head-title inline-block">指导专家</view>
 					<view class="pcb-zc-head-right inline-block">
@@ -67,7 +67,7 @@
 					<image src="{{imgUrl}}/ktvip.gif" bindtap="goVip" mode="widthFix"></image>
 				</view>
 			</view>
-			<view class="v2" wx:if="{{releatfile!=''||releatfileYw!=''}}">
+			<view class="v2  {{scrollTop>230?'vTop':''}}" wx:if="{{releatfile!=''||releatfileYw!=''}}">
 				<view class="pcb-title" style="margin-top:75pcb-pl-list-hf-msgrpx">相关文件</view>
 				<view class="pcb-xgwj-list shadow-model box-sizing" wx:for="{{releatfile}}" wx:key="index" data-type="xgwj" bindtap="xgjdClick" data-id="{{item.id}}">
 					<view class="pcb-xgwj-title">{{item.title}}</view>
@@ -80,18 +80,18 @@
 					<view>发布时间：{{tools.dateFormat(item.officialReleaseDate,"MM-dd")}}</view>
 				</view>
 			</view>
-			<view class="v3" wx:if="{{releatedetails!=''}}">
+			<view class="v3  {{scrollTop>230?'vTop':''}}" wx:if="{{releatedetails!=''}}">
 				<view class="pcb-title">相关解读</view>
 				<view class="pcb-xgwj-list shadow-model box-sizing" wx:for="{{releatedetails}}" wx:key="index" bindtap="xgjdClick" data-id="{{item.id}}">
 					<view class="pcb-xgwj-title">{{tools.splitTile(item.expertTitle,35)}}</view>
 					<view>发布时间：{{tools.dateFormat(item.createTime,"MM-dd hh:mm")}}</view>
 				</view>
 			</view>
-			<view class="v4">
+			<view class="v4  {{scrollTop>230?'vTop':''}}">
 				<view class="pcb-title">评论 ({{commentData.total||0}})</view>
 				<view>
 					<view class="pcb-pl-list" wx:for="{{commentList}}" wx:for-index="commentListIndex" wx:key="index">
-						<image class="pcb-pl-list-img" src="{{item.headImg||(item.ifPlatformAuthor==1?imgUrl+'/user-zj.png':imgUrl+'/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
+						<image bindtap="goPerson" class="pcb-pl-list-img" src="{{item.headImg||(item.ifPlatformAuthor==1?imgUrl+'/user-zj.png':imgUrl+'/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
 						<view class="inline-block pcb-pl-list-right">
 							<view class="pcb-pl-list-name">
 								<text>{{item.userName}}</text>
@@ -112,7 +112,7 @@
 								<!--  style="{{item.discussUsers.length>1&&item.zk==true?'height:auto':'height:224rpx'}}" -->
 								<view class="pcb-pl-list-hf-msg box-sizing">
 									<view class="pcb-pl-list" wx:for="{{item.discussUsers_change}}" wx:key="index">
-										<image class="pcb-pl-list-img-hf" src="{{item.headImg||(item.ifPlatformAuthor==1?imgUrl+'/user-zj.png':imgUrl+'/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
+										<image bindtap="goPerson" class="pcb-pl-list-img-hf" src="{{item.headImg||(item.ifPlatformAuthor==1?imgUrl+'/user-zj.png':imgUrl+'/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
 										<view class="inline-block pcb-pl-list-right">
 											<view class="pcb-pl-list-name">
 												<view class="inline-block" style="width:85%;word-break: break-all;">
@@ -165,7 +165,7 @@
 				</view>
 			</view>
 			<view wx:if="{{commentInput}}" class="pcb-foot-hf" >
-				<input focus="{{focus}}" class="box-sizing inline-block" bindinput="commentInput" placeholder="{{commentPlaceHolder}}" cursor-spacing="20rpx"></input>
+				<input bindconfirm="subComment" focus="{{focus}}" class="box-sizing inline-block" bindinput="commentInput" placeholder="{{commentPlaceHolder}}" cursor-spacing="20rpx"></input>
 				<text class="green" bindtap="subComment">发送</text>
 			</view>
 		</view>

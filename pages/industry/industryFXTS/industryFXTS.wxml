@@ -5,10 +5,10 @@
     <view class="inline-block ifx-tab {{tabMsg=='全部'?'ifx-tab-act':''}}" data-id="" data-msg="全部" bindtap="tabClick">全部</view>
     <view wx:for="{{tabList}}" wx:key="index" data-id="{{item.id}}" data-msg="{{item.name}}" class="inline-block ifx-tab {{tabMsg==item.name?'ifx-tab-act':''}}" bindtap="tabClick">{{item.name}}</view>
   </scroll-view>
-  <view class="container">
+  <view class="ifx-container">
       <view class="ifx-list shadow-model box-sizing" wx:for="{{list}}" wx:key="index" data-id="{{item.id}}" bindtap="listClick">
         <view class="ifx-list-head">
-            <image catchtap="goPerson" src="{{item.headImg||(item.ifPlatformAuthor==1?imgUrl+'/user-zj.png':imgUrl+'/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
+            <image wx:if="{{item.ifPlatformAuthor!=0}}" catchtap="goPerson" src="{{item.headImg||(item.ifPlatformAuthor==1?imgUrl+'/user-zj.png':imgUrl+'/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
             <view class="inline-block">
               <view class="ifx-list-head-name">{{item.ifPlatformAuthor==1?item.realName:item.lecturer}}</view>
               <view class="ifx-list-head-date">{{tools.dateFormat(item.creatTime)}}</view>

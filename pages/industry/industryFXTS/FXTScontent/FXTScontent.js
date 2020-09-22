@@ -178,7 +178,8 @@ Page({
   //评论框点击
   inputClick: function (e) {
     this.setData({
-      commentInput: true
+      commentInput: true,
+      focus: true,
     })
   },
 
@@ -430,5 +431,10 @@ Page({
         dzList: res.data.data
       })
     })
-  }
+  },
+
+    //去个人中心页面
+    goPerson: function (e) {
+      app.goPerson(e.currentTarget.dataset.id)
+    },
 })

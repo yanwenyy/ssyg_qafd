@@ -1,5 +1,8 @@
 /* pages/industry/industryZCYW/FGK/FGK.wxss */
 @import "../../industryZCGJ/industryZCGJ.wxss";
+.goods-list-li-title{
+  line-height: 46rpx;
+}
 .fgk-contaner{
   height: 100vh;
   max-height: 100vh;
@@ -23,10 +26,10 @@
   position: relative;
 }
 .fgk-left{
-  width: 191rpx;
+  width: 178rpx;
   height: 100%;
   overflow-y: auto;
-  background: #F8FEFD;
+  background: #F1F5FC;
 }
 .fgk-left>view{
   width: 100%;
@@ -50,7 +53,7 @@
   background: #28B7A3;
 }
 .fgk-right{
-  width: 74%;
+  width: 76%;
   vertical-align: top;
 }
 .goods-list2{

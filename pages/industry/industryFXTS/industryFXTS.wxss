@@ -90,3 +90,9 @@
   bottom:0;
   left:24rpx;
 }
+.ifx-container{
+  width: 100%;
+  height: auto;
+  padding: 32rpx 34rpx;
+  box-sizing: border-box;
+}

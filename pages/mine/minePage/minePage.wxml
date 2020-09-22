@@ -33,7 +33,8 @@ module.exports = {
 			</view>
 			<view bindtap="navClick" data-msg="文章" class="inline-block {{navMsg=='文章'?'nav-act':''}}" data-url="policylist">文章<view wx:if="{{navMsg=='文章'}}" class="mp-nav-line"></view></view>
 			<view bindtap="navClick" data-msg="直播" class="inline-block {{navMsg=='直播'?'nav-act':''}}" data-url="broadacast/list">直播<view wx:if="{{navMsg=='直播'}}" class="mp-nav-line"></view></view>
-			<view bindtap="navClick" data-msg="课程" class="inline-block {{navMsg=='课程'?'nav-act':''}}" data-url="goodclass/list">课程<view wx:if="{{navMsg=='课程'}}" class="mp-nav-line"></view></view>
+			<!-- 精选好课隐藏 -->
+			<!-- <view bindtap="navClick" data-msg="课程" class="inline-block {{navMsg=='课程'?'nav-act':''}}" data-url="goodclass/list">课程<view wx:if="{{navMsg=='课程'}}" class="mp-nav-line"></view></view> -->
 		</view>
 		<view class="dt" wx:if="{{navMsg=='动态'}}">
 			<!-- <view class="dt-list box-sizing">
@@ -60,7 +61,7 @@ module.exports = {
 						<text wx:if="{{item.moudleType==4}}">税收筹划</text>
 						<text wx:if="{{item.moudleType==5}}">解码图</text>
 						<text wx:if="{{item.moudleType==6}}">新闻中心</text>
-						<text wx:if="{{item.moudleType==7}}">精选好课</text>
+						<!-- <text wx:if="{{item.moudleType==7}}">精选好课</text> -->
 						<text wx:if="{{item.moudleType==8}}">直播答疑</text>
 					</view>
 					<text>{{tools.dateFormat(item.careadate)}}</text>

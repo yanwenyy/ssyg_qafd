@@ -1,0 +1,25 @@
+<!--pages/mine/disclaimers/disclaimers.wxml-->
+<view class="disclaimer-body box-sizing">
+  <view class="disclaimer-logo">
+    <image src="/img/disclaimers-logo.png" mode="aspectFit"></image>
+  </view>
+  <view class="disclaimer-msg">
+    <text class="nbsp">两格</text>非常感谢您访问我们的产品，在您使用本产品前，请您仔细阅读本声明： 
+  </view>
+  <view class="disclaimer-msg">
+    1. 本网少量内容、素材、图片来源自互联网，如有侵犯了您的权益请立即联系我们。我们将及时撤除相关内容。 
+  </view>
+  <view class="disclaimer-msg">
+    2. 凡本网注明“来源：行税之星”或未明确注明出处的文章，版权均属于本网站，未经本网授权，任何单位及个人不得转载、摘编或以其他方式使用上述作品。违者本网将追究其相关法律责任。
+  </view>
+  <view class="disclaimer-msg">
+    <text class="nbsp">3. </text>以上内容最终解释权归属"行税之星"所有 
+  </view>
+  <view class="contract-us">联系我们</view>
+  <view class="disclaimer-msg">
+    <text class="nbsp">3. </text>客服电话: <text class="green">010-57797070、13466553990</text>
+  </view>
+   <view class="disclaimer-msg">
+    <text class="nbsp">3. </text>服务时间：9:00 — 17:00
+  </view>
+</view>
