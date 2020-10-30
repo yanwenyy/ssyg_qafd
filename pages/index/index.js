@@ -212,18 +212,18 @@ Page({
           newList: datas
         })
       } else {
-        wx.showToast({
-          title: '没有更多了',
-          icon: 'none',
-          duration: 2000
-        })
-        // that.setData({
-        //   newStart:1,
-        //   newNum:3,
-        //   // newList:[],
+        // wx.showToast({
+        //   title: '没有更多了',
+        //   icon: 'none',
+        //   duration: 2000
         // })
+        that.setData({
+          newStart:1,
+          newNum:3,
+          // newList:[],
+        })
         // //新闻中心
-        // that.getNew(that.data.newStart, that.data.newNum, that.data.tradeId);
+        that.getNew(that.data.newStart, that.data.newNum, that.data.tradeId);
       }
 
     })

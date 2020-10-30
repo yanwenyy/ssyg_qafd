@@ -1,12 +1,12 @@
 <!--pages/industry/industryZCYW/zcywContent/zcywContent.wxml-->
 <wxs module="tools" src="../../../tools.wxs"></wxs>
 <wxs module="fj">
-function getFile(val,type){
-	return val.indexOf(type)!=-1
-}
-module.exports = {
-  getFile : getFile,
-}
+	function getFile(val, type) {
+		return val.indexOf(type) != -1
+	}
+	module.exports = {
+		getFile: getFile,
+	}
 </wxs>
 <view class="body">
 	<view class="policeContent-head">
@@ -14,13 +14,23 @@ module.exports = {
 		<view class="pch-file">[ {{policyContent.fileNum}} ]</view>
 		<view class="pch-list">发文机关：{{policyContent.office||''}}</view>
 		<view class="pch-list">税 种：{{policyContent.taxName||''}}</view>
-    <view class="pch-list">时效性：{{policyContent.timelinessName||''}}</view>
+		<view class="pch-list">时效性：{{policyContent.timelinessName||''}}</view>
 		<view class="pch-list">发布时间：{{tools.dateFormat(policyContent.officialReleaseDate,"yyyy-MM-dd")}}</view>
 		<view class="pch-list">政策地区：{{policyContent.region||'全国'}}</view>
 	</view>
 	<view class="policeContent-body">
+		<view class="pcp-nav {{scrollTop>230?'positionTop':''}}">
+			<view class="inline-block pcp-nav-list {{navText=='政策'?'pcp-nav-list-act':''}}" bindtap="navClick" data-code="1" data-text="政策">
+				政策
+				<text wx:if="{{navText=='政策'}}" class="inline-block pcp-nav-line"></text>
+			</view>
+			<view wx:if="{{releatedetails!=''}}" class="inline-block pcp-nav-list {{navText=='相关解读'?'pcp-nav-list-act':''}}" bindtap="navClick" data-code="3" data-text="相关解读">
+				相关解读
+				<text wx:if="{{navText=='相关解读'}}" class="inline-block pcp-nav-line"></text>
+			</view>
+		</view>
 		<view class="pcb-show box-sizing">
-		<view class="v1">
+			<view class="v1 {{scrollTop>230?'vTop':''}}">
 				<view class="pcb-title">
 					<!-- <view class="inline-block psb-title-line"></view>
 					原文 -->
@@ -28,20 +38,27 @@ module.exports = {
 				<view class="pcb-zcyw">
 					<rich-text class="richClass" nodes="{{policyContent.content}}" space="nbsp"></rich-text>
 				</view>
-        <view wx:if="{{fjList!=''}}" class="zcyw-fj box-sizing">
-          <view class="fj-notice"> <text class="notice-icon inline-block">!</text> 小程序暂不支持下载附件，可点击预览</view>
-          <view class="fj-list" wx:for="{{fjList}}" wx:key="index" data-url="{{item.fileOriginalName}}" bindtap="downLoad">
-            <image wx:if="{{fj.getFile(item.fileRealName,'pdf')}}" src="{{imgUrl}}/fj-pdf.png" mode="scaleToFill"></image>
-            <image wx:if="{{fj.getFile(item.fileRealName,'doc')}}" src="{{imgUrl}}/fj-word.png" mode="scaleToFill"></image>
-            <image wx:if="{{fj.getFile(item.fileRealName,'xls')}}" src="{{imgUrl}}/fj-exl.png" mode="scaleToFill"></image>
+				<view wx:if="{{fjList!=''}}" class="zcyw-fj box-sizing">
+					<view class="fj-notice"> <text class="notice-icon inline-block">!</text> 小程序暂不支持下载附件，可点击预览</view>
+					<view class="fj-list" wx:for="{{fjList}}" wx:key="index" data-url="{{item.fileOriginalName}}" bindtap="downLoad">
+						<image wx:if="{{fj.getFile(item.fileRealName,'pdf')}}" src="{{imgUrl}}/fj-pdf.png" mode="scaleToFill"></image>
+						<image wx:if="{{fj.getFile(item.fileRealName,'doc')}}" src="{{imgUrl}}/fj-word.png" mode="scaleToFill"></image>
+						<image wx:if="{{fj.getFile(item.fileRealName,'xls')}}" src="{{imgUrl}}/fj-exl.png" mode="scaleToFill"></image>
 						<image wx:if="{{fj.getFile(item.fileRealName,'png')||fj.getFile(item.fileRealName,'jpg')}}" src="/img/fj-img.png" mode="scaleToFill"></image>
-            <view class="inline-block fj-list-name">{{item.fileRealName}}</view>
-          </view>
-        </view>
+						<view class="inline-block fj-list-name">{{item.fileRealName}}</view>
+					</view>
+				</view>
+			</view>
+				<view class="v3 {{scrollTop>230?'vTop':''}}" wx:if="{{releatedetails!=''}}">
+				<view class="pcb-title">相关解读</view>
+				<view class="pcb-xgwj-list shadow-model box-sizing" wx:for="{{releatedetails}}" wx:key="index" bindtap="xgjdClick" data-id="{{item.id}}">
+					<view class="pcb-xgwj-title">{{tools.splitTile(item.expertTitle,35)}}</view>
+					<view>发布时间：{{tools.dateFormat(item.createTime,"MM-dd hh:mm")}}</view>
+				</view>
 			</view>
 		</view>
-		<view class="pcb-foot" style="padding-bottom: {{isIphoneX ? '68rpx' : '30rpx'}};" >
-			<view class="inline-block green share-bottom"   data-collect="{{policyContent.ifCollect}}" bindtap="scClick">
+		<view class="pcb-foot" style="padding-bottom: {{isIphoneX ? '68rpx' : '30rpx'}};">
+			<view class="inline-block green share-bottom" data-collect="{{policyContent.ifCollect}}" bindtap="scClick">
 				<image wx:if="{{policyContent.ifCollect>0}}" src="{{imgUrl}}/zcyw-sc-act.png" mode="scaleToFill"></image>
 				<image wx:if="{{policyContent.ifCollect==0}}" src="{{imgUrl}}/zcyw-sc.png" mode="scaleToFill"></image>
 				收藏

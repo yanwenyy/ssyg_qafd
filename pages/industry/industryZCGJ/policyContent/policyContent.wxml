@@ -88,60 +88,7 @@
 				</view>
 			</view>
 			<view class="v4  {{scrollTop>230?'vTop':''}}">
-				<view class="pcb-title">评论 ({{commentData.total||0}})</view>
-				<view>
-					<view class="pcb-pl-list" wx:for="{{commentList}}" wx:for-index="commentListIndex" wx:key="index">
-						<image bindtap="goPerson" class="pcb-pl-list-img" src="{{item.headImg||(item.ifPlatformAuthor==1?imgUrl+'/user-zj.png':imgUrl+'/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
-						<view class="inline-block pcb-pl-list-right">
-							<view class="pcb-pl-list-name">
-								<text>{{item.userName}}</text>
-								<view class="inline-block pcb-pl-list-name-dz">
-									<image class="pcb-pl-list-name-dzimg" src="{{item.ifPrase>0?imgUrl+'/pcb-dz-act.png':imgUrl+'/pcb-dz.png'}}" mode="aspectFit" bindtap="plDz" data-index="{{commentListIndex}}" data-id="{{item.id}}" data-parse="{{item.ifPrase}}"></image>
-									{{item.praiseNum}}
-								</view>
-							</view>
-							<view wx:if="{{item.uDel!=1}}" class="pcb-pl-list-msg" bindtap="contentClick" data-id="{{item.id}}" data-name="{{item.userName}}">{{item.content}}</view>
-							<view class="pcb-pl-list-date" wx:if="{{item.uDel!=1}}">{{tools.dateFormat2(item.careadate,year)}} <text wx:if="{{item.userId==userInfo.uuid}}" bindtap="delComment" data-id="{{item.id}}">·删除</text></view>
-							<view class="pcb-pl-del" wx:if="{{item.uDel==1}}">
-								<view class="inline-block"></view>
-								<text class="inline-block">评论已删除</text>
-								<view class="inline-block"></view>
-							</view>
-							<view class="pcb-pl-list-hf" wx:if="{{item.discussUsers!=''}}">
-								<view class="pcb-pl-list-hf-trangle"></view>
-								<!--  style="{{item.discussUsers.length>1&&item.zk==true?'height:auto':'height:224rpx'}}" -->
-								<view class="pcb-pl-list-hf-msg box-sizing">
-									<view class="pcb-pl-list" wx:for="{{item.discussUsers_change}}" wx:key="index">
-										<image bindtap="goPerson" class="pcb-pl-list-img-hf" src="{{item.headImg||(item.ifPlatformAuthor==1?imgUrl+'/user-zj.png':imgUrl+'/user.png')}}" mode="aspectFit" data-id="{{item.userId}}"></image>
-										<view class="inline-block pcb-pl-list-right">
-											<view class="pcb-pl-list-name">
-												<view class="inline-block" style="width:85%;word-break: break-all;">
-													{{item.userName}}
-													<text class="green" wx:if="{{item.author==0}}">·作者</text>
-													<text wx:if="{{item.level==3}}" style="color:#333;margin:0 10rpx">回复</text>
-													<text wx:if="{{item.level==3}}">{{item.replyUserName}}</text>
-												</view>
-												<view class="inline-block pcb-pl-list-name-dz">
-													<image class="pcb-pl-list-name-dzimg" src="{{item.ifPrase>0?imgUrl+'/pcb-dz-act.png':imgUrl+'/pcb-dz.png'}}" mode="aspectFit" bindtap="plDz" data-index="{{index}}" data-id="{{item.id}}" data-parse="{{item.ifPrase}}" data-type="hf" data-parentindex="{{commentListIndex}}"></image>
-													{{item.praiseNum}}
-												</view>
-											</view>
-											<view wx:if="{{item.uDel!=1}}" class="pcb-pl-list-msg" bindtap="contentClick" data-id="{{item.id}}" data-name="{{item.userName}}">{{item.content}}</view>
-											<view wx:if="{{item.uDel!=1}}" class="pcb-pl-list-date">{{tools.dateFormat2(item.careadate,year)}}<text wx:if="{{item.userId==userInfo.uuid}}" bindtap="delComment" data-id="{{item.id}}">·删除</text></view>
-											<view class="pcb-pl-del" wx:if="{{item.uDel==1}}">
-												<view class="inline-block"></view>
-												<text class="inline-block">评论已删除</text>
-												<view class="inline-block"></view>
-											</view>
-										</view>
-									</view>
-									<view wx:if="{{item.discussUsers.length>1}}" class="psb-pl-list-sq" data-id="{{commentListIndex}}" bindtap="sqClick" data-msg="{{item.zk==true?'收起':''}}">{{item.zk==true?'收起':'更多回复'+(item.discussUsers.length-1)}}</view>
-								</view>
-							</view>
-						</view>
-					</view>
-					<noMsg wx:if="{{commentList==''}}" imgUrl="no-pl" msg="快来抢坐沙发～"></noMsg>
-				</view>
+				<discuss bind:callSomeFun="contentClick" id="discussList" type="1" dId="{{policyContent.id}}"></discuss>
 			</view>
 		</view>
 		<view class="pcb-foot" style="padding-bottom: {{isIphoneX ? '68rpx' : '30rpx'}};">

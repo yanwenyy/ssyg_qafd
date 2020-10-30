@@ -109,7 +109,7 @@ App({
   },
   public: function () {
     var test = {
-      url: 'https://test.jieshuibao.com/jsb_applet/',
+      url: 'https://test.jieshuibao.com/jsb-tax-star/',
       token_url: 'https://test.jieshuibao.com/jsb_webserver/',
       head_src: 'https://test.jieshuibao.com/jsb_webserver/showImg/head/',
       question_src: 'https://test.jieshuibao.com/jsb_webserver/showImg/question/'

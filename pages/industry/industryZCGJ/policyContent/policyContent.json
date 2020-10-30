@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText":"政策归集",
   "usingComponents": {
-    "noMsg":"../../../../components/noMsg/noMsg"
+    "noMsg":"../../../../components/noMsg/noMsg",
+    "discuss":"/components/discuss/discuss"
   }
 }

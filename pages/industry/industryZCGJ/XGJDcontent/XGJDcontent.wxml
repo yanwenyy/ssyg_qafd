@@ -4,9 +4,9 @@
 	<view class="policeContent-head">
 		<view class="pch-title">{{detail.expertTitle}}</view>
 		<view class="ssch-head">
-			<image  wx:if="{{detail.ifPlatformAuthor!=0}}" src="{{detail.headImg||imgUrl+'/user-zj.png'}}" mode="aspectFit" data-id="{{detail.userid}}" bindtap="goPerson"></image>
+			<image  wx:if="{{detail.ifPlatformAuthor!=0&&detail.type==1}}" src="{{detail.headImg||imgUrl+'/user-zj.png'}}" mode="aspectFit" data-id="{{detail.userid}}" bindtap="goPerson"></image>
 			<view class="inline-block">
-				<view class="ssch-head-name">{{detail.userName}}</view>
+				<view class="ssch-head-name">{{detail.type==1?detail.userName||'':detail.source||''}}</view>
 				<view class="ssch-head-date">{{tools.dateFormat(detail.createTime)}}</view>
 			</view>
 		</view>

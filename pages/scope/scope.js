@@ -100,12 +100,13 @@ Page({
         app.ajax("/wx/authorize",{
             "encryptedData": res.encryptedData,
             "iv": res.iv,
-            "openid": app.globalData.logMsg.authorize==1?app.globalData.logMsg.openid:app.globalData.logMsg.taxOpenid,
+            // "openid": app.globalData.logMsg.authorize==1?app.globalData.logMsg.openid:app.globalData.logMsg.taxOpenid,
+            "openid":app.globalData.logMsg.taxOpenid,
             "rawData": res.rawData,
             "signature": res.signature,
             "phoneEncryptedData":e.detail.encryptedData,
             "phoneIv":e.detail.iv,
-            "userType":'MINITAX'
+            "userType":'MINITAX',
         },function(res){
           if(res.data.code==10000){
             app.globalData.userInfo = res.data.data;

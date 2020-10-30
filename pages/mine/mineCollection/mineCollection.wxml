@@ -64,6 +64,6 @@
 				</view>
 			</view>
 		</view>
-
+		<noMsg wx:if="{{list==''}}" imgUrl="no-yw" msg=" 暂无内容"></noMsg>
 	</view>
 </view>
