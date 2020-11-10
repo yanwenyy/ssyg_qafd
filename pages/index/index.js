@@ -104,7 +104,7 @@ Page({
     });
 
     //轮播图
-    app.ajax("/applet/quan/list", {
+    app.ajax("/star/quan/list", {
       "type": "1"
     }, function (res) {
       that.setData({

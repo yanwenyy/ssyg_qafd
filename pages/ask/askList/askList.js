@@ -60,14 +60,14 @@ Page({
       status: true,//是否还有数据
     })
     //获取剩余次数
-    app.ajax_nodata("/applet/getQuestionNum",function(res){
+    app.ajax_nodata("/star/getQuestionNum",function(res){
       that.setData({
         time:res.data.data
       })
     })
     
     //获取用户id
-    app.ajax("/applet/getUserIdByCompanyId",{
+    app.ajax("/star/getUserIdByCompanyId",{
       companyId: app.globalData.userInfo.companyId
       },function(res){
         that.setData({

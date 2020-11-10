@@ -106,8 +106,8 @@ Page({
           var uuid=res.data.uuid;
           if (res.data.code == 1) {
             wx.hideLoading();
-            app.ajax_nodata("/applet/reduceQuestionNum", function (res) {
-              app.ajax_get("/applet/addQuestionRecord?uuid=" +uuid, function (res) {
+            app.ajax_nodata("/star/reduceQuestionNum", function (res) {
+              app.ajax_get("/star/addQuestionRecord?uuid=" +uuid, function (res) {
                 that.setData({
                   ifClick: true
                 })

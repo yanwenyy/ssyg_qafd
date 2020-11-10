@@ -117,7 +117,7 @@ Page({
   subPhone: function() {
     var that = this;
     if (this.data.phone != '' && this.data.code != "") {
-      app.ajax("/applet/editPhone", {
+      app.ajax("/star/editPhone", {
         "phone": this.data.phone,
         "smsCode": this.data.code,
         "smsMessageSid": this.data.smsMessageSid,
@@ -163,7 +163,7 @@ Page({
       success(res) {
         if (res.confirm) {
           console.log('用户点击确定');
-          app.ajax_nodata("/applet/untyingStateion", function(res) {
+          app.ajax_nodata("/star/untyingStateion", function(res) {
             console.log(res);
             if (res.data.code == 10000) {
               wx.showToast({
@@ -239,7 +239,7 @@ Page({
       };
 
       //请求验证码
-      app.ajax("/applet/sendSms", {
+      app.ajax("/star/sendSms", {
         "codeType": "update",
         "phoneNum": this.data.phone,
         "imgCode": this.data.imgcode,

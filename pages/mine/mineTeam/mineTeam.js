@@ -32,7 +32,7 @@ Page({
       userInfo:app.globalData.userInfo
     })
     //团队信息
-    app.ajax_nodata("/applet/getStation",function(res){
+    app.ajax_nodata("/star/getStation",function(res){
       that.setData({
         msg:res.data.data
       })
@@ -134,7 +134,7 @@ Page({
       content: '确定要转移权限给“' + this.data.shadowName+'”吗？转移后您将失去管理权限',
       success(res) {
         if (res.confirm) {
-          app.ajax("/applet/updateStateion", {
+          app.ajax("/star/updateStateion", {
             userId: that.data.shadowId
           }, function (res) {
             if (res.data.code == 10000) {
@@ -164,7 +164,7 @@ Page({
       content: '确定要删除员工么？',
       success(res) {
         if (res.confirm) {
-          app.ajax("/applet/deleteStation", {
+          app.ajax("/star/deleteStation", {
             userId: that.data.shadowId
           }, function (res) {
             if (res.data.code == 10000) {

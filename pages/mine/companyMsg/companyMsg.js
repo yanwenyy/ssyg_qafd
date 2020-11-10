@@ -67,14 +67,14 @@ Page({
     
 
     //行业
-    app.ajax_nodata("/applet/getTrade", function (res) {
+    app.ajax_nodata("/star/getTrade", function (res) {
       that.setData({
         industry: res.data.data
       })
     });
 
     //性质
-    app.ajax("/applet/getSysCode", {
+    app.ajax("/star/getSysCode", {
       "category": "3"
     }, function (res) {
       that.setData({
@@ -83,7 +83,7 @@ Page({
     });
 
     //规模
-    app.ajax("/applet/getSysCode", {
+    app.ajax("/star/getSysCode", {
       "category": "2"
     }, function (res) {
       that.setData({

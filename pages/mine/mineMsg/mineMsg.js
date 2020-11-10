@@ -70,14 +70,14 @@ Page({
     })
 
     //行业
-    app.ajax_nodata("/applet/getTrade", function (res) {
+    app.ajax_nodata("/star/getTrade", function (res) {
       that.setData({
         industry: res.data.data
       })
     });
 
     //职务
-    app.ajax("/applet/getSysCode", {
+    app.ajax("/star/getSysCode", {
       "category": "1"
     }, function (res) {
       that.setData({
@@ -173,7 +173,7 @@ Page({
     var data = this.data;
     if (data.userInfo.realName != '' && data.userInfo.companyName != '') {
       if ((data.userInfo.trade == null && data.industrySelId != '') || (data.userInfo.trade != null && data.industrySelId == '')) {
-        app.ajax("/applet/editUserInfo", {
+        app.ajax("/star/editUserInfo", {
           "province": data.region[0] != '' && data.region[0] != null ? data.region[0] : null,
           "city": data.region[1] != '' && data.region[1] != null ? data.region[1] : null,
           "companyId": data.userInfo.companyId,

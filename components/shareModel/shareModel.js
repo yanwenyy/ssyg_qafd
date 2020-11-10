@@ -175,9 +175,9 @@ Component({
     saveCode: function (url) {
       var that = this;
       //小程序码
-      app.ajax_nodata("/applet/trade/getaccesstoken", function (res) {
+      app.ajax_nodata("/star/trade/getaccesstoken", function (res) {
         if (res.data.code == 10000) {
-          app.ajax("/applet/trade/getorcode", {
+          app.ajax("/star/trade/getorcode", {
             // "accessToken": res.data.data,
             "path": url,
             "width": 430,
